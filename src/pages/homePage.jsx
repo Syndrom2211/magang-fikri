@@ -6,7 +6,6 @@ import { products, dataSwiper } from "../data/index";
 import { Star, PlayCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
-import { useNavigate } from "react-router-dom";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -17,15 +16,21 @@ import "swiper/css/navigation";
 
 const HomePage = () => {
   const catalogRef = useRef(null);
-  const navigate = useNavigate();
   const [setSwiperRef] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const visibleProducts = showAll ? products : products.slice(0, 3);
 
   const scrollToCatalog = () => {
     catalogRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const toggleView = () => {
+    setShowAll(!showAll);
+  };
+
   return (
     <div className="homePage">
+      {/* HOMEPAGE */}
       <header className="w-100 min-vh-100 d-flex align-items-center">
         <Container>
           <Row className="header-content">
@@ -50,6 +55,7 @@ const HomePage = () => {
           </Row>
         </Container>
       </header>
+      {/* CATALOG */}
       <div className="catalog w-100 min-vh-100" ref={catalogRef}>
         <Container>
           <Row>
@@ -62,7 +68,7 @@ const HomePage = () => {
           </Row>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
             <Row className="g-4">
-              {products.map((product) => (
+              {visibleProducts.map((product) => (
                 <Col
                   key={product.id}
                   md={4}
@@ -92,16 +98,6 @@ const HomePage = () => {
                           <span className="ml-1">{product.rating}</span>
                         </div>
                       </div>
-                      {/* <div className="flex flex-wrap gap-2 mb-4">
-                        {product.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div> */}
                       <button className="learn-more-btn">
                         {product.cta} <FontAwesomeIcon icon={faArrowRight} />
                       </button>
@@ -114,15 +110,17 @@ const HomePage = () => {
               <Col className="text-center">
                 <button
                   className="cta-catalog-button"
-                  onClick={() => navigate("/product")}
+                  onClick={toggleView}
                 >
-                  Lihat Semua <FontAwesomeIcon icon={faChevronRight} />
+                  {showAll ? 'Tampilkan Lebih Sedikit' : 'Lihat Semua'} 
+                  <FontAwesomeIcon icon={faChevronRight} />
                 </button>
               </Col>
             </Row>
           </div>
         </Container>
       </div>
+      {/* PORTFOLIO */}
       <div className="portfolio py-5">
         <Container>
           <Row>
