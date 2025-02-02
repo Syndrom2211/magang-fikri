@@ -13,6 +13,11 @@ Pastikan perangkat kamu telah terinstall:
 - **Git**
 - **Visual Studio Code** (disarankan)
 - **Terminal/Command Prompt**
+  **Jika PNPM belum terinstall, jalankan perintah berikut:**
+
+```bash
+npm install -g pnpm
+```
 
 ---
 
@@ -115,6 +120,12 @@ pnpm install --force
 
 ```bash
 pnpm clean && pnpm install
+```
+
+### 3️⃣ Jika terjadi restriksi eksekusi di Windows, jalankan:
+
+```bash
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 ---
