@@ -13,7 +13,8 @@ Pastikan perangkat kamu telah terinstall:
 - **Git**
 - **Visual Studio Code** (disarankan)
 - **Terminal/Command Prompt**
-  **Jika PNPM belum terinstall, jalankan perintah berikut:**
+
+**Jika PNPM belum terinstall, jalankan perintah berikut:**
 
 ```bash
 npm install -g pnpm
