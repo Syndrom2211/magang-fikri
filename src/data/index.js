@@ -1,9 +1,6 @@
-import catalogImage1 from "../assets/img/catalog/lo-fi.jpg";
 import catalogImage2 from "../assets/img/catalog/acoustic-vibe.jpg";
-import catalogImage3 from "../assets/img/catalog/epic-soundtrack.jpg";
-import catalogImage4 from "../assets/img/catalog/hiphop-beat.jpg";
-import catalogImage5 from "../assets/img/catalog/pop-song.jpg";
-import catalogImage6 from "../assets/img/catalog/edm-track.jpg";
+import catalogImage1 from "../assets/img/catalog/hiphop-beat.jpg";
+import catalogImage3 from "../assets/img/catalog/edm-track.jpg";
 
 import People1 from "../assets/img/portfolio/1.jpg";
 import People2 from "../assets/img/portfolio/2.jpg";
@@ -11,7 +8,6 @@ import People3 from "../assets/img/portfolio/3.jpg";
 import People4 from "../assets/img/portfolio/4.jpg";
 import People5 from "../assets/img/portfolio/5.jpg";
 import People6 from "../assets/img/portfolio/6.jpg";
-
 
 export const NavLink = [
   {
@@ -40,56 +36,26 @@ export const products = [
   {
     id: 1,
     image: catalogImage1,
-    name: "Lo-Fi Beat Generator",
-    description: "Create relaxing Lo-Fi beats instantly.",
-    cta: "Learn More",
-    tags: ["Lo-Fi", "Relaxing", "Chill"],
-    rating: 4.8,
+    name: "Buat Musik melalui Lyric",
+    description: "Ubahlah lirikmu menjadi lagu otomatis.",
+    cta: "Pesan Sekarang",
+    rating: "Telah dipesan sebanyak: ",
   },
   {
     id: 2,
     image: catalogImage2,
-    name: "Acoustic Vibe Composer",
-    description: "Generate soothing acoustic melodies.",
-    cta: "Learn More",
-    tags: ["Acoustic", "Calm", "Guitar"],
-    rating: 4.5,
+    name: "Buat Musik Instrumen",
+    description: "Ciptakan melodi instrumental profesional.",
+    cta: "Pesan Sekarang",
+    rating: "Telah dipesan sebanyak: ",
   },
   {
     id: 3,
     image: catalogImage3,
-    name: "Epic Soundtrack Maker",
-    description: "Design cinematic soundtracks in minutes.",
-    cta: "Learn More",
-    tags: ["Cinematic", "Epic", "Soundtrack"],
-    rating: 4.9,
-  },
-  {
-    id: 4,
-    image: catalogImage4,
-    name: "Hip-Hop Beat Studio",
-    description: "Craft beats for your rap and hip-hop needs.",
-    cta: "Learn More",
-    tags: ["Hip-Hop", "Rap", "Beats"],
-    rating: 4.6,
-  },
-  {
-    id: 5,
-    image: catalogImage5,
-    name: "Pop Song Creator",
-    description: "Produce catchy pop tracks effortlessly.",
-    cta: "Learn More",
-    tags: ["Pop", "Upbeat", "Vocal"],
-    rating: 4.7,
-  },
-  {
-    id: 6,
-    image: catalogImage6,
-    name: "EDM Track Builder",
-    description: "Create electronic dance tracks effortlessly.",
-    cta: "Learn More",
-    tags: ["EDM", "Dance", "Electronic"],
-    rating: 4.8,
+    name: "Buat Sound Effect",
+    description: "Hasilkan efek suara berkualitas tinggi.",
+    cta: "Pesan Sekarang",
+    rating: "Telah dipesan sebanyak: ",
   },
 ];
 
@@ -112,7 +78,7 @@ export const dataSwiper = [
     id: 3,
     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, saepe a. Quod eos non, dolores sapiente dicta quam esse reprehenderit explicabo vitae nesciunt ut laborum harum, vel optio corporis voluptatem?",
     image: People3,
-    name: "Hafizah Su'ad Masih",
+    name: "Hafizah Su'ad M.",
     skill: "Web Developer",
   },
   {
@@ -142,49 +108,50 @@ export const faq = [
   {
     id: 1,
     eventKey: 0,
-    title: "What is CMH?",
+    title: "Apa itu CMH dan bagaimana cara kerjanya?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
   {
     id: 2,
     eventKey: 1,
-    title: "Who can use CMH?",
+    title: "Apakah saya perlu keahlian musik untuk menggunakan CMH?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
   {
     id: 3,
     eventKey: 2,
-    title: "Apakah ini Berbayar?",
+    title: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
   {
     id: 4,
     eventKey: 3,
-    title: "Bagaimana cara Pemesanannya?",
+    title: "Bagaimana cara mengubah lirik menjadi lagu?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
   {
     id: 5,
     eventKey: 4,
-    title: "Can I use the music generated for commercial purposes?",
+    title: "Apakah saya bisa memilih genre musik tertentu?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
   {
     id: 6,
     eventKey: 5,
-    title: "How do I access the API?",
+    title: "Berapa lama waktu yang dibutuhkan untuk membuat musik?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
   {
     id: 7,
     eventKey: 6,
-    title: "How detailed should my prompts be?",
+    title: "Apakah musik yang dihasilkan bisa digunakan secara komersial?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
   {
     id: 8,
     eventKey: 7,
-    title: "Is there a limit to the number of times a track generated by CMH can be used commercially?",
+    title:
+      "Bagaimana jika saya mengalami masalah saat membuat musik?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
 ];

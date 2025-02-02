@@ -3,9 +3,8 @@ import HeroImage from "../assets/music-1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { products, dataSwiper } from "../data/index";
-import { Star, PlayCircle } from "lucide-react";
+import { User, PlayCircle } from "lucide-react";
 import { useRef, useState } from "react";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -17,15 +16,9 @@ import "swiper/css/navigation";
 const HomePage = () => {
   const catalogRef = useRef(null);
   const [setSwiperRef] = useState(null);
-  const [showAll, setShowAll] = useState(false);
-  const visibleProducts = showAll ? products : products.slice(0, 3);
 
   const scrollToCatalog = () => {
     catalogRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const toggleView = () => {
-    setShowAll(!showAll);
   };
 
   return (
@@ -36,7 +29,7 @@ const HomePage = () => {
           <Row className="header-content">
             <Col md={6}>
               <h1 className="fw-bold">
-                Create Your <span className="hub">Music</span> In Minutes
+                Ciptakan <span className="hub">Musikmu</span> Dalam Hitungan Detik
               </h1>
               <p className="fs-5">
                 Jadikan inspirasimu sebuah mahakarya dengan AI canggih. Tanpa
@@ -45,7 +38,7 @@ const HomePage = () => {
                 profesional dalam hitungan menit.
               </p>
               <button className="cta-button" onClick={scrollToCatalog}>
-                GET STARTED
+                COBA SEKARANG
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </Col>
@@ -60,7 +53,7 @@ const HomePage = () => {
         <Container>
           <Row>
             <Col>
-              <h1 className="text-center fw-bold">Catalog</h1>
+              <h1 className="text-center fw-bold">Produk Kami</h1>
               <p className="text-center">
                 Ciptakan Musik impianmu dengan mudah hanya dalam hitungan menit
               </p>
@@ -68,7 +61,7 @@ const HomePage = () => {
           </Row>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
             <Row className="g-4">
-              {visibleProducts.map((product) => (
+              {products.map((product) => (
                 <Col
                   key={product.id}
                   md={4}
@@ -94,7 +87,7 @@ const HomePage = () => {
                       </p>
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center text-yellow-500">
-                          <Star className="w-4 h-4" />{" "}
+                          <User className="w-4 h-4" />{" "}
                           <span className="ml-1">{product.rating}</span>
                         </div>
                       </div>
@@ -106,17 +99,7 @@ const HomePage = () => {
                 </Col>
               ))}
             </Row>
-            <Row>
-              <Col className="text-center">
-                <button
-                  className="cta-catalog-button"
-                  onClick={toggleView}
-                >
-                  {showAll ? 'Tampilkan Lebih Sedikit' : 'Lihat Semua'} 
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </button>
-              </Col>
-            </Row>
+            
           </div>
         </Container>
       </div>
@@ -125,7 +108,7 @@ const HomePage = () => {
         <Container>
           <Row>
             <Col>
-              <h1 className="text-center fw-bold my-5">Portfolio</h1>
+              <h1 className="text-center fw-bold my-5">Portofolio</h1>
             </Col>
           </Row>
           <Row>

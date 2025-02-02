@@ -39,7 +39,13 @@ const NavbarComponent = () => {
               <div className="nav-item">
                 <NavDropdown title="Product" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/product" className="dropdown-item">
-                    Pembuatan music Under 1 Minute
+                  Buat Musik melalui Lyric
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/product" className="dropdown-item">
+                  Buat Musik Instrumen
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/product" className="dropdown-item">
+                  Buat Sound Effect
                   </NavDropdown.Item>
                 </NavDropdown>
               </div>

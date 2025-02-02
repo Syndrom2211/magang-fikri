@@ -131,7 +131,7 @@ header {
 }
 
 .homePage .header-content h1 {
-  font-size: 3.5em;
+  font-size: 3em;
   font-weight: 700;
   color: var(--light-color);
   margin: 0 0 20px 0;
@@ -471,34 +471,6 @@ header {
   }
 }
 
-/* cta catalog button */
-.cta-catalog-button {
-  display: center;
-  align-items: center;
-  gap: 10px;
-  padding: 1rem 2rem;
-  background: linear-gradient(to right, #e62c2c, #3a1eda);
-  background-size: 200% auto;
-  color: var(--text-dark);
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 800;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transition: all 0.5s ease;
-  transform: translateY(0);
-}
-
-.cta-catalog-button:hover {
-  color: #000;
-  background: linear-gradient(
-    to right,
-    var(--light-color),
-    var(--secondary-color)
-  );
-  transform: translateY(-10px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-}
-
 /* portfolio */
 .homePage .portfolio {
   background: #302b63;
@@ -713,7 +685,7 @@ header {
 
 .footer .row:nth-child(1) .col:nth-child(1) h3 {
   color: var(--light-color);
-  font-size: 42px;
+  font-size: 40px;
 }
 
 .footer .row:nth-child(1) .col:nth-child(1) .desc {
@@ -766,7 +738,7 @@ header {
 .footer .row:nth-child(1) .col:nth-child(2) h5{
   color: var(--light-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  width: 100px;
+  width: 150px;
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
@@ -785,7 +757,7 @@ header {
 .footer .row:nth-child(1) .col:nth-child(3) h5{
   color: var(--light-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  width: 60px;
+  width: 180px;
   padding-bottom: 10px;
   margin-bottom: 15px;
 }

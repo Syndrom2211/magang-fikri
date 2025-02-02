@@ -11,7 +11,9 @@ const FooterComponent = () => {
       <Container>
         <Row className="d-flex justify-content-between">
           <Col>
-            <h3 className="fw-bold">CMH.</h3>
+            <h3 className="fw-bold">
+              CreativeMusic<span className="hub">Hub</span>
+            </h3>
             <p className="desc">
               <FontAwesomeIcon
                 icon={faLocationDot}
@@ -47,23 +49,23 @@ const FooterComponent = () => {
               <FontAwesomeIcon icon={faEnvelope} />
             </div>
           </Col>
-          <Col className="d-flex flex-column col-lg-5 col mt-lg-0 mt-5">
-            <h5 className="fw-bold">Products</h5>
-            <Link to="/product">Pembuatan Music Under 1 Minute</Link>
-            <Link to="/portfolio">Portfolio</Link>
+          <Col className="d-flex flex-column col-lg-4 col mt-lg-0 mt-5">
+            <h5 className="fw-bold">Produk Kami</h5>
+            <Link to="/">Buat Musik melalui Lyric</Link>
+            <Link to="/">Buat Musik Instrumen</Link>
+            <Link to="/">Buat Sound Effect</Link>
+            <Link to="/">Portofolio</Link>
           </Col>
-          <Col className="d-flex flex-column col-lg-2 col mt-lg-0 mt-5">
-            <h5 className="fw-bold">Links</h5>
-            <Link>Catalog</Link>
-            <Link>Testimonial</Link>
-            <Link>FAQ</Link>
+          <Col className="d-flex flex-column col-lg-3 col mt-lg-0 mt-5">
+            <h5 className="fw-bold">Total Pengunjung:</h5>
           </Col>
         </Row>
         <Row>
           <Col>
             <p className="text-center px-md-0 px-3">
-              &copy; Copyright {new Date().getFullYear()} by <span className="fw-bold">Creative Music Hub</span>,
-              All Right Reserved{" "}
+              &copy; Copyright {new Date().getFullYear()} by{" "}
+              <span className="fw-bold">Creative Music Hub</span>, All Right
+              Reserved{" "}
             </p>
           </Col>
         </Row>
