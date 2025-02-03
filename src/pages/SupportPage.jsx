@@ -1,7 +1,11 @@
+import ContactUs from "./ContactUs"; // Adjust the import path as necessary
+
 const SupportPage = () => {
   return (
-    <div>SupportPage</div>
-  )
-}
+    <div>
+      <ContactUs />
+    </div>
+  );
+};
 
-export default SupportPage
+export default SupportPage;
