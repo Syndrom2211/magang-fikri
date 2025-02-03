@@ -7,6 +7,7 @@ import { User, PlayCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ReactPlayer from "react-player";
 
 // Import Swiper styles
 import "swiper/css";
@@ -148,7 +149,7 @@ const HomePage = () => {
                   virtualIndex={index}
                   className="shadow-sm rounded"
                 >
-                  <p className="desc">{swiper.desc}</p>
+                <ReactPlayer url={swiper.video} controls width="100%" height="auto" />
                   <div className="people">
                     <img src={swiper.image} alt="" />
                     <div>
