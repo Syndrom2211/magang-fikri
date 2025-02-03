@@ -6,7 +6,7 @@ import FaqComponent from "./components/FaqComponent"
 import FooterComponent from "./components/FooterComponent"
 
 
-import homePage from "./pages/homePage"
+import homePage from "./pages/HomePage"
 import SupportPage from "./pages/SupportPage"
 import ProductPage from "./pages/ProductPage"
 import PortfolioPage from "./pages/PortfolioPage"
