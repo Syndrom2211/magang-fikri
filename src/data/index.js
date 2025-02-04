@@ -39,6 +39,7 @@ export const products = [
     description: "Ubahlah lirikmu menjadi lagu otomatis.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
+    price: 100000,
   },
   {
     id: 2,
@@ -47,6 +48,7 @@ export const products = [
     description: "Ciptakan melodi instrumental profesional.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
+    price: 200000,
   },
   {
     id: 3,
@@ -55,6 +57,7 @@ export const products = [
     description: "Hasilkan efek suara berkualitas tinggi.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
+    price: 300000,
   },
 ];
 

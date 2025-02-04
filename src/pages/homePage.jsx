@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReactPlayer from "react-player";
+import { checkout } from "../components/Checkout";
 
 // Import Swiper styles
 import "swiper/css";
@@ -92,7 +93,7 @@ const HomePage = () => {
                           <span className="ml-1">{product.rating}</span>
                         </div>
                       </div>
-                      <button className="learn-more-btn">
+                      <button className="learn-more-btn" onClick={() => checkout(product)}>
                         {product.cta} <FontAwesomeIcon icon={faArrowRight} />
                       </button>
                     </div>
