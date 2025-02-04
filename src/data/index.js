@@ -2,12 +2,11 @@ import catalogImage2 from "../assets/img/catalog/acoustic-vibe.jpg";
 import catalogImage1 from "../assets/img/catalog/hiphop-beat.jpg";
 import catalogImage3 from "../assets/img/catalog/edm-track.jpg";
 
-import People1 from "../assets/img/portfolio/1.jpg";
-import People2 from "../assets/img/portfolio/2.jpg";
-import People3 from "../assets/img/portfolio/3.jpg";
-import People4 from "../assets/img/portfolio/4.jpg";
-import People5 from "../assets/img/portfolio/5.jpg";
-import People6 from "../assets/img/portfolio/6.jpg";
+import People1 from "../assets/img/portfolio/1D.png";
+import People2 from "../assets/img/portfolio/WDW.png";
+import People3 from "../assets/img/portfolio/BM.png";
+import People4 from "../assets/img/portfolio/LM.png";
+import "lucide-react";
 
 export const NavLink = [
   {
@@ -62,45 +61,65 @@ export const products = [
 export const dataSwiper = [
   {
     id: 1,
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, saepe a. Quod eos non, dolores sapiente dicta quam esse reprehenderit explicabo vitae nesciunt ut laborum harum, vel optio corporis voluptatem?",
-    image: People1,
-    name: "Kenneth M. Nebel",
-    skill: "UI UX Designer",
+    video: "videos/1.mp4",
+    image: People2,
+    name: "Why Don't We",
+    skill: "Who Am I",
+    description:
+      "Lagu ini menggambarkan pencarian jati diri dan refleksi tentang siapa kita sebenarnya.",
   },
   {
     id: 2,
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, saepe a. Quod eos non, dolores sapiente dicta quam esse reprehenderit explicabo vitae nesciunt ut laborum harum, vel optio corporis voluptatem?",
-    image: People2,
-    name: "Wan Wei",
-    skill: "Flutter Developer",
+    video: "videos/2.mp4",
+    image: People1,
+    name: "One Direction",
+    skill: "Night Changes",
+    description:
+      "Lagu ini bercerita tentang kenangan indah dan perubahan yang datang seiring waktu.",
   },
   {
     id: 3,
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, saepe a. Quod eos non, dolores sapiente dicta quam esse reprehenderit explicabo vitae nesciunt ut laborum harum, vel optio corporis voluptatem?",
-    image: People3,
-    name: "Hafizah Su'ad M.",
-    skill: "Web Developer",
+    video: "videos/3.mp4",
+    image: People2,
+    name: "Why Don't We",
+    skill: "Trust Fun Baby",
+    description:
+      "Lagu ini mengekspresikan rasa percaya dan kesenangan dalam hubungan.",
   },
   {
     id: 4,
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, saepe a. Quod eos non, dolores sapiente dicta quam esse reprehenderit explicabo vitae nesciunt ut laborum harum, vel optio corporis voluptatem?",
-    image: People4,
-    name: "Sonia J. Yelton",
-    skill: "UI UX Designer",
+    video: "videos/4.mp4",
+    image: People1,
+    name: "One Direction",
+    skill: "You and I",
+    description: "Lagu ini menggambarkan cinta yang kuat dan tak terpisahkan.",
   },
   {
     id: 5,
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, saepe a. Quod eos non, dolores sapiente dicta quam esse reprehenderit explicabo vitae nesciunt ut laborum harum, vel optio corporis voluptatem?",
-    image: People5,
-    name: "Isaac Freeleagus",
-    skill: "Flutter Developer",
+    video: "videos/5.mp4",
+    image: People3,
+    name: "Bruno Mars",
+    skill: "Lazy Song",
+    description:
+      "Lagu ini merayakan momen santai dan menikmati hidup tanpa beban.",
   },
   {
     id: 6,
-    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, saepe a. Quod eos non, dolores sapiente dicta quam esse reprehenderit explicabo vitae nesciunt ut laborum harum, vel optio corporis voluptatem?",
-    image: People6,
-    name: "Sahla Taqiyah N.",
-    skill: "Web Developer",
+    video: "videos/6.mp4",
+    image: People4,
+    name: "Little Mix",
+    skill: "Black Magic",
+    description:
+      "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
+  },
+  {
+    id: 7,
+    video: "videos/6.mp4",
+    image: People4,
+    name: "Little Mix",
+    skill: "Black Magic",
+    description:
+      "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
   },
 ];
 
@@ -150,8 +169,7 @@ export const faq = [
   {
     id: 8,
     eventKey: 7,
-    title:
-      "Bagaimana jika saya mengalami masalah saat membuat musik?",
+    title: "Bagaimana jika saya mengalami masalah saat membuat musik?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
   },
 ];
