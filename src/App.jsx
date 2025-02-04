@@ -7,7 +7,6 @@ import FooterComponent from "./components/FooterComponent";
 import HomePage from "./pages/HomePage";
 import SupportPage from "./pages/SupportPage";
 import PortfolioPage from "./pages/PortfolioPage";
-import KatalogPage from "./pages/KatalogPage";
 import LyricPage from "./pages/LyricPage";
 import InstrumenPage from "./pages/InstrumenPage.jsx";
 import SoundPage from "./pages/SoundPage.jsx";
@@ -26,7 +25,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/katalog" element={<KatalogPage />} />
         <Route path="/lyric" element={LyricPage} />
         <Route path="/instrumen" element={InstrumenPage} />
         <Route path="/sound" element={SoundPage} />

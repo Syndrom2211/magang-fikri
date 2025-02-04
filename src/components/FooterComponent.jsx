@@ -57,7 +57,7 @@ const FooterComponent = () => {
             <Link to="/portfolio">Portofolio</Link>
           </Col>
           <Col className="d-flex flex-column col-lg-3 col mt-lg-0 mt-5">
-            <h5 className="fw-bold">Total Pengunjung: <span className="pengunjung">1000++</span></h5>
+            <h5 className="fw-light">Total Pengunjung: <span className="pengunjung">1000++</span></h5>
           </Col>
         </Row>
         <Row>
