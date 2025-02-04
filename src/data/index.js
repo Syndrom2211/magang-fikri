@@ -39,6 +39,7 @@ export const products = [
     description: "Ubahlah lirikmu menjadi lagu otomatis.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
+    price: 100000,
   },
   {
     id: 2,
@@ -47,6 +48,7 @@ export const products = [
     description: "Ciptakan melodi instrumental profesional.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
+    price: 200000,
   },
   {
     id: 3,
@@ -55,6 +57,7 @@ export const products = [
     description: "Hasilkan efek suara berkualitas tinggi.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
+    price: 300000,
   },
 ];
 
@@ -105,15 +108,6 @@ export const dataSwiper = [
   },
   {
     id: 6,
-    video: "videos/6.mp4",
-    image: People4,
-    name: "Little Mix",
-    skill: "Black Magic",
-    description:
-      "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
-  },
-  {
-    id: 7,
     video: "videos/6.mp4",
     image: People4,
     name: "Little Mix",
