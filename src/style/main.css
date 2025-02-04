@@ -843,7 +843,7 @@ header {
 .footer .row:nth-child(1) .col:nth-child(3) h5{
   color: var(--light-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  width: 180px;
+  width: 280px;
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
@@ -862,6 +862,21 @@ header {
 .footer .row:nth-child(2){
   color: #fff ;
   margin-top: 100px;
+}
+
+.pengunjung {
+  color: #4a90e2;
+  font-weight: 600;
+  padding: 0 8px;
+  margin-left: 4px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.pengunjung:hover {
+  color: #2c5282;
 }
 
 /* Support */
