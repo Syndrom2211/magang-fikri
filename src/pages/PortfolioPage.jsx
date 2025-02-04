@@ -18,23 +18,22 @@ const PortfolioPage = () => {
         </Row>
         <Row className="header-content g-4">
           {dataSwiper.map((item) => (
-            <Col key={item.id} sm={6} md={6}>
+            <Col key={item.id} sm={6} md={4}>
               <div className="video-card shadow-sm rounded p-1 bg-success-subtle text-success">
                 <ReactPlayer url={item.video} controls width="100%" height="auto"/>
                 <div className="people d-flex align-items-left mt-3">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="rounded-circle me-3"
-                    style={{ width: "50px", height: "50px", objectFit: "cover" }}
-                  />
-                  <div>
-                    <h4 className="mb-1 fw-bold d-flex align-items-left">{item.name}</h4>
-                    <p className="m-3 b-0 fw-semibold text-success-emphasis">{item.skill}</p>
-                    <p className="m-2 fw-lighter text-dark">{item.description}</p>
-                  </div>
                 </div>
               </div>
+              <Col>
+              <div className="d-flex flex-column align-items-start">
+                <h4 className="fw-bold my-2 text-uppercase text-light" style={{ letterSpacing: "2px", fontFamily: "Workbench" }}>
+                  {item.name}
+                </h4>
+                <p className="mb-2 text-light" style={{ fontSize: "1.2rem", fontFamily: "Tulpen One"}}>
+                  {item.description}
+                </p>
+                </div>
+              </Col>
             </Col>
           ))}
         </Row>

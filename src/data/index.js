@@ -112,15 +112,6 @@ export const dataSwiper = [
     description:
       "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
   },
-  {
-    id: 7,
-    video: "videos/6.mp4",
-    image: People4,
-    name: "Little Mix",
-    skill: "Black Magic",
-    description:
-      "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
-  },
 ];
 
 export const faq = [

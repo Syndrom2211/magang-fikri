@@ -1,35 +1,39 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom";
 
+import NavbarComponent from "./components/NavbarComponent";
+import FaqComponent from "./components/FaqComponent";
+import FooterComponent from "./components/FooterComponent";
 
-import NavbarComponent from "./components/NavbarComponent"
-import FaqComponent from "./components/FaqComponent"
-import FooterComponent from "./components/FooterComponent"
-
-
-import homePage from "./pages/HomePage"
-import SupportPage from "./pages/SupportPage"
-import ProductPage from "./pages/ProductPage"
-import PortfolioPage from "./pages/PortfolioPage"
-import KatalogPage from "./pages/KatalogPage"
-
+import HomePage from "./pages/HomePage";
+import SupportPage from "./pages/SupportPage";
+import ProductPage from "./pages/ProductPage";
+import PortfolioPage from "./pages/PortfolioPage";
+import KatalogPage from "./pages/KatalogPage";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
+  const location = useLocation(); // Ambil lokasi URL saat ini
+  const isAdminPage = location.pathname.startsWith("/admin"); // Cek apakah halaman admin
+
   return (
     <div>
-      <NavbarComponent />
-
-      <Routes>
-        <Route path="/" Component={homePage}/>
-        <Route path="/product" Component={ProductPage}/>
-        <Route path="/support" Component={SupportPage}/>
-        <Route path="/portfolio" Component={PortfolioPage}/>
-        <Route path="/katalog" Component={KatalogPage}/>
-      </Routes>
+      {/* Tampilkan Navbar, FAQ, dan Footer hanya jika bukan halaman admin */}
+      {!isAdminPage && <NavbarComponent />}
       
-      <FaqComponent />
-      <FooterComponent />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/support" element={<SupportPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/katalog" element={<KatalogPage />} />
+        <Route path="/admin/*" element={<Dashboard />} />
+      </Routes>
+
+      {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}
+      {!isAdminPage && <FaqComponent />}
+      {!isAdminPage && <FooterComponent />}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
