@@ -8,13 +8,14 @@ import HomePage from "./pages/HomePage";
 import SupportPage from "./pages/SupportPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import LyricPage from "./pages/LyricPage";
-import InstrumenPage from "./pages/InstrumenPage.jsx";
-import SoundPage from "./pages/SoundPage.jsx";
+import InstrumenPage from "./pages/InstrumenPage";
+import SoundPage from "./pages/SoundPage";
 import Dashboard from "./pages/Dashboard";
+import AdminLoginPage from "./pages/AdminLoginPage";
 
 function App() {
   const location = useLocation(); // Ambil lokasi URL saat ini
-  const isAdminPage = location.pathname.startsWith("/admin"); // Cek apakah halaman admin
+  const isAdminPage = location.pathname.startsWith("/admin") && location.pathname !== "admin/login"; // Cek apakah halaman admin
 
   return (
     <div>
@@ -22,12 +23,13 @@ function App() {
       {!isAdminPage && <NavbarComponent />}
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<HomePage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/lyric" element={LyricPage} />
-        <Route path="/instrumen" element={InstrumenPage} />
-        <Route path="/sound" element={SoundPage} />
+        <Route path="/lyric" element={<LyricPage />} />
+        <Route path="/instrumen" element={<InstrumenPage />} />
+        <Route path="/sound" element={<SoundPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} /> {/* Admin Login Page Route */}
         <Route path="/admin/*" element={<Dashboard />} />
       </Routes>
 
