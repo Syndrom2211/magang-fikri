@@ -14,7 +14,7 @@ app.use(express.json());
 // Inisialisasi Midtrans Snap
 const snap = new midtransClient.Snap({
     isProduction: false,
-    serverKey: process.env.MIDTRANS_SERVER_KEY,
+    serverKey: globalThis.process.env.MIDTRANS_SERVER_KEY,
 });
 
 app.post('/api/payments/process-transaction', async (req, res) => {
@@ -58,7 +58,7 @@ app.post('/api/payments/process-transaction', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 1000;
+const PORT = globalThis.process.env.PORT || 1000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
