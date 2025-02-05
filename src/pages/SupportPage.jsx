@@ -22,14 +22,14 @@ const SupportPage = () => {
                     className="mb-3"
                   />
                   <h4>Address</h4>
-                  <p>123 Music Street, Melody City, Harmony 45678</p>
+                  <p>Komp. Bandung Indah Raya, Blok C13/No.17, Kel. Mekarjaya, Kec. Rancasari, Kota Bandung, Jawa Barat 40286</p>
                 </div>
               </Col>
               <Col md={4}>
                 <div className="contact-info">
                   <FontAwesomeIcon icon={faPhone} size="3x" className="mb-3" />
                   <h4>Phone</h4>
-                  <p>+1 (234) 567-8901</p>
+                  <p>+62 812-3456-7890</p>
                 </div>
               </Col>
               <Col md={4}>

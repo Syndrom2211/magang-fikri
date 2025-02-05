@@ -90,10 +90,15 @@ const HomePage = () => {
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center text-yellow-500">
                           <User className="w-4 h-4" />{" "}
-                          <span className="ml-1">{product.rating}</span>
+                          <span className="ml-1">
+                            {product.rating} {product.orderCount || 0} kali
+                          </span>
                         </div>
                       </div>
-                      <button className="learn-more-btn" onClick={() => checkout(product)}>
+                      <button
+                        className="learn-more-btn"
+                        onClick={() => checkout(product)}
+                      >
                         {product.cta} <FontAwesomeIcon icon={faArrowRight} />
                       </button>
                     </div>
@@ -101,7 +106,6 @@ const HomePage = () => {
                 </Col>
               ))}
             </Row>
-            
           </div>
         </Container>
       </div>
@@ -150,7 +154,12 @@ const HomePage = () => {
                   virtualIndex={index}
                   className="shadow-sm rounded"
                 >
-                <ReactPlayer url={swiper.video} controls width="100%" height="auto" />
+                  <ReactPlayer
+                    url={swiper.video}
+                    controls
+                    width="100%"
+                    height="auto"
+                  />
                   <div className="people">
                     <img src={swiper.image} alt="" />
                     <div>

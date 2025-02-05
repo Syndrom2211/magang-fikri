@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaHome, FaInfoCircle, FaCamera, FaGraduationCap, FaSignOutAlt, FaBars } from 'react-icons/fa';
-import '../style/admin.css';
+import { useState } from "react";
+import { Nav } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaCamera,
+  FaGraduationCap,
+  FaSignOutAlt,
+  FaBars,
+} from "react-icons/fa";
+import "../style/admin.css";
 import logo from "../assets/logo.png"; // Pastikan path ini benar
 
 const SideBarComponent = () => {
@@ -21,7 +28,7 @@ const SideBarComponent = () => {
       </button>
 
       {/* Sidebar */}
-      <div className={`sidebar-container ${isOpen ? 'open' : 'closed'}`}>
+      <div className={`sidebar-container ${isOpen ? "open" : "closed"}`}>
         <img src={logo} alt="Logo" className="logo" />
 
         <Nav className="flex-column">
