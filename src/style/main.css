@@ -233,6 +233,7 @@ header {
   );
   transform: translateY(-10px);
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
 .cta-button svg {
@@ -991,4 +992,141 @@ header {
 
 .cta-Support:hover {
   background-color: #0056b3;
+}
+
+/* General Styling for Sections */
+section {
+  margin-bottom: 50px;
+  padding: 20px;
+  border-radius: 15px;
+  background: var(--dark-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.instrument-page {
+  background: var(--dark-color);
+  color: var(--light-color);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.sound-page {
+  background: var(--dark-color);
+  color: var(--light-color);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* Product Description */
+.product-desc {
+  margin-bottom: 40px;
+  text-align: center;
+  color: var(--light-color);
+}
+
+.product-desc h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-desc p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--primary-color);
+}
+
+/* How It Works */
+.how-it-works {
+  margin-bottom: 40px;
+}
+
+.how-it-works h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.how-it-works ol {
+  padding-left: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.how-it-works li {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Price List */
+.price-list {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.price-list h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.plans {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.plan {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plan:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.plan h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.plan p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2575fc;
+  margin-bottom: 20px;
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.plan li {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: centre;
+}
+
+.plan li::before {
+  content: "✔";
+  margin-right: 10px;
+  color: #2575fc;
 }

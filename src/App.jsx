@@ -7,8 +7,8 @@ import FooterComponent from "./components/FooterComponent";
 import HomePage from "./pages/HomePage";
 import SupportPage from "./pages/SupportPage";
 import PortfolioPage from "./pages/PortfolioPage";
-import LyricPage from "./pages/LyricPage";
-import InstrumenPage from "./pages/InstrumenPage";
+import LyricsPage from "./pages/LyricsPage";
+import InstrumenPage from "./pages/InstrumentPage";
 import SoundPage from "./pages/SoundPage";
 import Dashboard from "./pages/Dashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/musik-lyric" element={<LyricPage />} />
+        <Route path="/musik-lyric" element={<LyricsPage />} />
         <Route path="/musik-instrument" element={<InstrumenPage />} />
         <Route path="/sound-effect" element={<SoundPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />{" "}
