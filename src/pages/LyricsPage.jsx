@@ -2,14 +2,14 @@ import ProductDescComponent from "../components/ProductDescComponent";
 import HowItWorksComponent from "../components/HowItWorksComponent";
 import PriceListComponent from "../components/PriceListComponent";
 
-const SoundPage = () => {
+const LyricsPage = () => {
   return (
     <div>
-      <ProductDescComponent page="sound" />
-      <HowItWorksComponent page="sound" />
-      <PriceListComponent page="sound" />
+      <ProductDescComponent page="lyrics" />
+      <HowItWorksComponent page="lyrics" />
+      <PriceListComponent page="lyrics" />
     </div>
   );
 };
 
-export default SoundPage;
+export default LyricsPage;
