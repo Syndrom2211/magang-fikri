@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,7 +8,30 @@ import {
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+
+
 const SupportPage = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_9tootbq', 'template_rlkp529', form.current, {
+        publicKey: 'M-ppLBzI5LzsdyrVU',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+          window.location.reload();
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
+
   return (
     <div className="contact-us w-100 min-vh-100 d-flex align-items-center">
       <Container>
@@ -44,14 +69,15 @@ const SupportPage = () => {
                 </div>
               </Col>
             </Row>
-            <Form className="mt-5">
+            <Form className="mt-5" ref={form} onSubmit={sendEmail}>
               <Row className="g-3">
                 <Col md={6}>
-                  <Form.Control type="text" placeholder="Your Name" required />
+                  <Form.Control type="text" name="user_name" placeholder="Your Name" required />
                 </Col>
                 <Col md={6}>
                   <Form.Control
                     type="email"
+                    name="email_name"
                     placeholder="Your Email"
                     required
                   />
@@ -60,6 +86,7 @@ const SupportPage = () => {
                   <Form.Control
                     as="textarea"
                     rows={5}
+                    name="message"
                     placeholder="Your Message"
                     required
                   />
@@ -69,6 +96,7 @@ const SupportPage = () => {
                     variant="primary"
                     type="submit"
                     className="cta-button"
+                    value="Send"
                   >
                     Send Message
                   </Button>

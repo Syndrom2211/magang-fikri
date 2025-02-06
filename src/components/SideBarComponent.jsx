@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+// import { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -17,12 +18,11 @@ const SideBarComponent = () => {
   const [isOpen, setIsOpen] = useState(true); // Default sidebar terbuka
   const navigate = useNavigate(); // Inisialisasi navigate
 
-  // Mengecek apakah admin sudah login berdasarkan keberadaan token
-  useEffect(() => {
-    if (!localStorage.getItem("adminToken")) {
-      navigate("/admin/login"); // Redirect ke halaman login jika token tidak ada
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (!localStorage.getItem("adminToken")) {
+  //     navigate("/admin/login"); 
+  //   }
+  // }, [navigate]);
 
   // Fungsi untuk toggle sidebar
   const toggleSidebar = () => {
