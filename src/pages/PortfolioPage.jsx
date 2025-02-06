@@ -8,10 +8,10 @@ const PortfolioPage = () => {
       <Container>
         <Row>
           <Col>
-            <h1 className="text-center fw-bold my-3 text-uppercase" style={{ letterSpacing: "2px" }}>
-              Gallery Music
+            <h1 className="text-center fw-bold my-3" style={{ letterSpacing: "2px" }}>
+              Portofolio Kami
             </h1>
-            <p className="text-center mb-5" style={{ fontSize: "1.2rem", color: "#F57D1F" }}>
+            <p className="text-center mb-5" style={{ fontSize: "1.2rem", color: "#ff6b6b" }}>
                 Selamat datang di galeri musik kami! Nikmati koleksi video musik yang menarik.
               </p>
           </Col>

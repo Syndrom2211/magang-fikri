@@ -39,7 +39,12 @@ export const products = [
     description: "Ubahlah lirikmu menjadi lagu otomatis.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: 100000,
+    price: "Rp 150.000",
+    features: [
+      "Unlimited Revisi",
+      "File Format WAV & MP3",
+      "Durasi max. 5 menit"
+    ]
   },
   {
     id: 2,
@@ -48,7 +53,12 @@ export const products = [
     description: "Ciptakan melodi instrumental profesional.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: 200000,
+    price: "Rp 200.000",
+    features: [
+      "Unlimited Revisi",
+      "File Format WAV & MP3",
+      "Durasi max. 5 menit"
+    ]
   },
   {
     id: 3,
@@ -57,7 +67,12 @@ export const products = [
     description: "Hasilkan efek suara berkualitas tinggi.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: 300000,
+    price: "Rp 100.000",
+    features: [
+      "Unlimited Revisi", 
+      "File Format WAV & MP3",
+      "Durasi max. 30 detik"
+    ]
   },
 ];
 

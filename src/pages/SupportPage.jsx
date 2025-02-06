@@ -12,7 +12,7 @@ const SupportPage = () => {
       <Container>
         <Row className="justify-content-center">
           <Col md={8} className="text-center">
-            <h1 className="fw-bold mb-5">Contact Us</h1>
+            <h1 className="fw-bold mb-5">Kontak Kami</h1>
             <Row className="g-4">
               <Col md={4}>
                 <div className="contact-info">
@@ -21,14 +21,17 @@ const SupportPage = () => {
                     size="3x"
                     className="mb-3"
                   />
-                  <h4>Address</h4>
-                  <p>Komp. Bandung Indah Raya, Blok C13/No.17, Kel. Mekarjaya, Kec. Rancasari, Kota Bandung, Jawa Barat 40286</p>
+                  <h4>Alamat</h4>
+                  <p className="p-alamat">
+                    Komp. Bandung Indah Raya, Blok C13/No.17, Kel. Mekarjaya,
+                    Kec. Rancasari, Kota Bandung, Jawa Barat 40286
+                  </p>
                 </div>
               </Col>
               <Col md={4}>
                 <div className="contact-info">
                   <FontAwesomeIcon icon={faPhone} size="3x" className="mb-3" />
-                  <h4>Phone</h4>
+                  <h4>Telepon</h4>
                   <p>+62 812-3456-7890</p>
                 </div>
               </Col>
@@ -47,12 +50,12 @@ const SupportPage = () => {
             <Form className="mt-5">
               <Row className="g-3">
                 <Col md={6}>
-                  <Form.Control type="text" placeholder="Your Name" required />
+                  <Form.Control type="text" placeholder="Nama Anda" required />
                 </Col>
                 <Col md={6}>
                   <Form.Control
                     type="email"
-                    placeholder="Your Email"
+                    placeholder="Email Anda"
                     required
                   />
                 </Col>
@@ -60,7 +63,7 @@ const SupportPage = () => {
                   <Form.Control
                     as="textarea"
                     rows={5}
-                    placeholder="Your Message"
+                    placeholder="Pesan Anda"
                     required
                   />
                 </Col>
@@ -68,9 +71,9 @@ const SupportPage = () => {
                   <Button
                     variant="primary"
                     type="submit"
-                    className="cta-button"
+                    className="cta-support"
                   >
-                    Send Message
+                    Kirim Pesan
                   </Button>
                 </Col>
               </Row>
