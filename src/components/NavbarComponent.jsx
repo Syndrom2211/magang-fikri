@@ -39,7 +39,7 @@ const NavbarComponent = () => {
               <div className="nav-item">
                 <NavDropdown title="Product" id="basic-nav-dropdown">
                   <NavDropdown.Item
-                    href="/music-lyric"
+                    href="/musik-lyric"
                     className="dropdown-item"
                   >
                     Buat Musik melalui Lyric
