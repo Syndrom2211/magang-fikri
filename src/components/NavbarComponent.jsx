@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
 
 const NavbarComponent = () => {
   const [scroll, setScroll] = useState(false);
   const [language, setLanguage] = useState("ID");
-  const location = useLocation();
 
   const scrollToTop = () => {
     if (window.scrollY > 10) {
@@ -41,7 +39,7 @@ const NavbarComponent = () => {
               <div className="nav-item">
                 <NavDropdown title="Product" id="basic-nav-dropdown">
                   <NavDropdown.Item
-                    href="/musik-lyric"
+                    href="/music-lyric"
                     className="dropdown-item"
                   >
                     Buat Musik melalui Lyric
@@ -66,7 +64,7 @@ const NavbarComponent = () => {
                     Contact Us
                   </NavDropdown.Item>
                   <NavDropdown.Item
-                    href="http://www.instagram.com/fikrizaelan1"
+                    href="http://www.instagram.com"
                     className="dropdown-item"
                   >
                     Instagram
@@ -74,8 +72,7 @@ const NavbarComponent = () => {
                 </NavDropdown>
               </div>
               <div className="nav-item">
-                <Nav.Link href="/portfolio" className={location.pathname === '/portfolio' ? 'active' : ''}
-                >Portfolio</Nav.Link>
+                <Nav.Link href="/portfolio">Portfolio</Nav.Link>
               </div>
             </Nav>
 

@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import HeroImage from "../assets/music-1.jpg";
+import { checkout } from "../components/Checkoutmodal";
 
 const ModalForm = () => {
   const [formData, setFormData] = useState({
+    id: 1,
+    item : "Musik Indah (MP3)",
     email: "",
     name: "",
     whatsapp: "",
+    price : 100000,
   });
 
   const handleChange = (e) => {
@@ -61,14 +65,14 @@ const ModalForm = () => {
                     required
                   />
                   <div className="order-summary">
-                    <p>Item: Musik Indah (MP3)</p>
-                    <p>Total: <strong>Rp. 89.000</strong></p>
+                    <p>Item: {formData.item}</p>
+                    <p>Total: <strong>Rp.{formData.price}</strong></p>
                   </div>
                   <p className="form-note">
                     Setelah melakukan pembayaran, kamu akan mendapatkan link
                     download dalam email yang telah kamu masukkan.
                   </p>
-                  <button type="submit" className="submit-button">
+                  <button type="submit" className="submit-button" onClick={() => checkout(formData)}>
                     Pilih Pembayaran
                   </button>
                 </form>

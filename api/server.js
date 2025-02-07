@@ -140,7 +140,7 @@ app.post('/admin/login', (req, res) => {
 });
 
 app.get("/visitors", (req, res) => {
-    db.query("SELECT count FROM visitors WHERE id = 1", (err, result) => {
+    db.query("SELECT count FROM visitors",(err, result) => {
       if (err) throw err;
       res.json({ count: result[0].count });
     });
@@ -148,7 +148,7 @@ app.get("/visitors", (req, res) => {
 
 // Endpoint untuk menambah jumlah pengunjung
 app.post("/visitors", (req, res) => {
-    db.query("UPDATE visitors SET count = count + 1 WHERE id = 1", (err) => {
+    db.query("UPDATE visitors SET count = count + 1", (err) => {
       if (err) throw err;
       res.json({ message: "Visitor count updated" });
     });
