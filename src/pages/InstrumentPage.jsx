@@ -9,10 +9,9 @@ import backgroundImage from "../assets/Frame-2.png";
 const InstrumentPage = () => {
   return (
     <div className="instrument-page">
-      {/* Hero Section */}
-      <div 
-        className="product-page" 
-        style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className="product-page"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+        >
         <Container>
           <Row className="text-center pt-5">
             <Col>
@@ -24,7 +23,7 @@ const InstrumentPage = () => {
                 "Jadikan ide musikmu lebih hidup dengan instrumen buatan tangan yang bisa disesuaikan. 
                 Desain, kustomisasi, dan mainkan semuanya ada di sini."
               </p>
-              <Button variant="danger" className="get-started">GET STARTED</Button>
+              <button className="btn btn-primary create-btn">GET STARTED</button>
               </div>
             </Col>
           </Row>
