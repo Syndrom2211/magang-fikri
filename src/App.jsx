@@ -4,7 +4,7 @@ import NavbarComponent from "./components/NavbarComponent";
 import FaqComponent from "./components/FaqComponent";
 import FooterComponent from "./components/FooterComponent";
 
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/homePage";
 import SupportPage from "./pages/SupportPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import LyricsPage from "./pages/LyricsPage";

@@ -106,7 +106,7 @@ importers:
         specifier: ^15.14.0
         version: 15.14.0
       vite:
-        specifier: ^6.0.5
+        specifier: ^6.0.11
         version: 6.0.11
 
 packages:
