@@ -39,7 +39,12 @@ export const products = [
     description: "Ubahlah lirikmu menjadi lagu otomatis.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: 100000,
+    price: "Rp 150.000",
+    features: [
+      "Unlimited Revisi",
+      "File Format WAV & MP3",
+      "Durasi max. 5 menit"
+    ]
   },
   {
     id: 2,
@@ -48,7 +53,12 @@ export const products = [
     description: "Ciptakan melodi instrumental profesional.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: 200000,
+    price: "Rp 200.000",
+    features: [
+      "Unlimited Revisi",
+      "File Format WAV & MP3",
+      "Durasi max. 5 menit"
+    ]
   },
   {
     id: 3,
@@ -57,7 +67,12 @@ export const products = [
     description: "Hasilkan efek suara berkualitas tinggi.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: 300000,
+    price: "Rp 100.000",
+    features: [
+      "Unlimited Revisi", 
+      "File Format WAV & MP3",
+      "Durasi max. 30 detik"
+    ]
   },
 ];
 
@@ -165,5 +180,131 @@ export const faq = [
     eventKey: 7,
     title: "Bagaimana jika saya mengalami masalah saat membuat musik?",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+  },
+];
+
+// Product Descriptions
+export const productDescriptions = [
+  {
+    id: 1,
+    page: "lyrics",
+    title: "AI-Powered Music from Lyrics",
+    description:
+      "Transform your lyrics into a full-fledged song with our AI-powered music generator. Whether you're a songwriter or a poet, our tool will turn your words into a professional-quality track in minutes.",
+  },
+  {
+    id: 2,
+    page: "instrument",
+    title: "AI-Powered Music from Instruments",
+    description:
+      "Create stunning instrumental music with our AI. Whether you play the guitar, piano, or any other instrument, our tool will enhance your melodies and turn them into a complete musical masterpiece.",
+  },
+  {
+    id: 3,
+    page: "sound",
+    title: "AI-Powered Music from Sound Effects",
+    description:
+      "Generate unique music tracks using sound effects. Our AI can blend various sounds into a cohesive and professional composition, perfect for video games, movies, or experimental music.",
+  },
+];
+
+// How It Works Steps
+export const howItWorksSteps = [
+  {
+    id: 1,
+    page: "lyrics",
+    steps: [
+      "Enter your lyrics into the input field.",
+      "Select your preferred music genre and tempo.",
+      "Let our AI analyze your lyrics and generate a melody.",
+      "Download your song and share it with the world!",
+    ],
+  },
+  {
+    id: 2,
+    page: "instrument",
+    steps: [
+      "Upload a recording of your instrument playing.",
+      "Choose the mood and style for your track.",
+      "Our AI will process the recording and create a full arrangement.",
+      "Download the final track and enjoy your creation!",
+    ],
+  },
+  {
+    id: 3,
+    page: "sound",
+    steps: [
+      "Upload your sound effects or choose from our library.",
+      "Select the genre and structure for your track.",
+      "Our AI will blend the sounds into a cohesive composition.",
+      "Download your unique track and use it in your projects!",
+    ],
+  },
+];
+
+// Price Lists
+export const priceLists = [
+  {
+    id: 1,
+    page: "lyrics",
+    plans: [
+      {
+        name: "Basic",
+        price: "Rp 100.000",
+        features: ["1 song per month", "Standard quality", "Limited genres"],
+      },
+      {
+        name: "Pro",
+        price: "Rp 200.000",
+        features: ["5 songs per month", "High quality", "All genres"],
+      },
+      {
+        name: "Premium",
+        price: "Rp 300.000",
+        features: ["Unlimited songs", "Studio quality", "All genres + custom requests"],
+      },
+    ],
+  },
+  {
+    id: 2,
+    page: "instrument",
+    plans: [
+      {
+        name: "Basic",
+        price: "Rp 150.000",
+        features: ["1 track per month", "Standard quality", "Limited instruments"],
+      },
+      {
+        name: "Pro",
+        price: "Rp 250.000",
+        features: ["5 tracks per month", "High quality", "All instruments"],
+      },
+      {
+        name: "Premium",
+        price: "Rp 350.000",
+        features: ["Unlimited tracks", "Studio quality", "All instruments + custom requests"],
+      },
+    ],
+  },
+  {
+    id: 3,
+    page: "sound",
+    plans: [
+      {
+        name: "Basic",
+        price: "Rp 200.000",
+        features: ["1 track per month", "Standard quality", "Limited sound effects"],
+      },
+      {
+        name: "Pro",
+        price: "Rp 300.000",
+        features: ["5 tracks per month", "High quality", "All sound effects"],
+      },
+      {
+        name: "Premium",
+        price: "Rp 400.000",
+        features: ["Unlimited tracks", "Studio quality", "All sound effects + custom requests"],
+      },
+    ],
   },
 ];

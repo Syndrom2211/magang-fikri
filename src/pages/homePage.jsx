@@ -1,9 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 import HeroImage from "../assets/music-1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faUser, faTag } from "@fortawesome/free-solid-svg-icons";
 import { products, dataSwiper } from "../data/index";
-import { User, PlayCircle } from "lucide-react";
+import { PlayCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -31,7 +31,8 @@ const HomePage = () => {
           <Row className="header-content">
             <Col md={6}>
               <h1 className="fw-bold">
-                Ciptakan <span className="hub">Musikmu</span> Dalam Hitungan Detik
+                Ciptakan <span className="hub">Musikmu</span> Dalam Hitungan
+                Detik
               </h1>
               <p className="fs-5">
                 Jadikan inspirasimu sebuah mahakarya dengan AI canggih. Tanpa
@@ -61,7 +62,7 @@ const HomePage = () => {
               </p>
             </Col>
           </Row>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-1">
             <Row className="g-4">
               {products.map((product) => (
                 <Col
@@ -75,7 +76,7 @@ const HomePage = () => {
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-100 mb-3 rounded"
+                        className="w-100 mb-2 rounded"
                         style={{ height: "200px", objectFit: "cover" }}
                       />
                       <div className="play-button">
@@ -84,16 +85,40 @@ const HomePage = () => {
                     </div>
                     <div className="p-4">
                       <h5 className="text-xl font-bold mb-2">{product.name}</h5>
-                      <p className="text-sm text-gray-600 mb-4">
+                      {/* <p className="text-sm text-gray-600 mb-2">
                         {product.description}
+                      </p> */}
+                      <ul className="features-list ps-2 mb-2">
+                        {product.features.map((feature, index) => (
+                          <li key={index} className="mb-1 text-secondary">
+                            <small>{feature}</small>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="price-tag mb-0">
+                        <FontAwesomeIcon
+                          icon={faTag}
+                          className="price-icon me-2"
+                        />
+                        {product.price}
                       </p>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center text-yellow-500">
-                          <User className="w-4 h-4" />{" "}
-                          <span className="ml-1">{product.rating}</span>
+                      <div className="flex items-center justify-between mb-2 pt-2">
+                        <div className="user-stats d-flex align-items-center mb-3">
+                          <div className="user-icon-wrapper me-2">
+                            <FontAwesomeIcon
+                              icon={faUser}
+                              className="user-icon"
+                            />
+                          </div>
+                          <span>
+                            {product.rating} {product.orderCount || 0} kali
+                          </span>
                         </div>
                       </div>
-                      <button className="learn-more-btn" onClick={() => checkout(product)}>
+                      <button
+                        className="learn-more-btn"
+                        onClick={() => checkout(product)}
+                      >
                         {product.cta} <FontAwesomeIcon icon={faArrowRight} />
                       </button>
                     </div>
@@ -101,7 +126,6 @@ const HomePage = () => {
                 </Col>
               ))}
             </Row>
-            
           </div>
         </Container>
       </div>
@@ -150,7 +174,12 @@ const HomePage = () => {
                   virtualIndex={index}
                   className="shadow-sm rounded"
                 >
-                <ReactPlayer url={swiper.video} controls width="100%" height="auto" />
+                  <ReactPlayer
+                    url={swiper.video}
+                    controls
+                    width="100%"
+                    height="auto"
+                  />
                   <div className="people">
                     <img src={swiper.image} alt="" />
                     <div>

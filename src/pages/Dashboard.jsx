@@ -1,6 +1,5 @@
-import React from 'react';
 import SideBarComponent from '../components/SideBarComponent';
-import { FaSearch, FaBell, FaUserCircle } from 'react-icons/fa';
+// import { FaSearch, FaBell, FaUserCircle } from 'react-icons/fa';
 import '../style/admin.css'; // Import file CSS
 
 const Dashboard = () => {

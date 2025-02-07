@@ -51,13 +51,13 @@ const FooterComponent = () => {
           </Col>
           <Col className="d-flex flex-column col-lg-4 col mt-lg-0 mt-5">
             <h5 className="fw-bold">Produk Kami</h5>
-            <Link to="/">Buat Musik melalui Lyric</Link>
-            <Link to="/">Buat Musik Instrumen</Link>
-            <Link to="/">Buat Sound Effect</Link>
-            <Link to="/">Portofolio</Link>
+            <Link to="/lyric">Buat Musik melalui Lyric</Link>
+            <Link to="/instrumen">Buat Musik Instrumen</Link>
+            <Link to="/sound">Buat Sound Effect</Link>
+            <Link to="/portfolio">Portofolio</Link>
           </Col>
           <Col className="d-flex flex-column col-lg-3 col mt-lg-0 mt-5">
-            <h5 className="fw-bold">Total Pengunjung:</h5>
+            <h5 className="fw-light">Total Pengunjung: <span className="pengunjung">1000+</span></h5>
           </Col>
         </Row>
         <Row>

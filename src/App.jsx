@@ -6,28 +6,33 @@ import FooterComponent from "./components/FooterComponent";
 
 import HomePage from "./pages/homePage";
 import SupportPage from "./pages/SupportPage";
-import ProductPage from "./pages/ProductPage";
 import PortfolioPage from "./pages/PortfolioPage";
-import KatalogPage from "./pages/KatalogPage";
+import LyricsPage from "./pages/LyricsPage";
+import InstrumenPage from "./pages/InstrumentPage";
+import SoundPage from "./pages/SoundPage";
 import Dashboard from "./pages/Dashboard";
-import Product1 from "./pages/Product1";
+import AdminLoginPage from "./pages/AdminLoginPage";
 
 function App() {
   const location = useLocation(); // Ambil lokasi URL saat ini
-  const isAdminPage = location.pathname.startsWith("/admin"); // Cek apakah halaman admin
+  const isAdminPage =
+    location.pathname.startsWith("/admin") &&
+    location.pathname !== "admin/login"; // Cek apakah halaman admin
 
   return (
     <div>
-      {/* Tampilkan Navbar, FAQ, dan Footer hanya jika bukan halaman admin */}
+      {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}
       {!isAdminPage && <NavbarComponent />}
-      
+
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/product" element={<ProductPage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/katalog" element={<KatalogPage />} />
-        <Route path="/Product1" element={<Product1 />} />
+        <Route path="/musik-lyric" element={<LyricsPage />} />
+        <Route path="/musik-instrument" element={<InstrumenPage />} />
+        <Route path="/sound-effect" element={<SoundPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />{" "}
+        {/* Admin Login Page Route */}
         <Route path="/admin/*" element={<Dashboard />} />
       </Routes>
 
