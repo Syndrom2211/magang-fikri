@@ -48,22 +48,76 @@ const createDatabaseAndTable = () => {
 
             addAdminUser('admin', 'password123', 'admin@example.com');
         });
+
+        // Membuat tabel visitor jika belum ada
+        const createTableQuery_visitor = `
+            CREATE TABLE IF NOT EXISTS visitors (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                count INT NOT NULL
+            );
+        `;
+
+        db.query(createTableQuery_visitor, (err) => {
+            if (err) {
+                console.error("❌ Error creating visitors table:", err);
+                return;
+            }
+            console.log("✅ Visitors table created or already exists");
+        
+            // Cek apakah sudah ada data di tabel visitors
+            const checkVisitorQuery = "SELECT COUNT(*) AS count FROM visitors";
+            const addVisitorQuery = "INSERT INTO visitors (count) VALUES (0)";
+        
+            db.query(checkVisitorQuery, (err, result) => {
+                if (err) {
+                    console.error("❌ Error checking visitors table:", err);
+                    return;
+                }
+        
+                const visitorExists = result[0].count > 0;
+        
+                if (!visitorExists) {
+                    db.query(addVisitorQuery, (err) => {
+                        if (err) {
+                            console.error("❌ Error adding initial visitor count:", err);
+                            return;
+                        }
+                        console.log("✅ Initial visitor count added successfully");
+                    });
+                } else {
+                    console.log("⚠️ Visitors table already has data, skipping insertion");
+                }
+            });
+        });
+
     });
 };
 
-const addAdminUser = (username, password, email) => {
-    const query = `
-        INSERT INTO admin (username, password, email)
-        VALUES (?, ?, ?)
-    `;
-    db.query(query, [username, password, email], (err, result) => {
+function addAdminUser(username, password, email) {
+    const checkAdminQuery = "SELECT COUNT(*) AS count FROM admin WHERE username = ?";
+    const addAdminQuery = "INSERT INTO admin (username, password, email) VALUES (?, ?, ?)";
+
+    db.query(checkAdminQuery, [username], (err, result) => {
         if (err) {
-            console.error("❌ Error inserting admin user:", err);
+            console.error("❌ Error checking admin existence:", err);
             return;
         }
-        console.log("✅ Admin user added successfully:", result);
+
+        const adminExists = result[0].count > 0;
+
+        if (!adminExists) {
+            db.query(addAdminQuery, [username, password, email], (err) => {
+                if (err) {
+                    console.error("❌ Error adding admin user:", err);
+                    return;
+                }
+                console.log("✅ Admin user added successfully");
+            });
+        } else {
+            console.log("⚠️ Admin user already exists, skipping insertion");
+        }
     });
-};
+}
 
 // Jalankan fungsi untuk memastikan database dan tabel ada
 createDatabaseAndTable();
@@ -85,7 +139,20 @@ app.post('/admin/login', (req, res) => {
     });
 });
 
+app.get("/visitors", (req, res) => {
+    db.query("SELECT count FROM visitors WHERE id = 1", (err, result) => {
+      if (err) throw err;
+      res.json({ count: result[0].count });
+    });
+  });
 
+// Endpoint untuk menambah jumlah pengunjung
+app.post("/visitors", (req, res) => {
+    db.query("UPDATE visitors SET count = count + 1 WHERE id = 1", (err) => {
+      if (err) throw err;
+      res.json({ message: "Visitor count updated" });
+    });
+  });
 
 // Inisialisasi Midtrans Snap
 const snap = new midtransClient.Snap({
