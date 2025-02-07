@@ -36,7 +36,7 @@ const LyricsPage = () => {
               Mulailah dari Perasaanmu!
             </h3>
             <p className="inspiration-text">
-              "Dengar suara hujan, lihat matahari terbit, rasakan detak jantungmu.
+            "Dengar suara hujan, lihat matahari terbit, rasakan detak jantungmu.
               Setiap lagu besar dimulai dari satu kata sederhana. Tulis apa yang kamu rasakan.
               Musik ada di mana-mana."
             </p>
