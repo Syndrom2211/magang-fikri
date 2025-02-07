@@ -51,9 +51,9 @@ const FooterComponent = () => {
           </Col>
           <Col className="d-flex flex-column col-lg-4 col mt-lg-0 mt-5">
             <h5 className="fw-bold">Produk Kami</h5>
-            <Link to="/lyric">Buat Musik melalui Lyric</Link>
-            <Link to="/instrumen">Buat Musik Instrumen</Link>
-            <Link to="/sound">Buat Sound Effect</Link>
+            <Link to="/musik-lyric">Buat Musik melalui Lyric</Link>
+            <Link to="/musik-instrument">Buat Musik Instrumen</Link>
+            <Link to="/sound-effect">Buat Sound Effect</Link>
             <Link to="/portfolio">Portofolio</Link>
           </Col>
           <Col className="d-flex flex-column col-lg-3 col mt-lg-0 mt-5">

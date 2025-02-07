@@ -12,6 +12,7 @@ import InstrumenPage from "./pages/InstrumentPage";
 import SoundPage from "./pages/SoundPage";
 import Dashboard from "./pages/Dashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
+import ModalForm from "./pages/ModalForm";
 
 function App() {
   const location = useLocation(); // Ambil lokasi URL saat ini
@@ -21,8 +22,10 @@ function App() {
 
   return (
     <div>
-      {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}
-      {!isAdminPage && <NavbarComponent />}
+      {/* Tampilkan Navbar hanya jika bukan halaman admin dan halaman ModalForm */}
+      {!isAdminPage && location.pathname !== "/checkout" && (
+        <NavbarComponent />
+      )}
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -32,12 +35,16 @@ function App() {
         <Route path="/musik-instrument" element={<InstrumenPage />} />
         <Route path="/sound-effect" element={<SoundPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />{" "}
+        <Route path="/checkout" element={<ModalForm />} />
         {/* Admin Login Page Route */}
         <Route path="/admin/*" element={<Dashboard />} />
       </Routes>
 
       {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}
       {!isAdminPage && <FaqComponent />}
+      {!isAdminPage && location.pathname !== "/checkout" && (
+        <NavbarComponent />
+      )}
       {!isAdminPage && <FooterComponent />}
     </div>
   );
