@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import ProductDescComponent from "../components/ProductDescComponent";
 import HowItWorksComponent from "../components/HowItWorksComponent";
 import PriceListComponent from "../components/PriceListComponent";
@@ -9,21 +9,26 @@ import backgroundImage from "../assets/Frame-2.png";
 const InstrumentPage = () => {
   return (
     <div className="instrument-page">
-      <div className="product-page"
+      <div
+        className="product-page"
         style={{ backgroundImage: `url(${backgroundImage})` }}
-        >
+      >
         <Container>
           <Row className="text-center pt-5">
             <Col>
-              <div className = "tulisan">
-              <h1 className="headline">
-                "Temukan Kebebasan Berkarya Melalui <span className="highlight">Instrumen</span> Buatanmu"
-              </h1>
-              <p className="subtext">
-                "Jadikan ide musikmu lebih hidup dengan instrumen buatan tangan yang bisa disesuaikan. 
-                Desain, kustomisasi, dan mainkan semuanya ada di sini."
-              </p>
-              <button className="btn btn-primary create-btn">GET STARTED</button>
+              <div className="tulisan">
+                <h1 className="headline">
+                  "Temukan Kebebasan Berkarya Melalui{" "}
+                  <span className="highlight">Instrumen</span> Buatanmu"
+                </h1>
+                <p className="subtext">
+                  "Jadikan ide musikmu lebih hidup dengan instrumen buatan
+                  tangan yang bisa disesuaikan. Desain, kustomisasi, dan mainkan
+                  semuanya ada di sini."
+                </p>
+                <Button className="btn btn-primary create-btn">
+                  GET STARTED
+                </Button>
               </div>
             </Col>
           </Row>

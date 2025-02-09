@@ -4,8 +4,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faGlobe, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { useState,useEffect,useRef  } from "react";
+import axios from "axios";
 
 const FooterComponent = () => {
+  const [visitors, setVisitors] = useState(0);
+  const hasIncremented = useRef(false);
+
+  useEffect(() => {
+    axios.get("http://localhost:1000/visitors")
+      .then(response => {
+        setVisitors(response.data.count);
+        
+        if (!hasIncremented.current && window.location.origin === "http://localhost:5173" && window.location.pathname === "/"){
+          axios.post("http://localhost:1000/visitors");
+          hasIncremented.current = true; // Tandai bahwa sudah ditambah
+        }
+      })
+      .catch(error => console.error("Error fetching visitor count:", error));
+  }, []);
+
   return (
     <div className="footer">
       <Container>
@@ -51,13 +69,13 @@ const FooterComponent = () => {
           </Col>
           <Col className="d-flex flex-column col-lg-4 col mt-lg-0 mt-5">
             <h5 className="fw-bold">Produk Kami</h5>
-            <Link to="/lyric">Buat Musik melalui Lyric</Link>
-            <Link to="/instrumen">Buat Musik Instrumen</Link>
-            <Link to="/sound">Buat Sound Effect</Link>
+            <Link to="/musik-lyric">Buat Musik melalui Lyric</Link>
+            <Link to="/musik-instrument">Buat Musik Instrumen</Link>
+            <Link to="/sound-effect">Buat Sound Effect</Link>
             <Link to="/portfolio">Portofolio</Link>
           </Col>
           <Col className="d-flex flex-column col-lg-3 col mt-lg-0 mt-5">
-            <h5 className="fw-light">Total Pengunjung: <span className="pengunjung">1000+</span></h5>
+            <h5 className="fw-light">Total Pengunjung: <span className="pengunjung">{visitors}</span></h5>
           </Col>
         </Row>
         <Row>

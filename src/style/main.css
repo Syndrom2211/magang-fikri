@@ -1,3 +1,16 @@
+I have 3 pages, which are LyricsPage.jsx, InstrumentPage.jsx, and SoundPage.jsx. So, I want to make three components that can be imported to these three pages. Those components are:
+1. ProductDescComponent.jsx 
+   a. This component contains the product description for each page (please generate the product description as well)
+      - A short description about the AI product capable of creating music from lyrics for LyricsPage.jsx
+      - A short description about the AI product capable of creating music from any instrument for InstrumentPage.jsx
+      - A short description about the AI product capable of creating music from any sound effect for SoundPage.jsx
+2. HowItWorksComponent.jsx 
+   a. This component contains the explanation on how the product works step-by-step for LyricsPage.jsx, InstrumentPage.jsx, and SoundPage.jsx
+3. PriceListComponent.jsx
+   a. This component contains the price list for each product in LyricsPage.jsx, InstrumentPage.jsx, and SoundPage.jsx
+
+Please write React codes for these corresponding components with a separated data file for the component stored in index.js. If I go to the LyricsPage.jsx, it will display the product description, how it works, and price list components, and it goes the same with the other pages.
+
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -1020,8 +1033,11 @@ section {
 /* Product Description */
 .product-desc {
   margin-bottom: 40px;
-  text-align: center;
+  text-align: left; 
   color: var(--light-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .product-desc h2 {
@@ -1036,32 +1052,80 @@ section {
   color: var(--primary-color);
 }
 
+.text-section {
+  flex: 1;
+  padding-right: 2rem; 
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem; 
+}
+
+
 /* How It Works */
 .how-it-works {
   margin-bottom: 40px;
+  text-align: left;
 }
 
 .how-it-works h2 {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: center; 
+  color: var(--primary-colour);
 }
 
-.how-it-works ol {
-  padding-left: 20px;
-  max-width: 600px;
-  margin: 0 auto;
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto; 
 }
 
-.how-it-works li {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 15px;
-  padding: 10px;
+.step-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
   background: #f9f9f9;
   border-radius: 10px;
+  padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2575fc;
+}
+
+.step-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.step-image {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Price List */
@@ -1130,3 +1194,99 @@ section {
   margin-right: 10px;
   color: #2575fc;
 }
+
+.order-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2575fc;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.order-button:hover {
+  background-color: #1e5fce;
+}
+
+/* Modal Form Styles */
+.modal-form {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #F0E8F8;
+  padding: 2rem 0;
+}
+
+.form-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.preview-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.form-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkout-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.order-summary {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form-note {
+  font-size: 12px;
+  color: #666;
+}
+
+.submit-button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background: var(--secondary-color);
+}
+

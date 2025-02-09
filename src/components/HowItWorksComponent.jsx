@@ -1,24 +1,33 @@
-import PropTypes from "prop-types"; // Import prop-types
+import PropTypes from "prop-types";
 import { howItWorksSteps } from "../data/index";
 
 const HowItWorksComponent = ({ page }) => {
-  const steps = howItWorksSteps.find((item) => item.page === page).steps;
+  const steps = howItWorksSteps.find((item) => item.page === page)?.steps || [];
 
   return (
     <div className="how-it-works">
-      <h2>How It Works</h2>
-      <ol>
+      <h2>Cara Kerja</h2>
+      <div className="steps-container">
         {steps.map((step, index) => (
-          <li key={index}>{step}</li>
+          <div key={index} className="step-item">
+            <div className="step-content">
+              <div className="step-number">Langkah {index + 1}</div>
+              <p className="step-text">{step.text}</p>
+            </div>
+            <img
+              src={step.imageUrl}
+              alt={`Step ${index + 1}`}
+              className="step-image"
+            />
+          </div>
         ))}
-      </ol>
+      </div>
     </div>
   );
 };
 
-// Add prop type validation
 HowItWorksComponent.propTypes = {
-  page: PropTypes.string.isRequired, // Validate that 'page' is a required string
+  page: PropTypes.string.isRequired,
 };
 
 export default HowItWorksComponent;
