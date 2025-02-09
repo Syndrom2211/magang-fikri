@@ -1,3 +1,16 @@
+I have 3 pages, which are LyricsPage.jsx, InstrumentPage.jsx, and SoundPage.jsx. So, I want to make three components that can be imported to these three pages. Those components are:
+1. ProductDescComponent.jsx 
+   a. This component contains the product description for each page (please generate the product description as well)
+      - A short description about the AI product capable of creating music from lyrics for LyricsPage.jsx
+      - A short description about the AI product capable of creating music from any instrument for InstrumentPage.jsx
+      - A short description about the AI product capable of creating music from any sound effect for SoundPage.jsx
+2. HowItWorksComponent.jsx 
+   a. This component contains the explanation on how the product works step-by-step for LyricsPage.jsx, InstrumentPage.jsx, and SoundPage.jsx
+3. PriceListComponent.jsx
+   a. This component contains the price list for each product in LyricsPage.jsx, InstrumentPage.jsx, and SoundPage.jsx
+
+Please write React codes for these corresponding components with a separated data file for the component stored in index.js. If I go to the LyricsPage.jsx, it will display the product description, how it works, and price list components, and it goes the same with the other pages.
+
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -16,7 +29,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   text-decoration: none;
-  color: var(--light-color);
+  color: linear-gradient(to right, var(--light-color), var(--secondary-color));
   transition: all 0.3s ease;
 }
 
@@ -60,34 +73,44 @@
   font-weight: 500;
   text-decoration: none;
   margin: 0 10px 0 10px;
-  border-radius: 10px;
 }
 
 .nav-item a:hover {
   color: var(--primary-color);
-  background: #141414;
 }
 
 .nav-item a.active {
-  background: rgba(var(--primary-rgb), 0.1);
   color: var(--primary-color);
-  border-radius: 20px;
 }
 
 .nav-item a.active:hover {
-  background: rgba(var(--primary-rgb), 0.15);
+  color: var(--primary-color);
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
+.nav-item a.active::after {
+  content: "";
   display: block;
-  opacity: 1;
-  transform: translateY(0);
-  color: var(--dark-color);
-  padding: 5px 10px;
-  font-weight: 500;
-  text-decoration: none;
-  margin: 0 10px;
-  background: #141414;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.nav-item a.active:hover::after {
+  width: 100%;
+}
+
+.nav-item a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.nav-item a:hover::after {
+  width: 100%;
 }
 
 .dropdown-item {
@@ -96,6 +119,7 @@
   font-weight: 500;
   text-decoration: none;
   margin: 0 10px;
+  transition: all 0.3s ease;
 }
 
 .dropdown-item:hover {
@@ -104,12 +128,9 @@
 }
 
 .dropdown-menu {
-  display: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  border: none;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  background-color: #141414;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* header */
@@ -125,6 +146,7 @@ header {
 .homePage .header-content h1 {
   font-size: 3em;
   font-weight: 700;
+  color: var(--light-color);
   margin: 0 0 20px 0;
   text-align: left;
 }
@@ -132,26 +154,26 @@ header {
 .homePage .header-content p {
   font-size: 1.5em;
   font-weight: 400;
-  color: #fff;
+  color: var(--light-color);
   margin: 0 0 20px 0;
   text-align: left;
 }
 
 .homePage .header-content img {
-  width: 80%;
-  height: 100%;
+  width: 100%;
+  height: auto;
   margin: 0 0 20px 0;
 }
 
 @media screen and (max-width: 768px) {
   .homePage .header-content {
-    padding-top: 1rem;
+    padding-top: 8rem;
   }
 
   .homePage .img {
-    width: 80%;
+    width: 400px;
     display: block;
-    height: 100%;
+    height: auto;
     margin-inline: auto;
   }
 }
@@ -162,7 +184,7 @@ header {
   }
 
   .homePage .header-content p {
-    font-size: 1rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -172,7 +194,7 @@ header {
   }
 
   .homePage .header-content p {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .homePage .header-content img {
@@ -188,7 +210,7 @@ header {
   }
 
   .homePage .header-content p {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .homePage .header-content img {
@@ -1173,6 +1195,25 @@ section {
   color: #2575fc;
 }
 
+.order-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2575fc;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.order-button:hover {
+  background-color: #1e5fce;
+}
+
 /* Modal Form Styles */
 .modal-form {
   min-height: 100vh;
@@ -1248,3 +1289,4 @@ section {
 .submit-button:hover {
   background: var(--secondary-color);
 }
+
