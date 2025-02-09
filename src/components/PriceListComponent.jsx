@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"; // Import prop-types
+import PropTypes from "prop-types"; 
 import { priceLists } from "../data/index";
 
 const PriceListComponent = ({ page }) => {
@@ -11,12 +11,13 @@ const PriceListComponent = ({ page }) => {
         {plans.map((plan, index) => (
           <div key={index} className="plan">
             <h3>{plan.name}</h3>
-            <p>{plan.price}</p>
             <ul>
               {plan.features.map((feature, i) => (
                 <li key={i}>{feature}</li>
               ))}
             </ul>
+            <p>{plan.price}</p>
+            <button className="order-button">Pesan Sekarang</button>
           </div>
         ))}
       </div>
@@ -24,9 +25,8 @@ const PriceListComponent = ({ page }) => {
   );
 };
 
-// Add prop type validation
 PriceListComponent.propTypes = {
-  page: PropTypes.string.isRequired, // Validate that 'page' is a required string
+  page: PropTypes.string.isRequired, 
 };
 
 export default PriceListComponent;

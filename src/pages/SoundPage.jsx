@@ -1,4 +1,3 @@
-import "react";
 import ProductDescComponent from "../components/ProductDescComponent";
 import HowItWorksComponent from "../components/HowItWorksComponent";
 import PriceListComponent from "../components/PriceListComponent";

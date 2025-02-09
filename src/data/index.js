@@ -1,11 +1,21 @@
-import catalogImage2 from "../assets/img/catalog/acoustic-vibe.jpg";
 import catalogImage1 from "../assets/img/catalog/hiphop-beat.jpg";
+import catalogImage2 from "../assets/img/catalog/acoustic-vibe.jpg";
 import catalogImage3 from "../assets/img/catalog/edm-track.jpg";
 
 import People1 from "../assets/img/portfolio/1D.png";
 import People2 from "../assets/img/portfolio/WDW.png";
 import People3 from "../assets/img/portfolio/BM.png";
 import People4 from "../assets/img/portfolio/LM.png";
+
+import productDesc1 from "../assets/img/products/music-lyrics.jpg";
+import productDesc2 from "../assets/img/products/10982.jpg";
+import productDesc3 from "../assets/img/products/sound-engineer-studio.jpg";
+
+import howItWorks1 from "../assets/img/products/undraw_text-field_17if.png";
+import howItWorks2 from "../assets/img/products/undraw_preferences_2bda.png";
+import howItWorks3 from "../assets/img/products/undraw_file-analysis_dg81.png";
+import howItWorks4 from "../assets/img/products/undraw_media-player_kxtm.png";
+
 import "lucide-react";
 
 export const NavLink = [
@@ -39,7 +49,8 @@ export const products = [
     description: "Ubahlah lirikmu menjadi lagu otomatis.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: "Rp 150.000",
+    currency: "Rp",
+    price: 150000,
     features: [
       "Unlimited Revisi",
       "File Format WAV & MP3",
@@ -53,7 +64,8 @@ export const products = [
     description: "Ciptakan melodi instrumental profesional.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: "Rp 200.000",
+    currency: "Rp",
+    price: 200000,
     features: [
       "Unlimited Revisi",
       "File Format WAV & MP3",
@@ -67,7 +79,8 @@ export const products = [
     description: "Hasilkan efek suara berkualitas tinggi.",
     cta: "Pesan Sekarang",
     rating: "Telah dipesan sebanyak: ",
-    price: "Rp 100.000",
+    currency: "Rp",
+    price: 100000,
     features: [
       "Unlimited Revisi", 
       "File Format WAV & MP3",
@@ -188,23 +201,29 @@ export const productDescriptions = [
   {
     id: 1,
     page: "lyrics",
-    title: "AI-Powered Music from Lyrics",
-    description:
-      "Transform your lyrics into a full-fledged song with our AI-powered music generator. Whether you're a songwriter or a poet, our tool will turn your words into a professional-quality track in minutes.",
+    title: "Buat Musik dari Lirik",
+    description1: "Dengan CMH.AI, kamu hanya perlu mengunggah lirik untuk mendapatkan musik yang sesuai dengan tema dan mood yang kamu inginkan.",
+    description2: "Tidak perlu repot belajar produksi musik atau mencari musisi. Nikmati berbagai pilihan genre dan aransemen yang disesuaikan dengan lirikmu, apakah untuk video, podcast, atau proyek pribadi.",
+    description3: "Mulai dari Rp. 150.000, CMH.AI menawarkan solusi cepat dan mudah untuk menghasilkan musik berkualitas tinggi. Pilih genre yang diinginkan, unggah lirik, dan biarkan AI kami bekerja. Dalam waktu singkat, kamu akan memiliki musik yang sempurna untuk melengkapi karya kreatifmu.",
+    imageUrl: productDesc1,
   },
   {
     id: 2,
     page: "instrument",
-    title: "AI-Powered Music from Instruments",
-    description:
-      "Create stunning instrumental music with our AI. Whether you play the guitar, piano, or any other instrument, our tool will enhance your melodies and turn them into a complete musical masterpiece.",
+    title: "Buat Musik dari Instrumen",
+    description1: "Dengan CMH.AI, kamu hanya perlu memilih instrumen yang diinginkan dan biarkan AI kami menciptakan musik berkualitas tinggi untukmu.",
+    description2: "Tidak perlu keterampilan komposisi atau pengalaman dalam musik untuk membuat karya yang menakjubkan. Nikmati berbagai pilihan genre dan gaya musik yang bisa disesuaikan dengan kebutuhan kamu, apakah untuk video, iklan, atau proyek kreatif lainnya.",
+    description3: "Mulai dari Rp. 200.000, Musik.AI menawarkan solusi cepat dan mudah untuk menghasilkan musik original tanpa batasan. Pilih instrumen, tentukan suasana hati, dan biarkan AI kami bekerja. Dalam waktu singkat, kamu akan memiliki lagu lengkap dengan instrumen yang siap digunakan.",
+    imageUrl: productDesc2,
   },
   {
     id: 3,
     page: "sound",
-    title: "AI-Powered Music from Sound Effects",
-    description:
-      "Generate unique music tracks using sound effects. Our AI can blend various sounds into a cohesive and professional composition, perfect for video games, movies, or experimental music.",
+    title: "Buat Musik dari Efek Suara",
+    description1: "Dengan CMH.AI, kamu hanya perlu mengunggah efek suara untuk mendapatkan musik yang sesuai dengan suasana dan nuansa yang diinginkan.",
+    description2: "Tidak perlu repot mengatur instrumen atau mencari komposer. Nikmati berbagai pilihan genre dan aransemen musik yang disesuaikan dengan efek suara yang kamu pilih, apakah untuk film, video, atau proyek kreatif lainnya.",
+    description3: "Mulai dari Rp. 100.000, CMH.AI menawarkan solusi cepat dan mudah untuk menghasilkan musik berkualitas tinggi. Pilih paket yang sesuai, unggah efek suara, dan biarkan AI kami bekerja. Dalam waktu singkat, kamu akan memiliki musik yang sempurna untuk melengkapi karyamu.",
+    imageUrl: productDesc3,
   },
 ];
 
@@ -214,30 +233,66 @@ export const howItWorksSteps = [
     id: 1,
     page: "lyrics",
     steps: [
-      "Enter your lyrics into the input field.",
-      "Select your preferred music genre and tempo.",
-      "Let our AI analyze your lyrics and generate a melody.",
-      "Download your song and share it with the world!",
+      {
+        text: "Masukkan lirik Anda ke dalam kolom input.",
+        imageUrl: howItWorks1,
+      },
+      {
+        text: "Pilih genre musik dan tempo yang Anda inginkan.",
+        imageUrl: howItWorks2,
+      },
+      {
+        text: "Biarkan AI kami menganalisis lirik Anda dan menghasilkan melodi.",
+        imageUrl: howItWorks3,
+      },
+      {
+        text: "Unduh lagu Anda dan bagikan dengan semua orang!",
+        imageUrl: howItWorks4,
+      },
     ],
   },
   {
     id: 2,
     page: "instrument",
     steps: [
-      "Upload a recording of your instrument playing.",
-      "Choose the mood and style for your track.",
-      "Our AI will process the recording and create a full arrangement.",
-      "Download the final track and enjoy your creation!",
+      {
+        text: "Unggah rekaman permainan instrumen Anda.",
+        imageUrl: howItWorks1,
+      },
+      {
+        text: "Pilih suasana hati dan gaya untuk lagu Anda.",
+        imageUrl: howItWorks2,
+      },
+      {
+        text: "AI kami akan memproses rekaman dan membuat aransemen lengkap.",
+        imageUrl: howItWorks3,
+      },
+      {
+        text: "Unduh lagu akhir dan nikmati kreasi Anda!",
+        imageUrl: howItWorks4,
+      },
     ],
   },
   {
     id: 3,
     page: "sound",
     steps: [
-      "Upload your sound effects or choose from our library.",
-      "Select the genre and structure for your track.",
-      "Our AI will blend the sounds into a cohesive composition.",
-      "Download your unique track and use it in your projects!",
+      {
+        text: "Unggah efek suara Anda atau pilih dari perpustakaan kami.",
+        imageUrl: howItWorks1,
+      },
+      {
+        text: "Pilih genre dan struktur untuk lagu Anda.",
+        imageUrl: howItWorks2,
+      },
+      {
+        text: "AI kami akan memadukan suara menjadi komposisi yang kohesif.",
+        imageUrl: howItWorks3,
+      },
+      {
+        text: "Unduh lagu akhir dan nikmati kreasi Anda!",
+        imageUrl: howItWorks4,
+      },
     ],
   },
 ];
@@ -248,20 +303,20 @@ export const priceLists = [
     id: 1,
     page: "lyrics",
     plans: [
-      {
-        name: "Basic",
-        price: "Rp 100.000",
-        features: ["1 song per month", "Standard quality", "Limited genres"],
-      },
-      {
-        name: "Pro",
-        price: "Rp 200.000",
-        features: ["5 songs per month", "High quality", "All genres"],
-      },
+      // {
+      //   name: "Basic",
+      //   features: ["1 lagu per bulan", "Kualitas standar", "Genre terbatas"],
+      //   price: "Rp 100.000",
+      // },
+      // {
+      //   name: "Pro",
+      //   features: ["5 lagu per bulan", "Kualitas tinggi", "Semua genre"],
+      //   price: "Rp 125.000",
+      // },
       {
         name: "Premium",
-        price: "Rp 300.000",
-        features: ["Unlimited songs", "Studio quality", "All genres + custom requests"],
+        features: ["Unlimited revisi", "File Format WAV & MP3", "Durasi max. 5 menit"],
+        price: "Rp 150.000",
       },
     ],
   },
@@ -269,20 +324,20 @@ export const priceLists = [
     id: 2,
     page: "instrument",
     plans: [
-      {
-        name: "Basic",
-        price: "Rp 150.000",
-        features: ["1 track per month", "Standard quality", "Limited instruments"],
-      },
-      {
-        name: "Pro",
-        price: "Rp 250.000",
-        features: ["5 tracks per month", "High quality", "All instruments"],
-      },
+      // {
+      //   name: "Basic",
+      //   price: "Rp 100.000",
+      //   features: ["1 trek per bulan", "Kualitas standar", "Instrumen terbatas"],
+      // },
+      // {
+      //   name: "Pro",
+      //   price: "Rp 150.000",
+      //   features: ["5 trek per bulan", "Kualitas tinggi", "Semua instrumen"],
+      // },
       {
         name: "Premium",
-        price: "Rp 350.000",
-        features: ["Unlimited tracks", "Studio quality", "All instruments + custom requests"],
+        price: "Rp 200.000",
+        features: ["Unlimited Revisi", "File Format WAV & MP3", "Durasi max. 5 menit"],
       },
     ],
   },
@@ -290,20 +345,20 @@ export const priceLists = [
     id: 3,
     page: "sound",
     plans: [
-      {
-        name: "Basic",
-        price: "Rp 200.000",
-        features: ["1 track per month", "Standard quality", "Limited sound effects"],
-      },
-      {
-        name: "Pro",
-        price: "Rp 300.000",
-        features: ["5 tracks per month", "High quality", "All sound effects"],
-      },
+      // {
+      //   name: "Basic",
+      //   price: "Rp 90.000",
+      //   features: ["1 trek per bulan", "Kualitas standar", "Efek suara terbatas"],
+      // },
+      // {
+      //   name: "Pro",
+      //   price: "Rp 95.000",
+      //   features: ["5 trek per bulan", "Kualitas tinggi", "Semua efek suara"],
+      // },
       {
         name: "Premium",
-        price: "Rp 400.000",
-        features: ["Unlimited tracks", "Studio quality", "All sound effects + custom requests"],
+        price: "Rp 100.000",
+        features: ["Unlimited Revisi", "File Format WAV & MP3", "Durasi max. 30 detik"],
       },
     ],
   },

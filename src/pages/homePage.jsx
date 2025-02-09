@@ -100,7 +100,7 @@ const HomePage = () => {
                           icon={faTag}
                           className="price-icon me-2"
                         />
-                        {product.price}
+                        {product.currency} {product.price}
                       </p>
                       <div className="flex items-center justify-between mb-2 pt-2">
                         <div className="user-stats d-flex align-items-center mb-3">
