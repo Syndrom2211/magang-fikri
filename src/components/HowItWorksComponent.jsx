@@ -1,22 +1,24 @@
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; 
 import { howItWorksSteps } from "../data/index";
 
-const HowItWorksComponent = ({ page }) => {
-  const steps = howItWorksSteps.find((item) => item.page === page)?.steps || [];
+const HowItWorksComponent = ({ page, language }) => {
+  const steps = howItWorksSteps[language]?.find((item) => item.page === page)?.steps || [];
 
   return (
     <div className="how-it-works">
-      <h2>Cara Kerja</h2>
+      <h2>{language === "id" ? "Cara Kerja" : "How It Works"}</h2>
       <div className="steps-container">
         {steps.map((step, index) => (
           <div key={index} className="step-item">
             <div className="step-content">
-              <div className="step-number">Langkah {index + 1}</div>
+              <div className="step-number">
+                {language === "id" ? `Langkah ${index + 1}` : `Step ${index + 1}`}
+              </div>
               <p className="step-text">{step.text}</p>
             </div>
             <img
               src={step.imageUrl}
-              alt={`Step ${index + 1}`}
+              alt={`${language === "id" ? `Langkah ${index + 1}` : `Step ${index + 1}`}`}
               className="step-image"
             />
           </div>
@@ -28,6 +30,7 @@ const HowItWorksComponent = ({ page }) => {
 
 HowItWorksComponent.propTypes = {
   page: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 export default HowItWorksComponent;
