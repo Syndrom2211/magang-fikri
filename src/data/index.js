@@ -96,6 +96,7 @@ export const dataSwiper = [
     image: People2,
     name: "Why Don't We",
     skill: "Who Am I",
+    genre: "Pop",
     description:
       "Lagu ini menggambarkan pencarian jati diri dan refleksi tentang siapa kita sebenarnya.",
   },
@@ -105,6 +106,7 @@ export const dataSwiper = [
     image: People1,
     name: "One Direction",
     skill: "Night Changes",
+    genre: "Pop",
     description:
       "Lagu ini bercerita tentang kenangan indah dan perubahan yang datang seiring waktu.",
   },
@@ -114,6 +116,7 @@ export const dataSwiper = [
     image: People2,
     name: "Why Don't We",
     skill: "Trust Fun Baby",
+    genre:  "RnB",
     description:
       "Lagu ini mengekspresikan rasa percaya dan kesenangan dalam hubungan.",
   },
@@ -123,6 +126,7 @@ export const dataSwiper = [
     image: People1,
     name: "One Direction",
     skill: "You and I",
+    genre: "Pop",
     description: "Lagu ini menggambarkan cinta yang kuat dan tak terpisahkan.",
   },
   {
@@ -131,6 +135,7 @@ export const dataSwiper = [
     image: People3,
     name: "Bruno Mars",
     skill: "Lazy Song",
+    genre:  "RnB",
     description:
       "Lagu ini merayakan momen santai dan menikmati hidup tanpa beban.",
   },
@@ -140,6 +145,7 @@ export const dataSwiper = [
     image: People4,
     name: "Little Mix",
     skill: "Black Magic",
+    genre: "Pop",
     description:
       "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
   },

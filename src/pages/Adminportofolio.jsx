@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Table, Button, Modal, Form } from "react-bootstrap";
 import SideBarComponent from '../components/SideBarComponent';
-import { dataSwiper } from "../data/index"; // Ambil data dari dataSwiper
+import { dataSwiper } from "../data/index"; // Mengambil data dari dataSwiper
+import "../style/tabelportfolio.css";
 
 const PortfolioTable = () => {
-  const [portfolios, setPortfolios] = useState(dataSwiper); // Pakai data dari dataSwiper
+  // Menggunakan data dari dataSwiper
+  const [portfolios, setPortfolios] = useState(dataSwiper);
+  
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({ id: null, name: "", genre: "", description: "" });
 
@@ -35,7 +38,6 @@ const PortfolioTable = () => {
   return (
     <div className="dashboard-container" style={{ display: "flex" }}>
       <SideBarComponent />
-
       <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
         <h2>CRUD Portfolio</h2>
         <Button variant="primary" onClick={() => handleShow()}>Tambah Portfolio</Button>
