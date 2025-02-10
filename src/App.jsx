@@ -41,9 +41,8 @@ function App() {
       </Routes>
 
       {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}
-      {!isAdminPage && <FaqComponent />}
       {!isAdminPage && location.pathname !== "/checkout" && (
-        <NavbarComponent />
+        <FaqComponent />
       )}
       {!isAdminPage && <FooterComponent />}
     </div>

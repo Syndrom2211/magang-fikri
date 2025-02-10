@@ -1176,6 +1176,7 @@ section {
   padding: 1rem;
   border-radius: 8px;
   font-size: 14px;
+  border: 1px solid #2575fc;
 }
 
 .form-note {
