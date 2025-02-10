@@ -1,310 +1,854 @@
-import catalogImage2 from "../assets/img/catalog/acoustic-vibe.jpg";
 import catalogImage1 from "../assets/img/catalog/hiphop-beat.jpg";
+import catalogImage2 from "../assets/img/catalog/acoustic-vibe.jpg";
 import catalogImage3 from "../assets/img/catalog/edm-track.jpg";
 
 import People1 from "../assets/img/portfolio/1D.png";
 import People2 from "../assets/img/portfolio/WDW.png";
 import People3 from "../assets/img/portfolio/BM.png";
 import People4 from "../assets/img/portfolio/LM.png";
+
+import productDesc1 from "../assets/img/products/music-lyrics.jpg";
+import productDesc2 from "../assets/img/products/10982.jpg";
+import productDesc3 from "../assets/img/products/sound-engineer-studio.jpg";
+
+import howItWorks1 from "../assets/img/products/undraw_file-sync_ag5g.png";
+import howItWorks2 from "../assets/img/products/undraw_preferences_2bda.png";
+import howItWorks3 from "../assets/img/products/undraw_file-analysis_dg81.png";
+import howItWorks4 from "../assets/img/products/undraw_media-player_kxtm.png";
+
 import "lucide-react";
 
-export const NavLink = [
-  {
-    id: 1,
-    path: "/home",
-    name: "Home",
-  },
-  {
-    id: 2,
-    path: "/product",
-    name: "Product",
-  },
-  {
-    id: 3,
-    path: "/support",
-    name: "Support",
-  },
-  {
-    id: 4,
-    path: "/portfolio",
-    name: "Portfolio",
-  },
-];
+export const NavLinks = {
+  EN: [
+    { id: 1, path: "/", name: "Home" },
+    { id: 2, path: "/product", name: "Product" },
+    { id: 3, path: "/support", name: "Support" },
+    { id: 4, path: "/portfolio", name: "Portfolio" },
+  ],
+  ID: [
+    { id: 1, path: "/", name: "Beranda" },
+    { id: 2, path: "/product", name: "Produk" },
+    { id: 3, path: "/support", name: "Dukungan" },
+    { id: 4, path: "/portfolio", name: "Portofolio" },
+  ],
+};
 
-export const products = [
-  {
-    id: 1,
-    image: catalogImage1,
-    name: "Buat Musik melalui Lyric",
-    description: "Ubahlah lirikmu menjadi lagu otomatis.",
-    cta: "Pesan Sekarang",
-    rating: "Telah dipesan sebanyak: ",
-    price: "Rp 150.000",
-    features: [
-      "Unlimited Revisi",
-      "File Format WAV & MP3",
-      "Durasi max. 5 menit"
-    ]
+export const DropdownLinks = {
+  EN: {
+    1: [
+      { path: "/musik-lyric", name: "Create Music from Lyrics" },
+      { path: "/musik-instrument", name: "Create Instrumental Music" },
+      { path: "/sound-effect", name: "Create Sound Effect" },
+    ],
+    2: [
+      { path: "/support", name: "Contact Us" },
+      { path: "http://www.instagram.com", name: "Instagram" },
+    ],
   },
-  {
-    id: 2,
-    image: catalogImage2,
-    name: "Buat Musik Instrumen",
-    description: "Ciptakan melodi instrumental profesional.",
-    cta: "Pesan Sekarang",
-    rating: "Telah dipesan sebanyak: ",
-    price: "Rp 200.000",
-    features: [
-      "Unlimited Revisi",
-      "File Format WAV & MP3",
-      "Durasi max. 5 menit"
-    ]
+  ID: {
+    1: [
+      { path: "/musik-lyric", name: "Buat Musik melalui Lirik" },
+      { path: "/musik-instrument", name: "Buat Musik Instrumen" },
+      { path: "/sound-effect", name: "Buat Efek Suara" },
+    ],
+    2: [
+      { path: "/support", name: "Hubungi Kami" },
+      { path: "http://www.instagram.com", name: "Instagram" },
+    ],
   },
-  {
-    id: 3,
-    image: catalogImage3,
-    name: "Buat Sound Effect",
-    description: "Hasilkan efek suara berkualitas tinggi.",
-    cta: "Pesan Sekarang",
-    rating: "Telah dipesan sebanyak: ",
-    price: "Rp 100.000",
-    features: [
-      "Unlimited Revisi", 
-      "File Format WAV & MP3",
-      "Durasi max. 30 detik"
-    ]
-  },
-];
+};
 
-export const dataSwiper = [
-  {
-    id: 1,
-    video: "videos/1.mp4",
-    image: People2,
-    name: "Why Don't We",
-    skill: "Who Am I",
-    description:
-      "Lagu ini menggambarkan pencarian jati diri dan refleksi tentang siapa kita sebenarnya.",
+export const TextContent = {
+  EN: {
+    title: "Create Your Music in Seconds",
+    description: "Turn your inspiration into a masterpiece with advanced AI. No need for expensive studios—just upload your musical idea and let our AI transform it into artistic melodies and professional arrangements in minutes.",
+    button: "TRY NOW",
+    catalogTitle: "Our Products",
+    catalogDescription: "Create your dream music easily in just minutes",
+    portfolioTitle: "Portfolio",
   },
-  {
-    id: 2,
-    video: "videos/2.mp4",
-    image: People1,
-    name: "One Direction",
-    skill: "Night Changes",
-    description:
-      "Lagu ini bercerita tentang kenangan indah dan perubahan yang datang seiring waktu.",
+  ID: {
+    title: "Ciptakan Musikmu Dalam Hitungan Detik",
+    description: "Jadikan inspirasimu sebuah mahakarya dengan AI canggih. Tanpa perlu studio mahal, cukup unggah ide musikmu, dan biarkan AI kami menyulapnya menjadi melodi artistik serta aransemen profesional dalam hitungan menit.",
+    button: "COBA SEKARANG",
+    catalogTitle: "Produk Kami",
+    catalogDescription: "Ciptakan Musik impianmu dengan mudah hanya dalam hitungan menit",
+    portfolioTitle: "Portofolio",
   },
-  {
-    id: 3,
-    video: "videos/3.mp4",
-    image: People2,
-    name: "Why Don't We",
-    skill: "Trust Fun Baby",
-    description:
-      "Lagu ini mengekspresikan rasa percaya dan kesenangan dalam hubungan.",
-  },
-  {
-    id: 4,
-    video: "videos/4.mp4",
-    image: People1,
-    name: "One Direction",
-    skill: "You and I",
-    description: "Lagu ini menggambarkan cinta yang kuat dan tak terpisahkan.",
-  },
-  {
-    id: 5,
-    video: "videos/5.mp4",
-    image: People3,
-    name: "Bruno Mars",
-    skill: "Lazy Song",
-    description:
-      "Lagu ini merayakan momen santai dan menikmati hidup tanpa beban.",
-  },
-  {
-    id: 6,
-    video: "videos/6.mp4",
-    image: People4,
-    name: "Little Mix",
-    skill: "Black Magic",
-    description:
-      "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
-  },
-];
+};
 
-export const faq = [
-  {
-    id: 1,
-    eventKey: 0,
-    title: "Apa itu CMH dan bagaimana cara kerjanya?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+export const ProductContent = {
+  ID: {
+    title: "Produk Kami",
+    description: "Ciptakan Musik impianmu dengan mudah hanya dalam hitungan menit",
   },
-  {
-    id: 2,
-    eventKey: 1,
-    title: "Apakah saya perlu keahlian musik untuk menggunakan CMH?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+  EN: {
+    title: "Our Products",
+    description: "Create your dream music easily in just a few minutes",
   },
-  {
-    id: 3,
-    eventKey: 2,
-    title: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+};
+
+
+export const products = {
+  ID: [
+    {
+      id: 1,
+      image: catalogImage1,
+      name: "Buat Musik melalui Lyric",
+      description: "Ubahlah lirikmu menjadi lagu otomatis.",
+      cta: "Pesan Sekarang",
+      rating: "Telah dipesan sebanyak: ",
+      currency: "Rp",
+      price: 150000,
+      features: [
+        "Revisi Tidak Terbatas",
+        "jenis file WAV & MP3",
+        "Durasi maksimal. 5 menit"
+      ]
+    },
+    {
+      id: 2,
+      image: catalogImage2,
+      name: "Buat Musik Instrumen",
+      description: "Ciptakan melodi instrumental profesional.",
+      cta: "Pesan Sekarang",
+      rating: "Telah dipesan sebanyak: ",
+      currency: "Rp",
+      price: 200000,
+      features: [
+        "Revisi Tidak Terbatas",
+        "jenis file WAV & MP3",
+        "Durasi maksimal. 5 menit"
+      ]
+    },
+    {
+      id: 3,
+      image: catalogImage3,
+      name: "Buat Sound Effect",
+      description: "Hasilkan efek suara berkualitas tinggi.",
+      cta: "Pesan Sekarang",
+      rating: "Telah dipesan sebanyak: ",
+      currency: "Rp",
+      price: 100000,
+      features: [
+        "Revisi Tidak Terbatas", 
+        "jenis file WAV & MP3",
+        "Durasi maksimal. 30 detik"
+      ]
+    }
+  ],
+  EN: [
+    {
+      id: 1,
+      image: catalogImage1,
+      name: "Create Music from Lyrics",
+      description: "Turn your lyrics into an automatic song.",
+      cta: "Order Now",
+      rating: "Ordered: ",
+      currency: "$",
+      price: 10,
+      features: [
+        "Unlimited Revisions",
+        "WAV & MP3 File Format",
+        "Max duration: 5 minutes"
+      ]
+    },
+    {
+      id: 2,
+      image: catalogImage2,
+      name: "Create Instrumental Music",
+      description: "Craft professional instrumental melodies.",
+      cta: "Order Now",
+      rating: "Ordered: ",
+      currency: "$",
+      price: 13,
+      features: [
+        "Unlimited Revisions",
+        "WAV & MP3 File Format",
+        "Max duration: 5 minutes"
+      ]
+    },
+    {
+      id: 3,
+      image: catalogImage3,
+      name: "Create Sound Effects",
+      description: "Generate high-quality sound effects.",
+      cta: "Order Now",
+      rating: "Ordered: ",
+      currency: "$",
+      price: 7,
+      features: [
+        "Unlimited Revisions", 
+        "WAV & MP3 File Format",
+        "Max duration: 30 seconds"
+      ]
+    }
+  ]
+};
+
+export const musicSectionData = {
+  ID: {
+    songTitle: "Lagu Ini Untukmu",
+    playButton: "▶",
+    pauseButton: "⏸",
+    stopButton: "⏹",
+    downloadButton: "Unduh Musik Anda",
   },
-  {
-    id: 4,
-    eventKey: 3,
-    title: "Bagaimana cara mengubah lirik menjadi lagu?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+  EN: {
+    songTitle: "This Song For You",
+    playButton: "▶",
+    pauseButton: "⏸",
+    stopButton: "⏹",
+    downloadButton: "Download Your Music",
   },
-  {
-    id: 5,
-    eventKey: 4,
-    title: "Apakah saya bisa memilih genre musik tertentu?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+};
+
+export const musicInspirationData = {
+  ID: {
+    title: "Temukan <span>Inspirasimu</span> di Sekitar, <br /> Mulailah dari Perasaanmu!",
+    text: `"Dengar suara hujan, lihat matahari terbit, rasakan detak jantungmu.
+            Setiap lagu besar dimulai dari satu kata sederhana. Tulis apa yang kamu rasakan.
+            Musik ada di mana-mana."`,
+    aiTitle: "DAN BUAT <span>MUSIKMU DENGAN AI</span>",
+    lyricPlaceholder: "Lirik Anda",
+    createButton: "Buat",
   },
-  {
-    id: 6,
-    eventKey: 5,
-    title: "Berapa lama waktu yang dibutuhkan untuk membuat musik?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+  EN: {
+    title: "Find <span>Your Inspiration</span> Around You, <br /> Start with Your Feelings!",
+    text: `"Listen to the sound of the rain, see the sunrise, feel your heartbeat.
+            Every great song starts with a single word. Write what you feel.
+            Music is everywhere."`,
+    aiTitle: "AND CREATE YOUR <span>MUSIC WITH AI</span>",
+    lyricPlaceholder: "Your Lyric",
+    createButton: "Create",
   },
-  {
-    id: 7,
-    eventKey: 6,
-    title: "Apakah musik yang dihasilkan bisa digunakan secara komersial?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+};
+
+export const instrumentSectionData = {
+  ID: {
+    headline: `"Temukan Kebebasan Berkarya Melalui <span class="highlight">Instrumen</span> Buatanmu"`,
+    subtext: `"Jadikan ide musikmu lebih hidup dengan instrumen buatan tangan yang bisa disesuaikan. 
+               Desain, kustomisasi, dan mainkan semuanya ada di sini."`,
+    buttonText: "MULAI SEKARANG",
   },
-  {
-    id: 8,
-    eventKey: 7,
-    title: "Bagaimana jika saya mengalami masalah saat membuat musik?",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id estlaborum.",
+  EN: {
+    headline: `"Discover the Freedom to Create Through <span class="highlight">Your Own Instruments</span>"`,
+    subtext: `"Bring your musical ideas to life with handcrafted, customizable instruments. 
+               Design, customize, and play—everything is here."`,
+    buttonText: "GET STARTED",
   },
-];
+};
+
+export const soundEffectSectionData = {
+  ID: {
+    title: `Buat <span class="span">Sound Effect </span> yang Meningkatkan Karya Musikmu`,
+    buttons: {
+      create: "BUAT",
+      process: "PROSES",
+      result: "HASIL",
+      mainButton: "BUAT SEKARANG",
+    },
+  },
+  EN: {
+    title: `Create <span class="span">Sound Effects </span> that Enhance Your Music`,
+    buttons: {
+      create: "CREATE",
+      process: "PROCESS",
+      result: "RESULT",
+      mainButton: "CREATE YOURS",
+    },
+  },
+};
+
+export const contactData = {
+  ID: {
+    title: "Kontak Kami",
+    address: {
+      title: "Alamat",
+      detail: "Komp. Bandung Indah Raya, Blok C13/No.17, Kel. Mekarjaya, Kec. Rancasari, Kota Bandung, Jawa Barat 40286",
+    },
+    phone: {
+      title: "Telepon",
+      detail: "+62 812-3456-7890",
+    },
+    email: {
+      title: "Email",
+      detail: "support@musicai.com",
+    },
+    form: {
+      namePlaceholder: "Nama Anda",
+      emailPlaceholder: "Email Anda",
+      messagePlaceholder: "Pesan Anda",
+      submitButton: "Kirim Pesan",
+    },
+  },
+  EN: {
+    title: "Contact Us",
+    address: {
+      title: "Address",
+      detail: "Komp. Bandung Indah Raya, Block C13/No.17, Mekarjaya, Rancasari District, Bandung City, West Java 40286",
+    },
+    phone: {
+      title: "Phone",
+      detail: "+62 812-3456-7890",
+    },
+    email: {
+      title: "Email",
+      detail: "support@musicai.com",
+    },
+    form: {
+      namePlaceholder: "Your Name",
+      emailPlaceholder: "Your Email",
+      messagePlaceholder: "Your Message",
+      submitButton: "Send Message",
+    },
+  },
+};
+
+export const portfolioSectionData = {
+  ID: {
+    title: "Portofolio Kami",
+    description: "Selamat datang di galeri musik kami! Nikmati koleksi video musik yang menarik.",
+  },
+  EN: {
+    title: "Our Portfolio",
+    description: "Welcome to our music gallery! Enjoy a collection of captivating music videos.",
+  },
+};
+
+
+export const dataSwiper = {
+  ID: [
+    {
+      id: 1,
+      video: "videos/1.mp4",
+      image: People2,
+      name: "Why Don't We",
+      skill: "Who Am I",
+      description: "Lagu ini menggambarkan pencarian jati diri dan refleksi tentang siapa kita sebenarnya.",
+    },
+    {
+      id: 2,
+      video: "videos/2.mp4",
+      image: People1,
+      name: "One Direction",
+      skill: "Night Changes",
+      description: "Lagu ini bercerita tentang kenangan indah dan perubahan yang datang seiring waktu.",
+    },
+    {
+      id: 3,
+      video: "videos/3.mp4",
+      image: People2,
+      name: "Why Don't We",
+      skill: "Trust Fun Baby",
+      description: "Lagu ini mengekspresikan rasa percaya dan kesenangan dalam hubungan.",
+    },
+    {
+      id: 4,
+      video: "videos/4.mp4",
+      image: People1,
+      name: "One Direction",
+      skill: "You and I",
+      description: "Lagu ini menggambarkan cinta yang kuat dan tak terpisahkan.",
+    },
+    {
+      id: 5,
+      video: "videos/5.mp4",
+      image: People3,
+      name: "Bruno Mars",
+      skill: "Lazy Song",
+      description: "Lagu ini merayakan momen santai dan menikmati hidup tanpa beban.",
+    },
+    {
+      id: 6,
+      video: "videos/6.mp4",
+      image: People4,
+      name: "Little Mix",
+      skill: "Black Magic",
+      description: "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
+    },
+  ],
+  EN: [
+    {
+      id: 1,
+      video: "videos/1.mp4",
+      image: People2,
+      name: "Why Don't We",
+      skill: "Who Am I",
+      description: "This song reflects on self-discovery and finding out who we truly are.",
+    },
+    {
+      id: 2,
+      video: "videos/2.mp4",
+      image: People1,
+      name: "One Direction",
+      skill: "Night Changes",
+      description: "This song tells about beautiful memories and changes that come with time.",
+    },
+    {
+      id: 3,
+      video: "videos/3.mp4",
+      image: People2,
+      name: "Why Don't We",
+      skill: "Trust Fun Baby",
+      description: "This song expresses trust and joy in a relationship.",
+    },
+    {
+      id: 4,
+      video: "videos/4.mp4",
+      image: People1,
+      name: "One Direction",
+      skill: "You and I",
+      description: "This song portrays a strong and unbreakable love.",
+    },
+    {
+      id: 5,
+      video: "videos/5.mp4",
+      image: People3,
+      name: "Bruno Mars",
+      skill: "Lazy Song",
+      description: "This song celebrates relaxing moments and enjoying life without worries.",
+    },
+    {
+      id: 6,
+      video: "videos/6.mp4",
+      image: People4,
+      name: "Little Mix",
+      skill: "Black Magic",
+      description: "This song is about irresistible charm and attraction.",
+    },
+  ],
+};
+
+export const creativeMusicHubData = {
+  ID: {
+    name: "CreativeMusicHub",
+    address:
+      "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Kota Bandung, Jawa Barat 40286",
+    contact: {
+      phone: "+62 812-3456-7890",
+      email: "person-email@gmail.com",
+    },
+    socialMedia: {
+      instagram: "https://instagram.com/yourpage",
+      website: "https://yourwebsite.com",
+      email: "person-email@gmail.com",
+    },
+    products: [
+      { name: "Buat Musik melalui Lyric", link: "/musik-lyric" },
+      { name: "Buat Musik Instrumen", link: "/musik-instrument" },
+      { name: "Buat Sound Effect", link: "/sound-effect" },
+      { name: "Portofolio", link: "/portfolio" },
+    ],
+    visitorsLabel: "Total Pengunjung",
+  },
+  EN: {
+    name: "CreativeMusicHub",
+    address:
+      "Komplek Bandung Indah Raya, Block C13/No.17, Mekarjaya Village, Rancasari District, Bandung City, West Java 40286",
+    contact: {
+      phone: "+62 812-3456-7890",
+      email: "person-email@gmail.com",
+    },
+    socialMedia: {
+      instagram: "https://instagram.com/yourpage",
+      website: "https://yourwebsite.com",
+      email: "person-email@gmail.com",
+    },
+    products: [
+      { name: "Create Music through Lyrics", link: "/musik-lyric" },
+      { name: "Create Instrumental Music", link: "/musik-instrument" },
+      { name: "Create Sound Effects", link: "/sound-effect" },
+      { name: "Portfolio", link: "/portfolio" },
+    ],
+    visitorsLabel: "Total Visitors",
+  },
+};
+
+export const judulfaq = {
+  ID: { name: "Pertanyaan yang Sering Diajukan" },
+  EN: { name: "Frequently Asked Questions" }
+};
+
+
+export const faq = {
+  ID: [
+    {
+      id: 1,
+      eventKey: 0,
+      title: "Apa itu CMH dan bagaimana cara kerjanya?",
+      desc: "CreativeMusicHub (CMH) adalah platform untuk menciptakan musik dengan bantuan AI. Pengguna dapat mengunggah lirik, memilih genre, dan mendapatkan lagu yang dibuat secara otomatis.",
+    },
+    {
+      id: 2,
+      eventKey: 1,
+      title: "Apakah saya perlu keahlian musik untuk menggunakan CMH?",
+      desc: "Tidak perlu! CMH dirancang untuk semua orang, baik pemula maupun profesional. Teknologi AI kami akan membantu dalam proses pembuatan musik.",
+    },
+    {
+      id: 3,
+      eventKey: 2,
+      title: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
+      desc: "CMH mendukung berbagai genre musik seperti pop, rock, jazz, EDM, dan masih banyak lagi.",
+    },
+    {
+      id: 4,
+      eventKey: 3,
+      title: "Bagaimana cara mengubah lirik menjadi lagu?",
+      desc: "Anda hanya perlu mengunggah lirik, memilih genre, dan CMH akan secara otomatis menghasilkan musik yang sesuai dengan lirik tersebut.",
+    },
+    {
+      id: 5,
+      eventKey: 4,
+      title: "Apakah saya bisa memilih genre musik tertentu?",
+      desc: "Ya! CMH menyediakan berbagai pilihan genre musik yang dapat Anda pilih sesuai dengan preferensi Anda.",
+    },
+    {
+      id: 6,
+      eventKey: 5,
+      title: "Berapa lama waktu yang dibutuhkan untuk membuat musik?",
+      desc: "Proses pembuatan musik biasanya memakan waktu beberapa menit, tergantung pada kompleksitas lirik dan pemilihan instrumen.",
+    },
+    {
+      id: 7,
+      eventKey: 6,
+      title: "Apakah musik yang dihasilkan bisa digunakan secara komersial?",
+      desc: "Ya, musik yang dihasilkan melalui CMH bisa digunakan secara komersial. Namun, pastikan untuk membaca ketentuan penggunaan terlebih dahulu.",
+    },
+    {
+      id: 8,
+      eventKey: 7,
+      title: "Bagaimana jika saya mengalami masalah saat membuat musik?",
+      desc: "Anda dapat menghubungi tim dukungan kami melalui email atau WhatsApp yang tersedia di halaman kontak.",
+    },
+  ],
+  EN: [
+    {
+      id: 1,
+      eventKey: 0,
+      title: "What is CMH and how does it work?",
+      desc: "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
+    },
+    {
+      id: 2,
+      eventKey: 1,
+      title: "Do I need musical skills to use CMH?",
+      desc: "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
+    },
+    {
+      id: 3,
+      eventKey: 2,
+      title: "What types of music can be created with CMH?",
+      desc: "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
+    },
+    {
+      id: 4,
+      eventKey: 3,
+      title: "How do I turn lyrics into a song?",
+      desc: "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
+    },
+    {
+      id: 5,
+      eventKey: 4,
+      title: "Can I choose a specific music genre?",
+      desc: "Yes! CMH offers various genre options that you can choose based on your preference.",
+    },
+    {
+      id: 6,
+      eventKey: 5,
+      title: "How long does it take to create music?",
+      desc: "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
+    },
+    {
+      id: 7,
+      eventKey: 6,
+      title: "Can the generated music be used commercially?",
+      desc: "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
+    },
+    {
+      id: 8,
+      eventKey: 7,
+      title: "What if I encounter issues while creating music?",
+      desc: "You can contact our support team via email or WhatsApp, available on the contact page.",
+    },
+  ],
+};
+
 
 // Product Descriptions
-export const productDescriptions = [
-  {
-    id: 1,
-    page: "lyrics",
-    title: "AI-Powered Music from Lyrics",
-    description:
-      "Transform your lyrics into a full-fledged song with our AI-powered music generator. Whether you're a songwriter or a poet, our tool will turn your words into a professional-quality track in minutes.",
-  },
-  {
-    id: 2,
-    page: "instrument",
-    title: "AI-Powered Music from Instruments",
-    description:
-      "Create stunning instrumental music with our AI. Whether you play the guitar, piano, or any other instrument, our tool will enhance your melodies and turn them into a complete musical masterpiece.",
-  },
-  {
-    id: 3,
-    page: "sound",
-    title: "AI-Powered Music from Sound Effects",
-    description:
-      "Generate unique music tracks using sound effects. Our AI can blend various sounds into a cohesive and professional composition, perfect for video games, movies, or experimental music.",
-  },
-];
+export const productDescriptions = {
+  ID: [
+    {
+      id: 1,
+      page: "lyrics",
+      title: "Buat Musik dari Lirik",
+      description1: "Dengan CMH.AI, kamu hanya perlu mengunggah lirik untuk mendapatkan musik yang sesuai dengan tema dan mood yang kamu inginkan.",
+      description2: "Tidak perlu repot belajar produksi musik atau mencari musisi. Nikmati berbagai pilihan genre dan aransemen yang disesuaikan dengan lirikmu, apakah untuk video, podcast, atau proyek pribadi.",
+      description3: "Mulai dari Rp. 150.000, CMH.AI menawarkan solusi cepat dan mudah untuk menghasilkan musik berkualitas tinggi. Pilih genre yang diinginkan, unggah lirik, dan biarkan AI kami bekerja. Dalam waktu singkat, kamu akan memiliki musik yang sempurna untuk melengkapi karya kreatifmu.",
+      imageUrl: productDesc1,
+    },
+    {
+      id: 2,
+      page: "instrument",
+      title: "Buat Musik dari Instrumen",
+      description1: "Dengan CMH.AI, kamu hanya perlu memilih instrumen yang diinginkan dan biarkan AI kami menciptakan musik berkualitas tinggi untukmu.",
+      description2: "Tidak perlu keterampilan komposisi atau pengalaman dalam musik untuk membuat karya yang menakjubkan. Nikmati berbagai pilihan genre dan gaya musik yang bisa disesuaikan dengan kebutuhan kamu, apakah untuk video, iklan, atau proyek kreatif lainnya.",
+      description3: "Mulai dari Rp. 200.000, Musik.AI menawarkan solusi cepat dan mudah untuk menghasilkan musik original tanpa batasan. Pilih instrumen, tentukan suasana hati, dan biarkan AI kami bekerja. Dalam waktu singkat, kamu akan memiliki lagu lengkap dengan instrumen yang siap digunakan.",
+      imageUrl: productDesc2,
+    },
+    {
+      id: 3,
+      page: "sound",
+      title: "Buat Musik dari Efek Suara",
+      description1: "Dengan CMH.AI, kamu hanya perlu mengunggah efek suara untuk mendapatkan musik yang sesuai dengan suasana dan nuansa yang diinginkan.",
+      description2: "Tidak perlu repot mengatur instrumen atau mencari komposer. Nikmati berbagai pilihan genre dan aransemen musik yang disesuaikan dengan efek suara yang kamu pilih, apakah untuk film, video, atau proyek kreatif lainnya.",
+      description3: "Mulai dari Rp. 100.000, CMH.AI menawarkan solusi cepat dan mudah untuk menghasilkan musik berkualitas tinggi. Pilih paket yang sesuai, unggah efek suara, dan biarkan AI kami bekerja. Dalam waktu singkat, kamu akan memiliki musik yang sempurna untuk melengkapi karyamu.",
+      imageUrl: productDesc3,
+    },
+  ],
+  EN: [
+    {
+      id: 1,
+      page: "lyrics",
+      title: "Create Music from Lyrics",
+      description1: "With CMH.AI, simply upload your lyrics to get music that matches the theme and mood you desire.",
+      description2: "No need to learn music production or find musicians. Enjoy a variety of genres and arrangements tailored to your lyrics, whether for videos, podcasts, or personal projects.",
+      description3: "Starting from Rp. 150,000, CMH.AI offers a fast and easy solution to produce high-quality music. Choose your genre, upload your lyrics, and let our AI do the work. In no time, you’ll have the perfect music to complement your creative project.",
+      imageUrl: productDesc1,
+    },
+    {
+      id: 2,
+      page: "instrument",
+      title: "Create Music from Instruments",
+      description1: "With CMH.AI, simply choose your desired instrument and let our AI create high-quality music for you.",
+      description2: "No composition skills or music experience needed to create an amazing piece. Enjoy various genre options and musical styles customized to your needs, whether for videos, ads, or creative projects.",
+      description3: "Starting from Rp. 200,000, Musik.AI offers a fast and easy solution to create original music without limits. Choose an instrument, set the mood, and let our AI do the work. In no time, you'll have a full song with ready-to-use instruments.",
+      imageUrl: productDesc2,
+    },
+    {
+      id: 3,
+      page: "sound",
+      title: "Create Music from Sound Effects",
+      description1: "With CMH.AI, simply upload sound effects to get music that matches the atmosphere and vibe you desire.",
+      description2: "No need to arrange instruments or find composers. Enjoy various genres and musical arrangements tailored to your chosen sound effects, whether for films, videos, or other creative projects.",
+      description3: "Starting from Rp. 100,000, CMH.AI offers a fast and easy solution to produce high-quality music. Choose the right package, upload sound effects, and let our AI do the work. In no time, you’ll have the perfect music to complete your project.",
+      imageUrl: productDesc3,
+    },
+  ],
+};
+
 
 // How It Works Steps
-export const howItWorksSteps = [
-  {
-    id: 1,
-    page: "lyrics",
-    steps: [
-      "Enter your lyrics into the input field.",
-      "Select your preferred music genre and tempo.",
-      "Let our AI analyze your lyrics and generate a melody.",
-      "Download your song and share it with the world!",
-    ],
-  },
-  {
-    id: 2,
-    page: "instrument",
-    steps: [
-      "Upload a recording of your instrument playing.",
-      "Choose the mood and style for your track.",
-      "Our AI will process the recording and create a full arrangement.",
-      "Download the final track and enjoy your creation!",
-    ],
-  },
-  {
-    id: 3,
-    page: "sound",
-    steps: [
-      "Upload your sound effects or choose from our library.",
-      "Select the genre and structure for your track.",
-      "Our AI will blend the sounds into a cohesive composition.",
-      "Download your unique track and use it in your projects!",
-    ],
-  },
-];
+export const howItWorksSteps = {
+  ID: [
+    {
+      id: 1,
+      page: "lyrics",
+      steps: [
+        {
+          text: "Masukkan lirik Anda ke dalam kolom input.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Pilih genre musik dan tempo yang Anda inginkan.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "Biarkan AI kami menganalisis lirik Anda dan menghasilkan melodi.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Unduh lagu Anda dan bagikan dengan semua orang!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+    {
+      id: 2,
+      page: "instrument",
+      steps: [
+        {
+          text: "Unggah rekaman permainan instrumen Anda.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Pilih suasana hati dan gaya untuk lagu Anda.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "AI kami akan memproses rekaman dan membuat aransemen lengkap.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Unduh lagu akhir dan nikmati kreasi Anda!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+    {
+      id: 3,
+      page: "sound",
+      steps: [
+        {
+          text: "Unggah efek suara Anda atau pilih dari perpustakaan kami.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Pilih genre dan struktur untuk lagu Anda.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "AI kami akan memadukan suara menjadi komposisi yang kohesif.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Unduh lagu akhir dan nikmati kreasi Anda!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+  ],
+  EN: [
+    {
+      id: 1,
+      page: "lyrics",
+      steps: [
+        {
+          text: "Enter your lyrics into the input field.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Choose your desired music genre and tempo.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "Let our AI analyze your lyrics and generate a melody.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Download your song and share it with everyone!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+    {
+      id: 2,
+      page: "instrument",
+      steps: [
+        {
+          text: "Upload your instrument recording.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Choose the mood and style for your song.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "Our AI will process the recording and create a full arrangement.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Download the final song and enjoy your creation!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+    {
+      id: 3,
+      page: "sound",
+      steps: [
+        {
+          text: "Upload your sound effects or choose from our library.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Select the genre and structure for your song.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "Our AI will blend the sounds into a cohesive composition.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Download the final song and enjoy your creation!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+  ],
+};
+
 
 // Price Lists
-export const priceLists = [
-  {
-    id: 1,
-    page: "lyrics",
-    plans: [
-      {
-        name: "Basic",
-        price: "Rp 100.000",
-        features: ["1 song per month", "Standard quality", "Limited genres"],
-      },
-      {
-        name: "Pro",
-        price: "Rp 200.000",
-        features: ["5 songs per month", "High quality", "All genres"],
-      },
-      {
-        name: "Premium",
-        price: "Rp 300.000",
-        features: ["Unlimited songs", "Studio quality", "All genres + custom requests"],
-      },
-    ],
-  },
-  {
-    id: 2,
-    page: "instrument",
-    plans: [
-      {
-        name: "Basic",
-        price: "Rp 150.000",
-        features: ["1 track per month", "Standard quality", "Limited instruments"],
-      },
-      {
-        name: "Pro",
-        price: "Rp 250.000",
-        features: ["5 tracks per month", "High quality", "All instruments"],
-      },
-      {
-        name: "Premium",
-        price: "Rp 350.000",
-        features: ["Unlimited tracks", "Studio quality", "All instruments + custom requests"],
-      },
-    ],
-  },
-  {
-    id: 3,
-    page: "sound",
-    plans: [
-      {
-        name: "Basic",
-        price: "Rp 200.000",
-        features: ["1 track per month", "Standard quality", "Limited sound effects"],
-      },
-      {
-        name: "Pro",
-        price: "Rp 300.000",
-        features: ["5 tracks per month", "High quality", "All sound effects"],
-      },
-      {
-        name: "Premium",
-        price: "Rp 400.000",
-        features: ["Unlimited tracks", "Studio quality", "All sound effects + custom requests"],
-      },
-    ],
-  },
-];
+export const priceLists = {
+  ID: [
+    {
+      id: 1,
+      page: "lyrics",
+      plans: [
+        {
+          name: "Premium",
+          features: ["Revisi Tidak Terbatas", "Jenis file WAV & MP3", "Durasi maksimal. 5 menit"],
+          price: "Rp 150.000",
+        },
+      ],
+    },
+    {
+      id: 2,
+      page: "instrument",
+      plans: [
+        {
+          name: "Premium",
+          price: "Rp 200.000",
+          features: ["Revisi Tidak Terbatas", "Jenis file WAV & MP3", "Durasi maksimal. 5 menit"],
+        },
+      ],
+    },
+    {
+      id: 3,
+      page: "sound",
+      plans: [
+        {
+          name: "Premium",
+          price: "Rp 100.000",
+          features: ["Revisi Tidak Terbatas", "Jenis file WAV & MP3", "Durasi maksimal. 30 detik"],
+        },
+      ],
+    },
+  ],
+  EN: [
+    {
+      id: 1,
+      page: "lyrics",
+      plans: [
+        {
+          name: "Premium",
+          features: ["Unlimited revisions", "File format WAV & MP3", "Max duration 5 minutes"],
+          price: "$10",
+        },
+      ],
+    },
+    {
+      id: 2,
+      page: "instrument",
+      plans: [
+        {
+          name: "Premium",
+          price: "$13",
+          features: ["Unlimited revisions", "File format WAV & MP3", "Max duration 5 minutes"],
+        },
+      ],
+    },
+    {
+      id: 3,
+      page: "sound",
+      plans: [
+        {
+          name: "Premium",
+          price: "$7",
+          features: ["Unlimited revisions", "File format WAV & MP3", "Max duration 30 seconds"],
+        },
+      ],
+    },
+  ],
+};

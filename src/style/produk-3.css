@@ -1,0 +1,92 @@
+/* Global Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1f1a3c;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sound-page {
+    padding-bottom: 50px;
+  }
+  
+  /* Header Section */
+  .page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('../assets/Frame-3.png') no-repeat center center/cover;
+    padding: 60px 20px;
+  }
+  
+  .judul {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffcc00;
+  }
+  
+  .judul .span {
+    color: #ff4b8a;
+  }
+  
+  /* Image Section */
+  .img-fluid {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Buttons */
+  button {
+    border-radius: 5px;
+  }
+  
+  .btn-outline-warning {
+    font-weight: bold;
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
+    background-color: transparent;
+    transition: 0.3s;
+  }
+  
+  .btn-outline-warning:hover {
+    background-color: #ffcc00;
+    color: #1f1a3c;
+  }
+  
+  .btn-warning {
+    font-weight: bold;
+    background-color: #ffcc00;
+    color: #1f1a3c;
+    transition: 0.3s;
+  }
+  
+  .btn-warning:hover {
+    background-color: #e6b800;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .judul {
+      font-size: 2rem;
+    }
+  
+    .img-fluid {
+      max-width: 90%;
+    }
+  
+    .btn-outline-warning {
+      width: 90%;
+    }
+  }
+  

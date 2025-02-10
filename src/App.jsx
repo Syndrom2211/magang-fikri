@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useState } from 'react';
 
 import NavbarComponent from "./components/NavbarComponent";
 import FaqComponent from "./components/FaqComponent";
@@ -13,38 +14,45 @@ import SoundPage from "./pages/SoundPage";
 import Dashboard from "./pages/Dashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import ModalForm from "./pages/ModalForm";
+import FaqPage from "./pages/FaqPage";
+import TabelPortofolio from "./pages/TabelPortofolio";
 
 function App() {
   const location = useLocation(); // Ambil lokasi URL saat ini
   const isAdminPage =
     location.pathname.startsWith("/admin") &&
     location.pathname !== "admin/login"; // Cek apakah halaman admin
+  const [language, setLanguage] = useState('ID');
 
   return (
     <div>
       {/* Tampilkan Navbar hanya jika bukan halaman admin dan halaman ModalForm */}
       {!isAdminPage && location.pathname !== "/checkout" && (
-        <NavbarComponent />
+        <NavbarComponent language={language} setLanguage={setLanguage} />
       )}
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/support" element={<SupportPage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/musik-lyric" element={<LyricsPage />} />
-        <Route path="/musik-instrument" element={<InstrumenPage />} />
-        <Route path="/sound-effect" element={<SoundPage />} />
-        <Route path="/admin/login" element={<AdminLoginPage />} />{" "}
+        <Route path="/" element={<HomePage language={language} />} />
+        <Route path="/support" element={<SupportPage language={language} />} />
+        <Route path="/portfolio" element={<PortfolioPage language={language}/>} />
+        <Route path="/musik-lyric" element={<LyricsPage language={language}/>} />
+        <Route path="/musik-instrument" element={<InstrumenPage language={language}/>} />
+        <Route path="/sound-effect" element={<SoundPage language={language}/>} />
+        <Route path="/admin/login" element={<AdminLoginPage language={language}/>} />{" "}
         <Route path="/checkout" element={<ModalForm />} />
+        <Route path="/tabelportofolio" element={<TabelPortofolio />} />
+        
         {/* Admin Login Page Route */}
         <Route path="/admin/*" element={<Dashboard />} />
+        <Route path="/admin/faq" element={<FaqPage />} />
       </Routes>
 
       {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}
+      {!isAdminPage && <FaqComponent language={language}/>}
       {!isAdminPage && location.pathname !== "/checkout" && (
         <FaqComponent />
       )}
-      {!isAdminPage && <FooterComponent />}
+      {!isAdminPage && <FooterComponent language={language}/>}
     </div>
   );
 }

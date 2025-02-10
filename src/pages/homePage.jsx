@@ -2,27 +2,28 @@ import { Container, Row, Col } from "react-bootstrap";
 import HeroImage from "../assets/music-1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faUser, faTag } from "@fortawesome/free-solid-svg-icons";
-import { products, dataSwiper } from "../data/index";
+import { products, dataSwiper, TextContent,ProductContent } from "../data/index";
 import { PlayCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReactPlayer from "react-player";
 import { checkout } from "../components/Checkout";
+import PropTypes from 'prop-types';
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const HomePage = () => {
+const HomePage = ({language}) => {
   const catalogRef = useRef(null);
   const [setSwiperRef] = useState(null);
 
   const scrollToCatalog = () => {
     catalogRef.current.scrollIntoView({ behavior: "smooth" });
   };
-
+  
   return (
     <div className="homePage">
       {/* HOMEPAGE */}
@@ -31,17 +32,13 @@ const HomePage = () => {
           <Row className="header-content">
             <Col md={6}>
               <h1 className="fw-bold">
-                Ciptakan <span className="hub">Musikmu</span> Dalam Hitungan
-                Detik
+                {TextContent[language].title}
               </h1>
               <p className="fs-5">
-                Jadikan inspirasimu sebuah mahakarya dengan AI canggih. Tanpa
-                perlu studio mahal, cukup unggah ide musikmu, dan biarkan AI
-                kami menyulapnya menjadi melodi artistik serta aransemen
-                profesional dalam hitungan menit.
+                {TextContent[language].description}
               </p>
               <button className="cta-button" onClick={scrollToCatalog}>
-                COBA SEKARANG
+                {TextContent[language].button}
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </Col>
@@ -56,15 +53,13 @@ const HomePage = () => {
         <Container>
           <Row>
             <Col>
-              <h1 className="text-center fw-bold">Produk Kami</h1>
-              <p className="text-center">
-                Ciptakan Musik impianmu dengan mudah hanya dalam hitungan menit
-              </p>
+            <h1 className="text-center fw-bold">{ProductContent[language].title}</h1>
+            <p className="text-center">{ProductContent[language].description}</p>
             </Col>
           </Row>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-1">
             <Row className="g-4">
-              {products.map((product) => (
+              {products[language].map((product) => (
                 <Col
                   key={product.id}
                   md={4}
@@ -100,7 +95,7 @@ const HomePage = () => {
                           icon={faTag}
                           className="price-icon me-2"
                         />
-                        {product.price}
+                        {product.currency} {product.price}
                       </p>
                       <div className="flex items-center justify-between mb-2 pt-2">
                         <div className="user-stats d-flex align-items-center mb-3">
@@ -168,7 +163,7 @@ const HomePage = () => {
                 },
               }}
             >
-              {dataSwiper.map((swiper, index) => (
+              {dataSwiper[language].map((swiper, index) => (
                 <SwiperSlide
                   key={swiper.id}
                   virtualIndex={index}
@@ -195,6 +190,10 @@ const HomePage = () => {
       </div>
     </div>
   );
+};
+
+HomePage.propTypes = {
+  language: PropTypes.string.isRequired,
 };
 
 export default HomePage;
