@@ -1,12 +1,12 @@
 import PropTypes from "prop-types"; 
 import { priceLists } from "../data/index";
 
-const PriceListComponent = ({ page }) => {
-  const plans = priceLists.find((item) => item.page === page).plans;
+const PriceListComponent = ({ page, language }) => {
+  const plans = priceLists[language]?.find((item) => item.page === page)?.plans || [];
 
   return (
     <div className="price-list">
-      <h2>Price List</h2>
+      <h2>{language === "id" ? "Daftar Harga" : "Price List"}</h2>
       <div className="plans">
         {plans.map((plan, index) => (
           <div key={index} className="plan">
@@ -17,7 +17,9 @@ const PriceListComponent = ({ page }) => {
               ))}
             </ul>
             <p>{plan.price}</p>
-            <button className="order-button">Pesan Sekarang</button>
+            <button className="order-button">
+              {language === "id" ? "Pesan Sekarang" : "Order Now"}
+            </button>
           </div>
         ))}
       </div>
@@ -26,7 +28,8 @@ const PriceListComponent = ({ page }) => {
 };
 
 PriceListComponent.propTypes = {
-  page: PropTypes.string.isRequired, 
+  page: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 export default PriceListComponent;
