@@ -311,3 +311,18 @@ body, html {
   .login-button:hover {
     background: linear-gradient(135deg, #fad0c4, #ff9a9e); /* Reverse gradient on hover */
   }
+
+  /* FAQ */
+.faq-page {
+    display: flex;
+  }
+  
+  .sidebar-wrapper {
+    width: 250px; /* Adjust as needed */
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  

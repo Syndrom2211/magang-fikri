@@ -66,7 +66,7 @@ const SideBarComponent = () => {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link">
+            <Nav.Link href="/admin/faq" className="nav-link">
               <FaInfoCircle className="me-2" /> FAQ
             </Nav.Link>
           </Nav.Item>

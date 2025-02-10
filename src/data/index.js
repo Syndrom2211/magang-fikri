@@ -11,7 +11,7 @@ import productDesc1 from "../assets/img/products/music-lyrics.jpg";
 import productDesc2 from "../assets/img/products/10982.jpg";
 import productDesc3 from "../assets/img/products/sound-engineer-studio.jpg";
 
-import howItWorks1 from "../assets/img/products/undraw_text-field_17if.png";
+import howItWorks1 from "../assets/img/products/undraw_file-sync_ag5g.png";
 import howItWorks2 from "../assets/img/products/undraw_preferences_2bda.png";
 import howItWorks3 from "../assets/img/products/undraw_file-analysis_dg81.png";
 import howItWorks4 from "../assets/img/products/undraw_media-player_kxtm.png";

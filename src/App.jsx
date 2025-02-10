@@ -13,6 +13,7 @@ import SoundPage from "./pages/SoundPage";
 import Dashboard from "./pages/Dashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import ModalForm from "./pages/ModalForm";
+import FaqPage from "./pages/FaqPage";
 
 function App() {
   const location = useLocation(); // Ambil lokasi URL saat ini
@@ -38,6 +39,7 @@ function App() {
         <Route path="/checkout" element={<ModalForm />} />
         {/* Admin Login Page Route */}
         <Route path="/admin/*" element={<Dashboard />} />
+        <Route path="/admin/faq" element={<FaqPage />} />
       </Routes>
 
       {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}

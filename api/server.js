@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import midtransClient from 'midtrans-client';
 import dotenv from 'dotenv';
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
 dotenv.config();
 const app = express();
@@ -63,19 +63,19 @@ const createDatabaseAndTable = () => {
                 return;
             }
             console.log("✅ Visitors table created or already exists");
-        
+
             // Cek apakah sudah ada data di tabel visitors
             const checkVisitorQuery = "SELECT COUNT(*) AS count FROM visitors";
             const addVisitorQuery = "INSERT INTO visitors (count) VALUES (0)";
-        
+
             db.query(checkVisitorQuery, (err, result) => {
                 if (err) {
                     console.error("❌ Error checking visitors table:", err);
                     return;
                 }
-        
+
                 const visitorExists = result[0].count > 0;
-        
+
                 if (!visitorExists) {
                     db.query(addVisitorQuery, (err) => {
                         if (err) {
@@ -90,6 +90,26 @@ const createDatabaseAndTable = () => {
             });
         });
 
+        // Membuat tabel FAQ jika belum ada
+        const createTableQuery_faq = `
+            CREATE TABLE IF NOT EXISTS faq (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                question TEXT NOT NULL,
+                answer TEXT NOT NULL,
+                category VARCHAR(255),
+                status ENUM('Published', 'Draft', 'Archived') DEFAULT 'Draft',
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            );
+        `;
+
+        db.query(createTableQuery_faq, (err) => {
+            if (err) {
+                console.error("❌ Error creating FAQ table:", err);
+                return;
+            }
+            console.log("✅ FAQ table created or already exists");
+        });
     });
 };
 
