@@ -15,13 +15,14 @@ import Dashboard from "./pages/Dashboard";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import ModalForm from "./pages/ModalForm";
 import FaqPage from "./pages/FaqPage";
-import TabelPortofolio from "./pages/TabelPortofolio";
+import TabelPortofolio from "./pages/Adminportofolio";
 
 function App() {
   const location = useLocation(); // Ambil lokasi URL saat ini
   const isAdminPage =
     location.pathname.startsWith("/admin") &&
-    location.pathname !== "admin/login"; // Cek apakah halaman admin
+    location.pathname !== "admin/login"|| // Cek apakah halaman admin
+    location.pathname === "/tabelportofolio"; // Cek apakah halaman tabel portofolio
   const [language, setLanguage] = useState('ID');
 
   return (

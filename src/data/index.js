@@ -18,6 +18,7 @@ import howItWorks4 from "../assets/img/products/undraw_media-player_kxtm.png";
 
 import "lucide-react";
 
+
 export const NavLinks = {
   EN: [
     { id: 1, path: "/", name: "Home" },
@@ -325,6 +326,7 @@ export const dataSwiper = {
       image: People2,
       name: "Why Don't We",
       skill: "Who Am I",
+      genre: "Pop",
       description: "Lagu ini menggambarkan pencarian jati diri dan refleksi tentang siapa kita sebenarnya.",
     },
     {
@@ -333,6 +335,7 @@ export const dataSwiper = {
       image: People1,
       name: "One Direction",
       skill: "Night Changes",
+      genre: "Pop",
       description: "Lagu ini bercerita tentang kenangan indah dan perubahan yang datang seiring waktu.",
     },
     {
@@ -341,6 +344,7 @@ export const dataSwiper = {
       image: People2,
       name: "Why Don't We",
       skill: "Trust Fun Baby",
+      genre: "RnB",
       description: "Lagu ini mengekspresikan rasa percaya dan kesenangan dalam hubungan.",
     },
     {
@@ -349,6 +353,7 @@ export const dataSwiper = {
       image: People1,
       name: "One Direction",
       skill: "You and I",
+      genre: "Pop",
       description: "Lagu ini menggambarkan cinta yang kuat dan tak terpisahkan.",
     },
     {
@@ -357,6 +362,7 @@ export const dataSwiper = {
       image: People3,
       name: "Bruno Mars",
       skill: "Lazy Song",
+      genre: "RnB",
       description: "Lagu ini merayakan momen santai dan menikmati hidup tanpa beban.",
     },
     {
@@ -365,6 +371,7 @@ export const dataSwiper = {
       image: People4,
       name: "Little Mix",
       skill: "Black Magic",
+      genre: "RnB",
       description: "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
     },
   ],
@@ -375,6 +382,7 @@ export const dataSwiper = {
       image: People2,
       name: "Why Don't We",
       skill: "Who Am I",
+      genre: "Pop",
       description: "This song reflects on self-discovery and finding out who we truly are.",
     },
     {
@@ -383,6 +391,7 @@ export const dataSwiper = {
       image: People1,
       name: "One Direction",
       skill: "Night Changes",
+      genre: "Pop",
       description: "This song tells about beautiful memories and changes that come with time.",
     },
     {
@@ -391,6 +400,7 @@ export const dataSwiper = {
       image: People2,
       name: "Why Don't We",
       skill: "Trust Fun Baby",
+      genre: "RnB",
       description: "This song expresses trust and joy in a relationship.",
     },
     {
@@ -399,6 +409,7 @@ export const dataSwiper = {
       image: People1,
       name: "One Direction",
       skill: "You and I",
+      genre: "Pop",
       description: "This song portrays a strong and unbreakable love.",
     },
     {
@@ -407,6 +418,7 @@ export const dataSwiper = {
       image: People3,
       name: "Bruno Mars",
       skill: "Lazy Song",
+      genre: "RnB",
       description: "This song celebrates relaxing moments and enjoying life without worries.",
     },
     {
@@ -415,6 +427,7 @@ export const dataSwiper = {
       image: People4,
       name: "Little Mix",
       skill: "Black Magic",
+      genre: "RnB",
       description: "This song is about irresistible charm and attraction.",
     },
   ],
