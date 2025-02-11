@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import ModalForm from "./ModalForm"; // Import ModalForm
+import ModalForm from "./ModalForm";
 import { Container, Row, Col, Table } from "react-bootstrap";
+import SideBarComponent from "../components/SideBarComponent";
+import MainHeader from "../components/MainHeader";
+import MainFooter from "../components/MainFooter";
 
 const TransaksiPage = () => {
   const { product } = useParams();
@@ -19,46 +22,57 @@ const TransaksiPage = () => {
   }, [product]);
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <h1>Transaksi Produk: {product}</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Tanggal</th>
-                <th>Jumlah</th>
-                {/* ... kolom lain */}
-              </tr>
-            </thead>
-            <tbody>
-              {transaksi.map((t) => (
-                <tr key={t.id}>
-                  <td>{t.id}</td>
-                  <td>{t.tanggal}</td>
-                  <td>{t.jumlah}</td>
-                  {/* ... cell lain */}
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <ModalForm
-            transaksi={transaksi}
-            setTransaksi={setTransaksi}
-            product={product}
-          />
-        </Col>
-      </Row>
-    </Container>
+    <div className="dashboard-container">
+      <SideBarComponent />
+
+      <div className="dashboard-content">
+        <MainHeader />
+        
+        <div className="content-wrapper">
+          <Container className="mt-4">
+            <Row>
+              <Col>
+                <h1>Transaksi Produk: {product}</h1>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <div className="table-container">
+                  <Table striped bordered hover>
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {transaksi.map((t) => (
+                        <tr key={t.id}>
+                          <td>{t.id}</td>
+                          <td>{t.tanggal}</td>
+                          <td>{t.jumlah}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <ModalForm
+                  transaksi={transaksi}
+                  setTransaksi={setTransaksi}
+                  product={product}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <MainFooter />
+      </div>
+    </div>
   );
 };
 
