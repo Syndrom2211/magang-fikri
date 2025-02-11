@@ -22,14 +22,19 @@ function App() {
   const [language, setLanguage] = useState("ID");
 
   const isAdminPage =
-    location.pathname.startsWith("/admin") &&
-    location.pathname !== "/admin/login" ||
+    (location.pathname.startsWith("/admin") &&
+      location.pathname !== "/admin/login") ||
     location.pathname === "/tabelportofolio";
+
+  const hideNavbarFooter =
+    isAdminPage ||
+    location.pathname === "/checkout" ||
+    location.pathname === "/admin/login";
 
   return (
     <div>
       {/* Display Navbar only if it's not an admin page or checkout page */}
-      {!isAdminPage && location.pathname !== "/checkout" && (
+      {!hideNavbarFooter && (
         <NavbarComponent language={language} setLanguage={setLanguage} />
       )}
 
@@ -73,10 +78,8 @@ function App() {
       </Routes>
 
       {/* Display Footer only for public pages */}
-      
-      {!isAdminPage && location.pathname !== "/checkout" && (
-        <FooterComponent language={language} />
-      )}
+
+      {!hideNavbarFooter && <FooterComponent language={language} />}
     </div>
   );
 }
