@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Table, Button, Modal, Form } from "react-bootstrap";
 import SideBarComponent from '../components/SideBarComponent';
 import { dataSwiper } from "../data/index"; // Mengambil data dari dataSwiper
