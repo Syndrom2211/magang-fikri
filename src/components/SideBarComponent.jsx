@@ -1,17 +1,33 @@
 import { useState } from "react";
 import { Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {FaHome,FaInfoCircle,FaCamera,FaGraduationCap,FaSignOutAlt,FaBars} from "react-icons/fa";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaCamera,
+  FaGraduationCap,
+  FaSignOutAlt,
+  FaBars,
+  FaChevronDown,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../style/admin.css";
-import logo from "../assets/logo.png"; // Pastikan path benar
+import logo from "../assets/logo.png";
+import lirikIcon from "../assets/lirik.png"; // Import logo lirik
+import instrumenIcon from "../assets/instrumen.png"; // Import logo instrumen
+import efekSuaraIcon from "../assets/efek_suara.png"; // Import logo efek suara
 
 const SideBarComponent = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleProductDropdown = () => {
+    setIsProductDropdownOpen(!isProductDropdownOpen);
   };
 
   const handleLogout = () => {
@@ -19,16 +35,22 @@ const SideBarComponent = () => {
     navigate("/admin/login");
   };
 
+  const handleProductClick = (product) => {
+    navigate(`/admin/transaksi/${product}`); // Navigasi ke halaman transaksi
+  };
+
   return (
     <div className={`sidebar-wrapper ${isOpen ? "open" : "closed"}`}>
-      {/* Tombol toggle sidebar */}
       <button className="sidebar-toggle" onClick={toggleSidebar}>
         <FaBars />
       </button>
 
-      {/* Sidebar */}
       <div className="sidebar-container">
-        <img src={logo} alt="Logo" className={`logo ${isOpen ? "large" : "small"}`} />
+        <img
+          src={logo}
+          alt="Logo"
+          className={`logo ${isOpen ? "large" : "small"}`}
+        />
 
         <Nav className="flex-column">
           <Nav.Item>
@@ -36,11 +58,56 @@ const SideBarComponent = () => {
               <FaHome className="me-2" /> {isOpen && "Beranda"}
             </Nav.Link>
           </Nav.Item>
+
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link">
-              <FaCamera className="me-2" /> {isOpen && "Produk"}
+            <Nav.Link
+              href="#"
+              className="nav-link"
+              onClick={toggleProductDropdown}>
+              <FaCamera className="me-2" /> {isOpen && "Produk"}{" "}
+              <FaChevronDown className="ms-auto" />
             </Nav.Link>
+            <div
+              className={`product-dropdown ${
+                isProductDropdownOpen ? "open" : ""
+              }`}>
+              <Nav.Link
+                href="#"
+                className="nav-link sub-menu"
+                onClick={() => handleProductClick("lirik")}>
+                {" "}
+                {/* Perhatikan perubahan href dan onClick */}
+                <img src={lirikIcon} alt="Lirik" className="menu-icon" /> Lirik
+              </Nav.Link>
+              <Nav.Link
+                href="#"
+                className="nav-link sub-menu"
+                onClick={() => handleProductClick("instrumen")}>
+                {" "}
+                {/* Perhatikan perubahan href dan onClick */}
+                <img
+                  src={instrumenIcon}
+                  alt="Instrumen"
+                  className="menu-icon"
+                />{" "}
+                Instrumen
+              </Nav.Link>
+              <Nav.Link
+                href="#"
+                className="nav-link sub-menu"
+                onClick={() => handleProductClick("efek-suara")}>
+                {" "}
+                {/* Perhatikan perubahan href dan onClick */}
+                <img
+                  src={efekSuaraIcon}
+                  alt="Efek Suara"
+                  className="menu-icon"
+                />{" "}
+                Efek Suara
+              </Nav.Link>
+            </div>
           </Nav.Item>
+
           <Nav.Item>
             <Nav.Link href="/tabelportofolio" className="nav-link">
               <FaGraduationCap className="me-2" /> {isOpen && "Portofolio"}
