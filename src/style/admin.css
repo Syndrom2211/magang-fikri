@@ -18,8 +18,13 @@
 
 /* SIDEBAR */
 .sidebar-wrapper {
+  width: 250px;
+  height: 100vh;
+  background: #2b1055;
+  color: white;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Tombol toggle sidebar */
@@ -149,23 +154,36 @@
 .dashboard-container {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
 .dashboard-content {
   flex: 1;
-  background-color: #f3eafd;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background: #f8eaff;
+  overflow-y: auto;
 }
 
 /* HEADER DASHBOARD */
 .dashboard-header {
+  background: white;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
-  padding: 15px 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.dashboard-header h4 {
+  margin: 0;
+  color: #2b18d3;
+  font-weight: bold;
+  font-family: Poppins, sans-serif;
 }
 
 .search-box {
@@ -191,8 +209,20 @@
   font-size: 30px;
 }
 
+.header-icons .icon {
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.header-icons .icon:hover {
+  transform: scale(1.1);
+  color: #6a0dad;
+}
+
 .dashboard-main {
-  margin-top: 50px;
+  flex: 1;
+  padding: 20px;
 }
 
 /* RESPONSIVE GRID UNTUK CARDS */
@@ -212,7 +242,13 @@
   text-align: center;
 }
 
-/* RESPONSIVE DESIGN */
+
+/* FOOTER */
+footer{
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 10px;
+}
 
 /* Ukuran Tablet */
 @media (max-width: 1024px) {
@@ -474,7 +510,7 @@ html {
 
 .modal-footer {
   border-top: none;
-  padding: 20px;
+  padding: 100px;
 }
 
 /* Button Styling */

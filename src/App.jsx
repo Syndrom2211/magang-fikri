@@ -23,7 +23,8 @@ function App() {
 
   const isAdminPage =
     location.pathname.startsWith("/admin") &&
-    location.pathname !== "/admin/login";
+    location.pathname !== "/admin/login" ||
+    location.pathname === "/tabelportofolio";
 
   return (
     <div>

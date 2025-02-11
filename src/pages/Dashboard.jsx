@@ -1,6 +1,8 @@
-import SideBarComponent from '../components/SideBarComponent';
-// import { FaSearch, FaBell, FaUserCircle } from 'react-icons/fa';
-import '../style/admin.css'; // Import file CSS
+import "react";
+import SideBarComponent from "../components/SideBarComponent";
+import MainHeader from "../components/MainHeader";
+import MainFooter from "../components/MainFooter";
+import "../style/admin.css"; // Import file CSS
 
 const Dashboard = () => {
   return (
@@ -8,6 +10,7 @@ const Dashboard = () => {
       <SideBarComponent />
 
       <div className="dashboard-content">
+        <MainHeader />
 
         {/* Konten utama */}
         <div className="dashboard-main">
@@ -33,6 +36,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
+        <MainFooter />
       </div>
     </div>
   );
