@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useNavigate, useLocation } from "react-router-dom";
 import HeroImage from "../assets/music-1.jpg";
 import { checkout } from "../components/Checkoutmodal";
+import { priceLists } from "../data/index";
 
 const ModalForm = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { plan, page, language } = location.state || {};
+  // Get correct plan data from priceLists
+  const currentPlan = priceLists[language]?.find(item => 
+    item.page === page
+  )?.plans?.find(p => 
+    p.id === plan?.id
+  );
+
   const [formData, setFormData] = useState({
-    id: 1,
-    item : "Musik Indah (MP3)",
+    id: currentPlan?.id || plan?.id || 1,
+    item: currentPlan?.name || plan?.name || "",
     email: "",
     name: "",
     whatsapp: "",
-    price : 100000,
+    price: currentPlan?.price || plan?.price || 0,
   });
+
+  // Redirect if no valid plan is found
+  useEffect(() => {
+    if (!page || !language || !plan) {
+      navigate('/');
+    }
+  }, [page, language, plan, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +48,12 @@ const ModalForm = () => {
         <Row className="justify-content-center">
           <Col md={6}>
             <div className="form-card">
-              <a href="#" className="back-link">
+            <button 
+                onClick={() => navigate(-1)} 
+                className="back-link border-0 bg-transparent"
+              >
                 ← Kembali
-              </a>
+              </button>
               <img
                 src={HeroImage}
                 alt="Music Preview"

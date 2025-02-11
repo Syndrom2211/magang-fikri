@@ -11,6 +11,24 @@ import { creativeMusicHubData } from "../data/index";
 import PropTypes from 'prop-types';
 
 const FooterComponent = ({language}) => {
+  const socialLinks = creativeMusicHubData[language].socialMedia;
+
+  const handleSocialClick = (type) => {
+    switch(type) {
+      case 'instagram':
+        window.open(socialLinks.instagram, '_blank');
+        break;
+      case 'website':
+        window.open(socialLinks.website, '_blank');
+        break;
+      case 'email':
+        window.location.href = `mailto:${socialLinks.email}`;
+        break;
+      default:
+        break;
+    }
+  };
+
   const [visitors, setVisitors] = useState(0);
   const hasIncremented = useRef(false);
 
@@ -53,10 +71,22 @@ const FooterComponent = ({language}) => {
           </Link>
         </div>
         <div className="social mt-3">
-          <FontAwesomeIcon icon={faInstagram} style={{ marginRight: "12px" }} />
-          <FontAwesomeIcon icon={faGlobe} style={{ marginRight: "12px" }} />
-          <FontAwesomeIcon icon={faEnvelope} />
-        </div>
+      <FontAwesomeIcon 
+        icon={faInstagram} 
+        style={{ marginRight: "12px", cursor: "pointer" }} 
+        onClick={() => handleSocialClick('instagram')}
+      />
+      <FontAwesomeIcon 
+        icon={faGlobe} 
+        style={{ marginRight: "12px", cursor: "pointer" }} 
+        onClick={() => handleSocialClick('website')}
+      />
+      <FontAwesomeIcon 
+        icon={faEnvelope} 
+        style={{ cursor: "pointer" }}
+        onClick={() => handleSocialClick('email')}
+      />
+    </div>
       </Col>
       <Col className="d-flex flex-column col-lg-4 col mt-lg-0 mt-5">
         <h5 className="fw-bold">{creativeMusicHubData[language] === "ID" ? "Produk Kami" : "Our Products"}</h5>

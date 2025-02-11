@@ -80,9 +80,6 @@ const HomePage = ({language}) => {
                     </div>
                     <div className="p-4">
                       <h5 className="text-xl font-bold mb-2">{product.name}</h5>
-                      {/* <p className="text-sm text-gray-600 mb-2">
-                        {product.description}
-                      </p> */}
                       <ul className="features-list ps-2 mb-2">
                         {product.features.map((feature, index) => (
                           <li key={index} className="mb-1 text-secondary">

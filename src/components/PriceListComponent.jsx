@@ -1,8 +1,20 @@
 import PropTypes from "prop-types"; 
 import { priceLists } from "../data/index";
+import { useNavigate } from "react-router-dom";
 
 const PriceListComponent = ({ page, language }) => {
+  const navigate = useNavigate();
   const plans = priceLists[language]?.find((item) => item.page === page)?.plans || [];
+
+  const handleOrder = (plan) => {
+    navigate('/checkout', { 
+      state: { 
+        plan: plan,
+        page: page,
+        language: language
+      } 
+    });
+  };
 
   return (
     <div className="price-list">
@@ -17,7 +29,8 @@ const PriceListComponent = ({ page, language }) => {
               ))}
             </ul>
             <p>{plan.price}</p>
-            <button className="order-button">
+            <button className="order-button"
+              onClick={() => handleOrder(plan)}>
               {language === "id" ? "Pesan Sekarang" : "Order Now"}
             </button>
           </div>

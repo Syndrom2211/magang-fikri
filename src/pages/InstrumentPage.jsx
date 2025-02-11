@@ -1,4 +1,4 @@
-import "react";
+import { useRef } from "react";
 import ProductDescComponent from "../components/ProductDescComponent";
 import HowItWorksComponent from "../components/HowItWorksComponent";
 import PriceListComponent from "../components/PriceListComponent";
@@ -6,9 +6,14 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import "../style/produk-2.css";
 import backgroundImage from "../assets/Frame-2.png";
 import { instrumentSectionData } from "../data/index";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const InstrumentPage = ({language}) => {
+const InstrumentPage = ({ language }) => {
+  const priceListRef = useRef(null);
+
+  const scrollToPriceList = () => {
+    priceListRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div className="instrument-page">
       <div
@@ -19,9 +24,19 @@ const InstrumentPage = ({language}) => {
           <Row className="text-center pt-5">
             <Col>
               <div className="tulisan">
-                <h1 className="headline" dangerouslySetInnerHTML={{ __html: instrumentSectionData[language].headline }} />
-                <p className="subtext">{instrumentSectionData[language].subtext}</p>
-                <Button className="btn btn-primary create-btn">
+                <h1
+                  className="headline"
+                  dangerouslySetInnerHTML={{
+                    __html: instrumentSectionData[language].headline,
+                  }}
+                />
+                <p className="subtext">
+                  {instrumentSectionData[language].subtext}
+                </p>
+                <Button
+                  className="btn btn-primary create-btn"
+                  onClick={scrollToPriceList}
+                >
                   {instrumentSectionData[language].buttonText}
                 </Button>
               </div>
@@ -31,26 +46,28 @@ const InstrumentPage = ({language}) => {
       </div>
 
       {/* Content Section */}
-    <Container>
-      <Row className="text-center pt-5">
-        <Col className="py-5">
-          <ProductDescComponent page="instrument" language={language} />
-        </Col>
-      </Row>
-    </Container>
+      <Container>
+        <Row className="text-center pt-5">
+          <Col className="py-5">
+            <ProductDescComponent page="instrument" language={language} />
+          </Col>
+        </Row>
+      </Container>
 
-    <Container>
-      <Row>
-        <Col>
-          <HowItWorksComponent page="instrument" language={language} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <PriceListComponent page="instrument" language={language} />
-        </Col>
-      </Row>
-    </Container>
+      <Container>
+        <Row>
+          <Col>
+            <HowItWorksComponent page="instrument" language={language} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div ref={priceListRef}>
+              <PriceListComponent page="instrument" language={language} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
