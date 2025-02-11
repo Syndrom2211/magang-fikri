@@ -1,14 +1,7 @@
 import { useState } from "react";
 import { Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  FaHome,
-  FaInfoCircle,
-  FaCamera,
-  FaGraduationCap,
-  FaSignOutAlt,
-  FaBars,
-} from "react-icons/fa";
+import {FaHome,FaInfoCircle,FaCamera,FaGraduationCap,FaSignOutAlt,FaBars} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../style/admin.css";
 import logo from "../assets/logo.png"; // Pastikan path benar

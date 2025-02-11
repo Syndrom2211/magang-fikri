@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Table, Button, Modal, Form } from "react-bootstrap";
 import SideBarComponent from '../components/SideBarComponent';
+import MainHeader from "../components/MainHeader";
+import MainFooter from "../components/MainFooter";
 import { dataSwiper } from "../data/index"; // Mengambil data dari dataSwiper
 import "../style/tabelportfolio.css";
 
@@ -43,8 +45,12 @@ const PortfolioTable = () => {
   };
 
   return (
-    <div className="dashboard-container" style={{ display: "flex" }}>
-      <SideBarComponent />
+    <div className="dashboard-container">
+    <SideBarComponent />
+
+    <div className="dashboard-content">
+      <MainHeader />
+
       <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
         <h2>CRUD Portfolio</h2>
         <div>
@@ -107,6 +113,10 @@ const PortfolioTable = () => {
             <Button variant="primary" onClick={handleSubmit}>Simpan</Button>
           </Modal.Footer>
         </Modal>
+      </div>
+
+
+      <MainFooter />
       </div>
     </div>
   );

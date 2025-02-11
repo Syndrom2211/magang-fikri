@@ -18,8 +18,13 @@
 
 /* SIDEBAR */
 .sidebar-wrapper {
-    display: flex;
-    align-items: center;
+  width: 250px;
+  height: 100vh; /* Sidebar memenuhi tinggi layar */
+  background: #2b1055;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Tombol toggle sidebar */
@@ -97,20 +102,37 @@
 }
 
 .dashboard-content {
-    flex: 1;
-    background-color: #F3EAFD;
-    padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f8eaff; /* Sesuaikan dengan tema */
 }
 
 /* HEADER DASHBOARD */
 .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    padding: 15px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard-header h4 {
+    margin: 0;
+    color: #2b18d3;
+    font-weight: bold;
+    font-family: poppins;
+}
+
+.header-icons .icon {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.header-icons .icon:hover {
+  transform: scale(1.1);
+  color: #6a0dad; /* Warna efek hover */
 }
 
 .search-box {
@@ -137,7 +159,9 @@
 }
 
 .dashboard-main {
-    margin-top: 50px;
+  flex: 1; /* Memastikan bagian utama mengisi ruang */
+  padding: 20px;
+  overflow-y: auto;
 }
 
 /* RESPONSIVE GRID UNTUK CARDS */
@@ -157,7 +181,12 @@
     text-align: center;
 }
 
-/* RESPONSIVE DESIGN */
+/* FOOTER */
+footer{
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 10px;
+}
 
 /* Ukuran Tablet */
 @media (max-width: 1024px) {
@@ -410,7 +439,7 @@ body, html {
 
 .modal-footer {
   border-top: none;
-  padding: 20px;
+  padding: 100px;
 }
 
 /* Button Styling */

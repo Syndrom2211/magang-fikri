@@ -12,7 +12,7 @@ const PortfolioPage = ({language}) => {
   const filteredVideos = selectedGenre === "All" ? dataSwiper : dataSwiper.filter((item) => item.genre === selectedGenre);
 
   return (
-    <div className="homePage portfolio">
+    <d  iv className="homePage portfolio">
       <header className="w-100 min-vh-100 d-flex align-items-center">
         <Container>
           <Row>
@@ -59,7 +59,7 @@ const PortfolioPage = ({language}) => {
           </Row>
         </Container>
       </header>
-    </div>
+    </d>
   );
 };
 
