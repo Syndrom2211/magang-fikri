@@ -5,8 +5,9 @@ import { dataSwiper } from "../data/index"; // Mengambil data dari dataSwiper
 import "../style/tabelportfolio.css";
 
 const PortfolioTable = () => {
-  // Menggunakan data dari dataSwiper
-  const [portfolios, setPortfolios] = useState(dataSwiper);
+  // Menambahkan state untuk bahasa
+  const [language, setLanguage] = useState("ID");
+  const [portfolios, setPortfolios] = useState(dataSwiper[language] || []);
   
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({ id: null, name: "", genre: "", description: "" });
@@ -35,12 +36,26 @@ const PortfolioTable = () => {
     setPortfolios(portfolios.filter((p) => p.id !== id));
   };
 
+  // Mengubah bahasa dan memperbarui daftar portfolio
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    setPortfolios(dataSwiper[lang] || []);
+  };
+
   return (
     <div className="dashboard-container" style={{ display: "flex" }}>
       <SideBarComponent />
       <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
         <h2>CRUD Portfolio</h2>
-        <Button variant="primary" onClick={() => handleShow()}>Tambah Portfolio</Button>
+        <div>
+          <Button variant={language === "ID" ? "primary" : "secondary"} onClick={() => handleLanguageChange("ID")}>
+            Bahasa Indonesia
+          </Button>
+          <Button variant={language === "EN" ? "primary" : "secondary"} onClick={() => handleLanguageChange("EN")} className="ms-2">
+            English
+          </Button>
+        </div>
+        <Button variant="primary" onClick={() => handleShow()} className="mt-3">Tambah Portfolio</Button>
         <Table striped bordered hover className="mt-3">
           <thead>
             <tr>
