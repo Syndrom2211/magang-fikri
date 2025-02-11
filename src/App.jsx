@@ -68,6 +68,7 @@ function App() {
       </Routes>
 
       {/* Display Footer only for public pages */}
+      
       {!isAdminPage && location.pathname !== "/checkout" && (
         <FooterComponent language={language} />
       )}
