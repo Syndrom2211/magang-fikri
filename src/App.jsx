@@ -1,8 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState } from 'react';
+import { useState } from "react";
 
 import NavbarComponent from "./components/NavbarComponent";
-import FaqComponent from "./components/FaqComponent";
 import FooterComponent from "./components/FooterComponent";
 
 import HomePage from "./pages/homePage";
@@ -18,42 +17,60 @@ import FaqPage from "./pages/FaqPage";
 import TabelPortofolio from "./pages/Adminportofolio";
 
 function App() {
-  const location = useLocation(); // Ambil lokasi URL saat ini
+  const location = useLocation();
+  const [language, setLanguage] = useState("ID");
+
   const isAdminPage =
     location.pathname.startsWith("/admin") &&
-    location.pathname !== "admin/login"|| // Cek apakah halaman admin
-    location.pathname === "/tabelportofolio"; // Cek apakah halaman tabel portofolio
-  const [language, setLanguage] = useState('ID');
+    location.pathname !== "/admin/login";
 
   return (
     <div>
-      {/* Tampilkan Navbar hanya jika bukan halaman admin dan halaman ModalForm */}
+      {/* Display Navbar only if it's not an admin page or checkout page */}
       {!isAdminPage && location.pathname !== "/checkout" && (
         <NavbarComponent language={language} setLanguage={setLanguage} />
       )}
 
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<HomePage language={language} />} />
         <Route path="/support" element={<SupportPage language={language} />} />
-        <Route path="/portfolio" element={<PortfolioPage language={language}/>} />
-        <Route path="/musik-lyric" element={<LyricsPage language={language}/>} />
-        <Route path="/musik-instrument" element={<InstrumenPage language={language}/>} />
-        <Route path="/sound-effect" element={<SoundPage language={language}/>} />
-        <Route path="/admin/login" element={<AdminLoginPage language={language}/>} />{" "}
+        <Route
+          path="/portfolio"
+          element={<PortfolioPage language={language} />}
+        />
+        <Route
+          path="/musik-lyric"
+          element={<LyricsPage language={language} />}
+        />
+        <Route
+          path="/musik-instrument"
+          element={<InstrumenPage language={language} />}
+        />
+        <Route
+          path="/sound-effect"
+          element={<SoundPage language={language} />}
+        />
         <Route path="/checkout" element={<ModalForm />} />
-        <Route path="/tabelportofolio" element={<TabelPortofolio />} />
-        
-        {/* Admin Login Page Route */}
+
+        {/* Admin Login Page */}
+        <Route
+          path="/admin/login"
+          element={<AdminLoginPage language={language} />}
+        />
+
+        {/* Admin Dashboard and Pages */}
         <Route path="/admin/*" element={<Dashboard />} />
         <Route path="/admin/faq" element={<FaqPage />} />
+
+        {/* Tabel Portofolio */}
+        <Route path="/tabelportofolio" element={<TabelPortofolio />} />
       </Routes>
 
-      {/* Tampilkan FAQ dan Footer hanya jika bukan halaman admin */}
-      {!isAdminPage && <FaqComponent language={language}/>}
+      {/* Display Footer only for public pages */}
       {!isAdminPage && location.pathname !== "/checkout" && (
-        <FaqComponent />
+        <FooterComponent language={language} />
       )}
-      {!isAdminPage && <FooterComponent language={language}/>}
     </div>
   );
 }
