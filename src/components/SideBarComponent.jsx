@@ -36,7 +36,7 @@ const SideBarComponent = () => {
   };
 
   const handleProductClick = (product) => {
-    navigate(`/admin/transaksi/${product}`); // Navigasi ke halaman transaksi
+    navigate(`/admin/produk/${product}`); // Navigasi ke halaman produk
   };
 
   return (
@@ -75,16 +75,12 @@ const SideBarComponent = () => {
                 href="#"
                 className="nav-link sub-menu"
                 onClick={() => handleProductClick("lirik")}>
-                {" "}
-                {/* Perhatikan perubahan href dan onClick */}
                 <img src={lirikIcon} alt="Lirik" className="menu-icon" /> Lirik
               </Nav.Link>
               <Nav.Link
                 href="#"
                 className="nav-link sub-menu"
                 onClick={() => handleProductClick("instrumen")}>
-                {" "}
-                {/* Perhatikan perubahan href dan onClick */}
                 <img
                   src={instrumenIcon}
                   alt="Instrumen"
@@ -96,8 +92,6 @@ const SideBarComponent = () => {
                 href="#"
                 className="nav-link sub-menu"
                 onClick={() => handleProductClick("efek-suara")}>
-                {" "}
-                {/* Perhatikan perubahan href dan onClick */}
                 <img
                   src={efekSuaraIcon}
                   alt="Efek Suara"

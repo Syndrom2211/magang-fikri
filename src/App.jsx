@@ -15,7 +15,7 @@ import AdminLoginPage from "./pages/AdminLoginPage";
 import ModalForm from "./pages/ModalForm";
 import FaqPage from "./pages/FaqPage";
 import TabelPortofolio from "./pages/Adminportofolio";
-import TransaksiPage from "./pages/TransaksiPage";
+import AdminProduk from "./pages/AdminProduk";
 
 function App() {
   const location = useLocation();
@@ -73,8 +73,8 @@ function App() {
         {/* Tabel Portofolio */}
         <Route path="/tabelportofolio" element={<TabelPortofolio />} />
 
-        {/* Transaksi */}
-        <Route path="/admin/transaksi/:product" element={<TransaksiPage />} />
+        {/* Tabel Produk */}
+        <Route path="/admin/produk/:product" element={<AdminProduk />} />
       </Routes>
 
       {/* Display Footer only for public pages */}
