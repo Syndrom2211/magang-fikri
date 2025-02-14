@@ -69,6 +69,8 @@ export const TextContent = {
     portfolioTitle: "Portfolio",
     times: "times",
     step: "step",
+    book: "Book Now",
+    daftar: "Price List",
   },
   ID: {
     title: "Ciptakan Musikmu Dalam Hitungan Detik",
@@ -81,6 +83,8 @@ export const TextContent = {
     portfolioTitle: "Portofolio",
     times: "kali",
     step: "langkah",
+    book: "Pesan Sekarang",
+    daftar: "Daftar Harga",
   },
 };
 

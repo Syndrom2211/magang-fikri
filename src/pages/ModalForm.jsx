@@ -10,11 +10,9 @@ const ModalForm = () => {
   const location = useLocation();
   const { plan, page, language } = location.state || {};
   // Get correct plan data from priceLists
-  const currentPlan = priceLists[language]?.find(item => 
-    item.page === page
-  )?.plans?.find(p => 
-    p.id === plan?.id
-  );
+  const currentPlan = priceLists[language]
+    ?.find((item) => item.page === page)
+    ?.plans?.find((p) => p.id === plan?.id);
 
   const [formData, setFormData] = useState({
     id: currentPlan?.id || plan?.id || 1,
@@ -28,7 +26,7 @@ const ModalForm = () => {
   // Redirect if no valid plan is found
   useEffect(() => {
     if (!page || !language || !plan) {
-      navigate('/');
+      navigate("/");
     }
   }, [page, language, plan, navigate]);
 
@@ -48,10 +46,9 @@ const ModalForm = () => {
         <Row className="justify-content-center">
           <Col md={6}>
             <div className="form-card">
-            <button 
-                onClick={() => navigate(-1)} 
-                className="back-link border-0 bg-transparent"
-              >
+              <button
+                onClick={() => navigate(-1)}
+                className="back-link border-0 bg-transparent">
                 ← Kembali
               </button>
               <img
@@ -88,13 +85,18 @@ const ModalForm = () => {
                   />
                   <div className="order-summary">
                     <p>Item: {formData.item}</p>
-                    <p>Total: <strong>Rp.{formData.price}</strong></p>
+                    <p>
+                      Total: <strong>Rp.{formData.price}</strong>
+                    </p>
                   </div>
                   <p className="form-note">
                     Setelah melakukan pembayaran, kamu akan mendapatkan link
                     download dalam email yang telah kamu masukkan.
                   </p>
-                  <button type="submit" className="submit-button" onClick={() => checkout(formData)}>
+                  <button
+                    type="submit"
+                    className="submit-button"
+                    onClick={() => checkout(formData)}>
                     Pilih Pembayaran
                   </button>
                 </form>
