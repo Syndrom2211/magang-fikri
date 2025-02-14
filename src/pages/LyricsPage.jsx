@@ -69,12 +69,12 @@ const LyricsPage = ({ language }) => {
                 />
                 <textarea
                   className="form-control lyric-input"
-                  placeholder={musicInspirationData[language].lyricPlaceholder}
-                ></textarea>
+                  placeholder={
+                    musicInspirationData[language].lyricPlaceholder
+                  }></textarea>
                 <button
                   className="btn btn-primary create-btn"
-                  onClick={scrollToPriceList}
-                >
+                  onClick={scrollToPriceList}>
                   {musicInspirationData[language].createButton}
                 </button>
               </div>
