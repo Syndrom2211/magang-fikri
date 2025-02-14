@@ -71,6 +71,7 @@ export const TextContent = {
     step: "step",
     book: "Book Now",
     daftar: "Price List",
+    howitworks: "How It Works",
   },
   ID: {
     title: "Ciptakan Musikmu Dalam Hitungan Detik",
@@ -85,6 +86,7 @@ export const TextContent = {
     step: "langkah",
     book: "Pesan Sekarang",
     daftar: "Daftar Harga",
+    howitworks: "Cara Kerja",
   },
 };
 
