@@ -8,13 +8,12 @@ import axios from "axios";
 function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");  // Menambahkan state untuk pesan error
+  const [errorMessage, setErrorMessage] = useState("");  
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validasi input pengguna
     if (!email || !password) {
       setErrorMessage("Email and password are required.");
       return;
@@ -24,7 +23,8 @@ function AdminLoginPage() {
       .post("http://localhost:1000/admin/login", { email, password })
       .then((res) => {
         if (res.data.status === "success") {
-          localStorage.setItem("adminToken", res.data.token); // Menyimpan token yang benar
+          localStorage.setItem("adminToken", res.data.token);
+          sessionStorage.setItem("isFirstLogin", "true"); // Menandai login pertama
           navigate("/admin/dashboard");
         } else {
           setErrorMessage(res.data.message || "Login failed. Please try again.");
@@ -42,9 +42,7 @@ function AdminLoginPage() {
         <img src={logo} alt="CreativeMusicHub" className="logo" />
         <p className="subtext">Please enter your details</p>
 
-        {/* Form */}
         <form onSubmit={handleSubmit}>
-          {/* Email Input */}
           <div className="input-group">
             <FaEnvelope className="input-icon" />
             <input
@@ -56,7 +54,6 @@ function AdminLoginPage() {
             />
           </div>
 
-          {/* Password Input */}
           <div className="input-group">
             <FaLock className="input-icon" />
             <input
@@ -68,10 +65,8 @@ function AdminLoginPage() {
             />
           </div>
 
-          {/* Error Message */}
           {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-          {/* Login Button */}
           <button type="submit" className="login-button">
             Login
           </button>
