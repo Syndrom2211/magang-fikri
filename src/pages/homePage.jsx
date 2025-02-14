@@ -2,28 +2,44 @@ import { Container, Row, Col } from "react-bootstrap";
 import HeroImage from "../assets/music-1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faUser, faTag } from "@fortawesome/free-solid-svg-icons";
-import { products, dataSwiper, TextContent,ProductContent } from "../data/index";
+import {
+  products,
+  dataSwiper,
+  TextContent,
+  ProductContent,
+} from "../data/index";
 import { PlayCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReactPlayer from "react-player";
-import { checkout } from "../components/Checkout";
-import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const HomePage = ({language}) => {
+const HomePage = ({ language }) => {
   const catalogRef = useRef(null);
   const [setSwiperRef] = useState(null);
+  const navigate = useNavigate();
 
   const scrollToCatalog = () => {
     catalogRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  
+
+  const handleCheckout = (product) => {
+    navigate("/checkout", {
+      state: {
+        plan: { id: product.id, name: product.name, price: product.price },
+        page: "catalog", // or whatever identifier you want
+        language: language, // Pass the language prop
+      },
+    });
+  };
+
   return (
     <div className="homePage">
       {/* HOMEPAGE */}
@@ -31,12 +47,8 @@ const HomePage = ({language}) => {
         <Container>
           <Row className="header-content">
             <Col md={6}>
-              <h1 className="fw-bold">
-                {TextContent[language].title}
-              </h1>
-              <p className="fs-5">
-                {TextContent[language].description}
-              </p>
+              <h1 className="fw-bold">{TextContent[language].title}</h1>
+              <p className="fs-5">{TextContent[language].description}</p>
               <button className="cta-button" onClick={scrollToCatalog}>
                 {TextContent[language].button}
                 <FontAwesomeIcon icon={faArrowRight} />
@@ -53,8 +65,12 @@ const HomePage = ({language}) => {
         <Container>
           <Row>
             <Col>
-            <h1 className="text-center fw-bold">{ProductContent[language].title}</h1>
-            <p className="text-center">{ProductContent[language].description}</p>
+              <h1 className="text-center fw-bold">
+                {ProductContent[language].title}
+              </h1>
+              <p className="text-center">
+                {ProductContent[language].description}
+              </p>
             </Col>
           </Row>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-1">
@@ -64,8 +80,7 @@ const HomePage = ({language}) => {
                   key={product.id}
                   md={4}
                   sm={6}
-                  className="shadow-sm rounded"
-                >
+                  className="shadow-sm rounded">
                   <div className="product-card p-3 border rounded shadow-sm h-100">
                     <div className="image-container">
                       <img
@@ -103,14 +118,14 @@ const HomePage = ({language}) => {
                             />
                           </div>
                           <span>
-                            {product.rating} {product.orderCount || 0} kali
+                            {product.rating} {product.orderCount || 0}{" "}
+                            {TextContent[language]?.times || "kali"}
                           </span>
                         </div>
                       </div>
                       <button
                         className="learn-more-btn"
-                        onClick={() => checkout(product)}
-                      >
+                        onClick={() => handleCheckout(product)}>
                         {product.cta} <FontAwesomeIcon icon={faArrowRight} />
                       </button>
                     </div>
@@ -158,14 +173,12 @@ const HomePage = ({language}) => {
                   slidesPerView: 3.2,
                   spaceBetween: 50,
                 },
-              }}
-            >
+              }}>
               {dataSwiper[language].map((swiper, index) => (
                 <SwiperSlide
                   key={swiper.id}
                   virtualIndex={index}
-                  className="shadow-sm rounded"
-                >
+                  className="shadow-sm rounded">
                   <ReactPlayer
                     url={swiper.video}
                     controls

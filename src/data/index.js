@@ -67,6 +67,8 @@ export const TextContent = {
     catalogTitle: "Our Products",
     catalogDescription: "Create your dream music easily in just minutes",
     portfolioTitle: "Portfolio",
+    times: "times",
+    step: "step",
   },
   ID: {
     title: "Ciptakan Musikmu Dalam Hitungan Detik",
@@ -77,6 +79,8 @@ export const TextContent = {
     catalogDescription:
       "Ciptakan Musik impianmu dengan mudah hanya dalam hitungan menit",
     portfolioTitle: "Portofolio",
+    times: "kali",
+    step: "langkah",
   },
 };
 
@@ -836,7 +840,9 @@ export const priceLists = {
             "Jenis file WAV & MP3",
             "Durasi maksimal. 5 menit",
           ],
+          currency: "Rp",
           price: "Rp 55.000",
+          price_numeric: 55000,
         },
       ],
     },
