@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Asri Karlina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; /* Modern and clean font */
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Dark background */
+            color: #fff; /* Default text color */
+            text-align: center;
+            padding-top: 60px; /* Account for fixed header */
+            line-height: 1.6; /* Improve readability */
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            color: #333;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem; /* Slightly smaller header font */
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .header-left {
+            font-weight: 600;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            color: #28a745; /* Green color for links */
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header-right a:hover {
+            color: #218838; /* Darker green on hover */
+        }
+
+        /* Profile Section */
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffffe0; /* Darker background for contrast */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease; /* Smooth transition */
+        }
+
+        .profile-container:hover {
+            transform: translateY(-5px); /* Slightly lift on hover */
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #000000; /* Green border */
+            display: block;
+            margin: 0 auto 15px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+        }
+
+        .profile-name {
+            font-size: 2.1rem; /* Larger name */
+            font-weight: 700;
+            color: #000000;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            color: #6c6c6c;
+            margin-bottom: 20px;
+        }
+
+        .profile-description {
+            font-size: 1rem;
+            color: #6c6c6c;
+            text-align: justify; /* Justify the text */
+        }
+
+        .social-links {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: #333;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-links a:hover {
+            background-color: #ffffff;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            background: #28a745;
+            border-radius: 5rem;
+            box-shadow: 0 0.5rem 1rem rgba(40, 167, 69, 0.4); /* Stronger shadow */
+            font-size: 1rem;
+            color: #fff;
+            letter-spacing: 0.1rem;
+            font-weight: 600;
+            transition: 0.5s ease;
+            padding: 12px 25px;
+            text-decoration: none; /* Remove underline from link */
+            display: inline-block; /* Make it inline-block for padding to work */
+            margin-top: 15px; /* Add some spacing */
+            margin-bottom: 2.5rem;
+        }
+
+        .btn:hover {
+            box-shadow: none;
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Pendidikan Section */
+        .pendidikan {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffffe0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pendidikan:hover {
+            transform: translateY(-5px);
+        }
+
+        .pendidikan h1 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #000;
+            font-size: 1.8rem;
+        }
+
+        .pendidikan i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #00b7ff;
+        }
+
+        .pendidikan h2 {
+            font-size: 1.3rem;
+            margin-top: 0.5rem;
+            color: #000;
+        }
+
+        .pendidikan h3 {
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Skill Section */
+        .skill {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffffe0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill h2 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #000;
+            font-size: 1.8rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: #ffffffe0;
+            color: #000;
+        }
+
+        .tingkat h3 {
+            color: #000;
+            font-weight: 700;
+        }
+
+        .tingkat h4 {
+            color: #000;
+            font-size: 1rem;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 12px;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        th {
+            background: #3f96ff;
+            color: white;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            background: #444;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 25px;
+            margin-bottom: 15px;
+        }
+
+        .skill-bar div {
+            height: 100%;
+            text-align: center;
+            line-height: 25px;
+            color: white;
+            font-weight: 700;
+            background: #28a745;
+            transition: width 0.8s ease; /* Add transition for skill bar animation */
+        }
+
+        /* Experience Section */
+        .header-pengalaman h1 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #fff;
+            font-size: 1.8rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, #3498db, #9b59b6);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            background: #ffffffe0;
+            padding: 25px;
+            border-radius: 15px;
+            width: 46%; /* Slightly less than 50% to create space */
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.02); /* Slight zoom on hover */
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 54%; /* Adjusted for spacing */
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #2085ff;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            top: 25px;
+            right: -25px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: auto;
+            left: -25px;
+        }
+
+        .timeline-item h3 {
+            margin: 0;
+            color: #000;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item h2 {
+            margin: 0;
+            color: #f71d15;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        .timeline-item p {
+            margin: 10px 0 0;
+            color: #6c6c6c;
+            font-size: 1rem;
+            text-align: start;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 900px; /* Wider gallery */
+            margin: 50px auto;
+        }
+
+        .gallery h1 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #fff;
+            font-size: 1.8rem;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 300px; /* Fixed height for images */
+            border-radius: 15px;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Popup Styles (Gallery) */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9); /* More opaque background */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup img {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem; /* Larger close button */
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .popup .close:hover {
+            color: #28a745; /* Green on hover */
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-left">
+            PORTOFOLIO
+        </div>
+        <div class="header-right">
+            <a href="https://wa.me/6285794539018">Hubungi Saya</a>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <div class="profile-container">
+        <img src="item/profil.jpg" alt="Profile Image" class="profile-img">
+        <div class="profile-info">
+            <div class="profile-name">Asri Karlina</div>
+            <div class="profile-title">Sales Promotion Girl (SPG)</div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/krynnd_" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.tiktok.com/@krynnd" target="_blank"><i class='bx bxl-tiktok'></i></a>
+            </div>
+            <a href="item/CV ASRI KARLINA.pdf" class="btn" target="_blank">Download CV</a>
+            <p class="profile-description">
+                Saya adalah seorang Sales Promotion Girl (SPG) yang berpengalaman dan profesional dalam dunia promosi serta pemasaran. Dengan keterampilan komunikasi yang baik, saya mampu menarik perhatian pelanggan, memberikan informasi produk dengan jelas, serta meningkatkan penjualan melalui pendekatan yang ramah dan persuasif. Saya juga memiliki kemampuan bekerja dalam tim, disiplin, dan cepat beradaptasi dengan berbagai jenis produk dan event.
+            </p>
+            <!-- Removed location icon as it's not a paragraph -->
+            <p class="profile-description"><i class='bx bxs-location-plus'></i> Desa Sukamukti RT 03/09, Katapang, Bandung, Jawa Barat</p>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="pendidikan">
+        <h1>PENDIDIKAN</h1>
+        <i class='bx bxs-school'></i>
+        <h2>SMK Maha Putra</h2>
+        <h3>2018 - 2021</h3>
+        <h3>Multimedia</h3>
+    </div>
+
+    <!-- Skill Section -->
+    <div class="skill">
+        <h2>Keterampilan SPG dalam Berbagai Event</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Keterampilan</th>
+                    <th>Deskripsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sales & Marketing</td>
+                    <td>Product Knowledge</td>
+                    <td>Memahami fitur dan keunggulan produk yang dipromosikan.</td>
+                </tr>
+                <tr>
+                    <td>Sales & Marketing</td>
+                    <td>Persuasion & Negotiation</td>
+                    <td>Meyakinkan pelanggan untuk mencoba atau membeli produk.</td>
+                </tr>
+                <tr>
+                    <td>Sales & Marketing</td>
+                    <td>Target-Oriented Selling</td>
+                    <td>Berorientasi pada pencapaian target penjualan.</td>
+                </tr>
+                <tr>
+                    <td>Customer Service</td>
+                    <td>Effective Communication</td>
+                    <td>Menjelaskan produk dengan jelas dan menarik.</td>
+                </tr>
+                <tr>
+                    <td>Customer Service</td>
+                    <td>Handling Customer Objections</td>
+                    <td>Mengatasi pertanyaan dan keberatan pelanggan.</td>
+                </tr>
+                <tr>
+                    <td>Customer Service</td>
+                    <td>Active Listening</td>
+                    <td>Mendengarkan kebutuhan pelanggan untuk rekomendasi terbaik.</td>
+                </tr>
+                <tr>
+                    <td>Technical Skills</td>
+                    <td>Registrasi & Aktivasi</td>
+                    <td>Membantu pelanggan dalam pendaftaran layanan digital.</td>
+                </tr>
+                <tr>
+                    <td>Technical Skills</td>
+                    <td>Guiding Transactions</td>
+                    <td>Membantu pelanggan dalam transaksi digital.</td>
+                </tr>
+                <tr>
+                    <td>Technical Skills</td>
+                    <td>Problem Solving</td>
+                    <td>Mengatasi kendala teknis pada aplikasi atau layanan.</td>
+                </tr>
+                <tr>
+                    <td>Event Management</td>
+                    <td>Public Engagement</td>
+                    <td>Berinteraksi dengan pelanggan dalam event.</td>
+                </tr>
+                <tr>
+                    <td>Event Management</td>
+                    <td>Time Management</td>
+                    <td>Mengelola waktu saat melayani pelanggan.</td>
+                </tr>
+                <tr>
+                    <td>Event Management</td>
+                    <td>Teamwork & Coordination</td>
+                    <td>Bekerja sama dengan tim untuk keberhasilan event.</td>
+                </tr>
+                <tr>
+                    <td>Food Sampling</td>
+                    <td>Product Presentation</td>
+                    <td>Menyajikan makanan secara menarik kepada pelanggan.</td>
+                </tr>
+                <tr>
+                    <td>Food Sampling</td>
+                    <td>Taste Promotion</td>
+                    <td>Mengajak pelanggan mencicipi produk makanan.</td>
+                </tr>
+                <tr>
+                    <td>Fashion Promotion</td>
+                    <td>Style Advising</td>
+                    <td>Membantu pelanggan memilih pakaian yang sesuai.</td>
+                </tr>
+                <tr>
+                    <td>Fashion Promotion</td>
+                    <td>Brand Representation</td>
+                    <td>Mewakili merek dengan penampilan profesional.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tingkat">
+            <h3>Tingkat Keterampilan</h3>
+            <h4>Sales & Marketing</h4>
+            <div class="skill-bar"><div style="width: 90%">90%</div></div>
+
+            <h4>Customer Service</h4>
+            <div class="skill-bar"><div style="width: 85%">85%</div></div>
+
+            <h4>Technical Skills</h4>
+            <div class="skill-bar"><div style="width: 75%">75%</div></div>
+
+            <h4>Event Management</h4>
+            <div class="skill-bar"><div style="width: 80%">80%</div></div>
+
+            <h4>Food Sampling</h4>
+            <div class="skill-bar"><div style="width: 70%">70%</div></div>
+
+            <h4>Fashion Promotion</h4>
+            <div class="skill-bar"><div style="width: 75%">75%</div></div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="header-pengalaman">
+        <h1>PENGALAMAN</h1>
+    </div>
+
+    <section class="timeline">
+        <div class="timeline-item">
+            <h3>SPG Event - Octo Mobile</h3>
+            <h2>Mei 2024 - Sekarang</h2>
+            <p> Octo Mobile mengadakan event spesial untuk memperkenalkan layanan perbankan digital yang praktis, aman, dan inovatif. Dalam acara ini, pelanggan akan mendapatkan informasi lengkap mengenai fitur-fitur unggulan Octo Mobile, seperti kemudahan transaksi, pembayaran tagihan, investasi, dan banyak lagi. Pengunjung juga akan dibantu dalam proses registrasi dan transaksi langsung di tempat, serta berkesempatan menikmati berbagai penawaran spesial yang hanya tersedia selama event berlangsung.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>SPG Event - Yoppoki</h3>
+            <h2>Maret 2024 - April 2024</h2>
+            <p>Event spesial Yoppoki hadir untuk memperkenalkan kelezatan autentik tteokbokki instan dengan cita rasa khas Korea! Dalam acara ini, pelanggan dapat mencicipi langsung kenikmatan Yoppoki, mendapatkan informasi tentang cara memasak yang praktis, serta menikmati berbagai promo menarik yang sayang untuk dilewatkan.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>SPG Event - Potabee</h3>
+            <h2>Oktober 2023 - Novemver 2023</h2>
+            <p>Potabee mengadakan event spesial untuk memperkenalkan kelezatan dan keunikan produknya kepada pelanggan! Dalam acara ini, pengunjung dapat mencicipi langsung kerenyahan kentang berkualitas yang dipadukan dengan bumbu gurih khas Potabee. Selain itu, pelanggan berkesempatan menikmati promo eksklusif dan berbagai aktivitas seru yang membuat pengalaman ngemil semakin menyenangkan!</p>
+        </div>
+        <div class="timeline-item">
+            <h3>SPG Reguler - Scelta</h3>
+            <h2>Febuari 2023 - September 2023</h2>
+            <p>Event Scelta hadir sebagai kesempatan eksklusif bagi pelanggan untuk mengenal lebih dekat produk-produk pakaian dalam berkualitas dari Scelta. Dalam acara ini, para Sales Promotion Girl (SPG) Scelta akan berinteraksi langsung dengan pelanggan, memberikan informasi lengkap tentang berbagai pilihan produk, serta membantu dalam proses pemilihan yang sesuai dengan kebutuhan dan kenyamanan pelanggan.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>SPG Event - Yamaha</h3>
+            <h2>Agustus 2022 - September 2022</h2>
+            <p> Yamaha mengadakan event spesial yang menghadirkan pengalaman terbaik bagi para pecinta otomotif. Dalam acara ini, Yamaha memperkenalkan berbagai produk unggulan dengan teknologi terbaru dan desain inovatif. Pengunjung juga dapat menikmati penawaran khusus, menyaksikan demonstrasi produk secara langsung, serta merasakan sensasi berkendara dengan test ride eksklusif.</p>
+        </div>
+        <div class="timeline-item">
+            <h3>SPG Event - By-U</h3>
+            <h2>Juni 2021 - Juli 2021</h2>
+            <p>By-U mengadakan event spesial untuk mempromosikan kartu provider yang menawarkan berbagai keuntungan menarik bagi pelanggan. Acara ini bertujuan untuk memperkenalkan layanan By-U sebagai solusi komunikasi yang fleksibel, terjangkau, dan penuh manfaat.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <h1>GALERI</h1>
+        <img src="item/1.png" alt="Gallery Image 1" class="gallery-img" onclick="openPopup(this)">
+        <img src="item/2.png" alt="Gallery Image 2" class="gallery-img" onclick="openPopup(this)">
+        <img src="item/3.png" alt="Gallery Image 3" class="gallery-img" onclick="openPopup(this)">
+        <!-- Add more images here -->
+    </section>
+
+    <!-- Popup for Gallery Images -->
+    <div class="popup" id="popup" onclick="closePopup(event)">
+        <span class="close" onclick="closePopup(event)">×</span>
+        <img id="popup-img" alt="Enlarged Gallery Image">
+    </div>
+
+    <script>
+        // Pop Up Gallery
+        function openPopup(imgElement) {
+            const popupImg = document.getElementById("popup-img");
+            popupImg.src = imgElement.src;
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function closePopup(event) {
+            if (event.target.id === "popup" || event.target.classList.contains("close")) {
+                document.getElementById("popup").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
