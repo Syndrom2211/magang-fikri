@@ -7,7 +7,7 @@ const HowItWorksComponent = ({ page, language }) => {
 
   return (
     <div className="how-it-works">
-      <h2>{language === "id" ? "Cara Kerja" : "How It Works"}</h2>
+      <h2>{TextContent[language].howitworks}</h2>
       <div className="steps-container">
         {steps.map((step, index) => (
           <div key={index} className="step-item">
