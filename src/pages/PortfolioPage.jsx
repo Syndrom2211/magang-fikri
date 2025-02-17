@@ -11,8 +11,8 @@ const PortfolioPage = ({ language }) => {
 
   const filteredVideos =
     selectedGenre === "All"
-      ? dataSwiper
-      : dataSwiper.filter((item) => item.genre === selectedGenre);
+      ? dataSwiper[language]
+      : dataSwiper[language].filter((item) => item.genre === selectedGenre);
 
   return (
     <div className="homePage portfolio">
@@ -50,7 +50,7 @@ const PortfolioPage = ({ language }) => {
             ))}
           </Row>
           <Row className="header-content g-4">
-            {filteredVideos[language].map((item) => (
+            {filteredVideos.map((item) => (
               <Col key={item.id} sm={6} md={4}>
                 <div className="video-card shadow-sm rounded p-1 bg-success-subtle text-success">
                   <ReactPlayer
