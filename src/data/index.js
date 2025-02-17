@@ -357,7 +357,7 @@ export const dataSwiper = {
       image: People2,
       name: "Why Don't We",
       skill: "Trust Fun Baby",
-      genre: "RnB",
+      genre: "Accoustic",
       description:
         "Lagu ini mengekspresikan rasa percaya dan kesenangan dalam hubungan.",
     },
@@ -377,7 +377,7 @@ export const dataSwiper = {
       image: People3,
       name: "Bruno Mars",
       skill: "Lazy Song",
-      genre: "RnB",
+      genre: "Dubstep",
       description:
         "Lagu ini merayakan momen santai dan menikmati hidup tanpa beban.",
     },
@@ -387,7 +387,7 @@ export const dataSwiper = {
       image: People4,
       name: "Little Mix",
       skill: "Black Magic",
-      genre: "RnB",
+      genre: "Jazz",
       description:
         "Lagu ini bercerita tentang daya tarik dan pesona yang tak tertahankan.",
     },
@@ -419,7 +419,7 @@ export const dataSwiper = {
       image: People2,
       name: "Why Don't We",
       skill: "Trust Fun Baby",
-      genre: "RnB",
+      genre: "Accoustic",
       description: "This song expresses trust and joy in a relationship.",
     },
     {
@@ -437,7 +437,7 @@ export const dataSwiper = {
       image: People3,
       name: "Bruno Mars",
       skill: "Lazy Song",
-      genre: "RnB",
+      genre: "Dubstep",
       description:
         "This song celebrates relaxing moments and enjoying life without worries.",
     },
@@ -447,7 +447,7 @@ export const dataSwiper = {
       image: People4,
       name: "Little Mix",
       skill: "Black Magic",
-      genre: "RnB",
+      genre: "Jazz",
       description: "This song is about irresistible charm and attraction.",
     },
   ],
