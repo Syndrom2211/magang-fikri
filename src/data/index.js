@@ -847,8 +847,7 @@ export const priceLists = {
             "Durasi maksimal. 5 menit",
           ],
           currency: "Rp",
-          price: "Rp 55.000",
-          price_numeric: 55000,
+          price: 55000,
         },
       ],
     },
@@ -858,7 +857,8 @@ export const priceLists = {
       plans: [
         {
           name: "Buat Musik Instrumen",
-          price: "Rp 55.000",
+          currency: "Rp",
+          price: 55000,
           features: [
             "Revisi Tidak Terbatas",
             "Jenis file WAV & MP3",
@@ -873,7 +873,8 @@ export const priceLists = {
       plans: [
         {
           name: "Buat Efek Suara",
-          price: "Rp 55.000",
+          currency: "Rp",
+          price: 55000,
           features: [
             "Revisi Tidak Terbatas",
             "Jenis file WAV & MP3",
@@ -895,7 +896,8 @@ export const priceLists = {
             "File format WAV & MP3",
             "Max duration 5 minutes",
           ],
-          price: "$3.36",
+          currency: "Rp",
+          price: 55000,
         },
       ],
     },
@@ -905,7 +907,8 @@ export const priceLists = {
       plans: [
         {
           name: "Create Instrumental Music",
-          price: "$3.36",
+          currency: "Rp",
+          price: 55000,
           features: [
             "Unlimited revisions",
             "File format WAV & MP3",
@@ -920,7 +923,8 @@ export const priceLists = {
       plans: [
         {
           name: "Create Sound Effects",
-          price: "$3.36",
+          currency: "Rp",
+          price: 55000,
           features: [
             "Unlimited revisions",
             "File format WAV & MP3",
