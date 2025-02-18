@@ -16,6 +16,8 @@ import ModalForm from "./pages/ModalForm";
 import FaqPage from "./pages/FaqPage";
 import TabelPortofolio from "./pages/Adminportofolio";
 import AdminProduk from "./pages/AdminProduk";
+import AdminHeaderTable from "./pages/AdminHeader";
+import AdminFooterTable from "./pages/AdminFooter";
 
 function App() {
   const location = useLocation();
@@ -24,7 +26,9 @@ function App() {
   const isAdminPage =
     (location.pathname.startsWith("/admin") &&
       location.pathname !== "/admin/login") ||
-    location.pathname === "/tabelportofolio";
+    location.pathname === "/tabelportofolio" ||
+    location.pathname === "/adminheader" ||
+    location.pathname === "/adminfooter";
 
   const hideNavbarFooter =
     isAdminPage ||
@@ -75,6 +79,13 @@ function App() {
 
         {/* Tabel Produk */}
         <Route path="/admin/produk/:product" element={<AdminProduk />} />
+
+        {/* Tabel Header */}
+        <Route path="/adminheader" element={<AdminHeaderTable />} />
+
+        {/* Tabel Footer */}
+        <Route path="/adminfooter" element={<AdminFooterTable />} />
+
       </Routes>
 
       {/* Display Footer only for public pages */}

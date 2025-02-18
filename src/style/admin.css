@@ -16,85 +16,6 @@
   --light-color: #e9c46a;
 }
 
-/* SIDEBAR */
-.sidebar-wrapper {
-  width: 250px;
-  height: 100vh;
-  background: #2b1055;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Tombol toggle sidebar */
-.sidebar-toggle {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: white;
-  z-index: 1000;
-}
-
-/* Sidebar container */
-.sidebar-container {
-  width: 250px;
-  height: 100vh;
-  padding: 20px;
-  background: var(--bg-color);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  transition: width 0.3s ease-in-out;
-}
-
-/* Saat sidebar ditutup */
-.sidebar-container.closed {
-  width: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-/* Logo di sidebar */
-.logo {
-  width: 100%;
-  max-width: 150px;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-/* Style untuk navigasi */
-.sidebar-container .nav-link {
-  color: white !important;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  transition: 0.3s;
-}
-
-.sidebar-container .nav-link:hover {
-  background: var(--primary-color);
-  border-radius: 5px;
-}
-
-/* Logout */
-.sidebar-container .logout {
-  margin-top: auto;
-}
-
-.sidebar-container .logout .nav-link {
-  color: var(--secondary-color) !important;
-}
-
-.sidebar-container .logout .nav-link:hover {
-  background: var(--primary-color);
-  color: white !important;
-}
-
 /* dropdown produk */
 .product-dropdown {
   display: none;
@@ -417,32 +338,6 @@ html {
 .faq-page {
   display: flex;
   min-height: 100vh;
-}
-
-/* Sidebar Styling */
-.sidebar {
-  width: 250px;
-  background-color: #343a40;
-  color: white;
-  padding: 20px;
-}
-
-.sidebar h2 {
-  margin-bottom: 20px;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin-bottom: 10px;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
 }
 
 /* Content Styling */

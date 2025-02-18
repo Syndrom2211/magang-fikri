@@ -1,0 +1,219 @@
+/* LOGO */
+.logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 80%;
+  height: auto;
+}
+
+/* WARNA DAN VARIABEL */
+:root {
+  --primary-color: #ff6b6b;
+  --secondary-color: #f9c74f;
+  --tertiary-color: #90be6d;
+  --dark-color: linear-gradient(135deg, #24243e 0%, #302b63 50%, #0f0c29 100%);
+  --bg-color: linear-gradient(135deg, #2b1055 0%, #7597de 100%);
+  --light-color: #e9c46a;
+}
+
+/* Sidebar Wrapper */
+.sidebar-wrapper {
+  width: 250px;
+  height: 100vh;
+  background: var(--bg-color);
+  color: white;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* Saat sidebar ditutup */
+.sidebar-wrapper.closed {
+  width: 80px;
+}
+
+/* Tombol toggle sidebar */
+.sidebar-toggle {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+  z-index: 1000;
+}
+
+/* Logo di sidebar */
+.logo {
+  width: 100%;
+  max-width: 150px;
+  display: block;
+  margin: 0 auto 20px;
+  transition: width 0.3s ease-in-out;
+}
+
+.sidebar-wrapper.closed .logo {
+  max-width: 50px;
+}
+
+/* Saat link di-hover, background berubah */
+.nav-link:hover {
+  background: var(--primary-color);
+  border-radius: 5px;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Saat sidebar ditutup, background hover disesuaikan */
+.sidebar-wrapper.closed .nav-link:hover {
+  width: auto;
+  max-width: 50px;
+}
+
+/* Hilangkan efek background pada semua item kecuali Produk */
+.nav-item:not(.product) .nav-link.active {
+  background: none;
+}
+
+/* Hanya Produk yang berubah warna saat dropdown dibuka */
+.nav-item.product.open > .nav-link {
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+
+/* Dropdown Produk */
+.product-dropdown {
+  display: none;
+  padding-left: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.product-dropdown.open {
+  display: block;
+}
+
+/* Logout */
+.logout {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* DASHBOARD CONTAINER */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f8eaff;
+  overflow-y: auto;
+}
+
+/* HEADER DASHBOARD */
+.dashboard-header {
+  background: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.dashboard-header h4 {
+  margin: 0;
+  color: #2b18d3;
+  font-weight: bold;
+  font-family: Poppins, sans-serif;
+}
+
+/* SIDEBAR CONTAINER */
+.sidebar-container {
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  background: var(--bg-color);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Saat sidebar ditutup */
+.sidebar-container.closed {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Saat sidebar ditutup, sembunyikan teks */
+.link-text {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.sidebar-wrapper.closed .link-text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Logo di sidebar */
+.logo {
+  width: 100%;
+  max-width: 150px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* Style untuk navigasi */
+.sidebar-container .nav-link {
+  color: white !important;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+/* Mengubah warna ikon menjadi putih */
+.sidebar-container .nav-link i {
+  color: white;
+}
+
+
+/* Mengubah warna ikon menjadi putih */
+.icon {
+  color: white !important;
+}
+
+/* RESPONSIVE SIDEBAR */
+@media (max-width: 768px) {
+  .sidebar-wrapper {
+      width: 80px;
+  }
+
+  .sidebar-wrapper.closed {
+      width: 0;
+  }
+
+  .logo {
+      max-width: 50px;
+  }
+
+  /* Ikon tetap putih saat sidebar ditutup */
+  .sidebar-wrapper i {
+      color: white;
+  }
+}
