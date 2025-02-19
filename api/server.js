@@ -264,6 +264,10 @@ app.get("/items", (req, res) => {
 app.post("/biodata", (req, res) => {
   const { item_id, email, name, whatsapp, price } = req.body; // Terima item_id
 
+  if (!item_id || !email || !name || !whatsapp || !price) {
+    return res.status(400).json({ message: "Data tidak lengkap." });
+  }
+
   const sql =
     "INSERT INTO biodata (item_id, email, name, whatsapp, price) VALUES (?, ?, ?, ?, ?)"; // Gunakan item_id di query
   db.query(sql, [item_id, email, name, whatsapp, price], (err, result) => {
@@ -280,7 +284,7 @@ app.post("/biodata", (req, res) => {
 
 app.get("/orders/:productId", (req, res) => {
   const productId = req.params.productId;
-  const sql = "SELECT COUNT(*) AS count FROM biodata WHERE product_id = ?"; // Ganti product_id dengan nama kolom yang sesuai di tabel biodata Anda.
+  const sql = "SELECT COUNT(*) AS count FROM biodata WHERE item_id = ?"; // Ganti product_id dengan nama kolom yang sesuai di tabel biodata Anda.
 
   db.query(sql, [productId], (err, result) => {
     if (err) {
@@ -288,6 +292,63 @@ app.get("/orders/:productId", (req, res) => {
       return res.status(500).json({ error: "Failed to fetch order count" });
     }
     res.json({ orderCount: result[0].count });
+  });
+});
+
+// Endpoint untuk mengambil semua FAQ
+app.get("/faq", (req, res) => {
+  const sql = "SELECT * FROM faq";
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error("❌ Error fetching FAQs:", err);
+      return res.status(500).json({ error: "Failed to fetch FAQs" });
+    }
+    res.status(200).json(result);
+  });
+});
+
+// Endpoint untuk menambahkan FAQ baru
+app.post("/faq", (req, res) => {
+  const { question, answer, category } = req.body; // Ambil data dari request body
+
+  const sql = "INSERT INTO faq (question, answer, category) VALUES (?, ?, ?)";
+  db.query(sql, [question, answer, category], (err, result) => {
+    if (err) {
+      console.error("❌ Error creating FAQ:", err);
+      return res.status(500).json({ error: "Failed to create FAQ" });
+    }
+    res
+      .status(201)
+      .json({ message: "FAQ created successfully", id: result.insertId }); // Beri status 201 Created dan kirim ID baru
+  });
+});
+
+// Endpoint untuk mengupdate FAQ
+app.put("/faq/:id", (req, res) => {
+  const { question, answer, category } = req.body;
+  const { id } = req.params;
+
+  const sql =
+    "UPDATE faq SET question = ?, answer = ?, category = ? WHERE id = ?";
+  db.query(sql, [question, answer, category, id], (err) => {
+    if (err) {
+      console.error("❌ Error updating FAQ:", err);
+      return res.status(500).json({ error: "Failed to update FAQ" });
+    }
+    res.status(200).json({ message: "FAQ updated successfully" });
+  });
+});
+
+// Endpoint untuk menghapus FAQ
+app.delete("/faq/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM faq WHERE id = ?";
+  db.query(sql, [id], (err) => {
+    if (err) {
+      console.error("❌ Error deleting FAQ:", err);
+      return res.status(500).json({ error: "Failed to delete FAQ" });
+    }
+    res.status(200).json({ message: "FAQ deleted successfully" });
   });
 });
 

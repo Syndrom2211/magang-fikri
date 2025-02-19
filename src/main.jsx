@@ -8,6 +8,10 @@ import "./style/main.css";
 
 import { BrowserRouter } from "react-router-dom";
 
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:1000";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
