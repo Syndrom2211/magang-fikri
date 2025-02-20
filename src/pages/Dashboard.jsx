@@ -27,7 +27,7 @@ const Dashboard = () => {
         {/* Modal Welcome Message */}
         {showWelcomeModal && (
           <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="popup-content">
               <h2>Informasi</h2>
               <p>Selamat datang di dashboard admin! 🎉</p>
               <button onClick={() => setShowWelcomeModal(false)} className="close-button">Close</button>
