@@ -148,22 +148,23 @@ const createDatabaseAndTable = () => {
       }
       console.log("✅ Items table created or already exists");
 
-      // Insert data default ke tabel items jika belum ada
+      // Insert default items (if they don't exist)
       const checkItemsQuery = "SELECT COUNT(*) AS count FROM items";
       db.query(checkItemsQuery, (err, result) => {
         if (err) {
           console.error("❌ Error checking items existence:", err);
           return;
         }
-        const itemCount = result[0].count;
-        if (itemCount === 0) {
-          // Jika belum ada data, insert data default
+
+        if (result[0].count === 0) {
+          // Check if no items exist
           const insertItemsQuery = `
-                INSERT INTO items (name) VALUES
-                ('buat musik melalui lirik'),
-                ('buat musik instrumen'),
-                ('buat efek suara');
-            `;
+        INSERT INTO items (name) VALUES
+        ('lirik'),  -- Correct item names
+        ('instrumen'),
+        ('efek-suara');
+      `;
+
           db.query(insertItemsQuery, (err) => {
             if (err) {
               console.error("❌ Error inserting default items:", err);
@@ -301,13 +302,14 @@ app.get("/biodata", (req, res) => {
   `;
 
   if (itemId) {
-    sql += ` WHERE b.item_id = ?`; // Tambahkan WHERE clause jika item_id ada
+    sql += ` WHERE i.name = ?`;
   }
 
   db.query(sql, [itemId], (err, result) => {
     // Masukkan itemId ke query
     if (err) {
-      // ...
+      console.error("❌ Error fetching biodata:", err);
+      return res.status(500).json({ error: "Failed to fetch biodata" });
     }
     res.status(200).json(result);
   });

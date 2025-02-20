@@ -9,12 +9,13 @@ import {
   ProductContent,
 } from "../data/index";
 import { PlayCircle } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 // Import Swiper styles
 import "swiper/css";
@@ -25,6 +26,8 @@ const HomePage = ({ language }) => {
   const catalogRef = useRef(null);
   const [setSwiperRef] = useState(null);
   const navigate = useNavigate();
+
+  const [productOrderCounts, setProductOrderCounts] = useState({}); // State untuk order count per produk
 
   const scrollToCatalog = () => {
     catalogRef.current.scrollIntoView({ behavior: "smooth" });
@@ -39,6 +42,25 @@ const HomePage = ({ language }) => {
       },
     });
   };
+
+  useEffect(() => {
+    const fetchOrderCounts = async () => {
+      try {
+        const counts = {};
+        for (const product of products[language]) {
+          // Loop through products
+          const response = await axios.get(`/orders/${product.id}`); // Gunakan product.id
+          counts[product.id] = response.data.orderCount; // Simpan order count berdasarkan product.id
+        }
+        setProductOrderCounts(counts);
+      } catch (error) {
+        console.error("Error fetching order counts:", error);
+        // Handle error, misalnya dengan menampilkan pesan ke user
+      }
+    };
+
+    fetchOrderCounts();
+  }, [language]);
 
   return (
     <div className="homePage">
@@ -118,7 +140,9 @@ const HomePage = ({ language }) => {
                             />
                           </div>
                           <span>
-                            {product.rating} {product.orderCount || 0}{" "}
+                            {product.rating}{" "}
+                            {productOrderCounts[product.id] || 0}{" "}
+                            {/* Tampilkan order count */}{" "}
                             {TextContent[language]?.times || "kali"}
                           </span>
                         </div>

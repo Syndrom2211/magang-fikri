@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
-import { FaHome, FaInfoCircle, FaCamera, FaGraduationCap, FaSignOutAlt, FaBars, FaChevronDown, FaDesktop, FaEllipsisH } from "react-icons/fa";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaCamera,
+  FaGraduationCap,
+  FaSignOutAlt,
+  FaBars,
+  FaChevronDown,
+  FaDesktop,
+  FaEllipsisH,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import lirikIcon from "../assets/lirik.png";
@@ -42,7 +52,8 @@ const SideBarComponent = () => {
 
   // Fungsi untuk navigasi ke produk
   const handleProductClick = (product) => {
-    navigate(`/admin/produk/${product}`);
+    navigate(`/admin/produk/${product}`); // Use navigate to redirect
+    setIsProductDropdownOpen(false); // Close dropdown after click
   };
 
   // Fungsi untuk menangani klik pada setiap nav-item
@@ -59,61 +70,103 @@ const SideBarComponent = () => {
       </button>
 
       <div className="sidebar-container">
-        <img src={logo} alt="Logo" className={`logo ${isOpen ? "large" : "small"}`} />
+        <img
+          src={logo}
+          alt="Logo"
+          className={`logo ${isOpen ? "large" : "small"}`}
+        />
 
         <Nav className="flex-column">
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/admin")}>
+            <Nav.Link
+              href="#"
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, "/admin")}>
               <FaHome className="icon" />
               <span className="link-text">Beranda</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => toggleProductDropdown()}>
+            <Nav.Link
+              href="#"
+              className="nav-link"
+              onClick={(e) => toggleProductDropdown()}>
               <FaCamera className="icon" />
               <span className="link-text">Produk</span>
               <FaChevronDown className="dropdown-icon" />
             </Nav.Link>
-            <div className={`product-dropdown ${isProductDropdownOpen ? "open" : ""}`}>
-              <Nav.Link href="#" className="nav-link sub-menu" onClick={(e) => handleProductClick("lirik")}>
+            <div
+              className={`product-dropdown ${
+                isProductDropdownOpen ? "open" : ""
+              }`}>
+              <Nav.Link
+                href="#"
+                className="nav-link sub-menu"
+                onClick={(e) => handleProductClick("lirik")}>
                 <img src={lirikIcon} alt="Lirik" className="menu-icon" />
                 <span className="link-text">Lirik</span>
               </Nav.Link>
-              <Nav.Link href="#" className="nav-link sub-menu" onClick={(e) => handleProductClick("instrumen")}>
-                <img src={instrumenIcon} alt="Instrumen" className="menu-icon" />
+              <Nav.Link
+                href="#"
+                className="nav-link sub-menu"
+                onClick={(e) => handleProductClick("instrumen")}>
+                <img
+                  src={instrumenIcon}
+                  alt="Instrumen"
+                  className="menu-icon"
+                />
                 <span className="link-text">Instrumen</span>
               </Nav.Link>
-              <Nav.Link href="#" className="nav-link sub-menu" onClick={(e) => handleProductClick("efek-suara")}>
-                <img src={efekSuaraIcon} alt="Efek Suara" className="menu-icon" />
+              <Nav.Link
+                href="#"
+                className="nav-link sub-menu"
+                onClick={(e) => handleProductClick("efek-suara")}>
+                <img
+                  src={efekSuaraIcon}
+                  alt="Efek Suara"
+                  className="menu-icon"
+                />
                 <span className="link-text">Efek Suara</span>
               </Nav.Link>
             </div>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/tabelportofolio")}>
+            <Nav.Link
+              href="#"
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, "/tabelportofolio")}>
               <FaGraduationCap className="icon" />
               <span className="link-text">Portofolio</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/adminheader")}>
+            <Nav.Link
+              href="#"
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, "/adminheader")}>
               <FaDesktop className="icon" />
               <span className="link-text">Header</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/adminfooter")}>
+            <Nav.Link
+              href="#"
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, "/adminfooter")}>
               <FaEllipsisH className="icon" />
               <span className="link-text">Footer</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/admin/faq")}>
+            <Nav.Link
+              href="#"
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, "/admin/faq")}>
               <FaInfoCircle className="icon" />
               <span className="link-text">FAQ</span>
             </Nav.Link>
