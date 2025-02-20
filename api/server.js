@@ -3,17 +3,43 @@ import cors from "cors";
 import midtransClient from "midtrans-client";
 import dotenv from "dotenv";
 import mysql from "mysql2";
+import multer, { diskStorage } from "multer";
+import path from "path";
 
 dotenv.config();
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
+});
+
+// Konfigurasi multer untuk upload video
+const storage = diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads"); // Folder penyimpanan video
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + "-" + uniqueSuffix + ext); // Nama file unik
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith("video/")) {
+      cb(null, true); // Hanya terima video
+    } else {
+      cb(new Error("File harus berupa video!")); // Tolak tipe file lain
+    }
+  },
 });
 
 // Fungsi untuk membuat database dan tabel admin jika belum ada
@@ -109,6 +135,24 @@ const createDatabaseAndTable = () => {
         return;
       }
       console.log("✅ FAQ table created or already exists");
+    });
+
+    const createPortfoliosTableQuery = `
+        CREATE TABLE IF NOT EXISTS portfolios (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            genre VARCHAR(255),
+            description TEXT,
+            video VARCHAR(255)
+        );
+      `;
+
+    db.query(createPortfoliosTableQuery, (err) => {
+      if (err) {
+        console.error("❌ Error creating portfolio table:", err);
+      } else {
+        console.log("✅ Portfolio table created or already exists");
+      }
     });
 
     // Membuat tabel biodata jika belum ada
@@ -245,6 +289,88 @@ app.post("/visitors", (req, res) => {
   db.query("UPDATE visitors SET count = count + 1", (err) => {
     if (err) throw err;
     res.json({ message: "Visitor count updated" });
+  });
+});
+
+// Endpoint untuk mengambil data portfolio
+app.get("/portfolios", (req, res) => {
+  const sql = "SELECT * FROM portfolios";
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error("❌ Error fetching portfolios:", err);
+      return res.status(500).json({ error: err.message });
+    }
+    res.status(200).json(result);
+  });
+});
+
+// Endpoint untuk menambahkan data portfolio baru
+app.post("/portfolios", upload.single("video"), (req, res) => {
+  const { name, genre, description } = req.body;
+  const video = req.file ? req.file.filename : null; // Nama file video dari multer
+
+  if (!name || !genre || !description) {
+    return res.status(400).json({ error: "Data portfolio tidak lengkap!" });
+  }
+
+  const sql =
+    "INSERT INTO portfolios (name, genre, description, video) VALUES (?, ?, ?, ?)";
+  db.query(sql, [name, genre, description, video], (err, result) => {
+    if (err) {
+      console.error("❌ Error creating portfolio:", err);
+      return res.status(500).json({ error: err.message });
+    }
+    res.status(201).json({
+      // Mengembalikan data portfolio yang baru dibuat
+      id: result.insertId,
+      name,
+      genre,
+      description,
+      video,
+    });
+  });
+});
+
+// Endpoint untuk mengupdate data portfolio
+app.put("/portfolios/:id", upload.single("video"), (req, res) => {
+  const { name, genre, description } = req.body;
+  const video = req.file ? req.file.filename : null;
+  const { id } = req.params;
+
+  if (!name || !genre || !description) {
+    return res.status(400).json({ error: "Data portfolio tidak lengkap!" });
+  }
+
+  let sql = "UPDATE portfolios SET name = ?, genre = ?, description = ?";
+  const values = [name, genre, description];
+
+  if (video) {
+    sql += ", video = ?";
+    values.push(video);
+  }
+
+  sql += " WHERE id = ?";
+  values.push(id);
+
+  db.query(sql, values, (err) => {
+    if (err) {
+      console.error("❌ Error updating portfolio:", err);
+      return res.status(500).json({ error: err.message });
+    }
+    res.status(200).json({ message: "Portfolio updated successfully" });
+  });
+});
+
+// Endpoint untuk menghapus data portfolio
+app.delete("/portfolios/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM portfolios WHERE id = ?";
+  db.query(sql, [id], (err) => {
+    if (err) {
+      console.error("❌ Error deleting portfolio:", err);
+      return res.status(500).json({ error: err.message });
+    }
+    res.status(200).json({ message: "Portfolio deleted successfully" });
   });
 });
 
