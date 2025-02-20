@@ -3,12 +3,14 @@ import SideBarComponent from "../components/SideBarComponent";
 import MainHeader from "../components/MainHeader";
 import MainFooter from "../components/MainFooter";
 import "../style/admin.css"; 
+import "../style/popup.css";
 
 const Dashboard = () => {
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
 
   useEffect(() => {
     const isFirstLogin = sessionStorage.getItem("isFirstLogin");
+    console.log("isFirstLogin:", isFirstLogin);
 
     if (isFirstLogin === "true") {
       setShowWelcomeModal(true); // Tampilkan modal saat pertama kali login
@@ -25,13 +27,16 @@ const Dashboard = () => {
         {/* Modal Welcome Message */}
         {showWelcomeModal && (
           <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="popup-content">
               <h2>Informasi</h2>
               <p>Selamat datang di dashboard admin! 🎉</p>
               <button onClick={() => setShowWelcomeModal(false)} className="close-button">Close</button>
             </div>
           </div>
         )}
+
+        {/* Log status modal */}
+        {console.log("Show Welcome Modal:", showWelcomeModal)}
 
         {/* Konten utama */}
         <div className="dashboard-main">
