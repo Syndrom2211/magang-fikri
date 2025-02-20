@@ -1,18 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 
 const checkout = async (formData) => {
   try {
     if (!formData) {
-      throw new Error("Product is undefined");
+      throw new Error("Form data is undefined");
     }
 
-    const data = {
-      id: formData.id,
-      productName: formData.item, 
-      price: formData.price,
+    const biodata = {
+      ...formData,
+      item_id: formData.item_id,
     };
 
-    console.log("✅ Checkout Data:", data);
+    // console.log("✅ Checkout Data:", biodata);
 
     const config = {
       headers: {
@@ -20,34 +19,54 @@ const checkout = async (formData) => {
       },
     };
 
-    const response = await axios.post(
+    // 1. Simpan biodata ke database (Sebelum ke Midtrans)
+    try {
+      const biodataResponse = await axios.post(
+        "http://localhost:1000/biodata",
+        biodata,
+        config
+      );
+      console.log("✅ Biodata saved successfully:", biodataResponse.data);
+    } catch (biodataError) {
+      console.error("❌ Error saving biodata:", biodataError);
+      alert("Gagal menyimpan data biodata. Silakan coba lagi.");
+      return false; // Mengembalikan false jika gagal
+    }
+
+    // 2. Lanjutkan ke Midtrans
+    const paymentData = {
+      id: formData.id,
+      productName: formData.item,
+      price: formData.price,
+    };
+
+    const midtransResponse = await axios.post(
       "http://localhost:1000/api/payments/process-transaction",
-      data,
+      paymentData,
       config
     );
 
-    console.log("✅ Response:", response.data);
-    console.log("Checkout Data:", data);
-    console.log("Response:", response.data);
+    console.log("✅ Midtrans Response:", midtransResponse.data);
 
-    const token = response.data.token;
+    const token = midtransResponse.data.token;
 
-    // Pastikan Midtrans Snap sudah tersedia
+    // Tampilkan popup Midtrans (tanpa menunggu hasil)
     if (window.snap) {
       window.snap.pay(token, {
-        onSuccess: function (result) {
+        onSuccess: (result) => {
           console.log("Payment Success:", result);
           alert("Payment Successful!");
+          window.location.href = "/";
         },
-        onPending: function (result) {
+        onPending: (result) => {
           console.log("Payment Pending:", result);
           alert("Payment Pending. Please complete the transaction.");
         },
-        onError: function (result) {
+        onError: (result) => {
           console.log("Payment Failed:", result);
           alert("Payment Failed. Please try again.");
         },
-        onClose: function () {
+        onClose: () => {
           console.log("Payment Popup Closed");
           alert("Payment popup closed without completing the transaction.");
         },
@@ -56,9 +75,12 @@ const checkout = async (formData) => {
       console.error("Midtrans Snap is not loaded");
       alert("Midtrans Snap is not loaded. Please check your script.");
     }
+
+    return true; // Mengembalikan true setelah biodata disimpan dan popup ditampilkan
   } catch (error) {
     console.error("Checkout error:", error);
     alert("Checkout failed. Please try again.");
+    return false;
   }
 };
 

@@ -263,6 +263,7 @@ app.get("/items", (req, res) => {
 
 // Endpoint untuk menyimpan biodata
 app.post("/biodata", (req, res) => {
+  console.log("Incoming Biodata:", req.body);
   const { item_id, email, name, whatsapp, price } = req.body; // Terima item_id
 
   if (!item_id || !email || !name || !whatsapp || !price) {
@@ -275,7 +276,9 @@ app.post("/biodata", (req, res) => {
     // Gunakan item_id
     if (err) {
       console.error("❌ Error saving biodata:", err);
-      res.status(500).json({ message: "Gagal menyimpan data biodata." });
+      res
+        .status(500)
+        .json({ message: "Gagal menyimpan data biodata.", error: err.message });
       return;
     }
     console.log("✅ Biodata inserted:", result.insertId);
