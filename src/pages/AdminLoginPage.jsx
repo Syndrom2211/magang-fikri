@@ -22,6 +22,7 @@ function AdminLoginPage() {
     axios
       .post("http://localhost:1000/admin/login", { email, password })
       .then((res) => {
+        console.log("Login Response:", res.data);
         if (res.data.status === "success") {
           localStorage.setItem("adminToken", res.data.token);
           sessionStorage.setItem("isFirstLogin", "true"); // Menandai login pertama
