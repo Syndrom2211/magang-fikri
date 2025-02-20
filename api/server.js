@@ -115,7 +115,7 @@ const createDatabaseAndTable = () => {
     const createBiodataTableQuery = `
             CREATE TABLE IF NOT EXISTS biodata (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            item_id INT, -- Foreign key ke tabel items
+            item_id INT,
             email VARCHAR(255),
             name VARCHAR(255),
             whatsapp VARCHAR(255),
@@ -279,6 +279,37 @@ app.post("/biodata", (req, res) => {
     }
     console.log("✅ Biodata inserted:", result.insertId);
     res.status(200).json({ message: "Data biodata berhasil disimpan." });
+  });
+});
+
+// Endpoint untuk mengambil data biodata dengan nama item (bergabung dengan tabel items)
+app.get("/biodata", (req, res) => {
+  const itemId = req.query.item_id; // Ambil item_id dari query parameter
+
+  let sql = `
+      SELECT 
+          b.id,
+          b.item_id,
+          i.name AS item_name,
+          b.email,
+          b.name,
+          b.whatsapp,
+          b.price,
+          b.created_at
+      FROM biodata b
+      INNER JOIN items i ON b.item_id = i.id
+  `;
+
+  if (itemId) {
+    sql += ` WHERE b.item_id = ?`; // Tambahkan WHERE clause jika item_id ada
+  }
+
+  db.query(sql, [itemId], (err, result) => {
+    // Masukkan itemId ke query
+    if (err) {
+      // ...
+    }
+    res.status(200).json(result);
   });
 });
 
