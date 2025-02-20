@@ -18,6 +18,9 @@ import TabelPortofolio from "./pages/Adminportofolio";
 import AdminProduk from "./pages/AdminProduk";
 import AdminHeaderTable from "./pages/AdminHeader";
 import AdminFooterTable from "./pages/AdminFooter";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:1000";
 
 function App() {
   const location = useLocation();
@@ -85,7 +88,6 @@ function App() {
 
         {/* Tabel Footer */}
         <Route path="/adminfooter" element={<AdminFooterTable />} />
-
       </Routes>
 
       {/* Display Footer only for public pages */}
