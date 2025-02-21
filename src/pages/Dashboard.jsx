@@ -2,20 +2,40 @@ import { useEffect, useState } from "react";
 import SideBarComponent from "../components/SideBarComponent";
 import MainHeader from "../components/MainHeader";
 import MainFooter from "../components/MainFooter";
-import "../style/admin.css"; 
+import "../style/admin.css";
 import "../style/popup.css";
+import axios from "axios";
 
 const Dashboard = () => {
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [totalBiodata, setTotalBiodata] = useState(0); // State untuk total transaksi
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const isFirstLogin = sessionStorage.getItem("isFirstLogin");
     console.log("isFirstLogin:", isFirstLogin);
 
     if (isFirstLogin === "true") {
-      setShowWelcomeModal(true); // Tampilkan modal saat pertama kali login
-      sessionStorage.setItem("isFirstLogin", "false"); // Supaya modal tidak muncul lagi setelah refresh
+      setShowWelcomeModal(true);
+      sessionStorage.setItem("isFirstLogin", "false");
     }
+
+    const fetchTotalBiodata = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get("http://localhost:1000/biodata/count"); // Endpoint baru
+        setTotalBiodata(response.data.count);
+      } catch (error) {
+        setError(error.message);
+        console.error("Error fetching total biodata:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTotalBiodata();
   }, []);
 
   return (
@@ -30,7 +50,11 @@ const Dashboard = () => {
             <div className="popup-content">
               <h2>⚠️ PERHATIAN ⚠️</h2>
               <p>Selamat datang di dashboard admin! 🎉</p>
-              <button onClick={() => setShowWelcomeModal(false)} className="close-button">Tutup</button>
+              <button
+                onClick={() => setShowWelcomeModal(false)}
+                className="close-button">
+                Close
+              </button>
             </div>
           </div>
         )}
@@ -45,7 +69,13 @@ const Dashboard = () => {
           <div className="dashboard-cards">
             <div className="dashboard-card">
               <h3>Total Transaksi</h3>
-              <p>350</p>
+              {loading ? (
+                <div>Loading...</div>
+              ) : error ? (
+                <div>Error: {error}</div>
+              ) : (
+                <p>{totalBiodata}</p>
+              )}
             </div>
           </div>
         </div>

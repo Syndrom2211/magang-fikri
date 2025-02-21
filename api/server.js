@@ -412,9 +412,24 @@ app.post("/biodata", (req, res) => {
   });
 });
 
+app.get("/biodata/count", (req, res) => {
+  const sql = "SELECT COUNT(*) AS count FROM biodata";
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error("❌ Error fetching biodata count:", err);
+      return res
+        .status(500)
+        .json({ error: "Gagal mengambil jumlah data biodata" });
+    }
+    res.status(200).json({ count: result[0].count });
+  });
+});
+
 // Endpoint untuk mengambil data biodata dengan nama item (bergabung dengan tabel items)
 app.get("/biodata", (req, res) => {
   const itemId = req.query.item_id; // Ambil item_id dari query parameter
+  const itemName = req.query.item_name; // Ambil item_name dari query parameter
 
   let sql = `
       SELECT 
@@ -429,6 +444,10 @@ app.get("/biodata", (req, res) => {
       FROM biodata b
       INNER JOIN items i ON b.item_id = i.id
   `;
+
+  if (itemName) {
+    sql += ` WHERE i.name = ?`;
+  }
 
   if (itemId) {
     sql += ` WHERE i.name = ?`;
