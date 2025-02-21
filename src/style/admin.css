@@ -148,20 +148,58 @@
 
 /* RESPONSIVE GRID UNTUK CARDS */
 .dashboard-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 10px;
+  background: #f8eaff;
+  border-radius: 10px;
+  justify-content: space-between;
 }
 
 .dashboard-card {
-  background: white;
-  color: black;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff, #f0e7ff);
+  color: #333;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
+  width: 250px; /* Lebar card dibuat compact */
+  height: 150px; /* Ketinggian card dibatasi */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #6a1b9a;
+}
+
+.dashboard-card p {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #4a148c;
+}
+
+.dashboard-card::before {
+  content: "💰"; /* Bisa ganti ikon lain sesuai kebutuhan */
+  font-size: 2.5rem;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  opacity: 0.2;
+}
+
 
 
 /* FOOTER */

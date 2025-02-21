@@ -8,8 +8,8 @@ import "../style/tabelportfolio.css";
 const AdminFooterTable = () => {
   const [showModal, setShowModal] = useState(false);
   const [footerData, setFooterData] = useState([
-    { id: 1, title: "contoh@gmail.com", subtitle: "yukmari2211@gmail.com" },
-    { id: 2, title: "alamat", subtitle: "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Kota Bandung, Jawa Barat 40286" },
+    { id: 1, title: "Email", subtitle: "yukmari2211@gmail.com" },
+    { id: 2, title: "Alamat", subtitle: "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Kota Bandung, Jawa Barat 40286" },
   ]);
   const [editedFooter, setEditedFooter] = useState({});
 
@@ -27,7 +27,7 @@ const AdminFooterTable = () => {
     setShowModal(false);
   };
 
-  const handleDelete = (id) => {
+  const handleHapus = (id) => {
     setFooterData(footerData.filter((footer) => footer.id !== id));
   };
 
@@ -50,8 +50,8 @@ const AdminFooterTable = () => {
               <thead>
                 <tr>
                   <th>Id</th>
-                  <th>Sebelum</th>
-                  <th>Sesudah</th>
+                  <th>Posisi</th>
+                  <th>Konten</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -65,8 +65,8 @@ const AdminFooterTable = () => {
                       <Button variant="warning" size="sm" onClick={() => handleEdit(footer)}>
                         Edit
                       </Button>{' '}
-                      <Button variant="danger" size="sm" onClick={() => handleDelete(footer.id)}>
-                        Delete
+                      <Button variant="danger" size="sm" onClick={() => handleHapus(footer.id)}>
+                        Hapus
                       </Button>
                     </td>
                   </tr>
@@ -83,7 +83,7 @@ const AdminFooterTable = () => {
           <Modal.Body>
             <Form>
               <Form.Group>
-                <Form.Label>Sebelum</Form.Label>
+                <Form.Label>Posisi</Form.Label>
                 <Form.Control
                   type="text"
                   name="title"
@@ -92,7 +92,7 @@ const AdminFooterTable = () => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Sesudah</Form.Label>
+                <Form.Label>Konten</Form.Label>
                 <Form.Control
                   type="text"
                   name="subtitle"

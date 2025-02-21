@@ -3,7 +3,7 @@ import "react";
 const MainFooter = () => {
   return (
     <footer className=" text-center py-3 mt-auto">
-      <small>© 2025 Admin Panel. All Rights Reserved.</small>
+      <small>© 2025 Panel Admin. Semua Hak Dilindungi Undang-Undang.</small>
     </footer>
   );
 };

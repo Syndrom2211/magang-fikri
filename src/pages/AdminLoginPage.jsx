@@ -41,14 +41,14 @@ function AdminLoginPage() {
     <div className="login-page">
       <div className="login-form">
         <img src={logo} alt="CreativeMusicHub" className="logo" />
-        <p className="subtext">Please enter your details</p>
+        <p className="subtext">Masukan Email dan Password</p>
 
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <FaEnvelope className="input-icon" />
             <input
               type="email"
-              placeholder="Your Email"
+              placeholder="Email Anda"
               className="input-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -59,7 +59,7 @@ function AdminLoginPage() {
             <FaLock className="input-icon" />
             <input
               type="password"
-              placeholder="Your Password"
+              placeholder="Kata Kunci Anda"
               className="input-field"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -69,7 +69,7 @@ function AdminLoginPage() {
           {errorMessage && <div className="error-message">{errorMessage}</div>}
 
           <button type="submit" className="login-button">
-            Login
+            Masuk
           </button>
         </form>
       </div>

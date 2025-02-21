@@ -11,49 +11,45 @@ import "../style/sidebar.css";
 const SideBarComponent = () => {
   const navigate = useNavigate();
 
-  // Ambil status sidebar dari localStorage (atau default true jika belum ada)
   const [isOpen, setIsOpen] = useState(() => {
     const savedState = localStorage.getItem("sidebarOpen");
-    return savedState ? JSON.parse(savedState) : true; // Default ke true jika tidak ada di localStorage
+    return savedState ? JSON.parse(savedState) : true;
   });
 
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(""); // Simpan menu yang aktif
 
-  // Simpan status sidebar ke localStorage setiap kali status berubah
   useEffect(() => {
     localStorage.setItem("sidebarOpen", JSON.stringify(isOpen));
   }, [isOpen]);
 
-  // Fungsi untuk toggle sidebar
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  // Fungsi untuk toggle dropdown produk
   const toggleProductDropdown = () => {
     setIsProductDropdownOpen(!isProductDropdownOpen);
+    setActiveItem("produk"); // Set aktif saat klik produk
   };
 
-  // Fungsi logout
-  const handleLogout = () => {
+  const handleKeluar = () => {
     localStorage.removeItem("adminToken");
     navigate("/admin/login");
   };
 
-  // Fungsi untuk navigasi ke produk
   const handleProductClick = (product) => {
+    setActiveItem(product);
     navigate(`/admin/produk/${product}`);
   };
 
-  // Fungsi untuk menangani klik pada setiap nav-item
-  const handleNavClick = (e, path) => {
-    e.preventDefault(); // Mencegah default link behavior
-    navigate(path); // Menggunakan navigate dari react-router
+  const handleNavClick = (e, path, menu) => {
+    e.preventDefault();
+    setActiveItem(menu);
+    navigate(path);
   };
 
   return (
     <div className={`sidebar-wrapper ${isOpen ? "open" : "closed"}`}>
-      {/* Tombol toggle sidebar */}
       <button className="sidebar-toggle" onClick={toggleSidebar}>
         <FaBars />
       </button>
@@ -63,28 +59,48 @@ const SideBarComponent = () => {
 
         <Nav className="flex-column">
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/admin")}>
+            <Nav.Link 
+              href="#" 
+              className={`nav-link ${activeItem === "beranda" ? "active" : ""}`} 
+              onClick={(e) => handleNavClick(e, "/admin", "beranda")}
+            >
               <FaHome className="icon" />
               <span className="link-text">Beranda</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => toggleProductDropdown()}>
+            <Nav.Link 
+              href="#" 
+              className={`nav-link ${activeItem === "produk" ? "active" : ""}`} 
+              onClick={toggleProductDropdown}
+            >
               <FaCamera className="icon" />
-              <span className="link-text">Produk</span>
+              <span className="link-text">Transaksi</span>
               <FaChevronDown className="dropdown-icon" />
             </Nav.Link>
             <div className={`product-dropdown ${isProductDropdownOpen ? "open" : ""}`}>
-              <Nav.Link href="#" className="nav-link sub-menu" onClick={(e) => handleProductClick("lirik")}>
+              <Nav.Link 
+                href="#" 
+                className={`nav-link sub-menu ${activeItem === "lirik" ? "active" : ""}`} 
+                onClick={() => handleProductClick("lirik")}
+              >
                 <img src={lirikIcon} alt="Lirik" className="menu-icon" />
                 <span className="link-text">Lirik</span>
               </Nav.Link>
-              <Nav.Link href="#" className="nav-link sub-menu" onClick={(e) => handleProductClick("instrumen")}>
+              <Nav.Link 
+                href="#" 
+                className={`nav-link sub-menu ${activeItem === "instrumen" ? "active" : ""}`} 
+                onClick={() => handleProductClick("instrumen")}
+              >
                 <img src={instrumenIcon} alt="Instrumen" className="menu-icon" />
                 <span className="link-text">Instrumen</span>
               </Nav.Link>
-              <Nav.Link href="#" className="nav-link sub-menu" onClick={(e) => handleProductClick("efek-suara")}>
+              <Nav.Link 
+                href="#" 
+                className={`nav-link sub-menu ${activeItem === "efek-suara" ? "active" : ""}`} 
+                onClick={() => handleProductClick("efek-suara")}
+              >
                 <img src={efekSuaraIcon} alt="Efek Suara" className="menu-icon" />
                 <span className="link-text">Efek Suara</span>
               </Nav.Link>
@@ -92,40 +108,55 @@ const SideBarComponent = () => {
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/tabelportofolio")}>
+            <Nav.Link 
+              href="#" 
+              className={`nav-link ${activeItem === "portofolio" ? "active" : ""}`} 
+              onClick={(e) => handleNavClick(e, "/tabelportofolio", "portofolio")}
+            >
               <FaGraduationCap className="icon" />
               <span className="link-text">Portofolio</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/adminheader")}>
+            <Nav.Link 
+              href="#" 
+              className={`nav-link ${activeItem === "header" ? "active" : ""}`} 
+              onClick={(e) => handleNavClick(e, "/adminheader", "header")}
+            >
               <FaDesktop className="icon" />
               <span className="link-text">Header</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/adminfooter")}>
+            <Nav.Link 
+              href="#" 
+              className={`nav-link ${activeItem === "footer" ? "active" : ""}`} 
+              onClick={(e) => handleNavClick(e, "/adminfooter", "footer")}
+            >
               <FaEllipsisH className="icon" />
               <span className="link-text">Footer</span>
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={(e) => handleNavClick(e, "/admin/faq")}>
+            <Nav.Link 
+              href="#" 
+              className={`nav-link ${activeItem === "faq" ? "active" : ""}`} 
+              onClick={(e) => handleNavClick(e, "/admin/faq", "faq")}
+            >
               <FaInfoCircle className="icon" />
               <span className="link-text">FAQ</span>
             </Nav.Link>
           </Nav.Item>
         </Nav>
 
-        {/* Logout Button */}
         <div className="logout">
           <Nav.Item>
-            <Nav.Link href="#" className="nav-link" onClick={handleLogout}>
+            <Nav.Link href="#" className="nav-link" onClick={handleKeluar}>
               <FaSignOutAlt className="icon" />
-              <span className="link-text">Logout</span>
+              <span className="link-text">Keluar</span>
             </Nav.Link>
           </Nav.Item>
         </div>

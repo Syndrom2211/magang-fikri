@@ -8,8 +8,8 @@ import "../style/tabelportfolio.css";
 const AdminHeaderTable = () => {
   const [showModal, setShowModal] = useState(false);
   const [headerData, setHeaderData] = useState([
-    { id: 1, title: "Produk", subtitle: "Produk" },
-    { id: 2, title: "Support", subtitle: "Dukungan" },
+    { id: 1, title: "Dropdown Transaksi", subtitle: "Produk" },
+    { id: 2, title: "Dropdown Kontak", subtitle: "Dukungan" },
   ]);
   const [editedHeader, setEditedHeader] = useState({});
 
@@ -46,8 +46,8 @@ const AdminHeaderTable = () => {
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Sebelum</th>
-                <th>Sesudah</th>
+                <th>Posisi</th>
+                <th>Konten</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -61,8 +61,8 @@ const AdminHeaderTable = () => {
                     <Button variant="warning" size="sm" onClick={() => handleEdit(header)}>
                       Edit
                     </Button> {''}    
-                    <Button variant="danger" size="sm" onClick={() => handleDelete(header.id)}>
-                      Delete
+                    <Button variant="danger" size="sm" onClick={() => handleHapus(header.id)}>
+                      Hapus
                     </Button>
                   </td>
                 </tr>
@@ -79,7 +79,7 @@ const AdminHeaderTable = () => {
           <Modal.Body>
             <Form>
               <Form.Group>
-                <Form.Label>Sebelum</Form.Label>
+                <Form.Label>Posisi</Form.Label>
                 <Form.Control
                   type="text"
                   name="title"
@@ -88,7 +88,7 @@ const AdminHeaderTable = () => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Sesudah</Form.Label>
+                <Form.Label>Konten</Form.Label>
                 <Form.Control
                   type="text"
                   name="subtitle"

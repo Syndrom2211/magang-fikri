@@ -1,11 +1,3 @@
-/* LOGO */
-.logo {
-  display: block;
-  margin: 0 auto;
-  max-width: 80%;
-  height: auto;
-}
-
 /* WARNA DAN VARIABEL */
 :root {
   --primary-color: #ff6b6b;
@@ -16,22 +8,24 @@
   --light-color: #e9c46a;
 }
 
-/* Sidebar Wrapper */
+/* SIDEBAR */
 .sidebar-wrapper {
   width: 250px;
   height: 100vh;
   background: var(--bg-color);
-  color: white;
-  transition: width 0.3s ease-in-out;
+  color: var(--primary-color);
+  transition: width 0.3s ease-in-out, color 0.3s ease-in-out;
   overflow: hidden;
+  position: relative;
 }
 
-/* Saat sidebar ditutup */
+/* Sidebar tertutup */
 .sidebar-wrapper.closed {
-  width: 80px;
+  width: 90px;
+  color: var(--secondary-color);
 }
 
-/* Tombol toggle sidebar */
+/* TOMBOL TOGGLE SIDEBAR */
 .sidebar-toggle {
   position: absolute;
   top: 15px;
@@ -44,7 +38,16 @@
   z-index: 1000;
 }
 
-/* Logo di sidebar */
+/* Ikon tetap putih */
+.icon {
+  color: white !important;
+}
+
+.sidebar-wrapper.closed .icon {
+  color: var(--secondary-color) !important;
+}
+
+/* LOGO */
 .logo {
   width: 100%;
   max-width: 150px;
@@ -57,86 +60,82 @@
   max-width: 50px;
 }
 
-/* Saat link di-hover, background berubah */
-.nav-link:hover {
-  background: var(--primary-color);
-  border-radius: 5px;
-  max-width: 100%;
-  width: 100%;
-  overflow: hidden;
+/* NAVIGASI */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
   position: relative;
-  padding-left: 15px;
-  padding-right: 15px;
+  background: transparent !important;
+  color: var(--primary-color);
 }
 
-/* Saat sidebar ditutup, background hover disesuaikan */
-.sidebar-wrapper.closed .nav-link:hover {
-  width: auto;
-  max-width: 50px;
+/* Warna saat sidebar terbuka */
+.sidebar-wrapper .nav-link {
+  color: var(--primary-color);
 }
 
-/* Hilangkan efek background pada semua item kecuali Produk */
-.nav-item:not(.product) .nav-link.active {
-  background: none;
+/* Hover pada item menu */
+.nav-link:hover {
+  color: var(--secondary-color);
 }
 
-/* Hanya Produk yang berubah warna saat dropdown dibuka */
-.nav-item.product.open > .nav-link {
-  background: var(--primary-color);
-  border-radius: 5px;
+/* Warna hanya untuk menu yang aktif */
+.nav-link.active {
+  font-weight: normal !important;
+  color: var(--secondary-color) !important;
 }
 
-/* Dropdown Produk */
+/* DROPDOWN PRODUK */
 .product-dropdown {
   display: none;
   padding-left: 20px;
   transition: all 0.3s ease-in-out;
+  background: transparent !important;
 }
 
 .product-dropdown.open {
   display: block;
+  background: transparent !important;
 }
 
-/* Logout */
-.logout {
-  margin-top: auto;
-  width: 100%;
+/* Warna submenu produk */
+.product-dropdown .nav-link {
+  background: transparent !important;
+  color: white !important;
 }
 
-/* DASHBOARD CONTAINER */
-.dashboard-container {
-  display: flex;
-  height: 100vh;
+/* Hover submenu produk */
+.product-dropdown .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Sembunyikan teks saat sidebar ditutup */
+.sidebar-wrapper.closed .link-text {
+  opacity: 0;
+  width: 0;
   overflow: hidden;
 }
 
-.dashboard-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background: #f8eaff;
-  overflow-y: auto;
+/* Saat hover di sidebar tertutup, munculkan teks di samping ikon */
+.sidebar-wrapper.closed .nav-link:hover .link-text {
+  opacity: 1;
+  width: auto;
+  white-space: nowrap;
+  position: absolute;
+  left: 100px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
-/* HEADER DASHBOARD */
-.dashboard-header {
-  background: white;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* LOGOUT */
+.logout {
+  margin-top: auto;
   width: 100%;
-}
-
-.dashboard-header h4 {
-  margin: 0;
-  color: #2b18d3;
-  font-weight: bold;
-  font-family: Poppins, sans-serif;
 }
 
 /* SIDEBAR CONTAINER */
@@ -158,62 +157,17 @@
   overflow: hidden;
 }
 
-/* Saat sidebar ditutup, sembunyikan teks */
-.link-text {
-  transition: opacity 0.3s ease-in-out;
-  opacity: 1;
-}
-
-.sidebar-wrapper.closed .link-text {
-  opacity: 0;
-  width: 0;
-  overflow: hidden;
-}
-
-/* Logo di sidebar */
-.logo {
-  width: 100%;
-  max-width: 150px;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-/* Style untuk navigasi */
-.sidebar-container .nav-link {
-  color: white !important;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  transition: 0.3s;
-}
-
-/* Mengubah warna ikon menjadi putih */
-.sidebar-container .nav-link i {
-  color: white;
-}
-
-
-/* Mengubah warna ikon menjadi putih */
-.icon {
-  color: white !important;
-}
-
 /* RESPONSIVE SIDEBAR */
 @media (max-width: 768px) {
   .sidebar-wrapper {
-      width: 80px;
+    width: 80px;
   }
 
   .sidebar-wrapper.closed {
-      width: 0;
+    width: 0;
   }
 
   .logo {
-      max-width: 50px;
-  }
-
-  /* Ikon tetap putih saat sidebar ditutup */
-  .sidebar-wrapper i {
-      color: white;
+    max-width: 50px;
   }
 }

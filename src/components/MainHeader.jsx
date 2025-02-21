@@ -18,7 +18,7 @@ const MainHeader = () => {
 
   return (
     <nav className="dashboard-header">
-      <h4>WELCOME TO ADMIN CREATIVE MUSIC HUB</h4>
+      <h4>SELAMAT DATANG DI ADMIN CREATIVE MUSIC HUB</h4>
 
       <div className="header-icons">
         <FaSearch className="icon" onClick={handleSearchClick} />
