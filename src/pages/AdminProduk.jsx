@@ -5,33 +5,47 @@ import SideBarComponent from "../components/SideBarComponent";
 import MainHeader from "../components/MainHeader";
 import MainFooter from "../components/MainFooter";
 import "../style/tabelportfolio.css";
-import axios from "axios"; // Import axios
+import axios from "axios";
 
 const AdminProduk = () => {
-  const { product } = useParams();
+  const { product } = useParams(); // Get the product name from URL parameter
   const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("Product ID:", product); // Cek nilai product
+
     const fetchTransactions = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        const response = await axios.get("http://localhost:1000/biodata"); // Ganti dengan URL endpoint Anda
-        const biodata = response.data;
-
-        // Filter data berdasarkan product (misalnya, item)
-        const filteredTransactions = biodata.filter(
-          (item) => item.item === product
-        );
-
-        setTransactions(filteredTransactions);
+        const response = await axios.get(`/biodata?item_id=${product}`);
+        console.log("Response Data:", response.data); // Cek data dari API
+        if (response.status === 404) {
+          setTransactions([]);
+        } else {
+          setTransactions(response.data);
+        }
       } catch (error) {
         console.error("Error fetching transactions:", error);
-        // Handle error, misalnya dengan menampilkan pesan ke user
-        alert("Gagal mengambil data transaksi. Silakan coba lagi.");
+        setError("Gagal mengambil data transaksi. Silakan coba lagi.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchTransactions();
   }, [product]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
 
   return (
     <div className="dashboard-container">
@@ -44,7 +58,8 @@ const AdminProduk = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Nama</th>
+                <th>Nama Item</th>
+                <th>Nama User</th>
                 <th>Email</th>
                 <th>No. Telp</th>
                 <th>Waktu Transaksi</th>
@@ -52,18 +67,37 @@ const AdminProduk = () => {
               </tr>
             </thead>
             <tbody>
-              {transactions.map((transaction) => (
-                <tr key={transaction.id}>
-                  <td>{transaction.id}</td>
-                  <td>{transaction.name}</td>
-                  <td>{transaction.email}</td>
-                  <td>{transaction.whatsapp}</td>{" "}
-                  {/* Gunakan whatsapp karena phone tidak ada di biodata */}
-                  <td>{transaction.created_at}</td>{" "}
-                  {/* Gunakan created_at dari biodata */}
-                  <td>{transaction.price}</td>
+              {/* Gunakan conditional rendering untuk menampilkan pesan atau data */}
+              {transactions.length > 0 ? (
+                transactions.map((transaction) => (
+                  <tr key={transaction.id}>
+                    <td>{transaction.id}</td>
+                    <td>{transaction.item_name}</td>
+                    <td>{transaction.name}</td>
+                    <td>{transaction.email}</td>
+                    <td>{transaction.whatsapp}</td>
+                    <td>
+                      {new Date(transaction.created_at).toLocaleDateString(
+                        "id-ID",
+                        {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )}
+                    </td>
+                    <td>{transaction.price}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={7} style={{ textAlign: "center" }}>
+                    Tidak ada data transaksi untuk produk ini.
+                  </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </Table>
         </div>

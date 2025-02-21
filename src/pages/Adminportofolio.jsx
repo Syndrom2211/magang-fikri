@@ -38,6 +38,12 @@ const PortfolioTable = () => {
     setPortfolios(portfolios.filter((p) => p.id !== id));
   };
 
+  // Mengubah bahasa dan memperbarui daftar portfolio
+  // const handleLanguageChange = (lang) => {
+  //   setLanguage(lang);
+  //   setPortfolios(dataSwiper[lang] || []);
+  // };
+
   return (
     <div className="dashboard-container">
     <SideBarComponent />
@@ -47,6 +53,14 @@ const PortfolioTable = () => {
 
       <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
         <h2>CRUD Portfolio</h2>
+        {/* <div>
+          <Button variant={language === "ID" ? "primary" : "secondary"} onClick={() => handleLanguageChange("ID")}>
+            Bahasa Indonesia
+          </Button>
+          <Button variant={language === "EN" ? "primary" : "secondary"} onClick={() => handleLanguageChange("EN")} className="ms-2">
+            English
+          </Button>
+        </div> */}
         <Button variant="primary" onClick={() => handleShow()} className="mt-3">Tambah Portfolio</Button>
         <Table striped bordered hover className="mt-3">
           <thead>

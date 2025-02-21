@@ -23,6 +23,9 @@ const ModalForm = () => {
     price: currentPlan?.price || plan?.price || 0,
   });
 
+  // State untuk error form
+  const [formErrors, setFormErrors] = useState({});
+
   // Redirect if no valid plan is found
   useEffect(() => {
     if (!page || !language || !plan) {
@@ -33,11 +36,34 @@ const ModalForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setFormErrors({ ...formErrors, [name]: "" }); // Clear error
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Pembayaran diproses!");
+  const validateForm = () => {
+    let errors = {};
+    if (!formData.email) {
+      errors.email = "Email harus diisi";
+    }
+    if (!formData.name) {
+      errors.name = "Nama harus diisi";
+    }
+    if (!formData.whatsapp) {
+      errors.whatsapp = "WhatsApp harus diisi";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0; // true jika tidak ada error
+  };
+
+  const handleCheckout = async () => {
+    if (validateForm()) {
+      const formDataToSend = {
+        ...formData,
+        item_id: parseInt(formData.id, 10),
+        id: parseInt(formData.id, 10),
+      };
+      await checkout(formDataToSend);
+    }
   };
 
   return (
@@ -58,7 +84,9 @@ const ModalForm = () => {
               />
               <div className="form-content">
                 <h2 className="form-title">Data Pemesanan:</h2>
-                <form onSubmit={handleSubmit} className="checkout-form">
+                <form className="checkout-form">
+                  {" "}
+                  {/* Remove onSubmit */}
                   <input
                     type="email"
                     name="email"
@@ -67,14 +95,20 @@ const ModalForm = () => {
                     onChange={handleChange}
                     required
                   />
+                  {formErrors.email && (
+                    <p className="error">{formErrors.email}</p>
+                  )}
                   <input
-                    type="text"
+                    type="name"
                     name="name"
                     placeholder="Nama"
                     value={formData.name}
                     onChange={handleChange}
                     required
                   />
+                  {formErrors.name && (
+                    <p className="error">{formErrors.name}</p>
+                  )}
                   <input
                     type="text"
                     name="whatsapp"
@@ -83,6 +117,9 @@ const ModalForm = () => {
                     onChange={handleChange}
                     required
                   />
+                  {formErrors.whatsapp && (
+                    <p className="error">{formErrors.whatsapp}</p>
+                  )}
                   <div className="order-summary">
                     <p>Item: {formData.item}</p>
                     <p>
@@ -94,9 +131,10 @@ const ModalForm = () => {
                     download dalam email yang telah kamu masukkan.
                   </p>
                   <button
-                    type="submit"
+                    type="button" // Important: Change to button
                     className="submit-button"
-                    onClick={() => checkout(formData)}>
+                    onClick={handleCheckout} // Call handleCheckout
+                  >
                     Pilih Pembayaran
                   </button>
                 </form>
