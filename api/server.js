@@ -412,6 +412,19 @@ app.post("/biodata", (req, res) => {
   });
 });
 
+app.delete("/biodata/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM biodata WHERE id = ?";
+
+  db.query(sql, [id], (err) => {
+    if (err) {
+      console.error("❌ Error deleting biodata:", err);
+      return res.status(500).json({ error: "Gagal menghapus data biodata." });
+    }
+    res.status(200).json({ message: "Data biodata berhasil dihapus." });
+  });
+});
+
 app.get("/biodata/count", (req, res) => {
   const sql = "SELECT COUNT(*) AS count FROM biodata";
 

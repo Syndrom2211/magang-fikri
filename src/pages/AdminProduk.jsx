@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import SideBarComponent from "../components/SideBarComponent";
 import MainHeader from "../components/MainHeader";
@@ -39,6 +39,19 @@ const AdminProduk = () => {
     fetchTransactions();
   }, [product]);
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/biodata/${id}`);
+      // Update state transactions by filtering out the deleted transaction
+      setTransactions((prevTransactions) =>
+        prevTransactions.filter((transaction) => transaction.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting transaction:", error);
+      setError("Gagal menghapus transaksi. Silakan coba lagi.");
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -64,6 +77,7 @@ const AdminProduk = () => {
                 <th>No. Telp</th>
                 <th>Waktu Transaksi</th>
                 <th>Jumlah Transaksi</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -89,6 +103,14 @@ const AdminProduk = () => {
                       )}
                     </td>
                     <td>{transaction.price}</td>
+                    <td>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        onClick={() => handleDelete(transaction.id)}>
+                        Hapus
+                      </Button>
+                    </td>
                   </tr>
                 ))
               ) : (
