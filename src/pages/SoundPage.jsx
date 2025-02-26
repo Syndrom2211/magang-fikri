@@ -41,9 +41,9 @@ const SoundPage = ({ language }) => {
               className="img-fluid rounded shadow-lg"
               alt="Create"
             />
-            <button className="btn btn-outline-warning mt-3 w-75">
-              {soundEffectSectionData[language].buttons.create}
-            </button>
+            <div className="custom-container mt-3 w-75 text-center py-2">
+              {soundEffectSectionData[language].div.create}
+            </div>
           </Col>
           <Col md={3} className="d-flex flex-column align-items-center">
             <img
@@ -51,19 +51,19 @@ const SoundPage = ({ language }) => {
               className="img-fluid rounded shadow-lg"
               alt="Process"
             />
-            <button className="btn btn-outline-warning mt-3 w-75">
-              {soundEffectSectionData[language].buttons.process}
-            </button>
+            <div className="custom-container mt-3 w-75 text-center py-2">
+              {soundEffectSectionData[language].div.process}
+            </div>
           </Col>
-          <Col md={3} className="d-flex flex-column align-items-center">
+          <Col md={3} className="d-flex flex-column align-items-center">  
             <img
               src={pict3}
               className="img-fluid rounded shadow-lg"
               alt="Result"
             />
-            <button className="btn btn-outline-warning mt-3 w-75">
-              {soundEffectSectionData[language].buttons.result}
-            </button>
+            <div className="custom-container mt-3 w-75 text-center py-2">
+              {soundEffectSectionData[language].div.result}
+            </div>
           </Col>
         </Row>
 
@@ -71,7 +71,7 @@ const SoundPage = ({ language }) => {
         <Row className="justify-content-center mt-5">
           <Col md={6} className="d-flex justify-content-center">
             <button
-              className="btn btn-warning px-4 py-2 text-dark fw-bold"
+              className="btn btn-warning px-5 py- text-dark fw-bold"
               onClick={scrollToPriceList}
             >
               {soundEffectSectionData[language].buttons.mainButton}

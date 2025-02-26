@@ -257,19 +257,23 @@ export const instrumentSectionData = {
 export const soundEffectSectionData = {
   ID: {
     title: `Buat <span class="span">Sound Effect </span> yang Meningkatkan Karya Musikmu`,
-    buttons: {
+    div: {
       create: "BUAT",
       process: "PROSES",
       result: "HASIL",
+    },
+    buttons: {
       mainButton: "BUAT SEKARANG",
     },
   },
   EN: {
     title: `Create <span class="span">Sound Effects </span> that Enhance Your Music`,
-    buttons: {
+    div: {
       create: "CREATE",
       process: "PROCESS",
       result: "RESULT",
+    },
+    buttons: {
       mainButton: "CREATE YOURS",
     },
   },
