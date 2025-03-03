@@ -111,17 +111,9 @@ function App() {
         />
 
         {/* Tabel Footer */}
-<<<<<<< HEAD
-        <Route
-          path="/adminfooter"
-          element={<AdminFooterTable language={language} />}
-        />
-=======
         <Route path="/adminfooter" element={<AdminFooterTable />} />
-
->>>>>>> 3d61374055352ed7bab65ae3b72331721974f379
       </Routes>
-      
+
       {/* Display Footer only for public pages */}
       {!hideNavbarFooter && <CboxChat />}
 
