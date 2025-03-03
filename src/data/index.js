@@ -508,113 +508,113 @@ export const creativeMusicHubData = {
   },
 };
 
-export const judulfaq = {
-  ID: { name: "Pertanyaan yang Sering Diajukan" },
-  EN: { name: "Frequently Asked Questions" },
-};
+// export const judulfaq = {
+//   ID: { name: "Pertanyaan yang Sering Diajukan" },
+//   EN: { name: "Frequently Asked Questions" },
+// };
 
-export const faq = {
-  ID: [
-    {
-      id: 1,
-      eventKey: 0,
-      title: "Apa itu CMH dan bagaimana cara kerjanya?",
-      desc: "CreativeMusicHub (CMH) adalah platform untuk menciptakan musik dengan bantuan AI. Pengguna dapat mengunggah lirik, memilih genre, dan mendapatkan lagu yang dibuat secara otomatis.",
-    },
-    {
-      id: 2,
-      eventKey: 1,
-      title: "Apakah saya perlu keahlian musik untuk menggunakan CMH?",
-      desc: "Tidak perlu! CMH dirancang untuk semua orang, baik pemula maupun profesional. Teknologi AI kami akan membantu dalam proses pembuatan musik.",
-    },
-    {
-      id: 3,
-      eventKey: 2,
-      title: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
-      desc: "CMH mendukung berbagai genre musik seperti pop, rock, jazz, EDM, dan masih banyak lagi.",
-    },
-    {
-      id: 4,
-      eventKey: 3,
-      title: "Bagaimana cara mengubah lirik menjadi lagu?",
-      desc: "Anda hanya perlu mengunggah lirik, memilih genre, dan CMH akan secara otomatis menghasilkan musik yang sesuai dengan lirik tersebut.",
-    },
-    {
-      id: 5,
-      eventKey: 4,
-      title: "Apakah saya bisa memilih genre musik tertentu?",
-      desc: "Ya! CMH menyediakan berbagai pilihan genre musik yang dapat Anda pilih sesuai dengan preferensi Anda.",
-    },
-    {
-      id: 6,
-      eventKey: 5,
-      title: "Berapa lama waktu yang dibutuhkan untuk membuat musik?",
-      desc: "Proses pembuatan musik biasanya memakan waktu beberapa menit, tergantung pada kompleksitas lirik dan pemilihan instrumen.",
-    },
-    {
-      id: 7,
-      eventKey: 6,
-      title: "Apakah musik yang dihasilkan bisa digunakan secara komersial?",
-      desc: "Ya, musik yang dihasilkan melalui CMH bisa digunakan secara komersial. Namun, pastikan untuk membaca ketentuan penggunaan terlebih dahulu.",
-    },
-    {
-      id: 8,
-      eventKey: 7,
-      title: "Bagaimana jika saya mengalami masalah saat membuat musik?",
-      desc: "Anda dapat menghubungi tim dukungan kami melalui email atau WhatsApp yang tersedia di halaman kontak.",
-    },
-  ],
-  EN: [
-    {
-      id: 1,
-      eventKey: 0,
-      title: "What is CMH and how does it work?",
-      desc: "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
-    },
-    {
-      id: 2,
-      eventKey: 1,
-      title: "Do I need musical skills to use CMH?",
-      desc: "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
-    },
-    {
-      id: 3,
-      eventKey: 2,
-      title: "What types of music can be created with CMH?",
-      desc: "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
-    },
-    {
-      id: 4,
-      eventKey: 3,
-      title: "How do I turn lyrics into a song?",
-      desc: "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
-    },
-    {
-      id: 5,
-      eventKey: 4,
-      title: "Can I choose a specific music genre?",
-      desc: "Yes! CMH offers various genre options that you can choose based on your preference.",
-    },
-    {
-      id: 6,
-      eventKey: 5,
-      title: "How long does it take to create music?",
-      desc: "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
-    },
-    {
-      id: 7,
-      eventKey: 6,
-      title: "Can the generated music be used commercially?",
-      desc: "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
-    },
-    {
-      id: 8,
-      eventKey: 7,
-      title: "What if I encounter issues while creating music?",
-      desc: "You can contact our support team via email or WhatsApp, available on the contact page.",
-    },
-  ],
-};
+// export const faq = {
+//   ID: [
+//     {
+//       id: 1,
+//       eventKey: 0,
+//       title: "Apa itu CMH dan bagaimana cara kerjanya?",
+//       desc: "CreativeMusicHub (CMH) adalah platform untuk menciptakan musik dengan bantuan AI. Pengguna dapat mengunggah lirik, memilih genre, dan mendapatkan lagu yang dibuat secara otomatis.",
+//     },
+//     {
+//       id: 2,
+//       eventKey: 1,
+//       title: "Apakah saya perlu keahlian musik untuk menggunakan CMH?",
+//       desc: "Tidak perlu! CMH dirancang untuk semua orang, baik pemula maupun profesional. Teknologi AI kami akan membantu dalam proses pembuatan musik.",
+//     },
+//     {
+//       id: 3,
+//       eventKey: 2,
+//       title: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
+//       desc: "CMH mendukung berbagai genre musik seperti pop, rock, jazz, EDM, dan masih banyak lagi.",
+//     },
+//     {
+//       id: 4,
+//       eventKey: 3,
+//       title: "Bagaimana cara mengubah lirik menjadi lagu?",
+//       desc: "Anda hanya perlu mengunggah lirik, memilih genre, dan CMH akan secara otomatis menghasilkan musik yang sesuai dengan lirik tersebut.",
+//     },
+//     {
+//       id: 5,
+//       eventKey: 4,
+//       title: "Apakah saya bisa memilih genre musik tertentu?",
+//       desc: "Ya! CMH menyediakan berbagai pilihan genre musik yang dapat Anda pilih sesuai dengan preferensi Anda.",
+//     },
+//     {
+//       id: 6,
+//       eventKey: 5,
+//       title: "Berapa lama waktu yang dibutuhkan untuk membuat musik?",
+//       desc: "Proses pembuatan musik biasanya memakan waktu beberapa menit, tergantung pada kompleksitas lirik dan pemilihan instrumen.",
+//     },
+//     {
+//       id: 7,
+//       eventKey: 6,
+//       title: "Apakah musik yang dihasilkan bisa digunakan secara komersial?",
+//       desc: "Ya, musik yang dihasilkan melalui CMH bisa digunakan secara komersial. Namun, pastikan untuk membaca ketentuan penggunaan terlebih dahulu.",
+//     },
+//     {
+//       id: 8,
+//       eventKey: 7,
+//       title: "Bagaimana jika saya mengalami masalah saat membuat musik?",
+//       desc: "Anda dapat menghubungi tim dukungan kami melalui email atau WhatsApp yang tersedia di halaman kontak.",
+//     },
+//   ],
+//   EN: [
+//     {
+//       id: 1,
+//       eventKey: 0,
+//       title: "What is CMH and how does it work?",
+//       desc: "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
+//     },
+//     {
+//       id: 2,
+//       eventKey: 1,
+//       title: "Do I need musical skills to use CMH?",
+//       desc: "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
+//     },
+//     {
+//       id: 3,
+//       eventKey: 2,
+//       title: "What types of music can be created with CMH?",
+//       desc: "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
+//     },
+//     {
+//       id: 4,
+//       eventKey: 3,
+//       title: "How do I turn lyrics into a song?",
+//       desc: "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
+//     },
+//     {
+//       id: 5,
+//       eventKey: 4,
+//       title: "Can I choose a specific music genre?",
+//       desc: "Yes! CMH offers various genre options that you can choose based on your preference.",
+//     },
+//     {
+//       id: 6,
+//       eventKey: 5,
+//       title: "How long does it take to create music?",
+//       desc: "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
+//     },
+//     {
+//       id: 7,
+//       eventKey: 6,
+//       title: "Can the generated music be used commercially?",
+//       desc: "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
+//     },
+//     {
+//       id: 8,
+//       eventKey: 7,
+//       title: "What if I encounter issues while creating music?",
+//       desc: "You can contact our support team via email or WhatsApp, available on the contact page.",
+//     },
+//   ],
+// };
 
 // Product Descriptions
 export const productDescriptions = {

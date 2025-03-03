@@ -118,16 +118,18 @@ const createDatabaseAndTable = () => {
 
     // Membuat tabel FAQ jika belum ada
     const createTableQuery_faq = `
-            CREATE TABLE IF NOT EXISTS faq (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                question TEXT NOT NULL,
-                answer TEXT NOT NULL,
-                category VARCHAR(255),
-                status ENUM('Published', 'Draft', 'Archived') DEFAULT 'Draft',
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-            );
-        `;
+  CREATE TABLE IF NOT EXISTS faq (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question_id VARCHAR(255),
+    answer_id VARCHAR(255),
+    question_en VARCHAR(255),
+    answer_en TEXT NOT NULL,
+    category VARCHAR(255),
+    status ENUM('Published', 'Draft', 'Archived') DEFAULT 'Draft',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  );
+`;
 
     db.query(createTableQuery_faq, (err) => {
       if (err) {
@@ -135,6 +137,119 @@ const createDatabaseAndTable = () => {
         return;
       }
       console.log("✅ FAQ table created or already exists");
+
+      // Isi data default jika tabel kosong
+      db.query("SELECT COUNT(*) FROM faq", (err, results) => {
+        if (err) {
+          console.error("❌ Error checking FAQ table count:", err);
+          return;
+        }
+
+        if (results[0]["COUNT(*)"] === 0) {
+          const defaultFaqs = [
+            {
+              question_id: "Apa itu CMH dan bagaimana cara kerjanya?",
+              answer_id:
+                "CreativeMusicHub (CMH) adalah platform untuk menciptakan musik dengan bantuan AI. Pengguna dapat mengunggah lirik, memilih genre, dan mendapatkan lagu yang dibuat secara otomatis.",
+              question_en: "What is CMH and how does it work?",
+              answer_en:
+                "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
+              category: "General",
+            },
+            {
+              question_id:
+                "Apakah saya perlu keahlian musik untuk menggunakan CMH?",
+              answer_id:
+                "Tidak perlu! CMH dirancang untuk semua orang, baik pemula maupun profesional. Teknologi AI kami akan membantu dalam proses pembuatan musik.",
+              question_en: "Do I need musical skills to use CMH?",
+              answer_en:
+                "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
+              category: "General",
+            },
+            {
+              question_id: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
+              answer_id:
+                "CMH mendukung berbagai genre musik seperti pop, rock, jazz, EDM, dan masih banyak lagi.",
+              question_en: "What types of music can be created with CMH?",
+              answer_en:
+                "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
+              category: "Features",
+            },
+            {
+              question_id: "Bagaimana cara mengubah lirik menjadi lagu?",
+              answer_id:
+                "Anda hanya perlu mengunggah lirik, memilih genre, dan CMH akan secara otomatis menghasilkan musik yang sesuai dengan lirik tersebut.",
+              question_en: "How do I turn lyrics into a song?",
+              answer_en:
+                "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
+              category: "Features",
+            },
+            {
+              question_id: "Apakah saya bisa memilih genre musik tertentu?",
+              answer_id:
+                "Ya! CMH menyediakan berbagai pilihan genre musik yang dapat Anda pilih sesuai dengan preferensi Anda.",
+              question_en: "Can I choose a specific music genre?",
+              answer_en:
+                "Yes! CMH offers various genre options that you can choose based on your preference.",
+              category: "Features",
+            },
+            {
+              question_id:
+                "Berapa lama waktu yang dibutuhkan untuk membuat musik?",
+              answer_id:
+                "Proses pembuatan musik biasanya memakan waktu beberapa menit, tergantung pada kompleksitas lirik dan pemilihan instrumen.",
+              question_en: "How long does it take to create music?",
+              answer_en:
+                "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
+              category: "General",
+            },
+            {
+              question_id:
+                "Apakah musik yang dihasilkan bisa digunakan secara komersial?",
+              answer_id:
+                "Ya, musik yang dihasilkan melalui CMH bisa digunakan secara komersial. Namun, pastikan untuk membaca ketentuan penggunaan terlebih dahulu.",
+              question_en: "Can the generated music be used commercially?",
+              answer_en:
+                "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
+              category: "Legal",
+            },
+            {
+              question_id:
+                "Bagaimana jika saya mengalami masalah saat membuat musik?",
+              answer_id:
+                "Anda dapat menghubungi tim dukungan kami melalui email atau WhatsApp yang tersedia di halaman kontak.",
+              question_en: "What if I encounter issues while creating music?",
+              answer_en:
+                "You can contact our support team via email or WhatsApp, available on the contact page.",
+              category: "Support",
+            },
+          ];
+
+          defaultFaqs.forEach((faq) => {
+            const insertQuery = `
+          INSERT INTO faq (question_id, answer_id, question_en, answer_en, category)
+          VALUES (?, ?, ?, ?, ?)
+        `;
+            db.query(
+              insertQuery,
+              [
+                faq.question_id,
+                faq.answer_id,
+                faq.question_en,
+                faq.answer_en,
+                faq.category,
+              ],
+              (insertErr) => {
+                if (insertErr) {
+                  console.error("❌ Error inserting default FAQ:", insertErr);
+                } else {
+                  console.log("✅ Default FAQ inserted successfully");
+                }
+              }
+            );
+          });
+        }
+      });
     });
 
     // Membuat tabel header jika belum ada
@@ -156,6 +271,22 @@ const createDatabaseAndTable = () => {
         console.error("❌ Error creating header table:", err);
       } else {
         console.log("✅ Header table created or already exists");
+      }
+    });
+
+    // Fungsi untuk membuat tabel footer jika belum ada
+    const createFooterTable = `
+      CREATE TABLE IF NOT EXISTS footer (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255),
+        subtitle TEXT
+      )
+    `;
+    db.query(createFooterTable, (err) => {
+      if (err) {
+        console.error("❌ Error creating Footer table:", err);
+      } else {
+        console.log("✅ Footer table created or already exists");
       }
     });
 
@@ -379,6 +510,36 @@ app.delete("/headers/:id", (req, res) => {
     }
     res.status(200).json({ message: "Header deleted successfully" });
   });
+});
+
+// Endpoint untuk mengambil data footer
+app.get("/footers", async (req, res) => {
+  try {
+    const [rows] = await db.promise().query("SELECT * FROM footer"); // Ganti 'footer' dengan nama tabel footer Anda
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching footer data:", error);
+    res.status(500).json({ error: "Failed to fetch footer data" });
+  }
+});
+
+// Endpoint untuk memperbarui data footer
+app.put("/footers/:id", async (req, res) => {
+  const { id } = req.params;
+  const { title, subtitle } = req.body;
+  try {
+    await db
+      .promise()
+      .query("UPDATE footer SET title = ?, subtitle = ? WHERE id = ?", [
+        title,
+        subtitle,
+        id,
+      ]); // Ganti 'footer' dengan nama tabel footer Anda
+    res.json({ message: "Footer updated successfully" });
+  } catch (error) {
+    console.error("Error updating footer data:", error);
+    res.status(500).json({ error: "Failed to update footer data" });
+  }
 });
 
 // Endpoint untuk mengambil data portfolio
