@@ -4,6 +4,7 @@ import { useState } from "react";
 import NavbarComponent from "./components/NavbarComponent";
 import FaqUserComponent from "./components/FaqUserComponent";
 import FooterComponent from "./components/FooterComponent";
+import CboxChat from "./components/CboxChat";
 
 import HomePage from "./pages/homePage";
 import SupportPage from "./pages/SupportPage";
@@ -110,11 +111,19 @@ function App() {
         />
 
         {/* Tabel Footer */}
+<<<<<<< HEAD
         <Route
           path="/adminfooter"
           element={<AdminFooterTable language={language} />}
         />
+=======
+        <Route path="/adminfooter" element={<AdminFooterTable />} />
+
+>>>>>>> 3d61374055352ed7bab65ae3b72331721974f379
       </Routes>
+      
+      {/* Display Footer only for public pages */}
+      {!hideNavbarFooter && <CboxChat />}
 
       {/* Display FAQ for users on all public routes */}
       {isPublicRoute && <FaqUserComponent language={language} />}

@@ -16,6 +16,7 @@ import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
+import Disqus from "../components/Disqus";
 
 // Import Swiper styles
 import "swiper/css";
@@ -222,6 +223,7 @@ const HomePage = ({ language }) => {
           </Row>
         </Container>
       </div>
+      {/* <Disqus/> */}
     </div>
   );
 };
