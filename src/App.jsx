@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import NavbarComponent from "./components/NavbarComponent";
 import FooterComponent from "./components/FooterComponent";
+import CboxChat from "./components/CboxChat";
 
 import HomePage from "./pages/homePage";
 import SupportPage from "./pages/SupportPage";
@@ -88,10 +89,11 @@ function App() {
 
         {/* Tabel Footer */}
         <Route path="/adminfooter" element={<AdminFooterTable />} />
+
       </Routes>
-
+      
       {/* Display Footer only for public pages */}
-
+      {!hideNavbarFooter && <CboxChat />}
       {!hideNavbarFooter && <FooterComponent language={language} />}
     </div>
   );

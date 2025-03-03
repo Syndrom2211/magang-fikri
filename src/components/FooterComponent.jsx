@@ -22,7 +22,7 @@ const FooterComponent = ({language}) => {
         window.open(socialLinks.website, '_blank');
         break;
       case 'email':
-        window.location.href = `mailto:${socialLinks.email}`;
+        window.location.href = 'mailto:${socialLinks.email}';
         break;
       default:
         break;
@@ -37,13 +37,25 @@ const FooterComponent = ({language}) => {
       .then(response => {
         setVisitors(response.data.count);
         
-        if (!hasIncremented.current && window.location.origin === "http://localhost:5173" && window.location.pathname === "/"){
+        if (!hasIncremented.current && window.location.origin === "http://localhost:5173" && window.location.pathname === "/") {
           axios.post("http://localhost:1000/visitors");
-          hasIncremented.current = true; // Tandai bahwa sudah ditambah
+          hasIncremented.current = true;
         }
+  
+        // Tunggu widget Elfsight load sebelum mengupdate angka
+        setTimeout(() => {
+          const counterWidget = document.querySelector(".elfsight-app-954f2dc6-9353-4086-83d2-32455852907f");
+          if (counterWidget) {
+            const counterText = counterWidget.querySelector("span"); // Sesuaikan dengan struktur widget
+            if (counterText) {
+              counterText.textContent = response.data.count; // Update angka widget
+            }
+          }
+        }, 2000); // Delay 2 detik agar widget muncul dulu
       })
       .catch(error => console.error("Error fetching visitor count:", error));
   }, []);
+  
 
   return (
     <div className="footer">
@@ -100,6 +112,8 @@ const FooterComponent = ({language}) => {
         <h5 className="fw-light">
           {creativeMusicHubData[language].visitorsLabel}: <span className="pengunjung">{visitors}</span>
         </h5>
+        <div 
+          className="elfsight-app-954f2dc6-9353-4086-83d2-32455852907f" data-elfsight-app-lazy data-elfsight-counter-value={visitors}   ></div>
       </Col>
       </Row>
         <Row>
