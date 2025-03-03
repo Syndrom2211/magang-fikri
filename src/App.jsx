@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 import NavbarComponent from "./components/NavbarComponent";
+import FaqUserComponent from "./components/FaqUserComponent"; 
 import FooterComponent from "./components/FooterComponent";
 import CboxChat from "./components/CboxChat";
 
@@ -27,6 +28,16 @@ function App() {
   const location = useLocation();
   const [language, setLanguage] = useState("ID");
 
+  // Define public routes where FAQ for users should be displayed
+  const publicRoutes = [
+    "/",
+    "/support",
+    "/portfolio",
+    "/musik-lyric",
+    "/musik-instrument",
+    "/sound-effect",
+  ];
+
   const isAdminPage =
     (location.pathname.startsWith("/admin") &&
       location.pathname !== "/admin/login") ||
@@ -38,6 +49,9 @@ function App() {
     isAdminPage ||
     location.pathname === "/checkout" ||
     location.pathname === "/admin/login";
+
+  // Check if the current route is a public route
+  const isPublicRoute = publicRoutes.includes(location.pathname);
 
   return (
     <div>
@@ -94,6 +108,11 @@ function App() {
       
       {/* Display Footer only for public pages */}
       {!hideNavbarFooter && <CboxChat />}
+
+      {/* Display FAQ for users on all public routes */}
+      {isPublicRoute && <FaqUserComponent language={language} />}
+
+      {/* Display Footer only for public pages */}
       {!hideNavbarFooter && <FooterComponent language={language} />}
     </div>
   );
