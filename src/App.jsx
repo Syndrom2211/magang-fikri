@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 import NavbarComponent from "./components/NavbarComponent";
-import FaqUserComponent from "./components/FaqUserComponent"; 
+import FaqUserComponent from "./components/FaqUserComponent";
 import FooterComponent from "./components/FooterComponent";
 
 import HomePage from "./pages/homePage";
@@ -88,20 +88,32 @@ function App() {
         />
 
         {/* Admin Dashboard and Pages */}
-        <Route path="/admin/*" element={<Dashboard />} />
-        <Route path="/admin/faq" element={<FaqPage />} />
+        <Route path="/admin/*" element={<Dashboard language={language} />} />
+        <Route path="/admin/faq" element={<FaqPage language={language} />} />
 
         {/* Tabel Portofolio */}
-        <Route path="/tabelportofolio" element={<TabelPortofolio />} />
+        <Route
+          path="/tabelportofolio"
+          element={<TabelPortofolio language={language} />}
+        />
 
         {/* Tabel Produk */}
-        <Route path="/admin/produk/:product" element={<AdminProduk />} />
+        <Route
+          path="/admin/produk/:product"
+          element={<AdminProduk language={language} />}
+        />
 
         {/* Tabel Header */}
-        <Route path="/adminheader" element={<AdminHeaderTable />} />
+        <Route
+          path="/adminheader"
+          element={<AdminHeaderTable language={language} />}
+        />
 
         {/* Tabel Footer */}
-        <Route path="/adminfooter" element={<AdminFooterTable />} />
+        <Route
+          path="/adminfooter"
+          element={<AdminFooterTable language={language} />}
+        />
       </Routes>
 
       {/* Display FAQ for users on all public routes */}

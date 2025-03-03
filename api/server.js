@@ -137,6 +137,28 @@ const createDatabaseAndTable = () => {
       console.log("✅ FAQ table created or already exists");
     });
 
+    // Membuat tabel header jika belum ada
+    const createHeaderTableQuery = `
+    CREATE TABLE IF NOT EXISTS header (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        position VARCHAR(255) NOT NULL,
+        content_en VARCHAR(255) NOT NULL,
+        content_id VARCHAR(255) NOT NULL,
+        path VARCHAR(255) NOT NULL,
+        parent_id INT DEFAULT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )
+`;
+
+    db.query(createHeaderTableQuery, (err) => {
+      if (err) {
+        console.error("❌ Error creating header table:", err);
+      } else {
+        console.log("✅ Header table created or already exists");
+      }
+    });
+
     const createPortfoliosTableQuery = `
         CREATE TABLE IF NOT EXISTS portfolios (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -289,6 +311,73 @@ app.post("/visitors", (req, res) => {
   db.query("UPDATE visitors SET count = count + 1", (err) => {
     if (err) throw err;
     res.json({ message: "Visitor count updated" });
+  });
+});
+
+app.get("/headers", async (req, res) => {
+  try {
+    const [results] = await db
+      .promise()
+      .query("SELECT * FROM header ORDER BY position, parent_id");
+
+    console.log("✅ Headers Fetched:", results);
+
+    res.status(200).json(results); // Mengembalikan daftar datar
+  } catch (err) {
+    console.error("❌ Error fetching headers:", err);
+    res.status(500).json({ error: "Failed to fetch headers" });
+  }
+});
+
+// Endpoint untuk menambahkan header baru
+app.post("/headers", (req, res) => {
+  const { position, content_en, content_id, path, parent_id } = req.body;
+  const sql =
+    "INSERT INTO header (position, content_en, content_id, path, parent_id) VALUES (?, ?, ?, ?, ?)";
+  db.query(
+    sql,
+    [position, content_en, content_id, path, parent_id],
+    (err, result) => {
+      if (err) {
+        console.error("❌ Error creating header:", err);
+        return res.status(500).json({ error: "Failed to create header" });
+      }
+      res
+        .status(201)
+        .json({ message: "Header created successfully", id: result.insertId });
+    }
+  );
+});
+
+// Endpoint untuk mengupdate header
+app.put("/headers/:id", (req, res) => {
+  const { position, content_en, content_id, path, parent_id } = req.body;
+  const { id } = req.params;
+  const sql =
+    "UPDATE header SET position = ?, content_en = ?, content_id = ?, path = ?, parent_id = ? WHERE id = ?";
+  db.query(
+    sql,
+    [position, content_en, content_id, path, parent_id, id],
+    (err) => {
+      if (err) {
+        console.error("❌ Error updating header:", err);
+        return res.status(500).json({ error: "Failed to update header" });
+      }
+      res.status(200).json({ message: "Header updated successfully" });
+    }
+  );
+});
+
+// Endpoint untuk menghapus header
+app.delete("/headers/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM header WHERE id = ?";
+  db.query(sql, [id], (err) => {
+    if (err) {
+      console.error("❌ Error deleting header:", err);
+      return res.status(500).json({ error: "Failed to delete header" });
+    }
+    res.status(200).json({ message: "Header deleted successfully" });
   });
 });
 
