@@ -252,26 +252,127 @@ const createDatabaseAndTable = () => {
       });
     });
 
-    // Membuat tabel header jika belum ada
-    const createHeaderTableQuery = `
-    CREATE TABLE IF NOT EXISTS header (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        position VARCHAR(255) NOT NULL,
-        content_en VARCHAR(255) NOT NULL,
-        content_id VARCHAR(255) NOT NULL,
-        path VARCHAR(255) NOT NULL,
-        parent_id INT DEFAULT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    )
+    // Fungsi untuk membuat tabel header jika belum ada
+    const createHeaderTable = `
+  CREATE TABLE IF NOT EXISTS headers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    position INT,
+    content_en VARCHAR(255),
+    content_id VARCHAR(255),
+    path VARCHAR(255),
+    parent_id INT NULL
+  );
 `;
 
-    db.query(createHeaderTableQuery, (err) => {
+    db.query(createHeaderTable, (err) => {
       if (err) {
         console.error("❌ Error creating header table:", err);
-      } else {
-        console.log("✅ Header table created or already exists");
+        return;
       }
+      console.log("✅ Header table created or already exists");
+
+      // Isi data default jika tabel kosong
+      db.query("SELECT COUNT(*) FROM headers", (err, results) => {
+        if (err) {
+          console.error("❌ Error checking header table count:", err);
+          return;
+        }
+
+        if (results[0]["COUNT(*)"] === 0) {
+          const defaultHeaders = [
+            {
+              position: 1,
+              content_en: "Home",
+              content_id: "Beranda",
+              path: "/",
+              parent_id: null,
+            },
+            {
+              position: 2,
+              content_en: "Product",
+              content_id: "Produk",
+              path: "/product",
+              parent_id: null,
+            },
+            {
+              position: 3,
+              content_en: "Support",
+              content_id: "Dukungan",
+              path: "/support",
+              parent_id: null,
+            },
+            {
+              position: 4,
+              content_en: "Portfolio",
+              content_id: "Portofolio",
+              path: "/portfolio",
+              parent_id: null,
+            },
+            {
+              position: 1,
+              content_en: "Create Music from Lyrics",
+              content_id: "Buat Musik melalui Lirik",
+              path: "/musik-lyric",
+              parent_id: 2,
+            },
+            {
+              position: 2,
+              content_en: "Create Instrumental Music",
+              content_id: "Buat Musik Instrumen",
+              path: "/musik-instrument",
+              parent_id: 2,
+            },
+            {
+              position: 3,
+              content_en: "Create Sound Effect",
+              content_id: "Buat Efek Suara",
+              path: "/sound-effect",
+              parent_id: 2,
+            },
+            {
+              position: 1,
+              content_en: "Contact Us",
+              content_id: "Hubungi Kami",
+              path: "/support",
+              parent_id: 3,
+            },
+            {
+              position: 2,
+              content_en: "Instagram",
+              content_id: "Instagram",
+              path: "https://www.instagram.com/yukmaridotcom",
+              parent_id: 3,
+            },
+          ];
+
+          defaultHeaders.forEach((header) => {
+            const insertQuery = `
+          INSERT INTO headers (position, content_en, content_id, path, parent_id)
+          VALUES (?, ?, ?, ?, ?)
+        `;
+            db.query(
+              insertQuery,
+              [
+                header.position,
+                header.content_en,
+                header.content_id,
+                header.path,
+                header.parent_id,
+              ],
+              (insertErr) => {
+                if (insertErr) {
+                  console.error(
+                    "❌ Error inserting default header:",
+                    insertErr
+                  );
+                } else {
+                  console.log("✅ Default header inserted successfully");
+                }
+              }
+            );
+          });
+        }
+      });
     });
 
     // Fungsi untuk membuat tabel footer jika belum ada
@@ -559,71 +660,45 @@ app.post("/visitors", (req, res) => {
   });
 });
 
+// Endpoint untuk mengambil data header
 app.get("/headers", async (req, res) => {
   try {
-    const [results] = await db
-      .promise()
-      .query("SELECT * FROM header ORDER BY position, parent_id");
-
-    console.log("✅ Headers Fetched:", results);
-
-    res.status(200).json(results); // Mengembalikan daftar datar
-  } catch (err) {
-    console.error("❌ Error fetching headers:", err);
-    res.status(500).json({ error: "Failed to fetch headers" });
+    const [rows] = await db.promise().query("SELECT * FROM headers");
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching header data:", error);
+    res.status(500).json({ error: "Failed to fetch header data" });
   }
 });
 
-// Endpoint untuk menambahkan header baru
-app.post("/headers", (req, res) => {
+// Endpoint untuk memperbarui data header
+app.put("/headers/:id", async (req, res) => {
+  const { id } = req.params;
   const { position, content_en, content_id, path, parent_id } = req.body;
-  const sql =
-    "INSERT INTO header (position, content_en, content_id, path, parent_id) VALUES (?, ?, ?, ?, ?)";
-  db.query(
-    sql,
-    [position, content_en, content_id, path, parent_id],
-    (err, result) => {
-      if (err) {
-        console.error("❌ Error creating header:", err);
-        return res.status(500).json({ error: "Failed to create header" });
-      }
-      res
-        .status(201)
-        .json({ message: "Header created successfully", id: result.insertId });
-    }
-  );
+  try {
+    await db
+      .promise()
+      .query(
+        "UPDATE headers SET position = ?, content_en = ?, content_id = ?, path = ?, parent_id = ? WHERE id = ?",
+        [position, content_en, content_id, path, parent_id, id]
+      );
+    res.json({ message: "Header updated successfully" });
+  } catch (error) {
+    console.error("Error updating header data:", error);
+    res.status(500).json({ error: "Failed to update header data" });
+  }
 });
 
-// Endpoint untuk mengupdate header
-app.put("/headers/:id", (req, res) => {
-  const { position, content_en, content_id, path, parent_id } = req.body;
+// Endpoint untuk menghapus data header
+app.delete("/headers/:id", async (req, res) => {
   const { id } = req.params;
-  const sql =
-    "UPDATE header SET position = ?, content_en = ?, content_id = ?, path = ?, parent_id = ? WHERE id = ?";
-  db.query(
-    sql,
-    [position, content_en, content_id, path, parent_id, id],
-    (err) => {
-      if (err) {
-        console.error("❌ Error updating header:", err);
-        return res.status(500).json({ error: "Failed to update header" });
-      }
-      res.status(200).json({ message: "Header updated successfully" });
-    }
-  );
-});
-
-// Endpoint untuk menghapus header
-app.delete("/headers/:id", (req, res) => {
-  const { id } = req.params;
-  const sql = "DELETE FROM header WHERE id = ?";
-  db.query(sql, [id], (err) => {
-    if (err) {
-      console.error("❌ Error deleting header:", err);
-      return res.status(500).json({ error: "Failed to delete header" });
-    }
-    res.status(200).json({ message: "Header deleted successfully" });
-  });
+  try {
+    await db.promise().query("DELETE FROM headers WHERE id = ?", [id]);
+    res.json({ message: "Header deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting header data:", error);
+    res.status(500).json({ error: "Failed to delete header data" });
+  }
 });
 
 // Endpoint untuk mengambil data footer
