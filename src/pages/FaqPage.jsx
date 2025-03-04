@@ -8,8 +8,14 @@ import axios from "axios";
 
 const FAQPage = () => {
   const [show, setShow] = useState(false);
-  const [form, setForm] = useState({ id: null, question: "", answer: "" });
-  const [faqs, setFaqs] = useState([]); // State untuk menyimpan data FAQ dari API
+  const [form, setForm] = useState({
+    id: null,
+    question_id: "",
+    answer_id: "",
+    question_en: "",
+    answer_en: "",
+  });
+  const [faqs, setFaqs] = useState([]);
 
   useEffect(() => {
     // Ambil data FAQ dari API saat komponen di-mount
@@ -26,7 +32,15 @@ const FAQPage = () => {
     }
   };
 
-  const handleShow = (faq = { id: null, question: "", answer: "" }) => {
+  const handleShow = (
+    faq = {
+      id: null,
+      question_id: "",
+      answer_id: "",
+      question_en: "",
+      answer_en: "",
+    }
+  ) => {
     setForm(faq);
     setShow(true);
   };
@@ -40,20 +54,22 @@ const FAQPage = () => {
   const handleSubmit = async () => {
     try {
       if (form.id) {
-        // Update FAQ
         await axios.put(`/faq/${form.id}`, form);
       } else {
-        // Tambah FAQ baru
         const response = await axios.post("/faq", form);
-        // Setelah berhasil, tambahkan FAQ baru ke state dan tutup modal
         setFaqs([...faqs, response.data]);
       }
-      fetchFaqs(); // Refresh data FAQ setelah update atau create
+      fetchFaqs();
       setShow(false);
-      setForm({ id: null, question: "", answer: "" }); // Reset form
+      setForm({
+        id: null,
+        question_id: "",
+        answer_id: "",
+        question_en: "",
+        answer_en: "",
+      });
     } catch (error) {
       console.error("Error submitting FAQ:", error);
-      // Handle error
     }
   };
 
@@ -70,10 +86,8 @@ const FAQPage = () => {
   return (
     <div className="dashboard-container">
       <SideBarComponent />
-
       <div className="dashboard-content">
         <MainHeader />
-
         <div className="dashboard-main" style={{ flex: 1, padding: "20px" }}>
           <h2>FAQ Management</h2>
           <Button
@@ -86,8 +100,8 @@ const FAQPage = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Pertanyaan</th>
-                <th>Jawaban</th>
+                <th>Pertanyaan (ID)</th>
+                <th>Jawaban (ID)</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -95,21 +109,19 @@ const FAQPage = () => {
               {faqs.map((faq, index) => (
                 <tr key={faq.id}>
                   <td>{index + 1}</td>
-                  <td>{faq.question}</td>
-                  <td>{faq.answer}</td>
+                  <td>{faq.question_id}</td>
+                  <td>{faq.answer_id}</td>
                   <td>
                     <Button
                       variant="warning"
                       size="sm"
-                      onClick={() => handleShow(faq)} // Kirim data FAQ ke modal
-                    >
+                      onClick={() => handleShow(faq)}>
                       Edit
                     </Button>{" "}
                     <Button
                       variant="danger"
                       size="sm"
-                      onClick={() => handleDelete(faq.id)} // Panggil fungsi delete dengan ID
-                    >
+                      onClick={() => handleDelete(faq.id)}>
                       Hapus
                     </Button>
                   </td>
@@ -117,8 +129,6 @@ const FAQPage = () => {
               ))}
             </tbody>
           </Table>
-
-          {/* Modal untuk menambah atau mengedit FAQ */}
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>{form.id ? "Edit FAQ" : "Tambah FAQ"}</Modal.Title>
@@ -126,30 +136,38 @@ const FAQPage = () => {
             <Modal.Body>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Label>Pertanyaan</Form.Label>
+                  <Form.Label>Pertanyaan (ID)</Form.Label>
                   <Form.Control
                     type="text"
-                    name="question"
-                    value={form.question}
+                    name="question_id"
+                    value={form.question_id}
                     onChange={handleChange}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Jawaban</Form.Label>
+                  <Form.Label>Jawaban (ID)</Form.Label>
                   <Form.Control
                     type="text"
-                    name="answer"
-                    value={form.answer}
+                    name="answer_id"
+                    value={form.answer_id}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                {/* Tambahkan form untuk kategori jika diperlukan */}
                 <Form.Group className="mb-3">
-                  <Form.Label>Kategori</Form.Label>
+                  <Form.Label>Pertanyaan (EN)</Form.Label>
                   <Form.Control
                     type="text"
-                    name="category"
-                    value={form.category}
+                    name="question_en"
+                    value={form.question_en}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Jawaban (EN)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="answer_en"
+                    value={form.answer_en}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -165,7 +183,6 @@ const FAQPage = () => {
             </Modal.Footer>
           </Modal>
         </div>
-
         <MainFooter />
       </div>
     </div>

@@ -1,39 +1,65 @@
 import { Container, Row, Col, Accordion } from "react-bootstrap";
-import { faq, judulfaq } from "../data/index";
-import PropTypes from 'prop-types';
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
 
-const FaqUserComponent = ({ language }) => { // Renamed to FaqUserComponent
+const FaqUserComponent = ({ language }) => {
+  const [faqs, setFaqs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFaqs = async () => {
+      try {
+        const response = await axios.get("/faq");
+        setFaqs(response.data);
+      } catch (error) {
+        console.error("Error fetching FAQs:", error);
+        // Handle error, misalnya dengan menampilkan pesan ke user
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchFaqs();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading FAQs...</div>;
+  }
+
   return (
     <div className="faq">
       <Container>
         <Row>
           <Col>
-            <h2 className="text-center fw-bold">{judulfaq[language].name}</h2>
+            <h2 className="text-center fw-bold">
+              Pertanyaan yang Sering Diajukan
+            </h2>
           </Col>
         </Row>
         <Row className="row-cols-lg-2 row-cols-1 g-4 pt-5">
-          {faq[language].map((data) => {
-            return (
-              <Col key={data.id}>
-                <Accordion className="shadow-sm">
-                  <Accordion.Item eventKey={data.eventKey}>
-                    <Accordion.Header>{data.title}</Accordion.Header>
-                    <Accordion.Body>
-                      {data.desc}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </Col>
-            );
-          })}
+          {faqs.map((data) => (
+            <Col key={data.id}>
+              <Accordion className="shadow-sm">
+                <Accordion.Item eventKey={data.id.toString()}>
+                  <Accordion.Header>
+                    {language === "ID" ? data.question_id : data.question_en}
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    {language === "ID" ? data.answer_id : data.answer_en}
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </Col>
+          ))}
         </Row>
       </Container>
     </div>
   );
 };
 
-FaqUserComponent.propTypes = { 
+FaqUserComponent.propTypes = {
   language: PropTypes.string.isRequired,
 };
 
-export default FaqUserComponent; 
+export default FaqUserComponent;
