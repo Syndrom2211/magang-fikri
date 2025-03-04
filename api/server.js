@@ -252,42 +252,257 @@ const createDatabaseAndTable = () => {
       });
     });
 
-    // Membuat tabel header jika belum ada
-    const createHeaderTableQuery = `
-    CREATE TABLE IF NOT EXISTS header (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        position VARCHAR(255) NOT NULL,
-        content_en VARCHAR(255) NOT NULL,
-        content_id VARCHAR(255) NOT NULL,
-        path VARCHAR(255) NOT NULL,
-        parent_id INT DEFAULT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    )
+    // Fungsi untuk membuat tabel header jika belum ada
+    const createHeaderTable = `
+  CREATE TABLE IF NOT EXISTS headers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    position INT,
+    content_en VARCHAR(255),
+    content_id VARCHAR(255),
+    path VARCHAR(255),
+    parent_id INT NULL
+  );
 `;
 
-    db.query(createHeaderTableQuery, (err) => {
+    db.query(createHeaderTable, (err) => {
       if (err) {
         console.error("❌ Error creating header table:", err);
-      } else {
-        console.log("✅ Header table created or already exists");
+        return;
       }
+      console.log("✅ Header table created or already exists");
+
+      // Isi data default jika tabel kosong
+      db.query("SELECT COUNT(*) FROM headers", (err, results) => {
+        if (err) {
+          console.error("❌ Error checking header table count:", err);
+          return;
+        }
+
+        if (results[0]["COUNT(*)"] === 0) {
+          const defaultHeaders = [
+            {
+              position: 1,
+              content_en: "Home",
+              content_id: "Beranda",
+              path: "/",
+              parent_id: null,
+            },
+            {
+              position: 2,
+              content_en: "Product",
+              content_id: "Produk",
+              path: "/product",
+              parent_id: null,
+            },
+            {
+              position: 3,
+              content_en: "Support",
+              content_id: "Dukungan",
+              path: "/support",
+              parent_id: null,
+            },
+            {
+              position: 4,
+              content_en: "Portfolio",
+              content_id: "Portofolio",
+              path: "/portfolio",
+              parent_id: null,
+            },
+            {
+              position: 1,
+              content_en: "Create Music from Lyrics",
+              content_id: "Buat Musik melalui Lirik",
+              path: "/musik-lyric",
+              parent_id: 2,
+            },
+            {
+              position: 2,
+              content_en: "Create Instrumental Music",
+              content_id: "Buat Musik Instrumen",
+              path: "/musik-instrument",
+              parent_id: 2,
+            },
+            {
+              position: 3,
+              content_en: "Create Sound Effect",
+              content_id: "Buat Efek Suara",
+              path: "/sound-effect",
+              parent_id: 2,
+            },
+            {
+              position: 1,
+              content_en: "Contact Us",
+              content_id: "Hubungi Kami",
+              path: "/support",
+              parent_id: 3,
+            },
+            {
+              position: 2,
+              content_en: "Instagram",
+              content_id: "Instagram",
+              path: "https://www.instagram.com/yukmaridotcom",
+              parent_id: 3,
+            },
+          ];
+
+          defaultHeaders.forEach((header) => {
+            const insertQuery = `
+          INSERT INTO headers (position, content_en, content_id, path, parent_id)
+          VALUES (?, ?, ?, ?, ?)
+        `;
+            db.query(
+              insertQuery,
+              [
+                header.position,
+                header.content_en,
+                header.content_id,
+                header.path,
+                header.parent_id,
+              ],
+              (insertErr) => {
+                if (insertErr) {
+                  console.error(
+                    "❌ Error inserting default header:",
+                    insertErr
+                  );
+                } else {
+                  console.log("✅ Default header inserted successfully");
+                }
+              }
+            );
+          });
+        }
+      });
     });
 
     // Fungsi untuk membuat tabel footer jika belum ada
     const createFooterTable = `
-      CREATE TABLE IF NOT EXISTS footer (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(255),
-        subtitle TEXT
-      )
-    `;
+  CREATE TABLE IF NOT EXISTS footer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    address_id TEXT,
+    phone VARCHAR(20),
+    email VARCHAR(255),
+    instagram_name VARCHAR(255),
+    instagram_link VARCHAR(255),
+    website_name VARCHAR(255),
+    website_link VARCHAR(255),
+    address_en TEXT,
+    product1_name_id VARCHAR(255),
+    product1_link_id VARCHAR(255),
+    product2_name_id VARCHAR(255),
+    product2_link_id VARCHAR(255),
+    product3_name_id VARCHAR(255),
+    product3_link_id VARCHAR(255),
+    product4_name_id VARCHAR(255),
+    product4_link_id VARCHAR(255),
+    product1_name_en VARCHAR(255),
+    product1_link_en VARCHAR(255),
+    product2_name_en VARCHAR(255),
+    product2_link_en VARCHAR(255),
+    product3_name_en VARCHAR(255),
+    product3_link_en VARCHAR(255),
+    product4_name_en VARCHAR(255),
+    product4_link_en VARCHAR(255)
+  );
+`;
+
     db.query(createFooterTable, (err) => {
       if (err) {
-        console.error("❌ Error creating Footer table:", err);
-      } else {
-        console.log("✅ Footer table created or already exists");
+        console.error("❌ Error creating footer table:", err);
+        return;
       }
+      console.log("✅ Footer table created or already exists");
+
+      // Isi data default jika tabel kosong
+      db.query("SELECT COUNT(*) FROM footer", (err, results) => {
+        if (err) {
+          console.error("❌ Error checking footer table count:", err);
+          return;
+        }
+
+        if (results[0]["COUNT(*)"] === 0) {
+          const defaultFooters = [
+            {
+              address_id:
+                "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Kota Bandung, Jawa Barat 40286",
+              phone: "+62 822-9560-3115",
+              email: "yukmari2211@gmail.com",
+              instagram_name: "Instagram",
+              instagram_link: "https://www.instagram.com/yukmaridotcom",
+              website_name: "Website",
+              website_link: "https://www.yuk-mari.com/",
+              address_en:
+                "Komplek Bandung Indah Raya, Block C13/No.17, Mekarjaya Village, Rancasari District, Bandung City, West Java 40286",
+              product1_name_id: "Buat Musik melalui Lyric",
+              product1_link_id: "/musik-lyric",
+              product2_name_id: "Buat Musik Instrumen",
+              product2_link_id: "/musik-instrument",
+              product3_name_id: "Buat Sound Effect",
+              product3_link_id: "/sound-effect",
+              product4_name_id: "Portofolio",
+              product4_link_id: "/portfolio",
+              product1_name_en: "Create Music through Lyrics",
+              product1_link_en: "/musik-lyric",
+              product2_name_en: "Create Instrumental Music",
+              product2_link_en: "/musik-instrument",
+              product3_name_en: "Create Sound Effects",
+              product3_link_en: "/sound-effect",
+              product4_name_en: "Portfolio",
+              product4_link_en: "/portfolio",
+            },
+          ];
+
+          defaultFooters.forEach((footer) => {
+            const insertQuery = `
+          INSERT INTO footer (
+            address_id, phone, email, instagram_name, instagram_link, website_name, website_link,
+            address_en, product1_name_id, product1_link_id, product2_name_id, product2_link_id, product3_name_id, product3_link_id, product4_name_id, product4_link_id,
+            product1_name_en, product1_link_en, product2_name_en, product2_link_en, product3_name_en, product3_link_en, product4_name_en, product4_link_en
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+            db.query(
+              insertQuery,
+              [
+                footer.address_id,
+                footer.phone,
+                footer.email,
+                footer.instagram_name,
+                footer.instagram_link,
+                footer.website_name,
+                footer.website_link,
+                footer.address_en,
+                footer.product1_name_id,
+                footer.product1_link_id,
+                footer.product2_name_id,
+                footer.product2_link_id,
+                footer.product3_name_id,
+                footer.product3_link_id,
+                footer.product4_name_id,
+                footer.product4_link_id,
+                footer.product1_name_en,
+                footer.product1_link_en,
+                footer.product2_name_en,
+                footer.product2_link_en,
+                footer.product3_name_en,
+                footer.product3_link_en,
+                footer.product4_name_en,
+                footer.product4_link_en,
+              ],
+              (insertErr) => {
+                if (insertErr) {
+                  console.error(
+                    "❌ Error inserting default footer:",
+                    insertErr
+                  );
+                } else {
+                  console.log("✅ Default footer inserted successfully");
+                }
+              }
+            );
+          });
+        }
+      });
     });
 
     const createPortfoliosTableQuery = `
@@ -445,77 +660,51 @@ app.post("/visitors", (req, res) => {
   });
 });
 
+// Endpoint untuk mengambil data header
 app.get("/headers", async (req, res) => {
   try {
-    const [results] = await db
-      .promise()
-      .query("SELECT * FROM header ORDER BY position, parent_id");
-
-    console.log("✅ Headers Fetched:", results);
-
-    res.status(200).json(results); // Mengembalikan daftar datar
-  } catch (err) {
-    console.error("❌ Error fetching headers:", err);
-    res.status(500).json({ error: "Failed to fetch headers" });
+    const [rows] = await db.promise().query("SELECT * FROM headers");
+    res.json(rows);
+  } catch (error) {
+    console.error("Error fetching header data:", error);
+    res.status(500).json({ error: "Failed to fetch header data" });
   }
 });
 
-// Endpoint untuk menambahkan header baru
-app.post("/headers", (req, res) => {
+// Endpoint untuk memperbarui data header
+app.put("/headers/:id", async (req, res) => {
+  const { id } = req.params;
   const { position, content_en, content_id, path, parent_id } = req.body;
-  const sql =
-    "INSERT INTO header (position, content_en, content_id, path, parent_id) VALUES (?, ?, ?, ?, ?)";
-  db.query(
-    sql,
-    [position, content_en, content_id, path, parent_id],
-    (err, result) => {
-      if (err) {
-        console.error("❌ Error creating header:", err);
-        return res.status(500).json({ error: "Failed to create header" });
-      }
-      res
-        .status(201)
-        .json({ message: "Header created successfully", id: result.insertId });
-    }
-  );
+  try {
+    await db
+      .promise()
+      .query(
+        "UPDATE headers SET position = ?, content_en = ?, content_id = ?, path = ?, parent_id = ? WHERE id = ?",
+        [position, content_en, content_id, path, parent_id, id]
+      );
+    res.json({ message: "Header updated successfully" });
+  } catch (error) {
+    console.error("Error updating header data:", error);
+    res.status(500).json({ error: "Failed to update header data" });
+  }
 });
 
-// Endpoint untuk mengupdate header
-app.put("/headers/:id", (req, res) => {
-  const { position, content_en, content_id, path, parent_id } = req.body;
+// Endpoint untuk menghapus data header
+app.delete("/headers/:id", async (req, res) => {
   const { id } = req.params;
-  const sql =
-    "UPDATE header SET position = ?, content_en = ?, content_id = ?, path = ?, parent_id = ? WHERE id = ?";
-  db.query(
-    sql,
-    [position, content_en, content_id, path, parent_id, id],
-    (err) => {
-      if (err) {
-        console.error("❌ Error updating header:", err);
-        return res.status(500).json({ error: "Failed to update header" });
-      }
-      res.status(200).json({ message: "Header updated successfully" });
-    }
-  );
-});
-
-// Endpoint untuk menghapus header
-app.delete("/headers/:id", (req, res) => {
-  const { id } = req.params;
-  const sql = "DELETE FROM header WHERE id = ?";
-  db.query(sql, [id], (err) => {
-    if (err) {
-      console.error("❌ Error deleting header:", err);
-      return res.status(500).json({ error: "Failed to delete header" });
-    }
-    res.status(200).json({ message: "Header deleted successfully" });
-  });
+  try {
+    await db.promise().query("DELETE FROM headers WHERE id = ?", [id]);
+    res.json({ message: "Header deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting header data:", error);
+    res.status(500).json({ error: "Failed to delete header data" });
+  }
 });
 
 // Endpoint untuk mengambil data footer
 app.get("/footers", async (req, res) => {
   try {
-    const [rows] = await db.promise().query("SELECT * FROM footer"); // Ganti 'footer' dengan nama tabel footer Anda
+    const [rows] = await db.promise().query("SELECT * FROM footer");
     res.json(rows);
   } catch (error) {
     console.error("Error fetching footer data:", error);
@@ -526,15 +715,65 @@ app.get("/footers", async (req, res) => {
 // Endpoint untuk memperbarui data footer
 app.put("/footers/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, subtitle } = req.body;
+  const {
+    address_id,
+    phone,
+    email,
+    instagram_name,
+    instagram_link,
+    website_name,
+    website_link,
+    address_en,
+    product1_name_id,
+    product1_link_id,
+    product2_name_id,
+    product2_link_id,
+    product3_name_id,
+    product3_link_id,
+    product4_name_id,
+    product4_link_id,
+    product1_name_en,
+    product1_link_en,
+    product2_name_en,
+    product2_link_en,
+    product3_name_en,
+    product3_link_en,
+    product4_name_en,
+    product4_link_en,
+  } = req.body;
   try {
     await db
       .promise()
-      .query("UPDATE footer SET title = ?, subtitle = ? WHERE id = ?", [
-        title,
-        subtitle,
-        id,
-      ]); // Ganti 'footer' dengan nama tabel footer Anda
+      .query(
+        "UPDATE footer SET address_id = ?, phone = ?, email = ?, instagram_name = ?, instagram_link = ?, website_name = ?, website_link = ?, address_en = ?, product1_name_id = ?, product1_link_id = ?, product2_name_id = ?, product2_link_id = ?, product3_name_id = ?, product3_link_id = ?, product4_name_id = ?, product4_link_id = ?, product1_name_en = ?, product1_link_en = ?, product2_name_en = ?, product2_link_en = ?, product3_name_en = ?, product3_link_en = ?, product4_name_en = ?, product4_link_en = ? WHERE id = ?",
+        [
+          address_id,
+          phone,
+          email,
+          instagram_name,
+          instagram_link,
+          website_name,
+          website_link,
+          address_en,
+          product1_name_id,
+          product1_link_id,
+          product2_name_id,
+          product2_link_id,
+          product3_name_id,
+          product3_link_id,
+          product4_name_id,
+          product4_link_id,
+          product1_name_en,
+          product1_link_en,
+          product2_name_en,
+          product2_link_en,
+          product3_name_en,
+          product3_link_en,
+          product4_name_en,
+          product4_link_en,
+          id,
+        ]
+      );
     res.json({ message: "Footer updated successfully" });
   } catch (error) {
     console.error("Error updating footer data:", error);
@@ -542,6 +781,17 @@ app.put("/footers/:id", async (req, res) => {
   }
 });
 
+// Endpoint untuk menghapus data footer
+app.delete("/footers/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await db.promise().query("DELETE FROM footer WHERE id = ?", [id]);
+    res.json({ message: "Footer deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting footer data:", error);
+    res.status(500).json({ error: "Failed to delete footer data" });
+  }
+});
 // Endpoint untuk mengambil data portfolio
 app.get("/portfolios", (req, res) => {
   const sql = "SELECT * FROM portfolios";
