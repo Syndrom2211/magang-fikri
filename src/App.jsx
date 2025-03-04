@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import NavbarComponent from "./components/NavbarComponent";
 import FaqUserComponent from "./components/FaqUserComponent";
@@ -23,10 +23,51 @@ import AdminFooterTable from "./pages/AdminFooter";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:1000";
+axios.defaults.withCredentials = true;
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [language, setLanguage] = useState("ID");
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        const response = await axios.get("/admin/protected");
+        console.log("Protected route response:", response);
+        if (response.status === 200) {
+          console.log("Admin is logged in");
+          setIsAdminLoggedIn(true);
+        }
+      } catch (error) {
+        console.log("Admin is not logged in:", error);
+        setIsAdminLoggedIn(false);
+        if (
+          location.pathname.startsWith("/admin") &&
+          location.pathname !== "/admin/login"
+        ) {
+          navigate("/admin/login");
+        }
+      }
+    };
+    checkLogin();
+  }, [navigate, location.pathname]);
+
+  const handleAdminLogin = () => {
+    console.log("handleAdminLogin called");
+    setIsAdminLoggedIn(true);
+  };
+
+  const handleAdminLogout = async () => {
+    try {
+      await axios.post("/admin/logout");
+      setIsAdminLoggedIn(false);
+      navigate("/admin/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   // Define public routes where FAQ for users should be displayed
   const publicRoutes = [
@@ -85,33 +126,54 @@ function App() {
         {/* Admin Login Page */}
         <Route
           path="/admin/login"
-          element={<AdminLoginPage language={language} />}
+          element={
+            <AdminLoginPage onLogin={handleAdminLogin} language={language} />
+          }
         />
 
         {/* Admin Dashboard and Pages */}
-        <Route path="/admin/*" element={<Dashboard language={language} />} />
-        <Route path="/admin/faq" element={<FaqPage language={language} />} />
+        {isAdminLoggedIn ? (
+          <>
+            <Route
+              path="/admin/*"
+              element={
+                <Dashboard language={language} onLogout={handleAdminLogout} />
+              }
+            />
+            <Route
+              path="/admin/faq"
+              element={<FaqPage language={language} />}
+            />
 
-        {/* Tabel Portofolio */}
-        <Route
-          path="/tabelportofolio"
-          element={<TabelPortofolio language={language} />}
-        />
+            {/* Tabel Portofolio */}
+            <Route
+              path="/tabelportofolio"
+              element={<TabelPortofolio language={language} />}
+            />
 
-        {/* Tabel Produk */}
-        <Route
-          path="/admin/produk/:product"
-          element={<AdminProduk language={language} />}
-        />
+            {/* Tabel Produk */}
+            <Route
+              path="/admin/produk/:product"
+              element={<AdminProduk language={language} />}
+            />
 
-        {/* Tabel Header */}
-        <Route
-          path="/adminheader"
-          element={<AdminHeaderTable language={language} />}
-        />
+            {/* Tabel Header */}
+            <Route
+              path="/adminheader"
+              element={<AdminHeaderTable language={language} />}
+            />
 
-        {/* Tabel Footer */}
-        <Route path="/adminfooter" element={<AdminFooterTable />} />
+            {/* Tabel Footer */}
+            <Route path="/adminfooter" element={<AdminFooterTable />} />
+          </>
+        ) : (
+          <Route
+            path="/admin/*"
+            element={
+              <AdminLoginPage onLogin={handleAdminLogin} language={language} />
+            }
+          />
+        )}
       </Routes>
 
       {/* Display Footer only for public pages */}

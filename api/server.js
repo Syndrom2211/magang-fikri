@@ -5,11 +5,29 @@ import dotenv from "dotenv";
 import mysql from "mysql2";
 import multer, { diskStorage } from "multer";
 import path from "path";
+import session from "express-session";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Sesuaikan dengan origin frontend Anda
+    credentials: true,
+  })
+);
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "admin",
+    resave: true,
+    saveUninitialized: false,
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 }, // Sesuaikan pengaturan cookie
+  })
+);
+
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -594,55 +612,94 @@ const createDatabaseAndTable = () => {
   });
 };
 
-function addAdminUser(username, password, email) {
-  const checkAdminQuery =
-    "SELECT COUNT(*) AS count FROM admin WHERE username = ?";
-  const addAdminQuery =
-    "INSERT INTO admin (username, password, email) VALUES (?, ?, ?)";
+async function checkAdminExists(username) {
+  try {
+    const [result] = await db
+      .promise()
+      .query("SELECT COUNT(*) AS count FROM admin WHERE username = ?", [
+        username,
+      ]);
+    return result[0].count > 0;
+  } catch (err) {
+    console.error("❌ Error checking admin existence:", err);
+    throw err; // Re-throw error untuk penanganan di fungsi lain
+  }
+}
 
-  db.query(checkAdminQuery, [username], (err, result) => {
-    if (err) {
-      console.error("❌ Error checking admin existence:", err);
-      return;
-    }
-
-    const adminExists = result[0].count > 0;
+async function addAdminUser(username, password, email) {
+  try {
+    const adminExists = await checkAdminExists(username);
 
     if (!adminExists) {
-      db.query(addAdminQuery, [username, password, email], (err) => {
-        if (err) {
-          console.error("❌ Error adding admin user:", err);
-          return;
-        }
-        console.log("✅ Admin user added successfully");
-      });
+      await db
+        .promise()
+        .query(
+          "INSERT INTO admin (username, password, email) VALUES (?, ?, ?)",
+          [username, password, email]
+        );
+      console.log("✅ Admin user added successfully");
     } else {
       console.log("⚠️ Admin user already exists, skipping insertion");
     }
-  });
+  } catch (err) {
+    console.error("❌ Error adding admin user:", err);
+    // Tidak perlu re-throw karena error sudah dicatat
+  }
 }
 
 // Jalankan fungsi untuk memastikan database dan tabel ada
 createDatabaseAndTable();
 
-app.post("/admin/login", (req, res) => {
-  const sql = "SELECT * FROM admin WHERE email = ? AND password = ?";
-  const values = [req.body.email, req.body.password];
-
-  db.query(sql, values, (err, data) => {
-    if (err) {
-      console.error("❌ Error during login:", err);
-      return res.json({ status: "error", message: "Login Failed" });
-    }
-    if (data.length > 0) {
-      return res.json({ status: "success", message: "Login successful", data });
+app.post("/admin/login", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const [rows] = await db
+      .promise()
+      .query("SELECT * FROM admin WHERE username = ? AND password = ?", [
+        username,
+        password,
+      ]);
+    if (rows.length > 0) {
+      console.log("Login successful, rows:", rows);
+      console.log("Before setting session:", req.session);
+      req.session.user = { username: rows[0].username };
+      console.log("After setting session:", req.session);
+      res.json({ message: "Login successful" });
     } else {
-      return res.json({
-        status: "error",
-        message: "Invalid email or password",
-      });
+      console.log("Invalid credentials");
+      res.status(401).json({ message: "Invalid credentials" });
     }
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.post("/admin/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Could not log out" });
+    }
+    res.clearCookie("connect.sid");
+    res.json({ message: "Logout successful" });
   });
+});
+
+const requireAdmin = (req, res, next) => {
+  console.log("requireAdmin middleware called");
+  console.log("Session:", req.session);
+  console.log("req.session.user:", req.session.user); // Tambahkan log ini
+  if (req.session.user) {
+    console.log("Admin is authenticated");
+    next();
+  } else {
+    console.log("Admin is not authenticated");
+    res.status(401).json({ message: "Unauthorized" });
+  }
+};
+
+app.get("/admin/protected", requireAdmin, (req, res) => {
+  res.json({ message: "Protected route accessed" });
 });
 
 app.get("/visitors", (req, res) => {
