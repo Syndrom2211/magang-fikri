@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { dataSwiper, portfolioSectionData } from "../data/index";
 import PropTypes from "prop-types";
+import SoundCloudPlayer from "../components/SoundCloudPlayer";
 
 const genres = ["All", "Accoustic", "Dubstep", "Jazz", "Pop", "Progressive", "Sundanese"];
 
@@ -50,11 +51,8 @@ const PortfolioPage = ({ language }) => {
                   <p className="mb-2" style={{ fontSize: "1.2rem" }}>
                     {item.description}
                   </p>
-                  {/* Pemutar Audio */}
-                  <audio controls style={{ width: "100%" }}>
-                    <source src={encodeURI(`/${item.audio}`)} type="audio/mp3" />
-                    Browser Anda tidak mendukung pemutar audio.
-                  </audio>
+                  {/* Replace the <audio> tag with SoundCloudPlayer */}
+                  <SoundCloudPlayer embedUrl={item.audio} />
                 </div>
               </Col>
             ))}
