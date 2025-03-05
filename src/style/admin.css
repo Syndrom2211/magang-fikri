@@ -165,11 +165,13 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 250px; /* Lebar card dibuat compact */
-  height: 150px; /* Ketinggian card dibatasi */
+  width: 300px; /* Lebar card dibuat compact */
+  height: 200px; /* Ketinggian card dibatasi */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+  align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
 }
@@ -180,27 +182,37 @@
 }
 
 .dashboard-card h3 {
-  font-size: 1rem;
+  font-size: 1.8rem;
   margin-bottom: 5px;
+  margin-top: 10px;
   color: #6a1b9a;
 }
 
 .dashboard-card p {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #4a148c;
 }
 
 .dashboard-card::before {
   content: "💰"; /* Bisa ganti ikon lain sesuai kebutuhan */
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   position: absolute;
-  top: 8px;
+  top: 3px;
   right: 12px;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
-
+.chart-container {
+  margin-top: 20px;
+  margin-left: 50px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 1000px;
+}
 
 /* FOOTER */
 footer{

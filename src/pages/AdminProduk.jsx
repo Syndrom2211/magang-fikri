@@ -1,20 +1,24 @@
-import { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import { useState, useEffect, useRef } from "react";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import SideBarComponent from "../components/SideBarComponent";
 import MainHeader from "../components/MainHeader";
 import MainFooter from "../components/MainFooter";
 import "../style/tabelportfolio.css";
 import axios from "axios";
+import $ from "jquery";
+import "datatables.net-bs5"; // Import DataTables Bootstrap 5
+import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 
 const AdminProduk = () => {
-  const { product } = useParams(); // Get the product name from URL parameter
+  const { product } = useParams();
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const tableRef = useRef(null); // Referensi untuk tabel
 
   useEffect(() => {
-    console.log("Product ID:", product); // Cek nilai product
+    console.log("Product ID:", product);
 
     const fetchTransactions = async () => {
       setLoading(true);
@@ -22,7 +26,8 @@ const AdminProduk = () => {
 
       try {
         const response = await axios.get(`/biodata?item_id=${product}`);
-        console.log("Response Data:", response.data); // Cek data dari API
+        console.log("Response Data:", response.data);
+
         if (response.status === 404) {
           setTransactions([]);
         } else {
@@ -39,10 +44,21 @@ const AdminProduk = () => {
     fetchTransactions();
   }, [product]);
 
+  useEffect(() => {
+    if (transactions.length > 0) {
+      // Hapus DataTables jika sudah ada untuk menghindari duplikasi
+      if ($.fn.DataTable.isDataTable(tableRef.current)) {
+        $(tableRef.current).DataTable().destroy();
+      }
+      
+      // Inisialisasi DataTables setelah data tersedia
+      $(tableRef.current).DataTable();
+    }
+  }, [transactions]);
+
   const handleDelete = async (id) => {
     try {
       await axios.delete(`/biodata/${id}`);
-      // Update state transactions by filtering out the deleted transaction
       setTransactions((prevTransactions) =>
         prevTransactions.filter((transaction) => transaction.id !== id)
       );
@@ -67,7 +83,7 @@ const AdminProduk = () => {
         <MainHeader />
         <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
           <h2>Daftar Transaksi: {product}</h2>
-          <Table striped bordered hover className="mt-3">
+          <table ref={tableRef} className="table table-striped table-bordered">
             <thead>
               <tr>
                 <th>ID</th>
@@ -81,7 +97,6 @@ const AdminProduk = () => {
               </tr>
             </thead>
             <tbody>
-              {/* Gunakan conditional rendering untuk menampilkan pesan atau data */}
               {transactions.length > 0 ? (
                 transactions.map((transaction) => (
                   <tr key={transaction.id}>
@@ -107,7 +122,8 @@ const AdminProduk = () => {
                       <Button
                         variant="danger"
                         size="sm"
-                        onClick={() => handleDelete(transaction.id)}>
+                        onClick={() => handleDelete(transaction.id)}
+                      >
                         Hapus
                       </Button>
                     </td>
@@ -115,13 +131,13 @@ const AdminProduk = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={7} style={{ textAlign: "center" }}>
+                  <td colSpan={8} style={{ textAlign: "center" }}>
                     Tidak ada data transaksi untuk produk ini.
                   </td>
                 </tr>
               )}
             </tbody>
-          </Table>
+          </table>
         </div>
         <MainFooter />
       </div>
