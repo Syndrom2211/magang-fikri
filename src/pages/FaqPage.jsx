@@ -14,6 +14,7 @@ const FAQPage = () => {
     answer_id: "",
     question_en: "",
     answer_en: "",
+    status: "Archived",
   });
   const [faqs, setFaqs] = useState([]);
 
@@ -39,6 +40,7 @@ const FAQPage = () => {
       answer_id: "",
       question_en: "",
       answer_en: "",
+      status: "Archived",
     }
   ) => {
     setForm(faq);
@@ -67,6 +69,7 @@ const FAQPage = () => {
         answer_id: "",
         question_en: "",
         answer_en: "",
+        status: "Archived",
       });
     } catch (error) {
       console.error("Error submitting FAQ:", error);
@@ -76,10 +79,9 @@ const FAQPage = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`/faq/${id}`);
-      fetchFaqs(); // Refresh data FAQ setelah delete
+      fetchFaqs();
     } catch (error) {
       console.error("Error deleting FAQ:", error);
-      // Handle error
     }
   };
 
@@ -102,6 +104,9 @@ const FAQPage = () => {
                 <th>#</th>
                 <th>Pertanyaan (ID)</th>
                 <th>Jawaban (ID)</th>
+                <th>Pertanyaan (EN)</th>
+                <th>Jawaban (EN)</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -111,6 +116,9 @@ const FAQPage = () => {
                   <td>{index + 1}</td>
                   <td>{faq.question_id}</td>
                   <td>{faq.answer_id}</td>
+                  <td>{faq.question_en}</td>
+                  <td>{faq.answer_en}</td>
+                  <td>{faq.status}</td>
                   <td>
                     <Button
                       variant="warning"
@@ -170,6 +178,17 @@ const FAQPage = () => {
                     value={form.answer_en}
                     onChange={handleChange}
                   />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Status</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="status"
+                    value={form.status}
+                    onChange={handleChange}>
+                    <option value="Published">Published</option>
+                    <option value="Archived">Archived</option>
+                  </Form.Control>
                 </Form.Group>
               </Form>
             </Modal.Body>

@@ -11,10 +11,13 @@ const FaqUserComponent = ({ language }) => {
     const fetchFaqs = async () => {
       try {
         const response = await axios.get("/faq");
-        setFaqs(response.data);
+        // Filter FAQ berdasarkan status "Published"
+        const publishedFaqs = response.data.filter(
+          (faq) => faq.status === "Published"
+        );
+        setFaqs(publishedFaqs);
       } catch (error) {
         console.error("Error fetching FAQs:", error);
-        // Handle error, misalnya dengan menampilkan pesan ke user
       } finally {
         setIsLoading(false);
       }
@@ -33,7 +36,9 @@ const FaqUserComponent = ({ language }) => {
         <Row>
           <Col>
             <h2 className="text-center fw-bold">
-              Pertanyaan yang Sering Diajukan
+              {language === "ID"
+                ? "Pertanyaan yang Sering Diajukan"
+                : "Frequently Asked Questions"}
             </h2>
           </Col>
         </Row>

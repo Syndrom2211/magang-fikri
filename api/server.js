@@ -127,8 +127,7 @@ const createDatabaseAndTable = () => {
     answer_id VARCHAR(255),
     question_en VARCHAR(255),
     answer_en TEXT NOT NULL,
-    category VARCHAR(255),
-    status ENUM('Published', 'Draft', 'Archived') DEFAULT 'Draft',
+    status ENUM('Published', 'Archived') DEFAULT 'Archived',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   );
@@ -157,7 +156,7 @@ const createDatabaseAndTable = () => {
               question_en: "What is CMH and how does it work?",
               answer_en:
                 "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
-              category: "General",
+              status: "Published",
             },
             {
               question_id:
@@ -167,7 +166,7 @@ const createDatabaseAndTable = () => {
               question_en: "Do I need musical skills to use CMH?",
               answer_en:
                 "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
-              category: "General",
+              status: "Published",
             },
             {
               question_id: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
@@ -176,7 +175,7 @@ const createDatabaseAndTable = () => {
               question_en: "What types of music can be created with CMH?",
               answer_en:
                 "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
-              category: "Features",
+              status: "Published",
             },
             {
               question_id: "Bagaimana cara mengubah lirik menjadi lagu?",
@@ -185,7 +184,7 @@ const createDatabaseAndTable = () => {
               question_en: "How do I turn lyrics into a song?",
               answer_en:
                 "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
-              category: "Features",
+              status: "Published",
             },
             {
               question_id: "Apakah saya bisa memilih genre musik tertentu?",
@@ -194,7 +193,7 @@ const createDatabaseAndTable = () => {
               question_en: "Can I choose a specific music genre?",
               answer_en:
                 "Yes! CMH offers various genre options that you can choose based on your preference.",
-              category: "Features",
+              status: "Published",
             },
             {
               question_id:
@@ -204,7 +203,7 @@ const createDatabaseAndTable = () => {
               question_en: "How long does it take to create music?",
               answer_en:
                 "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
-              category: "General",
+              status: "Published",
             },
             {
               question_id:
@@ -214,7 +213,7 @@ const createDatabaseAndTable = () => {
               question_en: "Can the generated music be used commercially?",
               answer_en:
                 "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
-              category: "Legal",
+              status: "Published",
             },
             {
               question_id:
@@ -224,13 +223,13 @@ const createDatabaseAndTable = () => {
               question_en: "What if I encounter issues while creating music?",
               answer_en:
                 "You can contact our support team via email or WhatsApp, available on the contact page.",
-              category: "Support",
+              status: "Published",
             },
           ];
 
           defaultFaqs.forEach((faq) => {
             const insertQuery = `
-          INSERT INTO faq (question_id, answer_id, question_en, answer_en, category)
+          INSERT INTO faq (question_id, answer_id, question_en, answer_en, status)
           VALUES (?, ?, ?, ?, ?)
         `;
             db.query(
@@ -240,7 +239,7 @@ const createDatabaseAndTable = () => {
                 faq.answer_id,
                 faq.question_en,
                 faq.answer_en,
-                faq.category,
+                faq.status,
               ],
               (insertErr) => {
                 if (insertErr) {
@@ -1111,34 +1110,51 @@ app.get("/faq", (req, res) => {
 
 // Endpoint untuk menambahkan FAQ baru
 app.post("/faq", (req, res) => {
-  const { question, answer, category } = req.body; // Ambil data dari request body
+  const { question_id, answer_id, question_en, answer_en, status } = req.body;
 
-  const sql = "INSERT INTO faq (question, answer, category) VALUES (?, ?, ?)";
-  db.query(sql, [question, answer, category], (err, result) => {
-    if (err) {
-      console.error("❌ Error creating FAQ:", err);
-      return res.status(500).json({ error: "Failed to create FAQ" });
+  if (status !== "Published" && status !== "Archived") {
+    return res.status(400).json({ error: "Invalid status value" });
+  }
+
+  const sql =
+    "INSERT INTO faq (question_id, answer_id, question_en, answer_en, status) VALUES (?, ?, ?, ?, ?)";
+  db.query(
+    sql,
+    [question_id, answer_id, question_en, answer_en, status],
+    (err, result) => {
+      if (err) {
+        console.error("❌ Error creating FAQ:", err);
+        return res.status(500).json({ error: "Failed to create FAQ" });
+      }
+      res
+        .status(201)
+        .json({ message: "FAQ created successfully", id: result.insertId });
     }
-    res
-      .status(201)
-      .json({ message: "FAQ created successfully", id: result.insertId }); // Beri status 201 Created dan kirim ID baru
-  });
+  );
 });
 
 // Endpoint untuk mengupdate FAQ
 app.put("/faq/:id", (req, res) => {
-  const { question, answer, category } = req.body;
+  const { question_id, answer_id, question_en, answer_en, status } = req.body;
   const { id } = req.params;
 
+  if (status !== "Published" && status !== "Archived") {
+    return res.status(400).json({ error: "Invalid status value" });
+  }
+
   const sql =
-    "UPDATE faq SET question = ?, answer = ?, category = ? WHERE id = ?";
-  db.query(sql, [question, answer, category, id], (err) => {
-    if (err) {
-      console.error("❌ Error updating FAQ:", err);
-      return res.status(500).json({ error: "Failed to update FAQ" });
+    "UPDATE faq SET question_id = ?, answer_id = ?, question_en = ?, answer_en = ?, status = ? WHERE id = ?";
+  db.query(
+    sql,
+    [question_id, answer_id, question_en, answer_en, status, id],
+    (err) => {
+      if (err) {
+        console.error("❌ Error updating FAQ:", err);
+        return res.status(500).json({ error: "Failed to update FAQ" });
+      }
+      res.status(200).json({ message: "FAQ updated successfully" });
     }
-    res.status(200).json({ message: "FAQ updated successfully" });
-  });
+  );
 });
 
 // Endpoint untuk menghapus FAQ
