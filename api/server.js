@@ -7,6 +7,7 @@ import multer, { diskStorage } from "multer";
 import path from "path";
 import session from "express-session";
 import cookieParser from "cookie-parser";
+import axios from "axios";
 
 dotenv.config();
 const app = express();
@@ -650,55 +651,80 @@ async function addAdminUser(username, password, email) {
 createDatabaseAndTable();
 
 app.post("/admin/login", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, recaptchaToken } = req.body;
+
+  if (!username || !password || !recaptchaToken) {
+    return res.status(400).json({ message: "Semua field wajib diisi." });
+  }
+
   try {
+    // Verifikasi reCAPTCHA dengan Google
+    const verifyResponse = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      null,
+      {
+        params: {
+          secret: globalThis.process.env.RECAPTCHA_SECRET_KEY,
+          response: recaptchaToken,
+        },
+      }
+    );
+
+    const { success, score } = verifyResponse.data;
+
+    if (!success || (score !== undefined && score < 0.5)) {
+      return res.status(400).json({ message: "Verifikasi reCAPTCHA gagal." });
+    }
+
+    // Cek username dan password di database
     const [rows] = await db
       .promise()
       .query("SELECT * FROM admin WHERE username = ? AND password = ?", [
         username,
         password,
       ]);
+
     if (rows.length > 0) {
       console.log("Login successful, rows:", rows);
-      console.log("Before setting session:", req.session);
       req.session.user = { username: rows[0].username };
-      console.log("After setting session:", req.session);
-      res.json({ message: "Login successful" });
+      res.json({ message: "Login berhasil!" });
     } else {
       console.log("Invalid credentials");
-      res.status(401).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Username atau password salah." });
     }
   } catch (error) {
     console.error("Login error:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Terjadi kesalahan server." });
   }
 });
 
+// Endpoint Logout
 app.post("/admin/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.status(500).json({ message: "Could not log out" });
+      return res.status(500).json({ message: "Logout gagal" });
     }
     res.clearCookie("connect.sid");
-    res.json({ message: "Logout successful" });
+    res.json({ message: "Logout berhasil" });
   });
 });
 
+// Middleware untuk melindungi halaman admin
 const requireAdmin = (req, res, next) => {
-  console.log("requireAdmin middleware called");
+  console.log("Middleware requireAdmin dipanggil");
   console.log("Session:", req.session);
-  console.log("req.session.user:", req.session.user); // Tambahkan log ini
   if (req.session.user) {
-    console.log("Admin is authenticated");
+    console.log("Admin terautentikasi");
     next();
   } else {
-    console.log("Admin is not authenticated");
+    console.log("Admin tidak terautentikasi");
     res.status(401).json({ message: "Unauthorized" });
   }
 };
 
+// Endpoint yang dilindungi
 app.get("/admin/protected", requireAdmin, (req, res) => {
-  res.json({ message: "Protected route accessed" });
+  res.json({ message: "Anda berhasil mengakses halaman admin!" });
 });
 
 app.get("/visitors", (req, res) => {

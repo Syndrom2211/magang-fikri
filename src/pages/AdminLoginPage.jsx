@@ -5,41 +5,56 @@ import "../style/admin.css";
 import { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function AdminLoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const navigate = useNavigate();
+  
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+
+  // Menyimpan token reCAPTCHA setelah pengguna menyelesaikannya
+  const onChange = (token) => {
+    setRecaptchaToken(token);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!username || !password) {
-      setErrorMessage("Username and password are required.");
+      setErrorMessage("Username dan password wajib diisi.");
+      return;
+    }
+
+    if (!recaptchaToken) {
+      setErrorMessage("Mohon selesaikan reCAPTCHA.");
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:1000/admin/login", {
-        username: username,
-        password: password,
+      const response = await axios.post(`${API_BASE_URL}/admin/login`, {
+        username,
+        password,
+        recaptchaToken, // Kirim token reCAPTCHA ke backend
       });
 
       if (response.status === 200) {
-        console.log("Login successful, navigating to /admin");
+        console.log("Login berhasil, menuju /admin");
         onLogin();
         navigate("/admin");
-        console.log("Navigated to /admin");
       } else {
-        setErrorMessage("Login failed. Please try again.");
+        setErrorMessage("Login gagal. Silakan coba lagi.");
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        setErrorMessage("Invalid credentials");
+        setErrorMessage("Username atau password salah.");
       } else {
-        console.error("Error during login:", error);
-        setErrorMessage("An error occurred. Please try again.");
+        console.error("Terjadi kesalahan saat login:", error);
+        setErrorMessage("Terjadi kesalahan. Silakan coba lagi.");
       }
     }
   };
@@ -75,6 +90,15 @@ function AdminLoginPage({ onLogin }) {
 
           {errorMessage && <div className="error-message">{errorMessage}</div>}
 
+          <div className="recaptcha-container">
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={onChange}
+              theme="light"
+              size="normal"
+            />
+          </div>
+
           <button type="submit" className="login-button">
             Masuk
           </button>
@@ -85,7 +109,7 @@ function AdminLoginPage({ onLogin }) {
 }
 
 AdminLoginPage.propTypes = {
-  onLogin: PropTypes.func.isRequired, // Tambahkan validasi prop di sini
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default AdminLoginPage;

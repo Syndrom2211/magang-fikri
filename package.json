@@ -21,7 +21,10 @@
     "bootstrap": "^5.3.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+=======
     "datatables.net": "^2.2.2",
+>>>>>>> ae13568a4bcb39172a5912cc955f7025648e6a50
     "datatables.net-bs5": "^2.2.2",
     "debug": "^4.4.0",
     "disqus-react": "^1.1.6",
@@ -38,6 +41,7 @@
     "react-bootstrap": "^2.10.9",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
+    "react-google-recaptcha": "^3.1.0",
     "react-icons": "^5.4.0",
     "react-player": "^2.16.0",
     "react-router-dom": "^7.1.5",
