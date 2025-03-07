@@ -3,19 +3,20 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import HeroImage from "../assets/music-1.jpg";
 import { checkout } from "../components/Checkoutmodal";
-import { priceLists } from "../data/index";
+import { products } from "../data/index"; // Import products
 
 const ModalForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { plan, page, language } = location.state || {};
-  // Get correct plan data from priceLists
-  const currentPlan = priceLists[language]
-    ?.find((item) => item.page === page)
-    ?.plans?.find((p) => p.id === plan?.id);
+
+  // Get correct plan data from products
+  const currentPlan = products[language]?.find(
+    (product) => product.category === page && product.id === plan?.id
+  );
 
   const [formData, setFormData] = useState({
-    id: currentPlan?.id || plan?.id || 1,
+    id: currentPlan?.id || plan?.id || null,
     item: currentPlan?.name || plan?.name || "",
     email: "",
     name: "",

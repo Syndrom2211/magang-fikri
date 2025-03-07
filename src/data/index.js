@@ -118,6 +118,7 @@ export const products = {
         "jenis file WAV & MP3",
         "Durasi maksimal. 5 menit",
       ],
+      category: "lyrics",
     },
     {
       id: 2,
@@ -133,6 +134,7 @@ export const products = {
         "jenis file WAV & MP3",
         "Durasi maksimal. 5 menit",
       ],
+      category: "instrument",
     },
     {
       id: 3,
@@ -148,6 +150,7 @@ export const products = {
         "jenis file WAV & MP3",
         "Durasi maksimal. 30 detik",
       ],
+      category: "sound",
     },
   ],
   EN: [
@@ -158,13 +161,14 @@ export const products = {
       description: "Turn your lyrics into an automatic song.",
       cta: "Order Now",
       rating: "Ordered: ",
-      currency: "$",
-      price: 3.36,
+      currency: "Rp",
+      price: 55000,
       features: [
         "Unlimited Revisions",
         "WAV & MP3 File Format",
         "Max duration: 5 minutes",
       ],
+      category: "lyrics",
     },
     {
       id: 2,
@@ -173,13 +177,14 @@ export const products = {
       description: "Craft professional instrumental melodies.",
       cta: "Order Now",
       rating: "Ordered: ",
-      currency: "$",
-      price: 3.36,
+      currency: "Rp",
+      price: 55000,
       features: [
         "Unlimited Revisions",
         "WAV & MP3 File Format",
         "Max duration: 5 minutes",
       ],
+      category: "instrument",
     },
     {
       id: 3,
@@ -188,13 +193,14 @@ export const products = {
       description: "Generate high-quality sound effects.",
       cta: "Order Now",
       rating: "Ordered: ",
-      currency: "$",
-      price: 3.36,
+      currency: "Rp",
+      price: 55000,
       features: [
         "Unlimited Revisions",
         "WAV & MP3 File Format",
         "Max duration: 30 seconds",
       ],
+      category: "sound",
     },
   ],
 };
@@ -340,82 +346,94 @@ export const portfolioSectionData = {
 };
 
 export const dataSwiper = {
-    ID: [
-      {
-        id: 1,
-        name: "Dapoer Catering SR",
-        genre: "Accoustic",
-        audio: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389160&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      },
-      {
-        id: 2,
-        name: "Goyobod Laris",
-        genre: "Dubstep",
-        audio: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389153&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      },
-      {
-        id: 3,
-        name: "Dimsum by Inmons Fix",
-        genre: "Jazz",
-        audio: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389164&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      },
-      {
-        id: 4,
-        name: "Bubuk Cabe Pa Abdul",
-        genre: "Pop",
-        audio: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046390272&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      },
-      {
-        id: 5,
-        name: "Aku Baru",
-        genre: "Progressive",
-        audio: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389156&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      },
-      {
-        id: 6,
-        name: "Hudang Hese",
-        genre: "Sundanese",
-        audio: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389168&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      },
-    ],  
-  EN: [
+  ID: [
     {
       id: 1,
       name: "Dapoer Catering SR",
       genre: "Accoustic",
-      audio: "https://drive.google.com/uc?export=download&id=1wjlXCqg8fFdYQFFlnGpEsyrCe4pVg-8Y",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389160&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
     },
     {
       id: 2,
       name: "Goyobod Laris",
       genre: "Dubstep",
-      audio: "https://drive.google.com/uc?export=download&id=1iCKeV-omHdrnasaCK1e8-owQzBWbg4j2",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389153&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
     },
     {
       id: 3,
       name: "Dimsum by Inmons Fix",
       genre: "Jazz",
-      audio: "https://drive.google.com/uc?export=download&id=1-4opdmFQ0OTbIPBZzQSJYXq04qk_lkK-",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389164&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
     },
     {
       id: 4,
       name: "Bubuk Cabe Pa Abdul",
       genre: "Pop",
-      audio: "https://drive.google.com/uc?export=download&id=1MDBSbbYkwYJIjrn2356k-Vb-76195sHE",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046390272&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
     },
     {
       id: 5,
       name: "Aku Baru",
       genre: "Progressive",
-      audio: "https://drive.google.com/uc?export=download&id=1iuEsfO3lpOmixBLMT0FMEMIaBFifWK8e",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389156&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
     },
     {
       id: 6,
       name: "Hudang Hese",
       genre: "Sundanese",
-      audio: "https://drive.google.com/uc?export=download&id=1IKN1fSkKKTD_9etHSiF4LtGDf6C_a4mD",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389168&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
     },
-  ], 
+  ],
+  EN: [
+    {
+      id: 1,
+      name: "Dapoer Catering SR",
+      genre: "Accoustic",
+      audio:
+        "https://drive.google.com/uc?export=download&id=1wjlXCqg8fFdYQFFlnGpEsyrCe4pVg-8Y",
+    },
+    {
+      id: 2,
+      name: "Goyobod Laris",
+      genre: "Dubstep",
+      audio:
+        "https://drive.google.com/uc?export=download&id=1iCKeV-omHdrnasaCK1e8-owQzBWbg4j2",
+    },
+    {
+      id: 3,
+      name: "Dimsum by Inmons Fix",
+      genre: "Jazz",
+      audio:
+        "https://drive.google.com/uc?export=download&id=1-4opdmFQ0OTbIPBZzQSJYXq04qk_lkK-",
+    },
+    {
+      id: 4,
+      name: "Bubuk Cabe Pa Abdul",
+      genre: "Pop",
+      audio:
+        "https://drive.google.com/uc?export=download&id=1MDBSbbYkwYJIjrn2356k-Vb-76195sHE",
+    },
+    {
+      id: 5,
+      name: "Aku Baru",
+      genre: "Progressive",
+      audio:
+        "https://drive.google.com/uc?export=download&id=1iuEsfO3lpOmixBLMT0FMEMIaBFifWK8e",
+    },
+    {
+      id: 6,
+      name: "Hudang Hese",
+      genre: "Sundanese",
+      audio:
+        "https://drive.google.com/uc?export=download&id=1IKN1fSkKKTD_9etHSiF4LtGDf6C_a4mD",
+    },
+  ],
 };
 
 export const creativeMusicHubData = {
@@ -462,114 +480,6 @@ export const creativeMusicHubData = {
     visitorsLabel: "Total Visitors",
   },
 };
-
-// export const judulfaq = {
-//   ID: { name: "Pertanyaan yang Sering Diajukan" },
-//   EN: { name: "Frequently Asked Questions" },
-// };
-
-// export const faq = {
-//   ID: [
-//     {
-//       id: 1,
-//       eventKey: 0,
-//       title: "Apa itu CMH dan bagaimana cara kerjanya?",
-//       desc: "CreativeMusicHub (CMH) adalah platform untuk menciptakan musik dengan bantuan AI. Pengguna dapat mengunggah lirik, memilih genre, dan mendapatkan lagu yang dibuat secara otomatis.",
-//     },
-//     {
-//       id: 2,
-//       eventKey: 1,
-//       title: "Apakah saya perlu keahlian musik untuk menggunakan CMH?",
-//       desc: "Tidak perlu! CMH dirancang untuk semua orang, baik pemula maupun profesional. Teknologi AI kami akan membantu dalam proses pembuatan musik.",
-//     },
-//     {
-//       id: 3,
-//       eventKey: 2,
-//       title: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
-//       desc: "CMH mendukung berbagai genre musik seperti pop, rock, jazz, EDM, dan masih banyak lagi.",
-//     },
-//     {
-//       id: 4,
-//       eventKey: 3,
-//       title: "Bagaimana cara mengubah lirik menjadi lagu?",
-//       desc: "Anda hanya perlu mengunggah lirik, memilih genre, dan CMH akan secara otomatis menghasilkan musik yang sesuai dengan lirik tersebut.",
-//     },
-//     {
-//       id: 5,
-//       eventKey: 4,
-//       title: "Apakah saya bisa memilih genre musik tertentu?",
-//       desc: "Ya! CMH menyediakan berbagai pilihan genre musik yang dapat Anda pilih sesuai dengan preferensi Anda.",
-//     },
-//     {
-//       id: 6,
-//       eventKey: 5,
-//       title: "Berapa lama waktu yang dibutuhkan untuk membuat musik?",
-//       desc: "Proses pembuatan musik biasanya memakan waktu beberapa menit, tergantung pada kompleksitas lirik dan pemilihan instrumen.",
-//     },
-//     {
-//       id: 7,
-//       eventKey: 6,
-//       title: "Apakah musik yang dihasilkan bisa digunakan secara komersial?",
-//       desc: "Ya, musik yang dihasilkan melalui CMH bisa digunakan secara komersial. Namun, pastikan untuk membaca ketentuan penggunaan terlebih dahulu.",
-//     },
-//     {
-//       id: 8,
-//       eventKey: 7,
-//       title: "Bagaimana jika saya mengalami masalah saat membuat musik?",
-//       desc: "Anda dapat menghubungi tim dukungan kami melalui email atau WhatsApp yang tersedia di halaman kontak.",
-//     },
-//   ],
-//   EN: [
-//     {
-//       id: 1,
-//       eventKey: 0,
-//       title: "What is CMH and how does it work?",
-//       desc: "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
-//     },
-//     {
-//       id: 2,
-//       eventKey: 1,
-//       title: "Do I need musical skills to use CMH?",
-//       desc: "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
-//     },
-//     {
-//       id: 3,
-//       eventKey: 2,
-//       title: "What types of music can be created with CMH?",
-//       desc: "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
-//     },
-//     {
-//       id: 4,
-//       eventKey: 3,
-//       title: "How do I turn lyrics into a song?",
-//       desc: "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
-//     },
-//     {
-//       id: 5,
-//       eventKey: 4,
-//       title: "Can I choose a specific music genre?",
-//       desc: "Yes! CMH offers various genre options that you can choose based on your preference.",
-//     },
-//     {
-//       id: 6,
-//       eventKey: 5,
-//       title: "How long does it take to create music?",
-//       desc: "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
-//     },
-//     {
-//       id: 7,
-//       eventKey: 6,
-//       title: "Can the generated music be used commercially?",
-//       desc: "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
-//     },
-//     {
-//       id: 8,
-//       eventKey: 7,
-//       title: "What if I encounter issues while creating music?",
-//       desc: "You can contact our support team via email or WhatsApp, available on the contact page.",
-//     },
-//   ],
-// };
 
 // Product Descriptions
 export const productDescriptions = {
@@ -791,106 +701,106 @@ export const howItWorksSteps = {
   ],
 };
 
-// Price Lists
-export const priceLists = {
-  ID: [
-    {
-      id: 1,
-      page: "lyrics",
-      plans: [
-        {
-          name: "Buat Musik Melalui Lirik",
-          features: [
-            "Revisi Tidak Terbatas",
-            "Jenis file WAV & MP3",
-            "Durasi maksimal. 5 menit",
-          ],
-          currency: "Rp",
-          price: 55000,
-        },
-      ],
-    },
-    {
-      id: 2,
-      page: "instrument",
-      plans: [
-        {
-          name: "Buat Musik Instrumen",
-          currency: "Rp",
-          price: 55000,
-          features: [
-            "Revisi Tidak Terbatas",
-            "Jenis file WAV & MP3",
-            "Durasi maksimal. 5 menit",
-          ],
-        },
-      ],
-    },
-    {
-      id: 3,
-      page: "sound",
-      plans: [
-        {
-          name: "Buat Efek Suara",
-          currency: "Rp",
-          price: 55000,
-          features: [
-            "Revisi Tidak Terbatas",
-            "Jenis file WAV & MP3",
-            "Durasi maksimal. 30 detik",
-          ],
-        },
-      ],
-    },
-  ],
-  EN: [
-    {
-      id: 1,
-      page: "lyrics",
-      plans: [
-        {
-          name: "Create Music From Lyrics",
-          features: [
-            "Unlimited revisions",
-            "File format WAV & MP3",
-            "Max duration 5 minutes",
-          ],
-          currency: "Rp",
-          price: 55000,
-        },
-      ],
-    },
-    {
-      id: 2,
-      page: "instrument",
-      plans: [
-        {
-          name: "Create Instrumental Music",
-          currency: "Rp",
-          price: 55000,
-          features: [
-            "Unlimited revisions",
-            "File format WAV & MP3",
-            "Max duration 5 minutes",
-          ],
-        },
-      ],
-    },
-    {
-      id: 3,
-      page: "sound",
-      plans: [
-        {
-          name: "Create Sound Effects",
-          currency: "Rp",
-          price: 55000,
-          features: [
-            "Unlimited revisions",
-            "File format WAV & MP3",
-            "Max duration 30 seconds",
-          ],
-        },
-      ],
-    },
-  ],
-};
+// // Price Lists
+// export const priceLists = {
+//   ID: [
+//     {
+//       id: 1,
+//       page: "lyrics",
+//       plans: [
+//         {
+//           name: "Buat Musik Melalui Lirik",
+//           features: [
+//             "Revisi Tidak Terbatas",
+//             "Jenis file WAV & MP3",
+//             "Durasi maksimal. 5 menit",
+//           ],
+//           currency: "Rp",
+//           price: 55000,
+//         },
+//       ],
+//     },
+//     {
+//       id: 2,
+//       page: "instrument",
+//       plans: [
+//         {
+//           name: "Buat Musik Instrumen",
+//           currency: "Rp",
+//           price: 55000,
+//           features: [
+//             "Revisi Tidak Terbatas",
+//             "Jenis file WAV & MP3",
+//             "Durasi maksimal. 5 menit",
+//           ],
+//         },
+//       ],
+//     },
+//     {
+//       id: 3,
+//       page: "sound",
+//       plans: [
+//         {
+//           name: "Buat Efek Suara",
+//           currency: "Rp",
+//           price: 55000,
+//           features: [
+//             "Revisi Tidak Terbatas",
+//             "Jenis file WAV & MP3",
+//             "Durasi maksimal. 30 detik",
+//           ],
+//         },
+//       ],
+//     },
+//   ],
+//   EN: [
+//     {
+//       id: 1,
+//       page: "lyrics",
+//       plans: [
+//         {
+//           name: "Create Music From Lyrics",
+//           features: [
+//             "Unlimited revisions",
+//             "File format WAV & MP3",
+//             "Max duration 5 minutes",
+//           ],
+//           currency: "Rp",
+//           price: 55000,
+//         },
+//       ],
+//     },
+//     {
+//       id: 2,
+//       page: "instrument",
+//       plans: [
+//         {
+//           name: "Create Instrumental Music",
+//           currency: "Rp",
+//           price: 55000,
+//           features: [
+//             "Unlimited revisions",
+//             "File format WAV & MP3",
+//             "Max duration 5 minutes",
+//           ],
+//         },
+//       ],
+//     },
+//     {
+//       id: 3,
+//       page: "sound",
+//       plans: [
+//         {
+//           name: "Create Sound Effects",
+//           currency: "Rp",
+//           price: 55000,
+//           features: [
+//             "Unlimited revisions",
+//             "File format WAV & MP3",
+//             "Max duration 30 seconds",
+//           ],
+//         },
+//       ],
+//     },
+//   ],
+// };

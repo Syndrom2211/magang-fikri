@@ -1,18 +1,18 @@
 import PropTypes from "prop-types";
-import { priceLists, TextContent } from "../data/index";
+import { products, TextContent } from "../data/index";
 import { useNavigate } from "react-router-dom";
 
 const PriceListComponent = ({ page, language }) => {
   const navigate = useNavigate();
   const plans =
-    priceLists[language]?.find((item) => item.page === page)?.plans || [];
+    products[language]?.filter((product) => product.category === page) || [];
 
-  const handleCheckout = (product) => {
+  const handleCheckout = (plan) => {
     navigate("/checkout", {
       state: {
-        plan: { id: product.id, name: product.name, price: product.price },
-        page: "catalog", // or whatever identifier you want
-        language: language, // Pass the language prop
+        plan: { id: plan.id, name: plan.name, price: plan.price },
+        page: page, // Kirim page ke ModalForm
+        language: language,
       },
     });
   };
