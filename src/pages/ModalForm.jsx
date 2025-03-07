@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import HeroImage from "../assets/music-1.jpg";
 import { checkout } from "../components/Checkoutmodal";
-import { products } from "../data/index"; // Import products
+import { products } from "../data/index";
 
 const ModalForm = () => {
   const navigate = useNavigate();
@@ -63,7 +63,12 @@ const ModalForm = () => {
         item_id: parseInt(formData.id, 10),
         id: parseInt(formData.id, 10),
       };
-      await checkout(formDataToSend);
+      const checkoutResult = await checkout(formDataToSend);
+      if (checkoutResult) {
+        navigate("/transaction-details", {
+          state: { transactionData: formDataToSend },
+        });
+      }
     }
   };
 
