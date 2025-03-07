@@ -22,6 +22,10 @@
     "chart.js": "^4.4.8",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+    "datatables.net": "^2.2.2",
+=======
+>>>>>>> d0d7149494a0fde6e21bc079cf2f631345098591
     "datatables.net-bs5": "^2.2.2",
     "debug": "^4.4.0",
     "disqus-react": "^1.1.6",
