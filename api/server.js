@@ -3,8 +3,6 @@ import cors from "cors";
 import midtransClient from "midtrans-client";
 import dotenv from "dotenv";
 import mysql from "mysql2";
-import multer, { diskStorage } from "multer";
-import path from "path";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import axios from "axios";
@@ -38,27 +36,13 @@ const db = mysql.createConnection({
   password: "",
 });
 
-// Konfigurasi multer untuk upload video
-const storage = diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/uploads"); // Folder penyimpanan video
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + "-" + uniqueSuffix + ext); // Nama file unik
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith("video/")) {
-      cb(null, true); // Hanya terima video
-    } else {
-      cb(new Error("File harus berupa video!")); // Tolak tipe file lain
-    }
-  },
+// Connect to the database
+db.connect((err) => {
+  if (err) {
+    console.error("❌ Error connecting to the database:", err);
+    return;
+  }
+  console.log("✅ Connected to the database");
 });
 
 // Fungsi untuk membuat database dan tabel admin jika belum ada
@@ -523,15 +507,15 @@ const createDatabaseAndTable = () => {
       });
     });
 
+    // Create the portfolios table
     const createPortfoliosTableQuery = `
-        CREATE TABLE IF NOT EXISTS portfolios (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            genre VARCHAR(255),
-            description TEXT,
-            video VARCHAR(255)
-        );
-      `;
+      CREATE TABLE IF NOT EXISTS portfolios (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        genre ENUM('Accoustic', 'Dubstep', 'Jazz', 'Pop', 'Progressive', 'Sundanese') NOT NULL,
+        link VARCHAR(2083) NOT NULL
+      );
+    `;
 
     db.query(createPortfoliosTableQuery, (err) => {
       if (err) {
@@ -541,20 +525,75 @@ const createDatabaseAndTable = () => {
       }
     });
 
-    // Membuat tabel biodata jika belum ada
-    const createBiodataTableQuery = `
-            CREATE TABLE IF NOT EXISTS biodata (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            item_id INT,
-            email VARCHAR(255),
-            name VARCHAR(255),
-            whatsapp VARCHAR(255),
-            price INT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (item_id) REFERENCES items(id)
-            );
-        `;
+    // Menyisipkan data awal jika tabel kosong
+    const checkDataQuery = "SELECT COUNT(*) AS count FROM portfolios";
+    db.query(checkDataQuery, (err, result) => {
+      if (err) {
+        console.error("❌ Error checking portfolio data:", err);
+        return;
+      }
 
+      if (result[0].count === 0) {
+        const initialData = [
+          {
+            "name": "Dapoer Catering SR",
+            "genre": "Accoustic",
+            "link": "https://api.soundcloud.com/tracks/2046389160"
+          },
+          {
+            "name": "Goyobod Laris",
+            "genre": "Dubstep",
+            "link": "https://api.soundcloud.com/tracks/2046389153"
+          },
+          {
+            "name": "Dimsum by Inmons Fix",
+            "genre": "Jazz",
+            "link": "https://api.soundcloud.com/tracks/2046389164"
+          },
+          {
+            "name": "Bubuk Cabe Pa Abdul",
+            "genre": "Pop",
+            "link": "https://api.soundcloud.com/tracks/2046390272"
+          },
+          {
+            "name": "Aku Baru",
+            "genre": "Progressive",
+            "link": "https://api.soundcloud.com/tracks/2046389156"
+          },
+          {
+            "name": "Hudang Hese",
+            "genre": "Sundanese",
+            "link": "https://api.soundcloud.com/tracks/2046389168"
+          }
+        ];
+
+        const insertQuery = "INSERT INTO portfolios (name, genre, link) VALUES ?";
+        const values = initialData.map((item) => [item.name, item.genre, item.link]);
+
+        db.query(insertQuery, [values], (err) => {
+          if (err) {
+            console.error("❌ Error inserting initial data:", err);
+          } else {
+            console.log("✅ Initial portfolio data inserted");
+          }
+        });
+      }
+  });
+  
+  // Membuat tabel biodata jika belum ada
+  const createBiodataTableQuery = `
+      CREATE TABLE IF NOT EXISTS biodata (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        item_id INT,
+        email VARCHAR(255),
+        name VARCHAR(255),
+        whatsapp VARCHAR(255),
+        price INT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (item_id) REFERENCES items(id)
+      );
+    `;
+    
     db.query(createBiodataTableQuery, (err) => {
       if (err) {
         console.error("❌ Error creating biodata table:", err);
@@ -608,7 +647,7 @@ const createDatabaseAndTable = () => {
           );
         }
       });
-    });
+  });
   });
 };
 
@@ -874,6 +913,7 @@ app.delete("/footers/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete footer data" });
   }
 });
+
 // Endpoint untuk mengambil data portfolio
 app.get("/portfolios", (req, res) => {
   const sql = "SELECT * FROM portfolios";
@@ -887,54 +927,39 @@ app.get("/portfolios", (req, res) => {
 });
 
 // Endpoint untuk menambahkan data portfolio baru
-app.post("/portfolios", upload.single("video"), (req, res) => {
-  const { name, genre, description } = req.body;
-  const video = req.file ? req.file.filename : null; // Nama file video dari multer
+app.post("/portfolios", (req, res) => {
+  const { name, genre, link } = req.body;
 
-  if (!name || !genre || !description) {
-    return res.status(400).json({ error: "Data portfolio tidak lengkap!" });
+  if (!name || !genre || !link) {
+    return res.status(400).json({ error: "Incomplete portfolio data!" });
   }
 
-  const sql =
-    "INSERT INTO portfolios (name, genre, description, video) VALUES (?, ?, ?, ?)";
-  db.query(sql, [name, genre, description, video], (err, result) => {
+  const sql = "INSERT INTO portfolios (name, genre, link) VALUES (?, ?, ?)";
+  db.query(sql, [name, genre, link], (err, result) => {
     if (err) {
       console.error("❌ Error creating portfolio:", err);
       return res.status(500).json({ error: err.message });
     }
     res.status(201).json({
-      // Mengembalikan data portfolio yang baru dibuat
       id: result.insertId,
       name,
       genre,
-      description,
-      video,
+      link,
     });
   });
 });
 
 // Endpoint untuk mengupdate data portfolio
-app.put("/portfolios/:id", upload.single("video"), (req, res) => {
-  const { name, genre, description } = req.body;
-  const video = req.file ? req.file.filename : null;
+app.put("/portfolios/:id", (req, res) => {
+  const { name, genre, link } = req.body;
   const { id } = req.params;
 
-  if (!name || !genre || !description) {
-    return res.status(400).json({ error: "Data portfolio tidak lengkap!" });
+  if (!name || !genre || !link) {
+    return res.status(400).json({ error: "Incomplete portfolio data!" });
   }
 
-  let sql = "UPDATE portfolios SET name = ?, genre = ?, description = ?";
-  const values = [name, genre, description];
-
-  if (video) {
-    sql += ", video = ?";
-    values.push(video);
-  }
-
-  sql += " WHERE id = ?";
-  values.push(id);
-
-  db.query(sql, values, (err) => {
+  const sql = "UPDATE portfolios SET name = ?, genre = ?, link = ? WHERE id = ?";
+  db.query(sql, [name, genre, link, id], (err) => {
     if (err) {
       console.error("❌ Error updating portfolio:", err);
       return res.status(500).json({ error: err.message });
