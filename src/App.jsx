@@ -6,7 +6,7 @@ import FaqUserComponent from "./components/FaqUserComponent";
 import FooterComponent from "./components/FooterComponent";
 import CboxChat from "./components/CboxChat";
 
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage.jsx";
 import SupportPage from "./pages/SupportPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import LyricsPage from "./pages/LyricsPage";
