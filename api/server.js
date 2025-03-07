@@ -1096,6 +1096,45 @@ app.get("/orders/:productId", (req, res) => {
   });
 });
 
+app.get("/biodata/categories/count", (req, res) => {
+  const categories = ['lirik', 'instrumen', 'efek-suara'];
+  const results = [];
+
+  const processCategory = (category, callback) => {
+      const sql = `
+          SELECT COUNT(*) AS jumlah_terjual
+          FROM biodata b
+          INNER JOIN items i ON b.item_id = i.id
+          WHERE i.name = ?
+      `;
+
+      db.query(sql, [category], (err, result) => {
+          if (err) {
+              console.error(`❌ Error fetching ${category} sales count:`, err);
+              return callback(err);
+          }
+          results.push({ nama_produk: category, jumlah_terjual: result[0].jumlah_terjual });
+          callback(null);
+      });
+  };
+
+  const processCategories = (index) => {
+      if (index < categories.length) {
+          processCategory(categories[index], (err) => {
+              if (err) {
+                  return res.status(500).json({ error: "Failed to fetch category sales count" });
+              }
+              processCategories(index + 1);
+          });
+      } else {
+          res.status(200).json({ produk: results });
+      }
+  };
+
+  processCategories(0);
+});
+
+
 // Endpoint untuk mengambil semua FAQ
 app.get("/faq", (req, res) => {
   const sql = "SELECT * FROM faq";
