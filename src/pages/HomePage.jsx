@@ -64,7 +64,7 @@ const HomePage = ({ language }) => {
   }, [language]);
 
   return (
-    <div className="homePage">
+    <div className="HomePage">
       {/* HOMEPAGE */}
       <header className="w-100 min-vh-100 d-flex align-items-center">
         <Container>
