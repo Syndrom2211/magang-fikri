@@ -6,7 +6,8 @@ import SoundCloudPlayer from "../components/SoundCloudPlayer";
 
 const genres = ["All", "Accoustic", "Dubstep", "Jazz", "Pop", "Progressive", "Sundanese"];
 
-const PortfolioPage = ({ language }) => {
+// eslint-disable-next-line no-empty-pattern
+const PortfolioPage = ({ }) => {
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [portfolios, setPortfolios] = useState([]);
   const [loading, setLoading] = useState(true);
