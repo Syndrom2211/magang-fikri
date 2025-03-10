@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import express from "express";
 import cors from "cors";
 import midtransClient from "midtrans-client";
-import dotenv from "dotenv";
 import mysql from "mysql2";
+import dotenv from "dotenv";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import axios from "axios";
@@ -30,10 +31,17 @@ app.use(
 app.use(express.json());
 app.use(express.static("public"));
 
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+// });
+
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 // Connect to the database
