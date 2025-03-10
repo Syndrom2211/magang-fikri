@@ -13,6 +13,24 @@ const PortfolioPage = ({ }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Tawk.to integration
+  useEffect(() => {
+    // Create Tawk.to script element
+    var s1 = document.createElement("script");
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/67ce66c1c7388b190b531937/1ilv42p15';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    
+    // Append script to body
+    document.body.appendChild(s1);
+    
+    // Cleanup function to remove script when component unmounts
+    return () => {
+      document.body.removeChild(s1);
+    };
+  }, []); // Empty dependency array means this runs once on mount
+  
   useEffect(() => {
     const fetchPortfolios = async () => {
       setLoading(true);
