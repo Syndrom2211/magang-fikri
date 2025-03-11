@@ -11,47 +11,82 @@ import axios from "axios";
 dotenv.config();
 const app = express();
 
+// ✅ CORS: Allow your deployed frontend & localhost for testing
 app.use(
   cors({
-    origin: "http://localhost:5173", // Sesuaikan dengan origin frontend Anda
+    origin: [
+      "http://localhost:5173", // Local development
+      "https://magang-fikri.vercel.app", // Deployed frontend
+    ],
     credentials: true,
   })
 );
 app.use(express.json());
 app.use(cookieParser());
+
+// ✅ Secure session handling
 app.use(
   session({
-    secret: "admin",
-    resave: true,
+    secret: process.env.SESSION_SECRET || "admin", // Use env variable for security
+    resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 }, // Sesuaikan pengaturan cookie
+    cookie: { 
+      secure: process.env.NODE_ENV === "production", // Secure in production
+      httpOnly: true, // Prevent XSS attacks
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+    },
   })
 );
 
-app.use(express.json());
+// ✅ Ensure static files are served correctly
 app.use(express.static("public"));
 
-// const db = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-// });
-
+// ✅ MySQL Database Connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.DB_HOST || "localhost",
+  port: process.env.DB_PORT || 3306, // Use env variable
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "creativemusichub",
+  multipleStatements: true, // Allow multiple queries
+  connectTimeout: 10000, // Increase timeout
 });
 
-// Connect to the database
-db.connect((err) => {
-  if (err) {
-    console.error("❌ Error connecting to the database:", err);
-    return;
+// ✅ Handle database connection errors
+const connectDB = () => {
+  db.connect((err) => {
+    if (err) {
+      console.error("❌ Error connecting to the database:", err);
+      setTimeout(connectDB, 5000); // Retry connection after 5 seconds
+    } else {
+      console.log("✅ Connected to the database");
+    }
+  });
+};
+connectDB();
+
+// ✅ Handle lost MySQL connection (Railway may drop idle connections)
+db.on("error", (err) => {
+  console.error("⚠️ Database error:", err);
+  if (err.code === "PROTOCOL_CONNECTION_LOST") {
+    console.log("🔄 Reconnecting to the database...");
+    connectDB();
+  } else {
+    throw err;
   }
-  console.log("✅ Connected to the database");
 });
+
+// ✅ Default route
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
+// ✅ Start the server
+const PORT1 = process.env.PORT || 8080;
+app.listen(PORT1, () => {
+  console.log(`🚀 Server is running on port ${PORT1}`);
+});
+
 
 // Fungsi untuk membuat database dan tabel admin jika belum ada
 const createDatabaseAndTable = () => {
