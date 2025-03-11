@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import HeroImage from "../assets/music-1.jpg";
 import { checkout } from "../components/Checkoutmodal";
 import { products } from "../data/index";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ModalForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { plan, page, language } = location.state || {};
+  const recaptchaRef = useRef(null);
 
-  // Get correct plan data from products
   const currentPlan = products[language]?.find(
     (product) => product.category === page && product.id === plan?.id
   );
@@ -24,10 +25,11 @@ const ModalForm = () => {
     price: currentPlan?.price || plan?.price || 0,
   });
 
-  // State untuk error form
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(null);
 
-  // Redirect if no valid plan is found
   useEffect(() => {
     if (!page || !language || !plan) {
       navigate("/");
@@ -37,37 +39,76 @@ const ModalForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setFormErrors({ ...formErrors, [name]: "" }); // Clear error
+    if (formErrors[name]) {
+      setFormErrors({ ...formErrors, [name]: "" });
+    }
+  };
+
+  const handleRecaptchaChange = (token) => {
+    setRecaptchaToken(token);
+    if (formErrors.recaptcha) {
+      setFormErrors({ ...formErrors, recaptcha: "" });
+    }
   };
 
   const validateForm = () => {
     let errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
     if (!formData.email) {
       errors.email = "Email harus diisi";
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = "Format email tidak valid";
     }
+    
     if (!formData.name) {
       errors.name = "Nama harus diisi";
     }
+    
     if (!formData.whatsapp) {
       errors.whatsapp = "WhatsApp harus diisi";
+    } else if (!/^\d+$/.test(formData.whatsapp)) {
+      errors.whatsapp = "WhatsApp hanya boleh berisi angka";
     }
 
     setFormErrors(errors);
-    return Object.keys(errors).length === 0; // true jika tidak ada error
+    return Object.keys(errors).length === 0;
   };
 
   const handleCheckout = async () => {
+    if (!recaptchaToken) {
+      setAlertMessage("Mohon selesaikan reCAPTCHA sebelum melanjutkan.");
+      return;
+    }
+
+    if (isSubmitting) return;
+    
     if (validateForm()) {
-      const formDataToSend = {
-        ...formData,
-        item_id: parseInt(formData.id, 10),
-        id: parseInt(formData.id, 10),
-      };
-      const checkoutResult = await checkout(formDataToSend);
-      if (checkoutResult) {
-        navigate("/transaction-details", {
-          state: { transactionData: formDataToSend },
-        });
+      setIsSubmitting(true);
+      try {
+        const formDataToSend = {
+          ...formData,
+          item_id: parseInt(formData.id, 10),
+          id: parseInt(formData.id, 10),
+          recaptchaToken: recaptchaToken
+        };
+        
+        const checkoutResult = await checkout(formDataToSend);
+        
+        if (checkoutResult) {
+          navigate("/transaction-details", {
+            state: { transactionData: formDataToSend },
+          });
+        }
+      } catch (error) {
+        console.error("Checkout error:", error);
+        setAlertMessage("Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.");
+      } finally {
+        setIsSubmitting(false);
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+          setRecaptchaToken(null);
+        }
       }
     }
   };
@@ -79,6 +120,7 @@ const ModalForm = () => {
           <Col md={6}>
             <div className="form-card">
               <button
+                type="button"
                 onClick={() => navigate(-1)}
                 className="back-link border-0 bg-transparent">
                 ← Kembali
@@ -90,9 +132,8 @@ const ModalForm = () => {
               />
               <div className="form-content">
                 <h2 className="form-title">Data Pemesanan:</h2>
-                <form className="checkout-form">
-                  {" "}
-                  {/* Remove onSubmit */}
+                {alertMessage && <div className="alert alert-danger">{alertMessage}</div>}
+                <form className="checkout-form" onSubmit={(e) => e.preventDefault()}>
                   <input
                     type="email"
                     name="email"
@@ -105,7 +146,7 @@ const ModalForm = () => {
                     <p className="error">{formErrors.email}</p>
                   )}
                   <input
-                    type="name"
+                    type="text"
                     name="name"
                     placeholder="Nama"
                     value={formData.name}
@@ -129,19 +170,24 @@ const ModalForm = () => {
                   <div className="order-summary">
                     <p>Item: {formData.item}</p>
                     <p>
-                      Total: <strong>Rp.{formData.price}</strong>
+                      Total: <strong>Rp.{formData.price.toLocaleString('id-ID')}</strong>
                     </p>
                   </div>
-                  <p className="form-note">
-                    Setelah melakukan pembayaran, kamu akan mendapatkan link
-                    download dalam email yang telah kamu masukkan.
-                  </p>
+                  <div className="recaptcha-container-2">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                      onChange={handleRecaptchaChange}
+                      theme="light"
+                      size="normal"
+                    />
+                  </div>
                   <button
-                    type="button" // Important: Change to button
+                    type="button"
                     className="submit-button"
-                    onClick={handleCheckout} // Call handleCheckout
+                    onClick={handleCheckout}
                   >
-                    Pilih Pembayaran
+                    {isSubmitting ? "Memproses..." : "Pilih Pembayaran"}
                   </button>
                 </form>
               </div>
