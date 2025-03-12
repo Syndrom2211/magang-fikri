@@ -1,6 +1,6 @@
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/CMH-LOGO.jpg";
 import "../style/admin.css";
 import { useState } from "react";
 import axios from "axios";

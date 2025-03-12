@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 import { FaHome, FaInfoCircle, FaCamera, FaGraduationCap, FaSignOutAlt, FaBars, FaChevronDown, FaDesktop, FaEllipsisH } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/CMH-LOGO.jpg";
 import lirikIcon from "../assets/lirik.png";
 import instrumenIcon from "../assets/instrumen.png";
 import efekSuaraIcon from "../assets/efek_suara.png";
