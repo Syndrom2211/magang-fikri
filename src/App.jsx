@@ -6,7 +6,7 @@ import FaqUserComponent from "./components/FaqUserComponent";
 import FooterComponent from "./components/FooterComponent";
 import CboxChat from "./components/CboxChat";
 
-import HomePage from "./pages/homePage";
+import HomePage from "./pages/HomePage";
 import SupportPage from "./pages/SupportPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import LyricsPage from "./pages/LyricsPage";
@@ -20,6 +20,7 @@ import TabelPortofolio from "./pages/Adminportofolio";
 import AdminProduk from "./pages/AdminProduk";
 import AdminHeaderTable from "./pages/AdminHeader";
 import AdminFooterTable from "./pages/AdminFooter";
+import TransactionDetails from "./pages/TransactionDetails";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:1000";
@@ -89,7 +90,8 @@ function App() {
   const hideNavbarFooter =
     isAdminPage ||
     location.pathname === "/checkout" ||
-    location.pathname === "/admin/login";
+    location.pathname === "/admin/login" ||
+    location.pathname === "/transaction-details";
 
   // Check if the current route is a public route
   const isPublicRoute = publicRoutes.includes(location.pathname);
@@ -122,6 +124,7 @@ function App() {
           element={<SoundPage language={language} />}
         />
         <Route path="/checkout" element={<ModalForm />} />
+        <Route path="/transaction-details" element={<TransactionDetails />} />
 
         {/* Admin Login Page */}
         <Route

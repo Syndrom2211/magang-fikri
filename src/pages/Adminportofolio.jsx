@@ -13,8 +13,7 @@ const PortfolioTable = () => {
     id: null,
     name: "",
     genre: "",
-    description: "",
-    video: null,
+    link: "",
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,7 +37,7 @@ const PortfolioTable = () => {
   }, []);
 
   const handleShow = (
-    portfolio = { id: null, name: "", genre: "", description: "" }
+    portfolio = { id: null, name: "", genre: "", link: "" }
   ) => {
     setForm(portfolio);
     setShow(true);
@@ -50,27 +49,12 @@ const PortfolioTable = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleVideoChange = (e) => {
-    setForm({ ...form, video: e.target.files[0] });
-  };
-
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("genre", form.genre);
-    formData.append("description", form.description);
-    if (form.video) {
-      formData.append("video", form.video);
-    }
-
     try {
       if (form.id) {
-        await axios.put(
-          `http://localhost:1000/portfolios/${form.id}`,
-          formData
-        );
+        await axios.put(`http://localhost:1000/portfolios/${form.id}`, form);
       } else {
-        await axios.post("http://localhost:1000/portfolios", formData);
+        await axios.post("http://localhost:1000/portfolios", form);
       }
       handleClose();
       // Refresh data after successful submit
@@ -112,7 +96,8 @@ const PortfolioTable = () => {
           <Button
             variant="primary"
             onClick={() => handleShow()}
-            className="mt-3">
+            className="mt-3"
+          >
             Tambah Portfolio
           </Button>
           <Table striped bordered hover className="mt-3">
@@ -121,8 +106,7 @@ const PortfolioTable = () => {
                 <th>ID</th>
                 <th>Nama</th>
                 <th>Genre</th>
-                <th>Deskripsi</th>
-                <th>Video</th>
+                <th>Link</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -132,27 +116,24 @@ const PortfolioTable = () => {
                   <td>{portfolio.id}</td>
                   <td>{portfolio.name}</td>
                   <td>{portfolio.genre}</td>
-                  <td>{portfolio.description}</td>
                   <td>
-                    {portfolio.video && (
-                      <video
-                        src={`http://localhost:1000/uploads/${portfolio.video}`}
-                        controls
-                        width="200"
-                      />
-                    )}
+                    <a href={portfolio.link} target="_blank" rel="noopener noreferrer">
+                      {portfolio.link}
+                    </a>
                   </td>
                   <td>
                     <Button
                       variant="warning"
                       size="sm"
-                      onClick={() => handleShow(portfolio)}>
+                      onClick={() => handleShow(portfolio)}
+                    >
                       Edit
                     </Button>{" "}
                     <Button
                       variant="danger"
                       size="sm"
-                      onClick={() => handleDelete(portfolio.id)}>
+                      onClick={() => handleDelete(portfolio.id)}
+                    >
                       Hapus
                     </Button>
                   </td>
@@ -180,44 +161,29 @@ const PortfolioTable = () => {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Genre</Form.Label>
-                  <Form.Control
-                    type="text"
+                  <Form.Select
                     name="genre"
                     value={form.genre}
                     onChange={handleChange}
-                  />
+                  >
+                    <option value="">Pilih Genre</option>
+                    <option value="Accoustic">Accoustic</option>
+                    <option value="Dubstep">Dubstep</option>
+                    <option value="Jazz">Jazz</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Progressive">Progressive</option>
+                    <option value="Sundanese">Sundanese</option>
+                  </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Deskripsi</Form.Label>
+                  <Form.Label>Link</Form.Label>
                   <Form.Control
                     type="text"
-                    name="description"
-                    value={form.description}
+                    name="link"
+                    value={form.link}
                     onChange={handleChange}
+                    placeholder="Masukkan link lagu dari SoundCloud"
                   />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Video</Form.Label>
-                  <Form.Control
-                    type="file"
-                    name="video"
-                    accept="video/*"
-                    onChange={handleVideoChange}
-                  />
-                  {form.video && (
-                    <video
-                      src={URL.createObjectURL(form.video)}
-                      controls
-                      width="200"
-                    />
-                  )}
-                  {form.video && typeof form.video === "string" && (
-                    <video
-                      src={`http://localhost:1000/uploads/${form.video}`}
-                      controls
-                      width="200"
-                    />
-                  )}
                 </Form.Group>
               </Form>
             </Modal.Body>

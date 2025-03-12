@@ -479,3 +479,32 @@ html {
   border-color: #c82333;
 }
 
+/* pesan error */
+.error-message {
+  background: #ff4d4d;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  animation: shake 0.3s ease-in-out;
+}
+
+.g-recaptcha {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto; /* Menengahkan reCAPTCHA */
+  transform: scale(0.9); /* Perkecil sedikit agar pas */
+  transform-origin: center;
+}
+
+.recaptcha-container {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.recaptcha-container-2{
+  display: flex;
+  justify-content: center;
+}

@@ -1,64 +1,92 @@
+/* eslint-disable no-undef */
 import express from "express";
 import cors from "cors";
 import midtransClient from "midtrans-client";
-import dotenv from "dotenv";
 import mysql from "mysql2";
-import multer, { diskStorage } from "multer";
-import path from "path";
+import dotenv from "dotenv";
 import session from "express-session";
 import cookieParser from "cookie-parser";
+import axios from "axios";
 
 dotenv.config();
 const app = express();
 
+// ✅ CORS: Allow your deployed frontend & localhost for testing
 app.use(
   cors({
-    origin: "http://localhost:5173", // Sesuaikan dengan origin frontend Anda
+    origin: [
+      "http://localhost:5173", // Local development
+      "https://magang-fikri.vercel.app", // Deployed frontend
+    ],
     credentials: true,
   })
 );
 app.use(express.json());
 app.use(cookieParser());
+
+// ✅ Secure session handling
 app.use(
   session({
-    secret: "admin",
-    resave: true,
+    secret: process.env.SESSION_SECRET || "admin", // Use env variable for security
+    resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 }, // Sesuaikan pengaturan cookie
+    cookie: { 
+      secure: process.env.NODE_ENV === "production", // Secure in production
+      httpOnly: true, // Prevent XSS attacks
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+    },
   })
 );
 
-app.use(express.json());
+// ✅ Ensure static files are served correctly
 app.use(express.static("public"));
 
+// ✅ MySQL Database Connection
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
+  host: process.env.DB_HOST || "localhost",
+  port: process.env.DB_PORT || 3306, // Use env variable
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "creativemusichub",
+  multipleStatements: true, // Allow multiple queries
+  connectTimeout: 10000, // Increase timeout
 });
 
-// Konfigurasi multer untuk upload video
-const storage = diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/uploads"); // Folder penyimpanan video
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + "-" + uniqueSuffix + ext); // Nama file unik
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype.startsWith("video/")) {
-      cb(null, true); // Hanya terima video
+// ✅ Handle database connection errors
+const connectDB = () => {
+  db.connect((err) => {
+    if (err) {
+      console.error("❌ Error connecting to the database:", err);
+      setTimeout(connectDB, 5000); // Retry connection after 5 seconds
     } else {
-      cb(new Error("File harus berupa video!")); // Tolak tipe file lain
+      console.log("✅ Connected to the database");
     }
-  },
+  });
+};
+connectDB();
+
+// ✅ Handle lost MySQL connection (Railway may drop idle connections)
+db.on("error", (err) => {
+  console.error("⚠️ Database error:", err);
+  if (err.code === "PROTOCOL_CONNECTION_LOST") {
+    console.log("🔄 Reconnecting to the database...");
+    connectDB();
+  } else {
+    throw err;
+  }
 });
+
+// ✅ Default route
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
+// ✅ Start the server
+const PORT1 = process.env.PORT || 8080;
+app.listen(PORT1, () => {
+  console.log(`🚀 Server is running on port ${PORT1}`);
+});
+
 
 // Fungsi untuk membuat database dan tabel admin jika belum ada
 const createDatabaseAndTable = () => {
@@ -142,8 +170,7 @@ const createDatabaseAndTable = () => {
     answer_id VARCHAR(255),
     question_en VARCHAR(255),
     answer_en TEXT NOT NULL,
-    category VARCHAR(255),
-    status ENUM('Published', 'Draft', 'Archived') DEFAULT 'Draft',
+    status ENUM('Published', 'Archived') DEFAULT 'Archived',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   );
@@ -172,7 +199,7 @@ const createDatabaseAndTable = () => {
               question_en: "What is CMH and how does it work?",
               answer_en:
                 "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
-              category: "General",
+              status: "Published",
             },
             {
               question_id:
@@ -182,7 +209,7 @@ const createDatabaseAndTable = () => {
               question_en: "Do I need musical skills to use CMH?",
               answer_en:
                 "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
-              category: "General",
+              status: "Published",
             },
             {
               question_id: "Jenis musik apa saja yang bisa dibuat dengan CMH?",
@@ -191,7 +218,7 @@ const createDatabaseAndTable = () => {
               question_en: "What types of music can be created with CMH?",
               answer_en:
                 "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
-              category: "Features",
+              status: "Published",
             },
             {
               question_id: "Bagaimana cara mengubah lirik menjadi lagu?",
@@ -200,7 +227,7 @@ const createDatabaseAndTable = () => {
               question_en: "How do I turn lyrics into a song?",
               answer_en:
                 "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
-              category: "Features",
+              status: "Published",
             },
             {
               question_id: "Apakah saya bisa memilih genre musik tertentu?",
@@ -209,7 +236,7 @@ const createDatabaseAndTable = () => {
               question_en: "Can I choose a specific music genre?",
               answer_en:
                 "Yes! CMH offers various genre options that you can choose based on your preference.",
-              category: "Features",
+              status: "Published",
             },
             {
               question_id:
@@ -219,7 +246,7 @@ const createDatabaseAndTable = () => {
               question_en: "How long does it take to create music?",
               answer_en:
                 "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
-              category: "General",
+              status: "Published",
             },
             {
               question_id:
@@ -229,7 +256,7 @@ const createDatabaseAndTable = () => {
               question_en: "Can the generated music be used commercially?",
               answer_en:
                 "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
-              category: "Legal",
+              status: "Published",
             },
             {
               question_id:
@@ -239,13 +266,13 @@ const createDatabaseAndTable = () => {
               question_en: "What if I encounter issues while creating music?",
               answer_en:
                 "You can contact our support team via email or WhatsApp, available on the contact page.",
-              category: "Support",
+              status: "Published",
             },
           ];
 
           defaultFaqs.forEach((faq) => {
             const insertQuery = `
-          INSERT INTO faq (question_id, answer_id, question_en, answer_en, category)
+          INSERT INTO faq (question_id, answer_id, question_en, answer_en, status)
           VALUES (?, ?, ?, ?, ?)
         `;
             db.query(
@@ -255,7 +282,7 @@ const createDatabaseAndTable = () => {
                 faq.answer_id,
                 faq.question_en,
                 faq.answer_en,
-                faq.category,
+                faq.status,
               ],
               (insertErr) => {
                 if (insertErr) {
@@ -523,15 +550,15 @@ const createDatabaseAndTable = () => {
       });
     });
 
+    // Create the portfolios table
     const createPortfoliosTableQuery = `
-        CREATE TABLE IF NOT EXISTS portfolios (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            genre VARCHAR(255),
-            description TEXT,
-            video VARCHAR(255)
-        );
-      `;
+      CREATE TABLE IF NOT EXISTS portfolios (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        genre ENUM('Accoustic', 'Dubstep', 'Jazz', 'Pop', 'Progressive', 'Sundanese') NOT NULL,
+        link VARCHAR(2083) NOT NULL
+      );
+    `;
 
     db.query(createPortfoliosTableQuery, (err) => {
       if (err) {
@@ -541,20 +568,75 @@ const createDatabaseAndTable = () => {
       }
     });
 
-    // Membuat tabel biodata jika belum ada
-    const createBiodataTableQuery = `
-            CREATE TABLE IF NOT EXISTS biodata (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            item_id INT,
-            email VARCHAR(255),
-            name VARCHAR(255),
-            whatsapp VARCHAR(255),
-            price INT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (item_id) REFERENCES items(id)
-            );
-        `;
+    // Menyisipkan data awal jika tabel kosong
+    const checkDataQuery = "SELECT COUNT(*) AS count FROM portfolios";
+    db.query(checkDataQuery, (err, result) => {
+      if (err) {
+        console.error("❌ Error checking portfolio data:", err);
+        return;
+      }
 
+      if (result[0].count === 0) {
+        const initialData = [
+          {
+            "name": "Dapoer Catering SR",
+            "genre": "Accoustic",
+            "link": "https://api.soundcloud.com/tracks/2046389160"
+          },
+          {
+            "name": "Goyobod Laris",
+            "genre": "Dubstep",
+            "link": "https://api.soundcloud.com/tracks/2046389153"
+          },
+          {
+            "name": "Dimsum by Inmons Fix",
+            "genre": "Jazz",
+            "link": "https://api.soundcloud.com/tracks/2046389164"
+          },
+          {
+            "name": "Bubuk Cabe Pa Abdul",
+            "genre": "Pop",
+            "link": "https://api.soundcloud.com/tracks/2046390272"
+          },
+          {
+            "name": "Aku Baru",
+            "genre": "Progressive",
+            "link": "https://api.soundcloud.com/tracks/2046389156"
+          },
+          {
+            "name": "Hudang Hese",
+            "genre": "Sundanese",
+            "link": "https://api.soundcloud.com/tracks/2046389168"
+          }
+        ];
+
+        const insertQuery = "INSERT INTO portfolios (name, genre, link) VALUES ?";
+        const values = initialData.map((item) => [item.name, item.genre, item.link]);
+
+        db.query(insertQuery, [values], (err) => {
+          if (err) {
+            console.error("❌ Error inserting initial data:", err);
+          } else {
+            console.log("✅ Initial portfolio data inserted");
+          }
+        });
+      }
+  });
+  
+  // Membuat tabel biodata jika belum ada
+  const createBiodataTableQuery = `
+      CREATE TABLE IF NOT EXISTS biodata (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        item_id INT,
+        email VARCHAR(255),
+        name VARCHAR(255),
+        whatsapp VARCHAR(255),
+        price INT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (item_id) REFERENCES items(id)
+      );
+    `;
+    
     db.query(createBiodataTableQuery, (err) => {
       if (err) {
         console.error("❌ Error creating biodata table:", err);
@@ -608,7 +690,7 @@ const createDatabaseAndTable = () => {
           );
         }
       });
-    });
+  });
   });
 };
 
@@ -651,55 +733,80 @@ async function addAdminUser(username, password, email) {
 createDatabaseAndTable();
 
 app.post("/admin/login", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, recaptchaToken } = req.body;
+
+  if (!username || !password || !recaptchaToken) {
+    return res.status(400).json({ message: "Semua field wajib diisi." });
+  }
+
   try {
+    // Verifikasi reCAPTCHA dengan Google
+    const verifyResponse = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      null,
+      {
+        params: {
+          secret: globalThis.process.env.RECAPTCHA_SECRET_KEY,
+          response: recaptchaToken,
+        },
+      }
+    );
+
+    const { success, score } = verifyResponse.data;
+
+    if (!success || (score !== undefined && score < 0.5)) {
+      return res.status(400).json({ message: "Verifikasi reCAPTCHA gagal." });
+    }
+
+    // Cek username dan password di database
     const [rows] = await db
       .promise()
       .query("SELECT * FROM admin WHERE username = ? AND password = ?", [
         username,
         password,
       ]);
+
     if (rows.length > 0) {
       console.log("Login successful, rows:", rows);
-      console.log("Before setting session:", req.session);
       req.session.user = { username: rows[0].username };
-      console.log("After setting session:", req.session);
-      res.json({ message: "Login successful" });
+      res.json({ message: "Login berhasil!" });
     } else {
       console.log("Invalid credentials");
-      res.status(401).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "Username atau password salah." });
     }
   } catch (error) {
     console.error("Login error:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Terjadi kesalahan server." });
   }
 });
 
+// Endpoint Logout
 app.post("/admin/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.status(500).json({ message: "Could not log out" });
+      return res.status(500).json({ message: "Logout gagal" });
     }
     res.clearCookie("connect.sid");
-    res.json({ message: "Logout successful" });
+    res.json({ message: "Logout berhasil" });
   });
 });
 
+// Middleware untuk melindungi halaman admin
 const requireAdmin = (req, res, next) => {
-  console.log("requireAdmin middleware called");
+  console.log("Middleware requireAdmin dipanggil");
   console.log("Session:", req.session);
-  console.log("req.session.user:", req.session.user); // Tambahkan log ini
   if (req.session.user) {
-    console.log("Admin is authenticated");
+    console.log("Admin terautentikasi");
     next();
   } else {
-    console.log("Admin is not authenticated");
+    console.log("Admin tidak terautentikasi");
     res.status(401).json({ message: "Unauthorized" });
   }
 };
 
+// Endpoint yang dilindungi
 app.get("/admin/protected", requireAdmin, (req, res) => {
-  res.json({ message: "Protected route accessed" });
+  res.json({ message: "Anda berhasil mengakses halaman admin!" });
 });
 
 app.get("/visitors", (req, res) => {
@@ -849,6 +956,7 @@ app.delete("/footers/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete footer data" });
   }
 });
+
 // Endpoint untuk mengambil data portfolio
 app.get("/portfolios", (req, res) => {
   const sql = "SELECT * FROM portfolios";
@@ -862,54 +970,39 @@ app.get("/portfolios", (req, res) => {
 });
 
 // Endpoint untuk menambahkan data portfolio baru
-app.post("/portfolios", upload.single("video"), (req, res) => {
-  const { name, genre, description } = req.body;
-  const video = req.file ? req.file.filename : null; // Nama file video dari multer
+app.post("/portfolios", (req, res) => {
+  const { name, genre, link } = req.body;
 
-  if (!name || !genre || !description) {
-    return res.status(400).json({ error: "Data portfolio tidak lengkap!" });
+  if (!name || !genre || !link) {
+    return res.status(400).json({ error: "Incomplete portfolio data!" });
   }
 
-  const sql =
-    "INSERT INTO portfolios (name, genre, description, video) VALUES (?, ?, ?, ?)";
-  db.query(sql, [name, genre, description, video], (err, result) => {
+  const sql = "INSERT INTO portfolios (name, genre, link) VALUES (?, ?, ?)";
+  db.query(sql, [name, genre, link], (err, result) => {
     if (err) {
       console.error("❌ Error creating portfolio:", err);
       return res.status(500).json({ error: err.message });
     }
     res.status(201).json({
-      // Mengembalikan data portfolio yang baru dibuat
       id: result.insertId,
       name,
       genre,
-      description,
-      video,
+      link,
     });
   });
 });
 
 // Endpoint untuk mengupdate data portfolio
-app.put("/portfolios/:id", upload.single("video"), (req, res) => {
-  const { name, genre, description } = req.body;
-  const video = req.file ? req.file.filename : null;
+app.put("/portfolios/:id", (req, res) => {
+  const { name, genre, link } = req.body;
   const { id } = req.params;
 
-  if (!name || !genre || !description) {
-    return res.status(400).json({ error: "Data portfolio tidak lengkap!" });
+  if (!name || !genre || !link) {
+    return res.status(400).json({ error: "Incomplete portfolio data!" });
   }
 
-  let sql = "UPDATE portfolios SET name = ?, genre = ?, description = ?";
-  const values = [name, genre, description];
-
-  if (video) {
-    sql += ", video = ?";
-    values.push(video);
-  }
-
-  sql += " WHERE id = ?";
-  values.push(id);
-
-  db.query(sql, values, (err) => {
+  const sql = "UPDATE portfolios SET name = ?, genre = ?, link = ? WHERE id = ?";
+  db.query(sql, [name, genre, link, id], (err) => {
     if (err) {
       console.error("❌ Error updating portfolio:", err);
       return res.status(500).json({ error: err.message });
@@ -1046,6 +1139,45 @@ app.get("/orders/:productId", (req, res) => {
   });
 });
 
+app.get("/biodata/categories/count", (req, res) => {
+  const categories = ['lirik', 'instrumen', 'efek-suara'];
+  const results = [];
+
+  const processCategory = (category, callback) => {
+      const sql = `
+          SELECT COUNT(*) AS jumlah_terjual
+          FROM biodata b
+          INNER JOIN items i ON b.item_id = i.id
+          WHERE i.name = ?
+      `;
+
+      db.query(sql, [category], (err, result) => {
+          if (err) {
+              console.error(`❌ Error fetching ${category} sales count:`, err);
+              return callback(err);
+          }
+          results.push({ nama_produk: category, jumlah_terjual: result[0].jumlah_terjual });
+          callback(null);
+      });
+  };
+
+  const processCategories = (index) => {
+      if (index < categories.length) {
+          processCategory(categories[index], (err) => {
+              if (err) {
+                  return res.status(500).json({ error: "Failed to fetch category sales count" });
+              }
+              processCategories(index + 1);
+          });
+      } else {
+          res.status(200).json({ produk: results });
+      }
+  };
+
+  processCategories(0);
+});
+
+
 // Endpoint untuk mengambil semua FAQ
 app.get("/faq", (req, res) => {
   const sql = "SELECT * FROM faq";
@@ -1060,34 +1192,51 @@ app.get("/faq", (req, res) => {
 
 // Endpoint untuk menambahkan FAQ baru
 app.post("/faq", (req, res) => {
-  const { question, answer, category } = req.body; // Ambil data dari request body
+  const { question_id, answer_id, question_en, answer_en, status } = req.body;
 
-  const sql = "INSERT INTO faq (question, answer, category) VALUES (?, ?, ?)";
-  db.query(sql, [question, answer, category], (err, result) => {
-    if (err) {
-      console.error("❌ Error creating FAQ:", err);
-      return res.status(500).json({ error: "Failed to create FAQ" });
+  if (status !== "Published" && status !== "Archived") {
+    return res.status(400).json({ error: "Invalid status value" });
+  }
+
+  const sql =
+    "INSERT INTO faq (question_id, answer_id, question_en, answer_en, status) VALUES (?, ?, ?, ?, ?)";
+  db.query(
+    sql,
+    [question_id, answer_id, question_en, answer_en, status],
+    (err, result) => {
+      if (err) {
+        console.error("❌ Error creating FAQ:", err);
+        return res.status(500).json({ error: "Failed to create FAQ" });
+      }
+      res
+        .status(201)
+        .json({ message: "FAQ created successfully", id: result.insertId });
     }
-    res
-      .status(201)
-      .json({ message: "FAQ created successfully", id: result.insertId }); // Beri status 201 Created dan kirim ID baru
-  });
+  );
 });
 
 // Endpoint untuk mengupdate FAQ
 app.put("/faq/:id", (req, res) => {
-  const { question, answer, category } = req.body;
+  const { question_id, answer_id, question_en, answer_en, status } = req.body;
   const { id } = req.params;
 
+  if (status !== "Published" && status !== "Archived") {
+    return res.status(400).json({ error: "Invalid status value" });
+  }
+
   const sql =
-    "UPDATE faq SET question = ?, answer = ?, category = ? WHERE id = ?";
-  db.query(sql, [question, answer, category, id], (err) => {
-    if (err) {
-      console.error("❌ Error updating FAQ:", err);
-      return res.status(500).json({ error: "Failed to update FAQ" });
+    "UPDATE faq SET question_id = ?, answer_id = ?, question_en = ?, answer_en = ?, status = ? WHERE id = ?";
+  db.query(
+    sql,
+    [question_id, answer_id, question_en, answer_en, status, id],
+    (err) => {
+      if (err) {
+        console.error("❌ Error updating FAQ:", err);
+        return res.status(500).json({ error: "Failed to update FAQ" });
+      }
+      res.status(200).json({ message: "FAQ updated successfully" });
     }
-    res.status(200).json({ message: "FAQ updated successfully" });
-  });
+  );
 });
 
 // Endpoint untuk menghapus FAQ
