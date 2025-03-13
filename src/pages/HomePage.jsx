@@ -1,5 +1,4 @@
 import { Container, Row, Col } from "react-bootstrap";
-import HeroImage from "../assets/music-1.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faUser, faTag } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -16,7 +15,6 @@ import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-// import Disqus from "../components/Disqus";
 
 // Import Swiper styles
 import "swiper/css";
@@ -95,9 +93,9 @@ const HomePage = ({ language }) => {
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </Col>
-            <Col md={6} className="pt-lg-0 pt-5">
+            {/* <Col md={6} className="pt-lg-0 pt-5">
               <img src={HeroImage} alt="hero" className="grid-img" />
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </header>

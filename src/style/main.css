@@ -9,6 +9,8 @@
   --dark-color: linear-gradient(135deg, #24243e 0%, #302b63 50%, #0f0c29 100%);
   --bg-color: linear-gradient(135deg, #2b1055 0%, #7597de 100%);
   --light-color: #e9c46a;
+  --nav-color: #0E0B13;
+  --background: #0E1117;
 }
 
 /* navbar */
@@ -43,10 +45,11 @@
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   z-index: 1000;
+  background: var(--nav-color);
 }
 
 .navbar.navbar-active {
-  background: var(--dark-color);
+  background: var(--nav-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px 0 20px 0;
   transition: padding 0.3s;
@@ -133,19 +136,21 @@
 
 /* header */
 header {
-  background: #302b63;
-  background: -webkit-linear-gradient(to right, #24243e, #302b63);
-  background: var(--dark-color);
-  color: var(--light-color);
-  text-align: center;
-  padding: 100px 0 100px 0;
+  background-image: url('../assets/music-1.jpg');
+  opacity: 90%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px; /* Sesuaikan tinggi */
 }
 
+
+
 .HomePage .header-content h1 {
-  font-size: 3em;
+  font-size: 4em;
   font-weight: 700;
   color: var(--light-color);
-  margin: 0 0 20px 0;
+  margin: 0 0 40px 0;
   text-align: left;
 }
 
@@ -276,7 +281,8 @@ header {
 
 /* Catalog */
 .HomePage .catalog {
-  background: linear-gradient(135deg, #141414 0%, #2d2d2d 100%);
+  /* background: linear-gradient(135deg, #141414 0%, #2d2d2d 100%); */
+  background: var(--background);
   color: var(--light-color);
   padding-bottom: 50px;
 }
@@ -624,9 +630,9 @@ header {
 
 /* portfolio */
 .HomePage .portfolio {
-  background: #302b63;
-  background: -webkit-linear-gradient(to right, #24243e, #302b63);
-  background: var(--dark-color);
+  /* background: #302b63;
+  background: -webkit-linear-gradient(to right, #24243e, #302b63); */
+  background: var(--background);
   color: var(--light-color);
   padding-bottom: 100px;
 }
@@ -747,7 +753,7 @@ header {
 .faq {
   padding-bottom: 100px;
   padding-top: 100px;
-  background: linear-gradient(135deg, #141414 0%, #2d2d2d 100%);
+  background: var(--background);
   color: var(--light-color);
 }
 
@@ -830,7 +836,7 @@ header {
   padding-top: 50px;
   width: 100%;
   min-height: 60vh;
-  background: var(--dark-color);
+  background: var(--nav-color);
 }
 
 .footer .row:nth-child(1) .col:nth-child(1) h3 {
