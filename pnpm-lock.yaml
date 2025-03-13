@@ -26,18 +26,30 @@ importers:
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.2
         version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@18.3.1)
+      array-flatten:
+        specifier: ^3.0.0
+        version: 3.0.0
       axion:
         specifier: ^0.1.0
         version: 0.1.0
       axios:
         specifier: ^1.7.9
         version: 1.8.2(debug@4.4.0)
+      body-parser:
+        specifier: ^1.20.3
+        version: 1.20.3
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
       chart.js:
         specifier: ^4.4.8
         version: 4.4.8
+      content-disposition:
+        specifier: ^0.5.4
+        version: 0.5.4
+      content-type:
+        specifier: ^1.0.5
+        version: 1.0.5
       cookie-parser:
         specifier: ^1.4.7
         version: 1.4.7
@@ -53,6 +65,9 @@ importers:
       debug:
         specifier: ^4.4.0
         version: 4.4.0(supports-color@5.5.0)
+      depd:
+        specifier: ^2.0.0
+        version: 2.0.0
       disqus-react:
         specifier: ^1.1.6
         version: 1.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -62,18 +77,39 @@ importers:
       esbuild:
         specifier: ^0.25.0
         version: 0.25.1
+      etag:
+        specifier: ^1.8.1
+        version: 1.8.1
       express:
         specifier: ^4.21.2
         version: 4.21.2
       express-session:
         specifier: ^1.18.1
         version: 1.18.1
+      finalhandler:
+        specifier: ^2.1.0
+        version: 2.1.0
+      follow-redirects:
+        specifier: ^1.15.9
+        version: 1.15.9(debug@4.4.0)
+      form-data:
+        specifier: ^4.0.2
+        version: 4.0.2
+      http:
+        specifier: 0.0.1-security
+        version: 0.0.1-security
       jquery:
         specifier: ^3.7.1
         version: 3.7.1
       lucide-react:
         specifier: ^0.474.0
         version: 0.474.0(react@18.3.1)
+      merge-descriptors:
+        specifier: ^2.0.0
+        version: 2.0.0
+      methods:
+        specifier: ^1.1.2
+        version: 1.1.2
       midtrans-client:
         specifier: ^1.4.2
         version: 1.4.2(debug@4.4.0)
@@ -89,9 +125,24 @@ importers:
       nodemon:
         specifier: ^3.1.9
         version: 3.1.9
+      parseurl:
+        specifier: ^1.3.3
+        version: 1.3.3
+      path-to-regexp:
+        specifier: ^8.2.0
+        version: 8.2.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
+      proxy-addr:
+        specifier: ^2.0.7
+        version: 2.0.7
+      proxy-from-env:
+        specifier: ^1.1.0
+        version: 1.1.0
+      qs:
+        specifier: ^6.14.0
+        version: 6.14.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -116,12 +167,24 @@ importers:
       react-router-dom:
         specifier: ^7.1.5
         version: 7.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      safe-buffer:
+        specifier: ^5.2.1
+        version: 5.2.1
       semver:
         specifier: ^7.7.1
         version: 7.7.1
+      send:
+        specifier: ^1.1.0
+        version: 1.1.0
+      setprototypeof:
+        specifier: ^1.2.0
+        version: 1.2.0
       swiper:
         specifier: ^11.2.1
         version: 11.2.5
+      utils-merge:
+        specifier: ^1.0.1
+        version: 1.0.1
     devDependencies:
       '@eslint/js':
         specifier: ^9.17.0
@@ -151,7 +214,7 @@ importers:
         specifier: ^15.14.0
         version: 15.15.0
       vite:
-        specifier: ^6.0.11
+        specifier: ^6.2.1
         version: 6.2.1
 
 packages:
@@ -709,6 +772,9 @@ packages:
   array-flatten@1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
 
+  array-flatten@3.0.0:
+    resolution: {integrity: sha512-zPMVc3ZYlGLNk4mpK1NzP2wg0ml9t7fUgDsayR5Y5rSzxQilzR9FGu/EH2jQOcKSAeAfWeylyW8juy3OkWRvNA==}
+
   array-includes@3.1.8:
     resolution: {integrity: sha512-itaWrbYbqpGXkGhZPGUulwnhVf5Hpy1xiCFsGqyIGglbBxmG5vSjxQen3/WGOjPpNEv1RtBLKxbmVXm8HpJStQ==}
     engines: {node: '>= 0.4'}
@@ -1140,6 +1206,10 @@ packages:
     resolution: {integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ==}
     engines: {node: '>= 0.8'}
 
+  finalhandler@2.1.0:
+    resolution: {integrity: sha512-/t88Ty3d5JWQbWYgaOGCCYfXRwV1+be02WqYYlL6h0lEiUAMPM8o8qKGO01YIkOHzka2up08wvgYD0mDiI+q3Q==}
+    engines: {node: '>= 0.8'}
+
   find-up@5.0.0:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
@@ -1275,6 +1345,9 @@ packages:
   http-errors@2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
+
+  http@0.0.1-security:
+    resolution: {integrity: sha512-RnDvP10Ty9FxqOtPZuxtebw1j4L/WiqNMDtuc1YMH1XQm5TgDRaR1G9u8upL6KD1bXHSp9eSXo/ED+8Q7FAr+g==}
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -1519,6 +1592,10 @@ packages:
   merge-descriptors@1.0.3:
     resolution: {integrity: sha512-gaNvAS7TZ897/rVaZ0nMtAyxNyi/pdbjbAwUpFQpN70GqnVfOiXpeUUMKRBmzXaSQ8DdTX4/0ms62r2K+hE6mQ==}
 
+  merge-descriptors@2.0.0:
+    resolution: {integrity: sha512-Snk314V5ayFLhp3fkUREub6WtjBfPdCPY1Ln8/8munuLuiYhsABgBVWsozAG+MWMbVEvcdcpbi9R7ww22l9Q3g==}
+    engines: {node: '>=18'}
+
   methods@1.1.2:
     resolution: {integrity: sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==}
     engines: {node: '>= 0.6'}
@@ -1668,6 +1745,10 @@ packages:
   path-to-regexp@0.1.12:
     resolution: {integrity: sha512-RA1GjUVMnvYFxuqovrEqZoxxW5NUZqbwKtYz/Tt7nXerk0LbLblQmrsgdeOxV5SFHf0UDggjS/bSeOZwt1pmEQ==}
 
+  path-to-regexp@8.2.0:
+    resolution: {integrity: sha512-TdrF7fW9Rphjq4RjrW0Kp2AW0Ahwu9sRGTkS6bvDi0SCwZlEZYmcfDbEsTz8RVk0EHIS/Vd1bv3JhG+1xZuAyQ==}
+    engines: {node: '>=16'}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -1714,6 +1795,10 @@ packages:
 
   qs@6.13.0:
     resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
+    engines: {node: '>=0.6'}
+
+  qs@6.14.0:
+    resolution: {integrity: sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==}
     engines: {node: '>=0.6'}
 
   random-bytes@1.0.0:
@@ -1876,6 +1961,10 @@ packages:
   send@0.19.0:
     resolution: {integrity: sha512-dW41u5VfLXu8SJh5bwRmyYUbAoSB3c9uQh6L8h/KtsFREPWpbX1lrljJo186Jc4nmci/sGUZ9a0a0J2zgfq2hw==}
     engines: {node: '>= 0.8.0'}
+
+  send@1.1.0:
+    resolution: {integrity: sha512-v67WcEouB5GxbTWL/4NeToqcZiAWEq90N888fczVArY8A79J0L4FD7vj5hm3eUMua5EpoQ59wa/oovY6TLvRUA==}
+    engines: {node: '>= 18'}
 
   seq-queue@0.0.5:
     resolution: {integrity: sha512-hr3Wtp/GZIc/6DAGPDcV4/9WoZhjrkXsi5B/07QgX8tsdc6ilr7BFM6PM6rbdAX1kFSDYeZGLipIZZKyQP0O5Q==}
@@ -2640,6 +2729,8 @@ snapshots:
 
   array-flatten@1.1.1: {}
 
+  array-flatten@3.0.0: {}
+
   array-includes@3.1.8:
     dependencies:
       call-bind: 1.0.8
@@ -3265,6 +3356,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  finalhandler@2.1.0:
+    dependencies:
+      debug: 4.4.0(supports-color@5.5.0)
+      encodeurl: 2.0.0
+      escape-html: 1.0.3
+      on-finished: 2.4.1
+      parseurl: 1.3.3
+      statuses: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+
   find-up@5.0.0:
     dependencies:
       locate-path: 6.0.0
@@ -3398,6 +3500,8 @@ snapshots:
       setprototypeof: 1.2.0
       statuses: 2.0.1
       toidentifier: 1.0.1
+
+  http@0.0.1-security: {}
 
   iconv-lite@0.4.24:
     dependencies:
@@ -3628,6 +3732,8 @@ snapshots:
 
   merge-descriptors@1.0.3: {}
 
+  merge-descriptors@2.0.0: {}
+
   methods@1.1.2: {}
 
   midtrans-client@1.4.2(debug@4.4.0):
@@ -3788,6 +3894,8 @@ snapshots:
 
   path-to-regexp@0.1.12: {}
 
+  path-to-regexp@8.2.0: {}
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -3828,6 +3936,10 @@ snapshots:
   punycode@2.3.1: {}
 
   qs@6.13.0:
+    dependencies:
+      side-channel: 1.1.0
+
+  qs@6.14.0:
     dependencies:
       side-channel: 1.1.0
 
@@ -4048,6 +4160,23 @@ snapshots:
       fresh: 0.5.2
       http-errors: 2.0.0
       mime: 1.6.0
+      ms: 2.1.3
+      on-finished: 2.4.1
+      range-parser: 1.2.1
+      statuses: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+
+  send@1.1.0:
+    dependencies:
+      debug: 4.4.0(supports-color@5.5.0)
+      destroy: 1.2.0
+      encodeurl: 2.0.0
+      escape-html: 1.0.3
+      etag: 1.8.1
+      fresh: 0.5.2
+      http-errors: 2.0.0
+      mime-types: 2.1.35
       ms: 2.1.3
       on-finished: 2.4.1
       range-parser: 1.2.1

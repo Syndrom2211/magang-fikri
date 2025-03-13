@@ -38,19 +38,25 @@ app.use(
   })
 );
 
-// ✅ Ensure static files are served correctly
+// Ensure static files are served correctly
 app.use(express.static("public"));
 
-// ✅ MySQL Database Connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || "localhost",
-  port: process.env.DB_PORT || 3306, // Use env variable
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "creativemusichub",
-  multipleStatements: true, // Allow multiple queries
-  connectTimeout: 10000, // Increase timeout
+  host: "localhost",
+  user: "root",
+  password: "",
 });
+
+// MySQL Database Connection
+// const db = mysql.createConnection({
+//   host: process.env.DB_HOST || "localhost",
+//   port: process.env.DB_PORT || 3306, // Use env variable
+//   user: process.env.DB_USER || "root",
+//   password: process.env.DB_PASSWORD || "",
+//   database: process.env.DB_NAME || "creativemusichub",
+//   multipleStatements: true, // Allow multiple queries
+//   connectTimeout: 10000, // Increase timeout
+// });
 
 // ✅ Handle database connection errors
 const connectDB = () => {
@@ -82,10 +88,10 @@ app.get("/", (req, res) => {
 });
 
 // ✅ Start the server
-const PORT1 = process.env.PORT || 8080;
-app.listen(PORT1, () => {
-  console.log(`🚀 Server is running on port ${PORT1}`);
-});
+// const PORT1 = process.env.PORT || 8080;
+// app.listen(PORT1, () => {
+//   console.log(`🚀 Server is running on port ${PORT1}`);
+// });
 
 
 // Fungsi untuk membuat database dan tabel admin jika belum ada
