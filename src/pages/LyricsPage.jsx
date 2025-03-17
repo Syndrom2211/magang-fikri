@@ -86,16 +86,18 @@ const LyricsPage = ({ language }) => {
                     __html: musicInspirationData[language].aiTitle,
                   }}
                 />
-                <textarea
-                  className="form-control lyric-input"
-                  placeholder={
-                    musicInspirationData[language].lyricPlaceholder
-                  }></textarea>
-                <button
-                  className="btn btn-primary create-btn"
-                  onClick={scrollToPriceList}>
-                  {musicInspirationData[language].createButton}
-                </button>
+                  <div className="lyric-input-container"> 
+    <textarea
+      className="form-control lyric-input"
+      placeholder={musicInspirationData[language].lyricPlaceholder}
+    ></textarea>
+    <button
+      className="btn btn-primary create-btn"
+      onClick={scrollToPriceList}
+    >
+      {musicInspirationData[language].createButton}
+    </button>
+  </div>
               </div>
             </Col>
           </Row>

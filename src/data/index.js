@@ -456,6 +456,7 @@ export const creativeMusicHubData = {
       { name: "Buat Sound Effect", link: "/sound-effect" },
       { name: "Portofolio", link: "/portfolio" },
     ],
+    footerTexts: ["Keamanan Privasi", "Ketentuan Penggunaan", "Peta Situs"],
     visitorsLabel: "Total Pengunjung",
   },
   EN: {
@@ -477,6 +478,7 @@ export const creativeMusicHubData = {
       { name: "Create Sound Effects", link: "/sound-effect" },
       { name: "Portfolio", link: "/portfolio" },
     ],
+    footerTexts: ["Privacy Policy", "Terms of Use", "Sitemap"],
     visitorsLabel: "Total Visitors",
   },
 };

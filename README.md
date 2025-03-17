@@ -43,6 +43,30 @@ npm install -g pnpm
 
 ---
 
+## 📊 Cara Instalasi Database
+
+1. **Masuk ke direktori proyek**
+```bash
+cd magang-fikri
+```
+
+2. **Masuk ke direktori API**
+```bash
+cd api
+```
+
+3. **Instal npm (jika belum)**
+```bash
+npm install
+```
+
+4. **Jalankan server sekaligus menginstall database otomatis**
+```bash
+pnpm run dev
+```
+
+---
+
 ## 💻 Cara Menggunakan
 
 1. Buka browser dan akses:

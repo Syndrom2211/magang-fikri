@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import LogoCMH from "../assets/CMH-LOGO.jpg";
 
 const NavbarComponent = ({ language, setLanguage }) => {
   const [scroll, setScroll] = useState(false);
@@ -54,8 +55,7 @@ const NavbarComponent = ({ language, setLanguage }) => {
         className={scroll ? "navbar navbar-active" : "navbar"}>
         <Container>
           <Navbar.Brand href="#home" className="fs-3 fw-bold">
-            <span>CreativeMusic</span>
-            <span className="hub">Hub</span>
+          <img src={LogoCMH} alt="Creative Music Hub Logo" width="150" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -75,8 +75,7 @@ const NavbarComponent = ({ language, setLanguage }) => {
       className={scroll ? "navbar navbar-active" : "navbar"}>
       <Container>
         <Navbar.Brand href="#home" className="fs-3 fw-bold">
-          <span>CreativeMusic</span>
-          <span className="hub">Hub</span>
+        <img src={LogoCMH} alt="Creative Music Hub Logo" width="150" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -89,31 +88,29 @@ const NavbarComponent = ({ language, setLanguage }) => {
                 return (
                   <div className="nav-item" key={link.id}>
                     {dropdownItems.length > 0 ? (
-                      <NavDropdown
-                        title={
-                          <>
-                            {getLanguageContent(link)}
-                            <FontAwesomeIcon
-                              icon={faChevronRight}
-                              className="dropdown-arrow ms-2"
-                            />
-                          </>
-                        }
-                        id={`dropdown-${link.id}`}>
-                        {dropdownItems.map((item) => (
-                          <NavDropdown.Item key={item.id} href={item.path}>
-                            {getLanguageContent(item)}
-                          </NavDropdown.Item>
-                        ))}
-                      </NavDropdown>
-                    ) : (
-                      <Nav.Link
-                        href={link.path}
-                        className={
-                          location.pathname === link.path ? "active" : ""
-                        }>
-                        {getLanguageContent(link)}
-                      </Nav.Link>
+                  <NavDropdown
+                  title={
+                    <span className="nav-btn">
+                      {getLanguageContent(link)}
+                      <FontAwesomeIcon icon={faChevronRight} className="dropdown-arrow ms-2" />
+                    </span>
+                  }
+                  id={`dropdown-${link.id}`}
+                  className="custom-dropdown"
+                  >
+                  {dropdownItems.map((item) => (
+                    <NavDropdown.Item key={item.id} href={item.path} className="dropdown-item-btn">
+                      {getLanguageContent(item)}
+                    </NavDropdown.Item>
+                  ))}
+                  </NavDropdown>
+                   ) : (
+                  <Nav.Link
+                  href={link.path}
+                  className={`nav-btn mx-2 ${location.pathname === link.path ? "active" : ""}`}
+                  >
+                  {getLanguageContent(link)}
+                  </Nav.Link>
                     )}
                   </div>
                 );

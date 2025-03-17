@@ -189,6 +189,15 @@ const FooterComponent = ({ language }) => {
             </p>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <p className="text-center px-md-0 px-3">
+              &copy; Copyright {new Date().getFullYear()} by{" "}
+              <span className="fw-bold">Creative Music Hub</span>, All Right
+              Reserved
+            </p>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

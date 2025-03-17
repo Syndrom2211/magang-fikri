@@ -48,6 +48,13 @@
   background: var(--nav-color);
 }
 
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
 .navbar.navbar-active {
   background: var(--nav-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -79,49 +86,93 @@
   padding: 8px 16px;
 }
 
-/* Dropdown Styles */
-.dropdown-arrow {
-  font-size: 12px;
+.nav-btn {
+  color: white;
+  background-color: transparent;
+  border: 2px solid #FF007F;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
   transition: all 0.3s ease;
   display: inline-block;
-  transform: rotate(0deg); /* Start with arrow pointing right */
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(255, 0, 127, 0.2);
 }
 
-.nav-item.dropdown:hover .dropdown-arrow {
-  transform: rotate(90deg);
+.nav-btn:hover,
+.nav-btn.active {
+  background-color: #FF007F;
+  color: #0E0B13; 
+  font-weight: bold;
+  box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
 }
 
-.dropdown-toggle::after {
-  display: none !important;
+/* Dropdown Styles */
+.custom-dropdown .nav-btn {
+  color: #f8c24f; /* Warna teks sama seperti 'BERANDA' */
+  background-color: transparent;
+  border: 2px solid transparent;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
 }
 
-.dropdown-toggle:hover::after {
-  transform: rotate(180deg);
-}
-
-.dropdown-menu {
-  background-color: #141414;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+/* Dropdown Menu */
+.custom-dropdown .dropdown-menu {
+  background-color: #0E0B13;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
   margin-top: 5px;
-  display: none;
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
+  display: none;
+  padding: 10px;
+  border: none;
 }
 
-.dropdown-item:hover {
+/* Dropdown Item (Sama dengan tombol navigasi) */
+.dropdown-item-btn {
+  color: #f8c24f !important; /* Warna teks seperti 'BERANDA' */
+  background-color: transparent;
+  padding: 8px 16px; /* Samakan padding */
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: block;
+  text-align: center;
+}
+
+.dropdown-item-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  color: var(--light-color) !important;
+  color: #ff007f !important;
+  font-weight: bold;
+  border: 2px solid #ff007f;
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
+/* Efek Animasi Dropdown */
+.custom-dropdown:hover .dropdown-menu {
   display: block;
   opacity: 1;
   transform: translateY(0);
-  animation: dropdownFade 0.3s ease forwards;
 }
+
+/* Arrow Animation */
+.dropdown-arrow {
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.custom-dropdown:hover .dropdown-arrow {
+  transform: rotate(90deg);
+}
+
 
 @keyframes fadeIn {
   0% {
@@ -282,7 +333,7 @@ header {
 /* Catalog */
 .HomePage .catalog {
   /* background: linear-gradient(135deg, #141414 0%, #2d2d2d 100%); */
-  background: var(--background);
+  background:  #0E1117;
   color: var(--light-color);
   padding-bottom: 50px;
 }
@@ -632,7 +683,7 @@ header {
 .HomePage .portfolio {
   /* background: #302b63;
   background: -webkit-linear-gradient(to right, #24243e, #302b63); */
-  background: var(--background);
+  background:  #0E1117;
   color: var(--light-color);
   padding-bottom: 100px;
 }
@@ -753,7 +804,8 @@ header {
 .faq {
   padding-bottom: 100px;
   padding-top: 100px;
-  background: var(--background);
+  background: #0E1117;
+  /* background: var(--background); */
   color: var(--light-color);
 }
 
@@ -948,7 +1000,8 @@ header {
 
 /* Support */
 .contact-us {
-  background: var(--dark-color);
+  background: var(--background);
+  background-color: #0E1117;
   padding: 60px 0;
 }
 
