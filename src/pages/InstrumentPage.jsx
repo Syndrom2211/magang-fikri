@@ -52,7 +52,7 @@ const InstrumentPage = ({ language }) => {
                   {instrumentSectionData[language].subtext}
                 </p>
                 <Button
-                  className="btn btn-primary create-btn"
+                  className="btn btn-primary instrument-btn"
                   onClick={scrollToPriceList}
                 >
                   {instrumentSectionData[language].buttonText}

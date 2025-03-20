@@ -60,12 +60,11 @@ const PortfolioPage = ({ }) => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="homePage portfolio">
-      <header className="w-100 min-vh-100 d-flex align-items-center">
+    <div className="portfolio-page">
         <Container>
           <Row>
             <Col>
-              <h1 className="text-center fw-bold my-3" style={{ letterSpacing: "2px" }}>
+              <h1 className="h1-portfolio">
                 Portfolio
               </h1>
             </Col>
@@ -74,7 +73,7 @@ const PortfolioPage = ({ }) => {
             {genres.map((genre) => (
               <Col key={genre}>
                 <Button
-                  variant={selectedGenre === genre ? "success" : "outline-success"}
+                  variant={selectedGenre === genre ? "light" : "outline-light"}
                   onClick={() => setSelectedGenre(genre)}
                   className="m-1"
                 >
@@ -96,7 +95,6 @@ const PortfolioPage = ({ }) => {
             ))}
           </Row>
         </Container>
-      </header>
     </div>
   );
 };

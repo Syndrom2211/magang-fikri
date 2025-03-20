@@ -81,7 +81,7 @@ const AdminProduk = () => {
       <SideBarComponent />
       <div className="dashboard-content">
         <MainHeader />
-        <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
+        <div className="dashboard-content-isi" style={{ flex: 1, padding: "20px" }}>
           <h2>Daftar Transaksi: {product}</h2>
           <table ref={tableRef} className="table table-striped table-bordered">
             <thead>

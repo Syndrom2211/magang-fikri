@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import emailjs from "@emailjs/browser";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +13,10 @@ import PropTypes from 'prop-types';
 
 const SupportPage = ({language}) => {
   const form = useRef();
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  
+  const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
     // Tawk.to integration
     useEffect(() => {
@@ -31,8 +36,17 @@ const SupportPage = ({language}) => {
       };
     }, []); // Empty dependency array means this runs once on mount
 
+  const onChange = (token) => {
+    setRecaptchaToken(token);
+  };
+
   const sendEmail = (e) => {
     e.preventDefault();
+
+    if (!recaptchaToken) {
+      setErrorMessage(language === 'ID' ? 'Mohon selesaikan reCAPTCHA.' : 'Please complete the reCAPTCHA.');
+      return;
+    }
 
     emailjs
       .sendForm("service_9tootbq", "template_rlkp529", form.current, {
@@ -45,6 +59,7 @@ const SupportPage = ({language}) => {
         },
         (error) => {
           console.log("FAILED...", error.text);
+          setErrorMessage(language === 'ID' ? 'Gagal mengirim pesan.' : 'Failed to send message.');
         }
       );
   };
@@ -89,8 +104,26 @@ const SupportPage = ({language}) => {
             <Col md={12}>
               <Form.Control as="textarea" rows={5} name="message" placeholder={contactData[language].form.messagePlaceholder} required />
             </Col>
+
+            {errorMessage && (
+              <Col md={12}>
+                <div className="error-message">{errorMessage}</div>
+              </Col>
+            )}
+
+            <Col md={12}>
+              <div className="recaptcha-container">
+                <ReCAPTCHA
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={onChange}
+                  theme="light"
+                  size="normal"
+                />
+              </div>
+            </Col>
+
             <Col md={12} className="text-center">
-              <Button variant="primary" type="submit" className="cta-support" value="Send">
+              <Button variant="primary" type="submit" className="cta-support" value="Send" disabled={!recaptchaToken}>
                 {contactData[language].form.submitButton}
               </Button>
             </Col>

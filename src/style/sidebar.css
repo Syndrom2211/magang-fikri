@@ -7,25 +7,31 @@
   --bg-color: linear-gradient(135deg, #2b1055 0%, #7597de 100%);
   --light-color: #e9c46a;
   --nav-color: #0E0B13;
-  --background: #0E1117;
+  --background: #0E1117;
   --heading: #F2F2F2;
+  --card: #1C1F26;
+  --pink: #FF007F;
+  --text: #A1A1B0;
 }
 
 /* SIDEBAR */
 .sidebar-wrapper {
   width: 250px;
   height: 100vh;
-  background: var(--bg-color);
-  color: var(--primary-color);
-  transition: width 0.3s ease-in-out, color 0.3s ease-in-out;
+  background: var(--background);
+  color: var(--background);
+  transition: all 0.3s ease;
   overflow: hidden;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
 }
 
 /* Sidebar tertutup */
 .sidebar-wrapper.closed {
   width: 90px;
-  color: var(--secondary-color);
+  color: var(--pink);
 }
 
 /* TOMBOL TOGGLE SIDEBAR */
@@ -48,58 +54,78 @@
 }
 
 .sidebar-wrapper.closed .icon {
-  color: var(--secondary-color) !important;
+  color: var(--pink) !important;
 }
 
 /* LOGO */
 .logo {
-  width: 80%;
-  max-width: 150px;
-  display: block;
-  margin: 60px auto 50px;
+  width: 120px;
   height: auto;
-  transition: width 0.3s ease-in-out;
+  display: block;
+  margin: 70px auto 30px;
+  transition: all 0.3s ease;
+  padding: 5px;
 }
 
+/* Logo saat sidebar tertutup */
 .sidebar-wrapper.closed .logo {
-  max-width: 50px;
-  margin: 20px auto;
+  width: 80px;
+  margin-top: 40px;
+  margin-right: 160px;
+}
+
+/* Container untuk logo */
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  margin-top: 20px;
 }
 
 /* NAVIGASI */
 .nav-link {
   display: flex;
   align-items: center;
-  padding: 10px;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-  position: relative;
-  background: transparent !important;
-  color: var(--primary-color);
+  padding: 12px 15px;
+  color: var(--heading) !important;
+  font-size: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+.nav-link .icon {
+  font-size: 18px;
+  min-width: 35px;
+}
+
+.link-text {
+  white-space: nowrap;
+  font-size: 14px;
 }
 
 /* Warna saat sidebar terbuka */
 .sidebar-wrapper .nav-link {
-  color: var(--primary-color);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
 }
 
 /* Hover pada item menu */
 .nav-link:hover {
-  color: var(--secondary-color);
+  color: var(--pink);
 }
 
 /* Warna hanya untuk menu yang aktif */
 .nav-link.active {
   font-weight: normal !important;
-  color: var(--secondary-color) !important;
+  color: var(--pink) !important;
 }
 
 /* DROPDOWN PRODUK */
 .product-dropdown {
-  display: none;
-  padding-left: 20px;
-  transition: all 0.3s ease-in-out;
-  background: transparent !important;
+  padding-left: 35px;
 }
 
 .product-dropdown.open {
@@ -109,8 +135,8 @@
 
 /* Warna submenu produk */
 .product-dropdown .nav-link {
-  background: transparent !important;
-  color: white !important;
+  font-size: 13px;
+  padding: 8px 15px;
 }
 
 /* Hover submenu produk */
@@ -149,7 +175,7 @@
   width: 250px;
   height: 100vh;
   padding: 20px;
-  background: var(--bg-color);
+  background: var(--card);
   color: white;
   display: flex;
   flex-direction: column;
@@ -158,22 +184,111 @@
 
 /* Saat sidebar ditutup */
 .sidebar-container.closed {
-  width: 0;
-  padding: 0;
-  overflow: hidden;
+  width: 90px;
+  padding: 20px 10px;
+  overflow: visible;
 }
 
-/* RESPONSIVE SIDEBAR */
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .sidebar-wrapper {
+    width: 220px;
+  }
+  
+  .sidebar-wrapper.closed {
+    width: 90px;
+  }
+  
+  .logo {
+    width: 100px;
+    margin-top: 70px;
+  }
+  
+  .sidebar-wrapper.closed .logo {
+    margin-top: 70px;
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar-wrapper {
+    width: 200px;
+  }
+  
+  .sidebar-wrapper.closed {
+    width: 90px;
+  }
+  
+  .logo {
+    width: 90px;
+    margin-top: 70px;
+  }
+  
+  .sidebar-wrapper.closed .logo {
+    margin-top: 70px;
+  }
+  
+  .nav-link {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar-wrapper {
     width: 80px;
   }
-
+  
   .sidebar-wrapper.closed {
-    width: 0;
+    width: 60px;
   }
-
+  
   .logo {
-    max-width: 50px;
+    width: 50px;
+    margin: 70px auto 15px;
+  }
+  
+  .sidebar-wrapper.closed .logo {
+    margin-top: 70px;
+  }
+  
+  .link-text {
+    display: none;
+  }
+  
+  .nav-link {
+    justify-content: center;
+    padding: 12px 5px;
+  }
+  
+  .nav-link .icon {
+    font-size: 20px;
+    min-width: unset;
+  }
+  
+  .product-dropdown {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar-wrapper {
+    width: 60px;
+  }
+  
+  .sidebar-wrapper.closed {
+    width: 60px;
+  }
+  
+  .logo {
+    width: 40px;
+    margin-top: 70px;
+  }
+  
+  .sidebar-wrapper.closed .logo {
+    margin-top: 70px;
+  }
+  
+  .nav-link .icon {
+    font-size: 18px;
   }
 }

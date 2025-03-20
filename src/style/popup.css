@@ -15,24 +15,32 @@
   /* Kontainer modal */
   .popup-content {
     background: white;
-    padding: 20px;
+    padding: 40px;
+    border: 2px solid var(--pink);
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     text-align: center;
     width: 350px;
+  }
+
+  .popup-content h2{
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
   }
   
   /* Tombol close */
   .close-button {
-    background: #007bff;
-    color: white;
+    background: var(--heading);
+    color: var(--background);
     padding: 8px 16px;
-    border: none;
+    font-weight: bold;
+    font-family: 'Rajdhani', sans-serif;
+    border: 2px solid var(--pink);
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
   }
   
   .close-button:hover {
-    background: #0056b3;
+    background: var(--pink);
   }

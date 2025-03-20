@@ -11,6 +11,10 @@
   --light-color: #e9c46a;
   --nav-color: #0E0B13;
   --background: #0E1117;
+  --heading: #F2F2F2;
+  --card: #1C1F26;
+  --pink: #FF007F;
+  --text: #A1A1B0;
 }
 
 /* navbar */
@@ -28,11 +32,6 @@
 
 .navbar-brand span {
   color: var(--light-color);
-}
-
-.hub {
-  background: none;
-  -webkit-text-fill-color: #ff5656;
 }
 
 .navbar {
@@ -60,12 +59,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px 0 20px 0;
   transition: padding 0.3s;
-  border-bottom: 1px solid #f89e9e;
 }
 
 /* Navbar Link Styles */
 .nav-item a {
-  color: var(--light-color);
+  color: var(--text);
   padding: 8px 16px;
   border-radius: 10px;
   transition: all 0.3s ease;
@@ -75,21 +73,22 @@
 .nav-item a:hover {
   /* teks nya menjadi bold */
   font-weight: bold;
-  color: var(--light-color);
+  color: var(--text);
 }
 
 .nav-item a.active {
   font-weight: bold;
-  color: var(--light-color);
+  color: #FF007F !important;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 8px 16px;
+  text-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.1);
 }
 
 .nav-btn {
-  color: white;
+  font-family: 'Rajdhani', sans-serif;
   background-color: transparent;
-  border: 2px solid #FF007F;
   padding: 8px 16px;
   border-radius: 10px;
   font-weight: 600;
@@ -98,6 +97,16 @@
   display: inline-block;
   text-align: center;
   box-shadow: 0px 4px 8px rgba(255, 0, 127, 0.2);
+}
+
+.btn-language {
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  background-color: transparent;
+  border: 2px solid var(--pink);
+  padding: 6px 15px;
+  font-weight: 600;
+  border-radius: 10px;
 }
 
 .nav-btn:hover,
@@ -110,9 +119,9 @@
 
 /* Dropdown Styles */
 .custom-dropdown .nav-btn {
-  color: #f8c24f; /* Warna teks sama seperti 'BERANDA' */
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
   background-color: transparent;
-  border: 2px solid transparent;
   padding: 8px 16px;
   border-radius: 10px;
   font-weight: 600;
@@ -120,6 +129,14 @@
   transition: all 0.3s ease;
   display: inline-block;
   text-align: center;
+  box-shadow: 0px 4px 8px rgba(255, 0, 127, 0.2);
+}
+
+.custom-dropdown .nav-btn:hover {
+  background-color: #FF007F;
+  color: #0E0B13;
+  font-weight: bold;
+  box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
 }
 
 /* Dropdown Menu */
@@ -136,24 +153,29 @@
   border: none;
 }
 
-/* Dropdown Item (Sama dengan tombol navigasi) */
+/* Dropdown Item */
 .dropdown-item-btn {
-  color: #f8c24f !important; /* Warna teks seperti 'BERANDA' */
+  color: var (--pink) !important;
   background-color: transparent;
-  padding: 8px 16px; /* Samakan padding */
+  padding: 8px 16px;
   border-radius: 10px;
   font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s ease;
   display: block;
   text-align: center;
+  border: 2px solid transparent;
+  width: 100%;
+  margin: 2px 0;
 }
 
 .dropdown-item-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ff007f !important;
+  background-color: #FF007F !important;
+  color: #0E0B13 !important;
   font-weight: bold;
-  border: 2px solid #ff007f;
+  border: 2px solid #FF007F;
+  box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Efek Animasi Dropdown */
@@ -187,30 +209,67 @@
 
 /* header */
 header {
-  background-image: url('../assets/music-1.jpg');
-  opacity: 90%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 300px; /* Sesuaikan tinggi */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
 }
 
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
 
-
-.HomePage .header-content h1 {
+.main-h1{
+  color: var(--heading);
   font-size: 4em;
   font-weight: 700;
-  color: var(--light-color);
-  margin: 0 0 40px 0;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Optional: Tambahkan overlay gelap */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 3;
+}
+
+.HomePage .header-content h1 {
+  color: var(--heading) !important;
+  font-size: 4rem;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  margin: 10px 0 40px 0;
   text-align: left;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .HomePage .header-content p {
+  color: var(--text) !important;
   font-size: 1.5em;
   font-weight: 400;
-  color: var(--light-color);
-  margin: 0 0 20px 0;
+  font-family: 'Inter', sans-serif;
+  margin: 0 0 50px 0;
   text-align: left;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .HomePage .header-content img {
@@ -280,10 +339,12 @@ header {
   align-items: center;
   gap: 10px;
   padding: 1rem 2rem;
-  background: linear-gradient(to right, #e62c2c, #3a1eda);
-  background-size: 200% auto;
-  color: var(--text-dark);
+  background: var(--background);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5rem;
   text-decoration: none;
+  border: 2px solid var(--pink);
   border-radius: 12px;
   font-weight: 800;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -296,7 +357,7 @@ header {
   background: linear-gradient(
     to right,
     var(--light-color),
-    var(--secondary-color)
+    var(--pink)
   );
   transform: translateY(-10px);
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
@@ -334,7 +395,8 @@ header {
 .HomePage .catalog {
   /* background: linear-gradient(135deg, #141414 0%, #2d2d2d 100%); */
   background:  #0E1117;
-  color: var(--light-color);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
   padding-bottom: 50px;
 }
 
@@ -345,7 +407,9 @@ header {
 
 .HomePage .catalog .row:nth-child(1) h1,
 .homePage .catalog .row:nth-child(1) p {
-  color: var(--light-color);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
+
 }
 
 .HomePage .catalog h1 {
@@ -364,7 +428,7 @@ header {
   background: linear-gradient(
     to right,
     var(--primary-color),
-    var(--secondary-color)
+    var(--pink)
   );
   border-radius: 2px;
   transition: width 0.3s ease;
@@ -376,7 +440,7 @@ header {
 
 /* card */
 .product-card {
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   top: 0;
   background: linear-gradient(135deg, #232526 0%, #414345 100%);
@@ -386,8 +450,7 @@ header {
 
 .product-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #323232 0%, #3a3a3a 100%);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
 
 .product-card img {
@@ -423,7 +486,8 @@ header {
 }
 
 .HomePage .catalog .product-card .p-4 h5 {
-  color: var(--light-color);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
   font-weight: bold;
   line-height: 1.5;
 }
@@ -434,7 +498,8 @@ header {
 }
 
 .product-card .flex .text-yellow-500 {
-  color: var(--light-color);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .product-card .flex .text-yellow-500 svg {
@@ -443,14 +508,16 @@ header {
 }
 
 .product-card span {
-  color: var(--light-color);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
 }
 
 /* Learn More Button Styles */
 .product-card .learn-more-btn {
   padding: 8px 16px;
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
   border: none;
   border-radius: 5px;
   font-weight: 600;
@@ -663,29 +730,32 @@ header {
   resize: vertical;
   min-height: 150px;
 }
-
-/* Button Styling */
-.cta-button {
-  background-color: #007bff;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  font-size: 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-  background-color: #0056b3;
-}
-
 /* portfolio */
-.HomePage .portfolio {
-  /* background: #302b63;
-  background: -webkit-linear-gradient(to right, #24243e, #302b63); */
-  background:  #0E1117;
-  color: var(--light-color);
-  padding-bottom: 100px;
+.portfolio-page {
+  background: var(--background);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.portfolio{
+  background: var(--background);
+}
+
+.portfolio .h1-portfolio{
+  color: var(--heading);
+  font-size: 3em;
+  font-weight: 700;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+
+.h1-portfolio {
+  color: var(--heading);
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'Rajdhani', sans-serif;
+  text-align: center;
+  margin-top: 100px;
 }
 
 .HomePage .portfolio .swiper-slide {
@@ -761,7 +831,7 @@ header {
   background: linear-gradient(
     to right,
     var(--primary-color),
-    var(--secondary-color)
+    var(--pink)
   );
   border-radius: 2px;
   transition: width 0.3s ease;
@@ -774,14 +844,14 @@ header {
 /* Swiper Navigation Arrows */
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--primary-color) !important;
+  color: var(--pink) !important;
   transition: all 0.3s ease;
   font-weight: bold !important;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: var(--secondary-color) !important;
+  color: var(--pink) !important;
   transform: scale(1.1);
 }
 
@@ -789,14 +859,58 @@ header {
 .swiper-pagination-bullet {
   width: 10px !important;
   height: 10px !important;
-  background: var(--primary-color) !important;
+  background: var(--pink) !important;
   opacity: 0.5;
 }
 
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: var(--primary-color) !important;
+  background: var(--pink) !important;
   transform: scale(1.2);
+}
+
+/* Portfolio styling */
+.portfolio-item {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.portfolio-title {
+  color: var(--heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.portfolio-genre {
+  color: var(--text);
+  font-size: 1rem;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Update swiper slide styling */
+.HomePage .portfolio .swiper-slide {
+  background: transparent;
+  height: auto;
+  padding: 15px;
+}
+
+/* Hover effect */
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Responsive iframe */
+.portfolio-item iframe {
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 /* faq */
@@ -804,9 +918,13 @@ header {
 .faq {
   padding-bottom: 100px;
   padding-top: 100px;
-  background: #0E1117;
-  /* background: var(--background); */
-  color: var(--light-color);
+  background: var(--background);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.faq .h2-faq{
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .faq .text-center {
@@ -825,7 +943,7 @@ header {
   background: linear-gradient(
     to right,
     var(--primary-color),
-    var(--secondary-color)
+    var(--pink)
   );
   border-radius: 2px;
   transition: width 0.3s ease;
@@ -836,9 +954,10 @@ header {
 }
 
 .faq .accordion .accordion-button {
-  color: #141414;
+  color: var(--heading);
+  /* font-family: 'Rajdhani', sans-serif; */
   font-weight: bold;
-  background-color: #fff;
+  background-color: var(--card);
   line-height: 1.5;
   transition: all 0.3s ease-in-out;
 }
@@ -866,10 +985,12 @@ header {
 }
 
 .faq .accordion .accordion-body {
-  background-color: #ffffff;
+  background-color: var(--card);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
   transform-origin: top;
   animation: slideDown 0.5s ease forwards;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--pink);
 }
 
 @keyframes slideDown {
@@ -892,23 +1013,26 @@ header {
 }
 
 .footer .row:nth-child(1) .col:nth-child(1) h3 {
-  color: var(--light-color);
+  color: var(--heading);
   font-size: 40px;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .footer .row:nth-child(1) .col:nth-child(1) .desc {
-  color: var(--light-color);
+  color: var(--text);
   font-size: 14px;
   line-height: 2;
+  font-family: 'Inter', sans-serif;
 }
 
 .footer .no a,
 .footer .mail a {
   display: flex;
   align-items: center;
-  color: #fff;
+  color: var(--text);
   column-gap: 5px;
   font-size: 14px;
+  font-family: 'Inter', sans-serif;
 }
 
 .footer .no a:hover,
@@ -944,17 +1068,19 @@ header {
 }
 
 .footer .row:nth-child(1) .col:nth-child(2) h5 {
-  color: var(--light-color);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
+  border-bottom: 1px solid var(--pink);
   width: 150px;
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
 
 .footer .row:nth-child(1) .col:nth-child(2) a {
-  color: #fff;
+  color: var(--text);
   text-decoration: none;
   font-size: 14px;
+  font-family: 'Inter', sans-serif;
 }
 
 .footer .row:nth-child(1) .col:nth-child(2) a:hover {
@@ -963,18 +1089,20 @@ header {
 }
 
 .footer .row:nth-child(1) .col:nth-child(3) h5 {
-  color: var(--light-color);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
   width: 280px;
 }
 
 .footer .row:nth-child(1) .col:nth-child(3) a {
-  color: #fff;
+  color: var(--text);
   text-decoration: none;
   font-size: 14px;
+  font-family: 'Inter', sans-serif;
 }
 
 .footer .row:nth-child(1) .col:nth-child(3) a:hover {
-  color: var(--primary-color);
+  color: var(--pink);
   transition: all 0.3s ease;
 }
 
@@ -983,8 +1111,36 @@ header {
   margin-top: 100px;
 }
 
+.footer .footer-links a {
+  color: #A1A1B0;
+  text-decoration: none;
+  position: relative;
+  margin: 0 50px;
+}
+
+.footer .footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #FF007F;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.footer .footer-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.footer .footer-links a:hover {
+  color: #A1A1B0; 
+}
+
 .pengunjung {
-  color: #4a90e2;
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
   padding: 0 8px;
   margin-left: 4px;
@@ -1019,6 +1175,33 @@ header {
 .p-alamat {
   font-size: 12px !important;
   line-height: 1.5;
+}
+
+.recaptcha-container {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+  transition: all 0.3s ease;
+}
+
+.recaptcha-container:hover {
+  transform: translateY(-2px);
+}
+
+.error-message {
+  background: #ff4d4d;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 /* Responsive adjustment */
@@ -1067,7 +1250,7 @@ section {
 }
 
 .lyrics-page {
-  background: var(--dark-color);
+  background: var(--background);
   color: var(--light-color);
   min-height: 100vh;
   padding-bottom: 80px;
@@ -1091,7 +1274,9 @@ section {
 .product-desc {
   margin-bottom: 40px;
   text-align: left;
-  color: var(--light-color);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--background);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1101,12 +1286,18 @@ section {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 15px;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .product-desc p {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: var(--primary-color);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+.product-description {
+  font-family: 'Inter', sans-serif;
 }
 
 .text-section {
@@ -1131,6 +1322,7 @@ section {
 .how-it-works {
   margin-bottom: 40px;
   text-align: left;
+  background: var(--background);
 }
 
 .how-it-works h2 {
@@ -1138,7 +1330,8 @@ section {
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
-  color: var(--primary-colour);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .steps-container {
@@ -1154,7 +1347,7 @@ section {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background: #f9f9f9;
+  background: var(--card);
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -1168,7 +1361,7 @@ section {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #2575fc;
+  color: var(--pink);
 }
 
 .step-text {
@@ -1188,12 +1381,15 @@ section {
 .price-list {
   margin-bottom: 40px;
   text-align: center;
+  background: var(--background);
 }
 
 .price-list h2 {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 20px;
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .plans {
@@ -1203,7 +1399,7 @@ section {
 }
 
 .plan {
-  background: #fff;
+  background: var(--card);
   padding: 20px;
   border-radius: 15px;
   flex: 1;
@@ -1220,14 +1416,16 @@ section {
 .plan h3 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
   margin-bottom: 15px;
 }
 
 .plan p {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #2575fc;
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
   margin-bottom: 20px;
 }
 
@@ -1248,17 +1446,18 @@ section {
 .plan li::before {
   content: "✔";
   margin-right: 10px;
-  color: #2575fc;
+  color: var(--pink);
 }
 
 .order-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #2575fc;
+  background-color: var(--background);
+  font-family: 'Rajdhani', sans-serif;
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
-  border: none;
+  border: 1rem var(--pink); 
   border-radius: 8px;
   cursor: pointer;
   margin-top: 10px;
@@ -1267,7 +1466,7 @@ section {
 }
 
 .order-button:hover {
-  background-color: #1e5fce;
+  background-color: var(--background);
 }
 
 /* Modal Form Styles */
@@ -1372,4 +1571,81 @@ section {
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animasi untuk buttons */
+.cta-button {
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateX(5px);
+}
+
+/* Optional: Tambahkan loading animation */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Styling untuk button di Support Page */
+.cta-support {
+  color: white;
+  background-color: transparent;
+  border: 2px solid #FF007F;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(255, 0, 127, 0.2);
+  min-width: 150px; /* Tambahkan minimum width */
+}
+
+.cta-support:hover:not(:disabled) {
+  background-color: #FF007F;
+  color: #0E0B13;
+  font-weight: bold;
+  box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
+  transform: translateY(-2px);
+}
+
+.cta-support:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #666;
+  box-shadow: none;
+}
+
+/* Animasi untuk button saat disabled berubah menjadi enabled */
+.cta-support:not(:disabled) {
+  animation: enableButton 0.3s ease-out;
+}
+
+@keyframes enableButton {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

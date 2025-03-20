@@ -71,7 +71,7 @@ const AdminFooterTable = () => {
       <div className="dashboard-content">
         <MainHeader />
 
-        <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
+        <div className="dashboard-content-isi" style={{ flex: 1, padding: "20px" }}>
           <h2>CRUD Footer</h2>
 
           {/* Tabel Informasi Kontak */}
@@ -130,61 +130,76 @@ const AdminFooterTable = () => {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Product 1 Name ID</th>
-                  <th>Product 1 Link ID</th>
-                  <th>Product 2 Name ID</th>
-                  <th>Product 2 Link ID</th>
-                  <th>Product 3 Name ID</th>
-                  <th>Product 3 Link ID</th>
-                  <th>Product 4 Name ID</th>
-                  <th>Product 4 Link ID</th>
-                  <th>Product 1 Name EN</th>
-                  <th>Product 1 Link EN</th>
-                  <th>Product 2 Name EN</th>
-                  <th>Product 2 Link EN</th>
-                  <th>Product 3 Name EN</th>
-                  <th>Product 3 Link EN</th>
-                  <th>Product 4 Name EN</th>
-                  <th>Product 4 Link EN</th>
-                  <th>Aksi</th>
+                  <th rowSpan="2">ID</th>
+                  <th colSpan="2">Nama Produk</th>
+                  <th rowSpan="2">Link</th>
+                  <th rowSpan="2">Aksi</th>
+                </tr>
+                <tr>
+                  <th>Bahasa Indonesia</th>
+                  <th>Bahasa Inggris</th>
                 </tr>
               </thead>
               <tbody>
-                {footerData.map((footer) => (
-                  <tr key={footer.id}>
-                    <td>{footer.id}</td>
-                    <td>{footer.product1_name_id}</td>
-                    <td>{footer.product1_link_id}</td>
-                    <td>{footer.product2_name_id}</td>
-                    <td>{footer.product2_link_id}</td>
-                    <td>{footer.product3_name_id}</td>
-                    <td>{footer.product3_link_id}</td>
-                    <td>{footer.product4_name_id}</td>
-                    <td>{footer.product4_link_id}</td>
-                    <td>{footer.product1_name_en}</td>
-                    <td>{footer.product1_link_en}</td>
-                    <td>{footer.product2_name_en}</td>
-                    <td>{footer.product2_link_en}</td>
-                    <td>{footer.product3_name_en}</td>
-                    <td>{footer.product3_link_en}</td>
-                    <td>{footer.product4_name_en}</td>
-                    <td>{footer.product4_link_en}</td>
-                    <td>
-                      <Button
-                        variant="warning"
-                        size="sm"
-                        onClick={() => handleEdit(footer, "product")}>
-                        Edit
-                      </Button>{" "}
-                      <Button
-                        variant="danger"
-                        size="sm"
-                        onClick={() => handleHapus(footer.id)}>
-                        Hapus
-                      </Button>
-                    </td>
-                  </tr>
+                {footerData.map((footer, index) => (
+                  <>
+                    <tr key={`product1-${index}`}>
+                      <td>1</td>
+                      <td>{footer.product1_name_id}</td>
+                      <td>{footer.product1_name_en}</td>
+                      <td>{footer.product1_link_id}</td>
+                      <td rowSpan="7">
+                        <Button
+                          variant="warning"
+                          size="sm"
+                          onClick={() => handleEdit(footer, "product")}>
+                          Edit
+                        </Button>{" "}
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => handleHapus(footer.id)}>
+                          Hapus
+                        </Button>
+                      </td>
+                    </tr>
+                    <tr key={`product2-${index}`}>
+                      <td>2</td>
+                      <td>{footer.product2_name_id}</td>
+                      <td>{footer.product2_name_en}</td>
+                      <td>{footer.product2_link_id}</td>
+                    </tr>
+                    <tr key={`product3-${index}`}>
+                      <td>3</td>
+                      <td>{footer.product3_name_id}</td>
+                      <td>{footer.product3_name_en}</td>
+                      <td>{footer.product3_link_id}</td>
+                    </tr>
+                    <tr key={`product4-${index}`}>
+                      <td>4</td>
+                      <td>{footer.product4_name_id}</td>
+                      <td>{footer.product4_name_en}</td>
+                      <td>{footer.product4_link_id}</td>
+                    </tr>
+                    <tr key={`privacy-${index}`}>
+                      <td>5</td>
+                      <td>{footer.privacy_policy_id}</td>
+                      <td>{footer.privacy_policy_en}</td>
+                      <td>/privacy-policy</td>
+                    </tr>
+                    <tr key={`terms-${index}`}>
+                      <td>6</td>
+                      <td>{footer.terms_of_use_id}</td>
+                      <td>{footer.terms_of_use_en}</td>
+                      <td>/terms-of-use</td>
+                    </tr>
+                    <tr key={`sitemap-${index}`}>
+                      <td>7</td>
+                      <td>{footer.sitemap_id}</td>
+                      <td>{footer.sitemap_en}</td>
+                      <td>/sitemap</td>
+                    </tr>
+                  </>
                 ))}
               </tbody>
             </Table>

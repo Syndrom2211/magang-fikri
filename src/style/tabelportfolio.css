@@ -4,29 +4,6 @@
     min-height: 100vh;
 }
 
-/* Sidebar */
-.dashboard-container .sidebar {
-    width: 250px;
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    transition: width 0.3s ease-in-out;
-}
-
-/* Konten utama */
-.dashboard-content {
-    flex: 1;
-    padding: 20px;
-}
-
-/* Heading */
-.dashboard-content h2 {
-    margin-bottom: 20px;
-    margin-top: 40px;
-    color: rgb(66, 15, 133);
-    font-family: poppins;
-}
-
 /* Tabel */
 table {
     background: white;
@@ -48,10 +25,27 @@ td {
     padding: 8px;
 }
 
+/* Styling untuk tabel produk */
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    background-color: #f8f9fa;
+  }
+  
+  .table tbody td {
+    vertical-align: middle;
+  }
+  
+  /* Jika ingin border lebih tebal untuk pemisah grup */
+  .table tbody tr:nth-child(4n) td {
+    border-bottom: 2px solid #dee2e6;
+  }
+
 /* Tombol */
 button {
     margin: 2px;
     margin-top: 10px;
+    vertical-align: middle;
 }
 
 /* Modal */
@@ -76,11 +70,6 @@ button {
     .dashboard-container .sidebar {
         width: 100%;
         text-align: center;
-        padding: 10px;
-    }
-
-    /* Konten tetap nyaman */
-    .dashboard-content {
         padding: 10px;
     }
 
@@ -112,9 +101,29 @@ button {
     .dashboard-container .sidebar {
         width: 200px;
     }
+}
 
-    /* Konten tidak terlalu sempit */
-    .dashboard-content {
-        padding: 15px;
-    }
+/* Table Responsive */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+/* Untuk tabel dengan banyak kolom */
+@media screen and (max-width: 992px) {
+  .table-responsive table {
+    min-width: 800px;
+  }
+}
+
+/* Styling untuk kolom aksi */
+.table td:last-child {
+  white-space: nowrap; /* Jaga agar tombol tetap dalam satu baris */
+  min-width: 100px;
 }

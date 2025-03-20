@@ -1,6 +1,21 @@
+:root {
+  --primary-color: #ff6b6b;
+  --secondary-color: #f9c74f;
+  --tertiary-color: #90be6d;
+  --dark-color: linear-gradient(135deg, #24243e 0%, #302b63 50%, #0f0c29 100%);
+  --bg-color: linear-gradient(135deg, #2b1055 0%, #7597de 100%);
+  --light-color: #e9c46a;
+  --nav-color: #0E0B13;
+  --background: #0E1117;
+  --heading: #F2F2F2;
+  --card: #1C1F26;
+  --pink: #FF007F;
+  --text: #A1A1B0;
+}
+
 /* Kontainer utama */
 .music-container {
-  background-color: #1a1a3d;
+  background: var(--background);
   color: white;
   min-height: 100vh;
   display: flex;
@@ -71,13 +86,14 @@
 .inspiration-title {
   font-size: 50px;
   font-weight: bold;
-  color: #ffcc00;
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
   margin-bottom: 50px;
   margin-top: 100px;
 }
 
 .inspiration-title span {
-  color: #ff4081;
+  color: var(--pink);
 }
 
 .inspiration-text {
@@ -86,12 +102,15 @@
   margin-right: 80px;
   margin-left: 20px;
   text-align: center;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
 }
 
 .ai-title {
   font-size: 20px;
   font-weight: bold;
-  color: #ff1493;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
   text-transform: uppercase;
   margin-bottom: 150px;
   text-align: center;
@@ -104,7 +123,7 @@
   font-size: 16px;
   border-radius: 5px;
   background: #15133c;
-  border: 1px solid white;
+  border: 1px solid var(--card);
   color: rgb(92, 141, 130);
   margin-bottom: 10px;
 }
@@ -128,10 +147,25 @@
   width: 100%; 
 }
 
-.create-btn {
-  width: 100%;
-  max-width: 80px;
-  font-size: 16px;
+.form-lyric {
+  background: var(--card);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-lyric {
+  display: block;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background: var(--background);
+  color: var(--heading);
+  font-family: 'Rajdhani', sans-serif;
+  text-decoration: none;
+  border: 2px solid var(--pink);
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.5s ease;
+  transform: translateY(0);
 }
 
 
@@ -173,7 +207,7 @@
     font-size: 16px;
   }
 
-  .btn-primary, .download-btn {
+  .btn-lyric, .download-btn {
     font-size: 14px;
     padding: 8px 16px;
   }

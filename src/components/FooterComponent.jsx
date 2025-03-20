@@ -8,6 +8,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import PropTypes from "prop-types";
+import { creativeMusicHubData } from "../data/index.js";
 
 const FooterComponent = ({ language }) => {
   const [footerData, setFooterData] = useState([]);
@@ -82,7 +83,11 @@ const FooterComponent = ({ language }) => {
                     icon={faLocationDot}
                     style={{ marginRight: "8px" }}
                   />
-                  {language === "ID" ? footer.address_id : footer.address_en}
+                  {language === "EN" 
+                    ? footer.address_en 
+                    : language === "SD"
+                      ? footer.address_sd
+                      : footer.address_id}
                 </p>
                 <div className="no mb-1 mt-2">
                   <Link className="text-decoration-none">
@@ -122,55 +127,37 @@ const FooterComponent = ({ language }) => {
               </Col>
               <Col className="d-flex flex-column col-lg-4 col mt-lg-0 mt-5">
                 <h5 className="fw-bold">
-                  {language === "ID" ? "Produk Kami" : "Our Products"}
+                  {language === "EN" 
+                    ? "Our Products" 
+                    : language === "SD"
+                      ? "Produk Urang"
+                      : "Produk Kami"}
                 </h5>
-                <Link
-                  to={
-                    language === "ID"
-                      ? footer.product1_link_id
-                      : footer.product1_link_en
-                  }>
-                  {language === "ID"
-                    ? footer.product1_name_id
-                    : footer.product1_name_en}
-                </Link>
-                <Link
-                  to={
-                    language === "ID"
-                      ? footer.product2_link_id
-                      : footer.product2_link_en
-                  }>
-                  {language === "ID"
-                    ? footer.product2_name_id
-                    : footer.product2_name_en}
-                </Link>
-                <Link
-                  to={
-                    language === "ID"
-                      ? footer.product3_link_id
-                      : footer.product3_link_en
-                  }>
-                  {language === "ID"
-                    ? footer.product3_name_id
-                    : footer.product3_name_en}
-                </Link>
-                <Link
-                  to={
-                    language === "ID"
-                      ? footer.product4_link_id
-                      : footer.product4_link_en
-                  }>
-                  {language === "ID"
-                    ? footer.product4_name_id
-                    : footer.product4_name_en}
-                </Link>
+                {footerData.map((footer, index) => (
+                  <React.Fragment key={index}>
+                    <Link to={footer[`product1_link_${language.toLowerCase()}`] || footer.product1_link_id}>
+                      {footer[`product1_name_${language.toLowerCase()}`] || footer.product1_name_id}
+                    </Link>
+                    <Link to={footer[`product2_link_${language.toLowerCase()}`] || footer.product2_link_id}>
+                      {footer[`product2_name_${language.toLowerCase()}`] || footer.product2_name_id}
+                    </Link>
+                    <Link to={footer[`product3_link_${language.toLowerCase()}`] || footer.product3_link_id}>
+                      {footer[`product3_name_${language.toLowerCase()}`] || footer.product3_name_id}
+                    </Link>
+                    <Link to={footer[`product4_link_${language.toLowerCase()}`] || footer.product4_link_id}>
+                      {footer[`product4_name_${language.toLowerCase()}`] || footer.product4_name_id}
+                    </Link>
+                  </React.Fragment>
+                ))}
               </Col>
               <Col className="d-flex flex-column col-lg-3 col mt-lg-0 mt-5">
                 <h5 className="fw-light">
-                  Total Pengunjung:{" "}
-                  <span className="pengunjung">
-                    {visitors.toLocaleString()}
-                  </span>
+                  {language === "EN" 
+                    ? "Total Visitors: "
+                    : language === "SD"
+                      ? "Total Pangunjung: "
+                      : "Total Pengunjung: "}
+                  <span className="pengunjung">{visitors.toLocaleString()}</span>
                 </h5>
                 <div
                   className="elfsight-app-954f2dc6-9353-4086-83d2-32455852907f"
@@ -183,19 +170,24 @@ const FooterComponent = ({ language }) => {
         <Row>
           <Col>
             <p className="text-center px-md-0 px-3">
-              &copy; Copyright {new Date().getFullYear()} by{" "}
-              <span className="fw-bold">Creative Music Hub</span>, All Right
-              Reserved
+              &copy; Copyright {new Date().getFullYear()} ku{" "}
+              <span className="fw-bold">Creative Music Hub</span>, 
+              {language === "SD" ? " Sadaya Hak Dipiara" : " All Right Reserved"}
             </p>
           </Col>
         </Row>
         <Row>
           <Col>
-            <p className="text-center px-md-0 px-3">
-              &copy; Copyright {new Date().getFullYear()} by{" "}
-              <span className="fw-bold">Creative Music Hub</span>, All Right
-              Reserved
-            </p>
+            <div className="footer-links text-center">
+              {creativeMusicHubData[language]?.footerTexts.map((text, index) => (
+                <Link 
+                  key={index}
+                  to={index === 0 ? "/privacy-policy" : index === 1 ? "/terms-of-use" : "/sitemap"}
+                  className={index !== 2 ? "me-3" : ""}>
+                  {text}
+                </Link>
+              ))}
+            </div>
           </Col>
         </Row>
       </Container>

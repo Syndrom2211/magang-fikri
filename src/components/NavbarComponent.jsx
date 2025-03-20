@@ -40,7 +40,14 @@ const NavbarComponent = ({ language, setLanguage }) => {
   }, []);
 
   const getLanguageContent = (item) => {
-    return language === "EN" ? item.content_en : item.content_id;
+    switch (language) {
+      case "EN":
+        return item.content_en;
+      case "SD":
+        return item.content_sd || item.content_id;
+      default:
+        return item.content_id;
+    }
   };
 
   const getDropdownItems = (parentId) => {
@@ -119,10 +126,14 @@ const NavbarComponent = ({ language, setLanguage }) => {
 
           <div className="text-center">
             <button
-              className="btn btn-outline-warning rounded-1"
-              onClick={() =>
-                setLanguage((prev) => (prev === "ID" ? "EN" : "ID"))
-              }>
+              className="btn-language btn-outline-warning rounded-1"
+              onClick={() => {
+                setLanguage((prev) => {
+                  if (prev === "ID") return "EN";
+                  if (prev === "EN") return "SD";
+                  return "ID";
+                });
+              }}>
               {language}
             </button>
           </div>

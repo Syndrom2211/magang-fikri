@@ -89,7 +89,7 @@ const SoundPage = ({ language }) => {
         <Row className="justify-content-center mt-5">
           <Col md={6} className="d-flex justify-content-center">
             <button
-              className="btn btn-warning px-5 py- text-dark fw-bold"
+              className="btn-sound px-5 py- fw-bold"
               onClick={scrollToPriceList}
             >
               {soundEffectSectionData[language].buttons.mainButton}

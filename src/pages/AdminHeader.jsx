@@ -67,7 +67,7 @@ const AdminHeaderTable = () => {
       <SideBarComponent />
       <div className="dashboard-content">
         <MainHeader />
-        <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
+        <div className="dashboard-content-isi" style={{ flex: 1, padding: "20px" }}>
           <h2>CRUD Header</h2>
           <div className="table-container">
             <Table striped bordered hover>

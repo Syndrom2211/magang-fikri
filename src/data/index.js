@@ -31,6 +31,12 @@ export const NavLinks = {
     { id: 3, path: "/support", name: "Dukungan" },
     { id: 4, path: "/portfolio", name: "Portofolio" },
   ],
+  SD: [
+    { id: 1, path: "/", name: "Tepas" },
+    { id: 2, path: "/product", name: "Produk" },
+    { id: 3, path: "/support", name: "Sokongan" },
+    { id: 4, path: "/portfolio", name: "Portofolio" },
+  ]
 };
 
 export const DropdownLinks = {
@@ -56,6 +62,17 @@ export const DropdownLinks = {
       { path: "https://www.instagram.com/yukmaridotcom", name: "Instagram" },
     ],
   },
+  SD: {
+    1: [
+      { path: "/musik-lyric", name: "Nyieun Musik ti Lirik" },
+      { path: "/musik-instrument", name: "Nyieun Musik Instrumen" },
+      { path: "/sound-effect", name: "Nyieun Efek Sora" },
+    ],
+    2: [
+      { path: "/support", name: "Kontak Urang" },
+      { path: "https://www.instagram.com/yukmaridotcom", name: "Instagram" },
+    ],
+  }
 };
 
 export const TextContent = {
@@ -88,17 +105,33 @@ export const TextContent = {
     daftar: "Daftar Harga",
     howitworks: "Cara Kerja",
   },
+  SD: {
+    title: "Nyieun Musik Dina Sadetik",
+    description: "Robah inspirasi anjeun jadi karya seni ku AI canggih. Teu perlu studio mahal, ngan upload ide musik anjeun, AI urang bakal ngarobah jadi melodi artistik sareng aransemen profesional dina sakedap.",
+    button: "COBIAN AYEUNA",
+    catalogTitle: "Produk Urang",
+    catalogDescription: "Nyieun musik impian anjeun gampang dina sadetik",
+    portfolioTitle: "Portofolio",
+    times: "kali",
+    step: "léngkah",
+    book: "Pesenan Ayeuna",
+    daftar: "Daptar Harga",
+    howitworks: "Cara Migawéna"
+  }
 };
 
 export const ProductContent = {
   ID: {
     title: "Produk Kami",
-    description:
-      "Ciptakan Musik impianmu dengan mudah hanya dalam hitungan menit",
+    description: "Ciptakan Musik impianmu dengan mudah hanya dalam hitungan menit",
   },
   EN: {
     title: "Our Products",
     description: "Create your dream music easily in just a few minutes",
+  },
+  SD: {
+    title: "Produk Urang",
+    description: "Nyieun musik impian anjeun gampang dina sadetik",
   },
 };
 
@@ -203,6 +236,56 @@ export const products = {
       category: "sound",
     },
   ],
+  SD: [
+    {
+      id: 1,
+      image: catalogImage1,
+      name: "Nyieun Musik ti Lirik",
+      description: "Robah lirik anjeun jadi lagu otomatis.",
+      cta: "Pesenan Ayeuna",
+      rating: "Tos dipesan: ",
+      currency: "Rp",
+      price: 55000,
+      features: [
+        "Revisi Teu Kawates",
+        "Format file WAV & MP3",
+        "Durasi maksimal 5 menit",
+      ],
+      category: "lyrics",
+    },
+    {
+      id: 2,
+      image: catalogImage2,
+      name: "Nyieun Musik Instrumen",
+      description: "Nyieun melodi instrumental profesional.",
+      cta: "Pesenan Ayeuna",
+      rating: "Tos dipesan: ",
+      currency: "Rp",
+      price: 55000,
+      features: [
+        "Revisi Teu Kawates",
+        "Format file WAV & MP3",
+        "Durasi maksimal 5 menit",
+      ],
+      category: "instrument",
+    },
+    {
+      id: 3,
+      image: catalogImage3,
+      name: "Nyieun Efek Sora",
+      description: "Ngahasilkeun efek sora kualitas tinggi.",
+      cta: "Pesenan Ayeuna",
+      rating: "Tos dipesan: ",
+      currency: "Rp",
+      price: 55000,
+      features: [
+        "Revisi Teu Kawates",
+        "Format file WAV & MP3",
+        "Durasi maksimal 30 detik",
+      ],
+      category: "sound",
+    },
+  ],
 };
 
 export const musicSectionData = {
@@ -220,12 +303,18 @@ export const musicSectionData = {
     stopButton: "⏹",
     downloadButton: "Download Your Music",
   },
+  SD: {
+    songTitle: "Ieu Lagu Keur Anjeun",
+    playButton: "▶",
+    pauseButton: "⏸",
+    stopButton: "⏹",
+    downloadButton: "Unduh Musik Anjeun",
+  },
 };
 
 export const musicInspirationData = {
   ID: {
-    title:
-      "Temukan <span>Inspirasimu</span> di Sekitar, <br /> Mulailah dari Perasaanmu!",
+    title: "Temukan <span>Inspirasimu</span> di Sekitar, <br /> Mulailah dari Perasaanmu!",
     text: `"Dengar suara hujan, lihat matahari terbit, rasakan detak jantungmu.
             Setiap lagu besar dimulai dari satu kata sederhana. Tulis apa yang kamu rasakan.
             Musik ada di mana-mana."`,
@@ -234,14 +323,22 @@ export const musicInspirationData = {
     createButton: "Buat",
   },
   EN: {
-    title:
-      "Find <span>Your Inspiration</span> Around You, <br /> Start with Your Feelings!",
+    title: "Find <span>Your Inspiration</span> Around You, <br /> Start with Your Feelings!",
     text: `"Listen to the sound of the rain, see the sunrise, feel your heartbeat.
             Every great song starts with a single word. Write what you feel.
             Music is everywhere."`,
     aiTitle: "AND CREATE YOUR <span>MUSIC WITH AI</span>",
     lyricPlaceholder: "Your Lyric",
     createButton: "Create",
+  },
+  SD: {
+    title: "Panggihan <span>Inspirasi Anjeun</span> di Sakuriling, <br /> Mimitian ti Parasaan!",
+    text: `"Dangukeun sora hujan, tingali panonpoe bijil, raoskeun detik jajantung anjeun.
+            Unggal lagu agung dimimitian ku hiji kecap basajan. Tulis naon anu anjeun raoskeun.
+            Musik aya di mana waé."`,
+    aiTitle: "SARENG NYIEUN <span>MUSIK ANJEUN NGANGGO AI</span>",
+    lyricPlaceholder: "Lirik Anjeun",
+    createButton: "Nyieun",
   },
 };
 
@@ -257,6 +354,12 @@ export const instrumentSectionData = {
     subtext: `"Bring your musical ideas to life with handcrafted, customizable instruments. 
                Design, customize, and play—everything is here."`,
     buttonText: "GET STARTED",
+  },
+  SD: {
+    headline: `"Panggihan Kabébasan Karya Ngaliwatan <span class="highlight">Instrumen</span> Jieunan Anjeun"`,
+    subtext: `"Hirupkeun ide musik anjeun ku instrumen anu tiasa diropéa. 
+               Desain, kustomisasi, sareng maénkeun sadayana aya di dieu."`,
+    buttonText: "MIMITIAN AYEUNA",
   },
 };
 
@@ -283,6 +386,17 @@ export const soundEffectSectionData = {
       mainButton: "CREATE YOURS",
     },
   },
+  SD: {
+    title: `Nyieun <span class="span">Efek Sora </span> anu Ningkatkeun Karya Musik Anjeun`,
+    div: {
+      create: "NYIEUN",
+      process: "PROSES",
+      result: "HASIL",
+    },
+    buttons: {
+      mainButton: "NYIEUN AYEUNA",
+    },
+  },
 };
 
 export const contactData = {
@@ -290,8 +404,7 @@ export const contactData = {
     title: "Kontak Kami",
     address: {
       title: "Alamat",
-      detail:
-        "Komp. Bandung Indah Raya, Blok C13/No.17, Kel. Mekarjaya, Kec. Rancasari, Kota Bandung, Jawa Barat 40286",
+      detail: "Komp. Bandung Indah Raya, Blok C13/No.17, Kel. Mekarjaya, Kec. Rancasari, Kota Bandung, Jawa Barat 40286",
     },
     phone: {
       title: "Telepon",
@@ -312,8 +425,7 @@ export const contactData = {
     title: "Contact Us",
     address: {
       title: "Address",
-      detail:
-        "Komp. Bandung Indah Raya, Block C13/No.17, Mekarjaya, Rancasari District, Bandung City, West Java 40286",
+      detail: "Komp. Bandung Indah Raya, Block C13/No.17, Mekarjaya, Rancasari District, Bandung City, West Java 40286",
     },
     phone: {
       title: "Phone",
@@ -330,18 +442,41 @@ export const contactData = {
       submitButton: "Send Message",
     },
   },
+  SD: {
+    title: "Kontak Urang",
+    address: {
+      title: "Alamat",
+      detail: "Komp. Bandung Indah Raya, Blok C13/No.17, Kel. Mekarjaya, Kec. Rancasari, Dayeuh Bandung, Jawa Kulon 40286",
+    },
+    phone: {
+      title: "Telepon",
+      detail: "+62 822-9560-3115",
+    },
+    email: {
+      title: "Email",
+      detail: "yukmari2211@gmail.com",
+    },
+    form: {
+      namePlaceholder: "Nami Anjeun",
+      emailPlaceholder: "Email Anjeun",
+      messagePlaceholder: "Pesen Anjeun",
+      submitButton: "Kirim Pesen",
+    },
+  },
 };
 
 export const portfolioSectionData = {
   ID: {
     title: "Portofolio Kami",
-    description:
-      "Selamat datang di galeri musik kami! Nikmati koleksi video musik yang menarik.",
+    description: "Selamat datang di galeri musik kami! Nikmati koleksi video musik yang menarik.",
   },
   EN: {
     title: "Our Portfolio",
-    description:
-      "Welcome to our music gallery! Enjoy a collection of captivating music videos.",
+    description: "Welcome to our music gallery! Enjoy a collection of captivating music videos.",
+  },
+  SD: {
+    title: "Portofolio Urang",
+    description: "Wilujeng sumping ka galeri musik urang! Raoskeun koléksi video musik anu narik ati.",
   },
 };
 
@@ -434,13 +569,56 @@ export const dataSwiper = {
         "https://drive.google.com/uc?export=download&id=1IKN1fSkKKTD_9etHSiF4LtGDf6C_a4mD",
     },
   ],
+  SD: [
+    {
+      id: 1,
+      name: "Dapoer Catering SR",
+      genre: "Accoustic",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389160&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+    },
+    {
+      id: 2,
+      name: "Goyobod Laris",
+      genre: "Dubstep",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389153&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+    },
+    {
+      id: 3,
+      name: "Dimsum by Inmons Fix",
+      genre: "Jazz",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389164&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+    },
+    {
+      id: 4,
+      name: "Bubuk Cabe Pa Abdul",
+      genre: "Pop",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046390272&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+    },
+    {
+      id: 5,
+      name: "Aku Baru",
+      genre: "Progressive",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389156&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+    },
+    {
+      id: 6,
+      name: "Hudang Hese",
+      genre: "Sundanese",
+      audio:
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2046389168&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+    },
+  ],
 };
 
 export const creativeMusicHubData = {
   ID: {
     name: "CreativeMusic",
-    address:
-      "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Kota Bandung, Jawa Barat 40286",
+    address: "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Kota Bandung, Jawa Barat 40286",
     contact: {
       phone: "+62 822-9560-3115",
       email: "yukmari2211@gmail.com",
@@ -451,18 +629,17 @@ export const creativeMusicHubData = {
       email: "yukmari2211@gmail.com",
     },
     products: [
-      { name: "Buat Musik melalui Lyric", link: "/musik-lyric" },
+      { name: "Buat Musik melalui Lirik", link: "/musik-lyric" },
       { name: "Buat Musik Instrumen", link: "/musik-instrument" },
-      { name: "Buat Sound Effect", link: "/sound-effect" },
+      { name: "Buat Efek Suara", link: "/sound-effect" },
       { name: "Portofolio", link: "/portfolio" },
     ],
-    footerTexts: ["Keamanan Privasi", "Ketentuan Penggunaan", "Peta Situs"],
+    footerTexts: ["Kebijakan Privasi", "Ketentuan Penggunaan", "Peta Situs"],
     visitorsLabel: "Total Pengunjung",
   },
   EN: {
     name: "CreativeMusic",
-    address:
-      "Komplek Bandung Indah Raya, Block C13/No.17, Mekarjaya Village, Rancasari District, Bandung City, West Java 40286",
+    address: "Komplek Bandung Indah Raya, Block C13/No.17, Mekarjaya Village, Rancasari District, Bandung City, West Java 40286",
     contact: {
       phone: "+62 822-9560-3115",
       email: "yukmari2211@gmail.com",
@@ -480,6 +657,27 @@ export const creativeMusicHubData = {
     ],
     footerTexts: ["Privacy Policy", "Terms of Use", "Sitemap"],
     visitorsLabel: "Total Visitors",
+  },
+  SD: {
+    name: "CreativeMusic",
+    address: "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Dayeuh Bandung, Jawa Kulon 40286",
+    contact: {
+      phone: "+62 822-9560-3115",
+      email: "yukmari2211@gmail.com",
+    },
+    socialMedia: {
+      instagram: "https://www.instagram.com/yukmaridotcom",
+      website: "https://www.yuk-mari.com/",
+      email: "yukmari2211@gmail.com",
+    },
+    products: [
+      { name: "Nyieun Musik ti Lirik", link: "/musik-lyric" },
+      { name: "Nyieun Musik Instrumen", link: "/musik-instrument" },
+      { name: "Nyieun Efek Sora", link: "/sound-effect" },
+      { name: "Portofolio", link: "/portfolio" },
+    ],
+    footerTexts: ["Kawijakan Privasi", "Katangtuan Pamakean", "Peta Situs"],
+    visitorsLabel: "Total Pangunjung",
   },
 };
 
@@ -696,6 +894,74 @@ export const howItWorksSteps = {
         },
         {
           text: "Download the final song and enjoy your creation!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+  ],
+  SD: [
+    {
+      id: 1,
+      page: "lyrics",
+      steps: [
+        {
+          text: "Masukkan lirik Anjeun ke dalam kolom input.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Pilih genre musik dan tempo yang Anjeun inginkan.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "Biarkan AI kami menganalisis lirik Anjeun dan menghasilkan melodi.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Unduh lagu Anjeun dan bagikan dengan semua orang!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+    {
+      id: 2,
+      page: "instrument",
+      steps: [
+        {
+          text: "Unggah rekaman permainan instrumen Anjeun.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Pilih suasana hati dan gaya untuk lagu Anjeun.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "AI kami akan memproses rekaman dan membuat aransemen lengkap.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Unduh lagu akhir dan nikmati kreasi Anjeun!",
+          imageUrl: howItWorks4,
+        },
+      ],
+    },
+    {
+      id: 3,
+      page: "sound",
+      steps: [
+        {
+          text: "Unggah efek suara Anjeun atau pilih dari perpustakaan kami.",
+          imageUrl: howItWorks1,
+        },
+        {
+          text: "Pilih genre dan struktur untuk lagu Anjeun.",
+          imageUrl: howItWorks2,
+        },
+        {
+          text: "AI kami akan memadukan suara menjadi komposisi yang kohesif.",
+          imageUrl: howItWorks3,
+        },
+        {
+          text: "Unduh lagu akhir dan nikmati kreasi Anjeun!",
           imageUrl: howItWorks4,
         },
       ],

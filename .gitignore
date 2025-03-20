@@ -27,3 +27,4 @@ node_modules
 .vercel
 .env
 node_modules
+.qodo

@@ -15,11 +15,14 @@ import ReactPlayer from "react-player";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import CboxChat from "../components/CboxChat";
 
 const HomePage = ({ language }) => {
   const catalogRef = useRef(null);
@@ -79,23 +82,38 @@ const HomePage = ({ language }) => {
     fetchOrderCounts();
   }, [language]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out'
+    });
+  }, []);
+
   return (
     <div className="HomePage">
       {/* HOMEPAGE */}
       <header className="w-100 min-vh-100 d-flex align-items-center">
+        <video className="video-background" autoPlay loop muted playsInline>
+          <source src="/video.mp4" type="video/mp4" />
+        </video>
         <Container>
           <Row className="header-content">
-            <Col md={6}>
-              <h1 className="fw-bold">{TextContent[language].title}</h1>
-              <p className="fs-5">{TextContent[language].description}</p>
-              <button className="cta-button" onClick={scrollToCatalog}>
+            <Col md={6} data-aos="fade-right" data-aos-delay="200">
+              <h1 className="main-h1 fw-bold">{TextContent[language].title}</h1>
+              <p className="fs-5" data-aos="fade-up" data-aos-delay="400">
+                {TextContent[language].description}
+              </p>
+              <button 
+                className="cta-button" 
+                onClick={scrollToCatalog}
+                data-aos="fade-up" 
+                data-aos-delay="600"
+              >
                 {TextContent[language].button}
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </Col>
-            {/* <Col md={6} className="pt-lg-0 pt-5">
-              <img src={HeroImage} alt="hero" className="grid-img" />
-            </Col> */}
           </Row>
         </Container>
       </header>
@@ -103,23 +121,25 @@ const HomePage = ({ language }) => {
       <div className="catalog w-100 min-vh-100" ref={catalogRef}>
         <Container>
           <Row>
-            <Col>
+            <Col data-aos="fade-up">
               <h1 className="text-center fw-bold">
                 {ProductContent[language].title}
               </h1>
-              <p className="text-center">
+              <p className="text-center" data-aos="fade-up" data-aos-delay="200">
                 {ProductContent[language].description}
               </p>
             </Col>
           </Row>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-1">
             <Row className="g-4">
-              {products[language].map((product) => (
-                <Col
-                  key={product.id}
-                  md={4}
+              {products[language].map((product, index) => (
+                <Col 
+                  key={product.id} 
+                  md={4} 
                   sm={6}
-                  className="shadow-sm rounded">
+                  data-aos="fade-up"
+                  data-aos-delay={200 * (index + 1)}
+                >
                   <div className="product-card p-3 border rounded shadow-sm h-100">
                     <div className="image-container">
                       <img
@@ -182,7 +202,7 @@ const HomePage = ({ language }) => {
         <Container>
           <Row>
             <Col>
-              <h1 className="text-center fw-bold my-5">Portofolio</h1>
+              <h1 className="h1-portfolio text-center fw-bold my-5">Portofolio</h1>
             </Col>
           </Row>
           <Row>
@@ -219,19 +239,19 @@ const HomePage = ({ language }) => {
                 <SwiperSlide
                   key={swiper.id}
                   virtualIndex={index}
-                  className="shadow-sm rounded">
-                  <ReactPlayer
-                    url={swiper.video}
-                    controls
-                    width="100%"
-                    height="auto"
-                  />
-                  <div className="people">
-                    <img src={swiper.image} alt="" />
-                    <div>
-                      <h5 className="mb-1">{swiper.name}</h5>
-                      <p className="m-0 fw-bold">{swiper.skill}</p>
-                    </div>
+                  className="shadow-sm rounded"
+                >
+                  <div className="portfolio-item">
+                    <h4 className="portfolio-title mb-3">{swiper.name}</h4>
+                    <p className="portfolio-genre mb-3">{swiper.genre}</p>
+                    <iframe
+                      width="100%"
+                      height="166"
+                      scrolling="no"
+                      frameBorder="no"
+                      allow="autoplay"
+                      src={swiper.audio}
+                    ></iframe>
                   </div>
                 </SwiperSlide>
               ))}
@@ -239,7 +259,6 @@ const HomePage = ({ language }) => {
           </Row>
         </Container>
       </div>
-      {/* <Disqus/> */}
     </div>
   );
 };

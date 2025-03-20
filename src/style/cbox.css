@@ -12,3 +12,9 @@
 .cbox-container {
   background:  #0E1117;
 }
+
+.cbox-wrapper {
+  position: relative;
+  left: 0px;
+  bottom: 0px;
+}

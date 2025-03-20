@@ -91,7 +91,7 @@ const PortfolioTable = () => {
       <SideBarComponent />
       <div className="dashboard-content">
         <MainHeader />
-        <div className="dashboard-content" style={{ flex: 1, padding: "20px" }}>
+        <div className="dashboard-content-isi" style={{ flex: 1, padding: "30px" }}>
           <h2>CRUD Portfolio</h2>
           <Button
             variant="primary"
