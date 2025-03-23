@@ -45,7 +45,7 @@ const SoundPage = ({ language }) => {
             <h2
               className="judul"
               dangerouslySetInnerHTML={{
-                __html: soundEffectSectionData[language].title,
+                __html: soundEffectSectionData[language].title +  "🎧 " ,
               }}
             />
           </Col>

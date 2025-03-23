@@ -17,12 +17,14 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import CboxChat from "../components/CboxChat";
+import BackToTop from "../components/BackToTop";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import CboxChat from "../components/CboxChat";
+
 
 const HomePage = ({ language }) => {
   const catalogRef = useRef(null);
@@ -100,7 +102,9 @@ const HomePage = ({ language }) => {
         <Container>
           <Row className="header-content">
             <Col md={6} data-aos="fade-right" data-aos-delay="200">
-              <h1 className="main-h1 fw-bold">{TextContent[language].title}</h1>
+              <h1 className="main-h1 fw-bold">
+                 {TextContent[language].title} ✨
+              </h1>
               <p className="fs-5" data-aos="fade-up" data-aos-delay="400">
                 {TextContent[language].description}
               </p>
@@ -123,7 +127,7 @@ const HomePage = ({ language }) => {
           <Row>
             <Col data-aos="fade-up">
               <h1 className="text-center fw-bold">
-                {ProductContent[language].title}
+                🎵 {ProductContent[language].title} 🎵
               </h1>
               <p className="text-center" data-aos="fade-up" data-aos-delay="200">
                 {ProductContent[language].description}
@@ -202,7 +206,9 @@ const HomePage = ({ language }) => {
         <Container>
           <Row>
             <Col>
-              <h1 className="h1-portfolio text-center fw-bold my-5">Portofolio</h1>
+              <h1 className="h1-portfolio text-center fw-bold my-5">
+                🎼 Portofolio 🎼
+              </h1>
             </Col>
           </Row>
           <Row>
@@ -259,6 +265,7 @@ const HomePage = ({ language }) => {
           </Row>
         </Container>
       </div>
+      <BackToTop />
     </div>
   );
 };

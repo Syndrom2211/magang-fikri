@@ -45,7 +45,7 @@ const InstrumentPage = ({ language }) => {
                 <h1
                   className="headline"
                   dangerouslySetInnerHTML={{
-                    __html: instrumentSectionData[language].headline,
+                    __html: instrumentSectionData[language].headline +  "🎸 " ,
                   }}
                 />
                 <p className="subtext">

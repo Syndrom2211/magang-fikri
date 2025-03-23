@@ -65,7 +65,7 @@ const PortfolioPage = ({ }) => {
           <Row>
             <Col>
               <h1 className="h1-portfolio">
-                Portfolio
+                🎼 Portfolio 🎼
               </h1>
             </Col>
           </Row>

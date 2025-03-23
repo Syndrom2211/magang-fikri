@@ -74,7 +74,7 @@ const LyricsPage = ({ language }) => {
                 <h3
                   className="inspiration-title"
                   dangerouslySetInnerHTML={{
-                    __html: musicInspirationData[language].title,
+                    __html: musicInspirationData[language].title +  "✍️ ",
                   }}
                 />
                 <p className="inspiration-text">
