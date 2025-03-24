@@ -23,6 +23,9 @@ const ModalForm = () => {
     name: "",
     whatsapp: "",
     price: currentPlan?.price || plan?.price || 0,
+    lyrics: "",
+    instrument: "",
+    soundEffect: "",
   });
 
   const [recaptchaToken, setRecaptchaToken] = useState(null);
@@ -54,21 +57,32 @@ const ModalForm = () => {
   const validateForm = () => {
     let errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
     if (!formData.email) {
       errors.email = "Email harus diisi";
     } else if (!emailRegex.test(formData.email)) {
       errors.email = "Format email tidak valid";
     }
-    
+
     if (!formData.name) {
       errors.name = "Nama harus diisi";
     }
-    
+
     if (!formData.whatsapp) {
       errors.whatsapp = "WhatsApp harus diisi";
     } else if (!/^\d+$/.test(formData.whatsapp)) {
       errors.whatsapp = "WhatsApp hanya boleh berisi angka";
+    }
+
+    // Validasi tambahan berdasarkan jenis modal form
+    if (page === "lirik" && !formData.lyrics) {
+      errors.lyrics = "Lirik harus diisi";
+    }
+    if (page === "instrumen" && !formData.instrument) {
+      errors.instrument = "Instrumen harus diisi";
+    }
+    if (page === "soundEffect" && !formData.soundEffect) {
+      errors.soundEffect = "Sound effect harus diisi";
     }
 
     setFormErrors(errors);
@@ -82,7 +96,7 @@ const ModalForm = () => {
     }
 
     if (isSubmitting) return;
-    
+
     if (validateForm()) {
       setIsSubmitting(true);
       try {
@@ -90,11 +104,11 @@ const ModalForm = () => {
           ...formData,
           item_id: parseInt(formData.id, 10),
           id: parseInt(formData.id, 10),
-          recaptchaToken: recaptchaToken
+          recaptchaToken: recaptchaToken,
         };
-        
+
         const checkoutResult = await checkout(formDataToSend);
-        
+
         if (checkoutResult) {
           navigate("/transaction-details", {
             state: { transactionData: formDataToSend },
@@ -102,7 +116,9 @@ const ModalForm = () => {
         }
       } catch (error) {
         console.error("Checkout error:", error);
-        setAlertMessage("Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.");
+        setAlertMessage(
+          "Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi."
+        );
       } finally {
         setIsSubmitting(false);
         if (recaptchaRef.current) {
@@ -132,8 +148,12 @@ const ModalForm = () => {
               />
               <div className="form-content">
                 <h2 className="form-title">Data Pemesanan:</h2>
-                {alertMessage && <div className="alert alert-danger">{alertMessage}</div>}
-                <form className="checkout-form" onSubmit={(e) => e.preventDefault()}>
+                {alertMessage && (
+                  <div className="alert alert-danger">{alertMessage}</div>
+                )}
+                <form
+                  className="checkout-form"
+                  onSubmit={(e) => e.preventDefault()}>
                   <input
                     type="email"
                     name="email"
@@ -167,10 +187,66 @@ const ModalForm = () => {
                   {formErrors.whatsapp && (
                     <p className="error">{formErrors.whatsapp}</p>
                   )}
+
+                  {/* Tampilkan input field berdasarkan jenis modal form */}
+                  {page === "lyrics" && (
+                    <>
+                      <p>
+                        <strong>Masukkan Lirik Lagu:</strong>
+                        <textarea
+                          name="lyrics"
+                          onChange={handleChange}
+                          required
+                          style={{ width: "100%", minHeight: "100px" }} // Tambahkan style untuk textarea
+                        />
+                      </p>
+                      {formErrors.lyrics && (
+                        <p className="error">{formErrors.lyrics}</p>
+                      )}
+                    </>
+                  )}
+                  {page === "instrument" && (
+                    <>
+                      <p>
+                        <strong>Masukkan Instrumen:</strong>
+                        <input
+                          type="text"
+                          name="instrument"
+                          onChange={handleChange}
+                          required
+                          style={{ width: "100%" }} // Tambahkan style untuk input
+                        />
+                      </p>
+                      {formErrors.instrument && (
+                        <p className="error">{formErrors.instrument}</p>
+                      )}
+                    </>
+                  )}
+                  {page === "sound" && (
+                    <>
+                      <p>
+                        <strong>Masukkan Efek Musik Yang anda inginkan:</strong>
+                        <input
+                          type="text"
+                          name="soundEffect"
+                          onChange={handleChange}
+                          required
+                          style={{ width: "100%" }} // Tambahkan style untuk input
+                        />
+                      </p>
+                      {formErrors.soundEffect && (
+                        <p className="error">{formErrors.soundEffect}</p>
+                      )}
+                    </>
+                  )}
+
                   <div className="order-summary">
                     <p>Item: {formData.item}</p>
                     <p>
-                      Total: <strong>Rp.{formData.price.toLocaleString('id-ID')}</strong>
+                      Total:{" "}
+                      <strong>
+                        Rp.{formData.price.toLocaleString("id-ID")}
+                      </strong>
                     </p>
                   </div>
                   <div className="recaptcha-container-2">
@@ -185,8 +261,7 @@ const ModalForm = () => {
                   <button
                     type="button"
                     className="submit-button"
-                    onClick={handleCheckout}
-                  >
+                    onClick={handleCheckout}>
                     {isSubmitting ? "Memproses..." : "Pilih Pembayaran"}
                   </button>
                 </form>

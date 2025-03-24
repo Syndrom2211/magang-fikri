@@ -30,7 +30,7 @@ app.use(
     secret: process.env.SESSION_SECRET || "admin", // Use env variable for security
     resave: false,
     saveUninitialized: false,
-    cookie: { 
+    cookie: {
       secure: process.env.NODE_ENV === "production", // Secure in production
       httpOnly: true, // Prevent XSS attacks
       maxAge: 1000 * 60 * 60 * 24, // 1 day
@@ -92,7 +92,6 @@ app.get("/", (req, res) => {
 // app.listen(PORT1, () => {
 //   console.log(`🚀 Server is running on port ${PORT1}`);
 // });
-
 
 // Fungsi untuk membuat database dan tabel admin jika belum ada
 const createDatabaseAndTable = () => {
@@ -208,7 +207,8 @@ const createDatabaseAndTable = () => {
               answer_en:
                 "CreativeMusicHub (CMH) is a platform for creating music with AI assistance. Users can upload lyrics, choose a genre, and get an automatically generated song.",
               question_sd: "Naon ari CMH sareng kumaha carana?",
-              answer_sd: "CreativeMusicHub (CMH) nyaéta platform pikeun nyieun musik ngagunakeun AI. Pangguna tiasa ngunggahkeun lirik, milih genre, sareng nampi lagu anu dijieun sacara otomatis.",
+              answer_sd:
+                "CreativeMusicHub (CMH) nyaéta platform pikeun nyieun musik ngagunakeun AI. Pangguna tiasa ngunggahkeun lirik, milih genre, sareng nampi lagu anu dijieun sacara otomatis.",
               status: "Published",
             },
             {
@@ -219,8 +219,10 @@ const createDatabaseAndTable = () => {
               question_en: "Do I need musical skills to use CMH?",
               answer_en:
                 "No, you don't! CMH is designed for everyone, from beginners to professionals. Our AI technology will assist in the music creation process.",
-              question_sd: "Naha abdi peryogi kapinteran musik pikeun nganggo CMH?",
-              answer_sd: "Henteu peryogi! CMH dirarancang pikeun sadayana, ti nu nembe dugi ka profesional. Téknologi AI urang bakal ngabantosan dina prosés nyieun musik.",
+              question_sd:
+                "Naha abdi peryogi kapinteran musik pikeun nganggo CMH?",
+              answer_sd:
+                "Henteu peryogi! CMH dirarancang pikeun sadayana, ti nu nembe dugi ka profesional. Téknologi AI urang bakal ngabantosan dina prosés nyieun musik.",
               status: "Published",
             },
             {
@@ -231,7 +233,8 @@ const createDatabaseAndTable = () => {
               answer_en:
                 "CMH supports various music genres such as pop, rock, jazz, EDM, and many more.",
               question_sd: "Jenis musik naon waé anu tiasa dijieun ku CMH?",
-              answer_sd: "CMH ngadukung rupa-rupa genre musik sapertos pop, rock, jazz, EDM, sareng seueur deui.",
+              answer_sd:
+                "CMH ngadukung rupa-rupa genre musik sapertos pop, rock, jazz, EDM, sareng seueur deui.",
               status: "Published",
             },
             {
@@ -242,7 +245,8 @@ const createDatabaseAndTable = () => {
               answer_en:
                 "Simply upload your lyrics, select a genre, and CMH will automatically generate music that matches the lyrics.",
               question_sd: "Naon cara nanggo lirik jadi lagu?",
-              answer_sd: "Sampeyan cuma perlu ngunggah lirik, milih genre, sareng CMH bakal nampi lagu anu sesuai karo lirik katon.",
+              answer_sd:
+                "Sampeyan cuma perlu ngunggah lirik, milih genre, sareng CMH bakal nampi lagu anu sesuai karo lirik katon.",
               status: "Published",
             },
             {
@@ -253,7 +257,8 @@ const createDatabaseAndTable = () => {
               answer_en:
                 "Yes! CMH offers various genre options that you can choose based on your preference.",
               question_sd: "Naha abdi bisa milih genre musik?",
-              answer_sd: "Iya! CMH ngadukung rupa-rupa genre musik anu bisa dipilih katon kana preferensi sampeyan.",
+              answer_sd:
+                "Iya! CMH ngadukung rupa-rupa genre musik anu bisa dipilih katon kana preferensi sampeyan.",
               status: "Published",
             },
             {
@@ -265,7 +270,8 @@ const createDatabaseAndTable = () => {
               answer_en:
                 "The music creation process usually takes a few minutes, depending on the complexity of the lyrics and instrument selection.",
               question_sd: "Naon waktu anu diperyogi pikeun nyieun musik?",
-              answer_sd: "Proses nyieun musik biasana ngarasakakeun waktu beberapa menit, tergantung kana kompleksitas lirik sareng pemilihan instrumen.",
+              answer_sd:
+                "Proses nyieun musik biasana ngarasakakeun waktu beberapa menit, tergantung kana kompleksitas lirik sareng pemilihan instrumen.",
               status: "Published",
             },
             {
@@ -276,8 +282,10 @@ const createDatabaseAndTable = () => {
               question_en: "Can the generated music be used commercially?",
               answer_en:
                 "Yes, music created through CMH can be used commercially. However, please review the terms of use first.",
-              question_sd: "Naha musik anu dihasilkeun ku CMH bisa dipakekeun karo komersial?",
-              answer_sd: "Iya, musik anu dihasilkeun ku CMH bisa dipakekeun karo komersial. Tapi, pastikeun nanggo ketentuan penggunaan dina awal.",
+              question_sd:
+                "Naha musik anu dihasilkeun ku CMH bisa dipakekeun karo komersial?",
+              answer_sd:
+                "Iya, musik anu dihasilkeun ku CMH bisa dipakekeun karo komersial. Tapi, pastikeun nanggo ketentuan penggunaan dina awal.",
               status: "Published",
             },
             {
@@ -288,8 +296,10 @@ const createDatabaseAndTable = () => {
               question_en: "What if I encounter issues while creating music?",
               answer_en:
                 "You can contact our support team via email or WhatsApp, available on the contact page.",
-              question_sd: "Naha abdi ngarasakakeun masalah nanggo nyieun musik?",
-              answer_sd: "Sampeyan bisa kontak tim dukungan kami ku email atawa WhatsApp, anu tersedia di halaman kontak.",
+              question_sd:
+                "Naha abdi ngarasakakeun masalah nanggo nyieun musik?",
+              answer_sd:
+                "Sampeyan bisa kontak tim dukungan kami ku email atawa WhatsApp, anu tersedia di halaman kontak.",
               status: "Published",
             },
           ];
@@ -540,7 +550,7 @@ const createDatabaseAndTable = () => {
               address_en:
                 "Komplek Bandung Indah Raya, Block C13/No.17, Mekarjaya Village, Rancasari District, Bandung City, West Java 40286",
               address_sd:
-              "Komplek Bandung Indah Raya, Block C13/No.17, Mekarjaya Village, Rancasari District, Bandung City, West Java 40286",
+                "Komplek Bandung Indah Raya, Block C13/No.17, Mekarjaya Village, Rancasari District, Bandung City, West Java 40286",
               product1_name_id: "Buat Musik melalui Lyric",
               product1_link_id: "/musik-lyric",
               product2_name_id: "Buat Musik Instrumen",
@@ -563,7 +573,8 @@ const createDatabaseAndTable = () => {
               privacy_policy_en: "Privacy Policy",
               terms_of_use_en: "Terms of Use",
               sitemap_en: "Sitemap",
-              address_sd: "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Dayeuh Bandung, Jawa Kulon 40286",
+              address_sd:
+                "Komplek Bandung Indah Raya, Blok C13/No.17, Kelurahan Mekarjaya, Kecamatan Rancasari, Dayeuh Bandung, Jawa Kulon 40286",
               product1_name_sd: "Nyieun Musik ti Lirik",
               product1_link_sd: "/musik-lyric",
               product2_name_sd: "Nyieun Musik Instrumen",
@@ -574,7 +585,7 @@ const createDatabaseAndTable = () => {
               product4_link_sd: "/portfolio",
               privacy_policy_sd: "Kawijakan Privasi",
               terms_of_use_sd: "Katangtuan Pamakean",
-              sitemap_sd: "Peta Situs"
+              sitemap_sd: "Peta Situs",
             },
           ];
 
@@ -639,7 +650,7 @@ const createDatabaseAndTable = () => {
                 footer.product4_link_sd,
                 footer.privacy_policy_sd,
                 footer.terms_of_use_sd,
-                footer.sitemap_sd
+                footer.sitemap_sd,
               ],
               (insertErr) => {
                 if (insertErr) {
@@ -686,39 +697,44 @@ const createDatabaseAndTable = () => {
       if (result[0].count === 0) {
         const initialData = [
           {
-            "name": "Dapoer Catering SR",
-            "genre": "Accoustic",
-            "link": "https://api.soundcloud.com/tracks/2046389160"
+            name: "Dapoer Catering SR",
+            genre: "Accoustic",
+            link: "https://api.soundcloud.com/tracks/2046389160",
           },
           {
-            "name": "Goyobod Laris",
-            "genre": "Dubstep",
-            "link": "https://api.soundcloud.com/tracks/2046389153"
+            name: "Goyobod Laris",
+            genre: "Dubstep",
+            link: "https://api.soundcloud.com/tracks/2046389153",
           },
           {
-            "name": "Dimsum by Inmons Fix",
-            "genre": "Jazz",
-            "link": "https://api.soundcloud.com/tracks/2046389164"
+            name: "Dimsum by Inmons Fix",
+            genre: "Jazz",
+            link: "https://api.soundcloud.com/tracks/2046389164",
           },
           {
-            "name": "Bubuk Cabe Pa Abdul",
-            "genre": "Pop",
-            "link": "https://api.soundcloud.com/tracks/2046390272"
+            name: "Bubuk Cabe Pa Abdul",
+            genre: "Pop",
+            link: "https://api.soundcloud.com/tracks/2046390272",
           },
           {
-            "name": "Aku Baru",
-            "genre": "Progressive",
-            "link": "https://api.soundcloud.com/tracks/2046389156"
+            name: "Aku Baru",
+            genre: "Progressive",
+            link: "https://api.soundcloud.com/tracks/2046389156",
           },
           {
-            "name": "Hudang Hese",
-            "genre": "Sundanese",
-            "link": "https://api.soundcloud.com/tracks/2046389168"
-          }
+            name: "Hudang Hese",
+            genre: "Sundanese",
+            link: "https://api.soundcloud.com/tracks/2046389168",
+          },
         ];
 
-        const insertQuery = "INSERT INTO portfolios (name, genre, link) VALUES ?";
-        const values = initialData.map((item) => [item.name, item.genre, item.link]);
+        const insertQuery =
+          "INSERT INTO portfolios (name, genre, link) VALUES ?";
+        const values = initialData.map((item) => [
+          item.name,
+          item.genre,
+          item.link,
+        ]);
 
         db.query(insertQuery, [values], (err) => {
           if (err) {
@@ -728,10 +744,10 @@ const createDatabaseAndTable = () => {
           }
         });
       }
-  });
-  
-  // Membuat tabel biodata jika belum ada
-  const createBiodataTableQuery = `
+    });
+
+    // Membuat tabel biodata jika belum ada
+    const createBiodataTableQuery = `
       CREATE TABLE IF NOT EXISTS biodata (
         id INT AUTO_INCREMENT PRIMARY KEY,
         item_id INT,
@@ -739,11 +755,14 @@ const createDatabaseAndTable = () => {
         name VARCHAR(255),
         whatsapp VARCHAR(255),
         price INT,
+        lyrics_text TEXT,
+    instrument_text TEXT,
+    sound_effect_text TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (item_id) REFERENCES items(id)
       );
     `;
-    
+
     db.query(createBiodataTableQuery, (err) => {
       if (err) {
         console.error("❌ Error creating biodata table:", err);
@@ -797,7 +816,7 @@ const createDatabaseAndTable = () => {
           );
         }
       });
-  });
+    });
   });
 };
 
@@ -945,7 +964,8 @@ app.get("/headers", async (req, res) => {
 // Endpoint untuk memperbarui data header
 app.put("/headers/:id", async (req, res) => {
   const { id } = req.params;
-  const { position, content_en, content_id,content_sd, path, parent_id } = req.body;
+  const { position, content_en, content_id, content_sd, path, parent_id } =
+    req.body;
   try {
     await db
       .promise()
@@ -1022,13 +1042,11 @@ app.put("/footers/:id", async (req, res) => {
     product4_link_sd,
     privacy_policy_sd,
     terms_of_use_sd,
-    sitemap_sd
+    sitemap_sd,
   } = req.body;
   try {
-    await db
-      .promise()
-      .query(
-        `UPDATE footer SET 
+    await db.promise().query(
+      `UPDATE footer SET 
           address_id = ?, 
           phone = ?, 
           email = ?, 
@@ -1066,46 +1084,46 @@ app.put("/footers/:id", async (req, res) => {
           terms_of_use_sd = ?,
           sitemap_sd = ?
         WHERE id = ?`,
-        [
-          address_id,
-          phone,
-          email,
-          instagram_name,
-          instagram_link,
-          website_name,
-          website_link,
-          address_en,
-          address_sd,
-          product1_name_id,
-          product1_link_id,
-          product2_name_id,
-          product2_link_id,
-          product3_name_id,
-          product3_link_id,
-          product4_name_id,
-          product4_link_id,
-          product1_name_en,
-          product1_link_en,
-          product2_name_en,
-          product2_link_en,
-          product3_name_en,
-          product3_link_en,
-          product4_name_en,
-          product4_link_en,
-          product1_name_sd,
-          product1_link_sd,
-          product2_name_sd,
-          product2_link_sd,
-          product3_name_sd,
-          product3_link_sd,
-          product4_name_sd,
-          product4_link_sd,
-          privacy_policy_sd,
-          terms_of_use_sd,
-          sitemap_sd,
-          id,
-        ]
-      );
+      [
+        address_id,
+        phone,
+        email,
+        instagram_name,
+        instagram_link,
+        website_name,
+        website_link,
+        address_en,
+        address_sd,
+        product1_name_id,
+        product1_link_id,
+        product2_name_id,
+        product2_link_id,
+        product3_name_id,
+        product3_link_id,
+        product4_name_id,
+        product4_link_id,
+        product1_name_en,
+        product1_link_en,
+        product2_name_en,
+        product2_link_en,
+        product3_name_en,
+        product3_link_en,
+        product4_name_en,
+        product4_link_en,
+        product1_name_sd,
+        product1_link_sd,
+        product2_name_sd,
+        product2_link_sd,
+        product3_name_sd,
+        product3_link_sd,
+        product4_name_sd,
+        product4_link_sd,
+        privacy_policy_sd,
+        terms_of_use_sd,
+        sitemap_sd,
+        id,
+      ]
+    );
     res.json({ message: "Footer updated successfully" });
   } catch (error) {
     console.error("Error updating footer data:", error);
@@ -1169,7 +1187,8 @@ app.put("/portfolios/:id", (req, res) => {
     return res.status(400).json({ error: "Incomplete portfolio data!" });
   }
 
-  const sql = "UPDATE portfolios SET name = ?, genre = ?, link = ? WHERE id = ?";
+  const sql =
+    "UPDATE portfolios SET name = ?, genre = ?, link = ? WHERE id = ?";
   db.query(sql, [name, genre, link, id], (err) => {
     if (err) {
       console.error("❌ Error updating portfolio:", err);
@@ -1207,26 +1226,65 @@ app.get("/items", (req, res) => {
 
 // Endpoint untuk menyimpan biodata
 app.post("/biodata", (req, res) => {
-  console.log("Incoming Biodata:", req.body);
-  const { item_id, email, name, whatsapp, price } = req.body; // Terima item_id
+  const {
+    item_id,
+    email,
+    name,
+    whatsapp,
+    price,
+    lyrics,
+    instrument,
+    soundEffect,
+  } = req.body;
 
-  if (!item_id || !email || !name || !whatsapp || !price) {
-    return res.status(400).json({ message: "Data tidak lengkap." });
-  }
+  let lyricsText = null;
+  let instrumentText = null;
+  let soundEffectText = null;
 
-  const sql =
-    "INSERT INTO biodata (item_id, email, name, whatsapp, price) VALUES (?, ?, ?, ?, ?)"; // Gunakan item_id di query
-  db.query(sql, [item_id, email, name, whatsapp, price], (err, result) => {
-    // Gunakan item_id
+  // Tentukan kolom mana yang akan diisi berdasarkan item_id
+  db.query("SELECT name from items where id = ?", [item_id], (err, result) => {
     if (err) {
-      console.error("❌ Error saving biodata:", err);
-      res
+      return res
         .status(500)
-        .json({ message: "Gagal menyimpan data biodata.", error: err.message });
-      return;
+        .json({ message: "Gagal memilih item name", error: err.message });
     }
-    console.log("✅ Biodata inserted:", result.insertId);
-    res.status(200).json({ message: "Data biodata berhasil disimpan." });
+    const itemName = result[0].name;
+
+    if (itemName === "lirik") {
+      lyricsText = lyrics;
+    } else if (itemName === "instrumen") {
+      instrumentText = instrument;
+    } else if (itemName === "efek-suara") {
+      soundEffectText = soundEffect;
+    }
+
+    const sql =
+      "INSERT INTO biodata (item_id, email, name, whatsapp, price, lyrics_text, instrument_text, sound_effect_text) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    db.query(
+      sql,
+      [
+        item_id,
+        email,
+        name,
+        whatsapp,
+        price,
+        lyricsText,
+        instrumentText,
+        soundEffectText,
+      ],
+      (err, result) => {
+        if (err) {
+          console.error("❌ Error saving biodata:", err);
+          return res.status(500).json({
+            message: "Gagal menyimpan data biodata.",
+            error: err.message,
+          });
+        }
+        console.log("✅ Biodata inserted:", result.insertId);
+        res.status(200).json({ message: "Data biodata berhasil disimpan." });
+      }
+    );
   });
 });
 
@@ -1264,16 +1322,20 @@ app.get("/biodata", (req, res) => {
 
   let sql = `
       SELECT 
-          b.id,
-          b.item_id,
-          i.name AS item_name,
-          b.email,
-          b.name,
-          b.whatsapp,
-          b.price,
-          b.created_at
-      FROM biodata b
-      INNER JOIN items i ON b.item_id = i.id
+    b.id,
+    b.item_id,
+    i.name AS item_name,
+    b.email,
+    b.name,
+    b.whatsapp,
+    b.price,
+    b.created_at,
+    b.lyrics_text,
+    b.instrument_text,
+    b.sound_effect_text
+FROM biodata b
+INNER JOIN items i ON b.item_id = i.id
+
   `;
 
   if (itemName) {
@@ -1308,43 +1370,47 @@ app.get("/orders/:productId", (req, res) => {
 });
 
 app.get("/biodata/categories/count", (req, res) => {
-  const categories = ['lirik', 'instrumen', 'efek-suara'];
+  const categories = ["lirik", "instrumen", "efek-suara"];
   const results = [];
 
   const processCategory = (category, callback) => {
-      const sql = `
+    const sql = `
           SELECT COUNT(*) AS jumlah_terjual
           FROM biodata b
           INNER JOIN items i ON b.item_id = i.id
           WHERE i.name = ?
       `;
 
-      db.query(sql, [category], (err, result) => {
-          if (err) {
-              console.error(`❌ Error fetching ${category} sales count:`, err);
-              return callback(err);
-          }
-          results.push({ nama_produk: category, jumlah_terjual: result[0].jumlah_terjual });
-          callback(null);
+    db.query(sql, [category], (err, result) => {
+      if (err) {
+        console.error(`❌ Error fetching ${category} sales count:`, err);
+        return callback(err);
+      }
+      results.push({
+        nama_produk: category,
+        jumlah_terjual: result[0].jumlah_terjual,
       });
+      callback(null);
+    });
   };
 
   const processCategories = (index) => {
-      if (index < categories.length) {
-          processCategory(categories[index], (err) => {
-              if (err) {
-                  return res.status(500).json({ error: "Failed to fetch category sales count" });
-              }
-              processCategories(index + 1);
-          });
-      } else {
-          res.status(200).json({ produk: results });
-      }
+    if (index < categories.length) {
+      processCategory(categories[index], (err) => {
+        if (err) {
+          return res
+            .status(500)
+            .json({ error: "Failed to fetch category sales count" });
+        }
+        processCategories(index + 1);
+      });
+    } else {
+      res.status(200).json({ produk: results });
+    }
   };
 
   processCategories(0);
 });
-
 
 // Endpoint untuk mengambil semua FAQ
 app.get("/faq", (req, res) => {
@@ -1360,7 +1426,15 @@ app.get("/faq", (req, res) => {
 
 // Endpoint untuk menambahkan FAQ baru
 app.post("/faq", (req, res) => {
-  const { question_id, answer_id, question_en, answer_en, question_sd, answer_sd, status } = req.body;
+  const {
+    question_id,
+    answer_id,
+    question_en,
+    answer_en,
+    question_sd,
+    answer_sd,
+    status,
+  } = req.body;
 
   if (status !== "Published" && status !== "Archived") {
     return res.status(400).json({ error: "Invalid status value" });
@@ -1370,7 +1444,15 @@ app.post("/faq", (req, res) => {
     "INSERT INTO faq (question_id, answer_id, question_en, answer_en, question_sd, answer_sd, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
   db.query(
     sql,
-    [question_id, answer_id, question_en, answer_en, question_sd, answer_sd, status],
+    [
+      question_id,
+      answer_id,
+      question_en,
+      answer_en,
+      question_sd,
+      answer_sd,
+      status,
+    ],
     (err, result) => {
       if (err) {
         console.error("❌ Error creating FAQ:", err);
@@ -1385,7 +1467,15 @@ app.post("/faq", (req, res) => {
 
 // Endpoint untuk mengupdate FAQ
 app.put("/faq/:id", (req, res) => {
-  const { question_id, answer_id, question_en, answer_en, question_sd, answer_sd, status } = req.body;
+  const {
+    question_id,
+    answer_id,
+    question_en,
+    answer_en,
+    question_sd,
+    answer_sd,
+    status,
+  } = req.body;
   const { id } = req.params;
 
   if (status !== "Published" && status !== "Archived") {
@@ -1396,7 +1486,16 @@ app.put("/faq/:id", (req, res) => {
     "UPDATE faq SET question_id = ?, answer_id = ?, question_en = ?, answer_en = ?, question_sd = ?, answer_sd = ? status = ? WHERE id = ?";
   db.query(
     sql,
-    [question_id, answer_id, question_en, answer_en, question_sd, answer_sd, status, id],
+    [
+      question_id,
+      answer_id,
+      question_en,
+      answer_en,
+      question_sd,
+      answer_sd,
+      status,
+      id,
+    ],
     (err) => {
       if (err) {
         console.error("❌ Error updating FAQ:", err);

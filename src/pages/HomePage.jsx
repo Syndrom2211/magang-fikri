@@ -25,7 +25,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-
 const HomePage = ({ language }) => {
   const catalogRef = useRef(null);
   const [setSwiperRef] = useState(null);
@@ -38,13 +37,13 @@ const HomePage = ({ language }) => {
     // Create Tawk.to script element
     var s1 = document.createElement("script");
     s1.async = true;
-    s1.src = 'https://embed.tawk.to/67ce66c1c7388b190b531937/1ilv42p15';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    
+    s1.src = "https://embed.tawk.to/67ce66c1c7388b190b531937/1ilv42p15";
+    s1.charset = "UTF-8";
+    s1.setAttribute("crossorigin", "*");
+
     // Append script to body
     document.body.appendChild(s1);
-    
+
     // Cleanup function to remove script when component unmounts
     return () => {
       document.body.removeChild(s1);
@@ -59,7 +58,7 @@ const HomePage = ({ language }) => {
     navigate("/checkout", {
       state: {
         plan: { id: product.id, name: product.name, price: product.price },
-        page: "catalog", // or whatever identifier you want
+        page: product.category, // or whatever identifier you want
         language: language, // Pass the language prop
       },
     });
@@ -88,7 +87,7 @@ const HomePage = ({ language }) => {
     AOS.init({
       duration: 1000,
       once: true,
-      easing: 'ease-out'
+      easing: "ease-out",
     });
   }, []);
 
@@ -103,17 +102,16 @@ const HomePage = ({ language }) => {
           <Row className="header-content">
             <Col md={6} data-aos="fade-right" data-aos-delay="200">
               <h1 className="main-h1 fw-bold">
-                 {TextContent[language].title} ✨
+                {TextContent[language].title} ✨
               </h1>
               <p className="fs-5" data-aos="fade-up" data-aos-delay="400">
                 {TextContent[language].description}
               </p>
-              <button 
-                className="cta-button" 
+              <button
+                className="cta-button"
                 onClick={scrollToCatalog}
-                data-aos="fade-up" 
-                data-aos-delay="600"
-              >
+                data-aos="fade-up"
+                data-aos-delay="600">
                 {TextContent[language].button}
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
@@ -129,7 +127,10 @@ const HomePage = ({ language }) => {
               <h1 className="text-center fw-bold">
                 🎵 {ProductContent[language].title} 🎵
               </h1>
-              <p className="text-center" data-aos="fade-up" data-aos-delay="200">
+              <p
+                className="text-center"
+                data-aos="fade-up"
+                data-aos-delay="200">
                 {ProductContent[language].description}
               </p>
             </Col>
@@ -137,13 +138,12 @@ const HomePage = ({ language }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-1">
             <Row className="g-4">
               {products[language].map((product, index) => (
-                <Col 
-                  key={product.id} 
-                  md={4} 
+                <Col
+                  key={product.id}
+                  md={4}
                   sm={6}
                   data-aos="fade-up"
-                  data-aos-delay={200 * (index + 1)}
-                >
+                  data-aos-delay={200 * (index + 1)}>
                   <div className="product-card p-3 border rounded shadow-sm h-100">
                     <div className="image-container">
                       <img
@@ -245,8 +245,7 @@ const HomePage = ({ language }) => {
                 <SwiperSlide
                   key={swiper.id}
                   virtualIndex={index}
-                  className="shadow-sm rounded"
-                >
+                  className="shadow-sm rounded">
                   <div className="portfolio-item">
                     <h4 className="portfolio-title mb-3">{swiper.name}</h4>
                     <p className="portfolio-genre mb-3">{swiper.genre}</p>
@@ -256,8 +255,7 @@ const HomePage = ({ language }) => {
                       scrolling="no"
                       frameBorder="no"
                       allow="autoplay"
-                      src={swiper.audio}
-                    ></iframe>
+                      src={swiper.audio}></iframe>
                   </div>
                 </SwiperSlide>
               ))}

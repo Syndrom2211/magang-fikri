@@ -7,7 +7,7 @@ import MainFooter from "../components/MainFooter";
 import "../style/tabelportfolio.css";
 import axios from "axios";
 import $ from "jquery";
-import "datatables.net-bs5"; // Import DataTables Bootstrap 5
+import "datatables.net-bs5";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 
 const AdminProduk = () => {
@@ -15,7 +15,7 @@ const AdminProduk = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const tableRef = useRef(null); // Referensi untuk tabel
+  const tableRef = useRef(null);
 
   useEffect(() => {
     console.log("Product ID:", product);
@@ -46,12 +46,9 @@ const AdminProduk = () => {
 
   useEffect(() => {
     if (transactions.length > 0) {
-      // Hapus DataTables jika sudah ada untuk menghindari duplikasi
       if ($.fn.DataTable.isDataTable(tableRef.current)) {
         $(tableRef.current).DataTable().destroy();
       }
-      
-      // Inisialisasi DataTables setelah data tersedia
       $(tableRef.current).DataTable();
     }
   }, [transactions]);
@@ -81,7 +78,9 @@ const AdminProduk = () => {
       <SideBarComponent />
       <div className="dashboard-content">
         <MainHeader />
-        <div className="dashboard-content-isi" style={{ flex: 1, padding: "20px" }}>
+        <div
+          className="dashboard-content-isi"
+          style={{ flex: 1, padding: "20px" }}>
           <h2>Daftar Transaksi: {product}</h2>
           <table ref={tableRef} className="table table-striped table-bordered">
             <thead>
@@ -93,6 +92,7 @@ const AdminProduk = () => {
                 <th>No. Telp</th>
                 <th>Waktu Transaksi</th>
                 <th>Jumlah Transaksi</th>
+                <th>Detail Transaksi</th> {/* Tambahkan kolom Detail */}
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -119,11 +119,19 @@ const AdminProduk = () => {
                     </td>
                     <td>{transaction.price}</td>
                     <td>
+                      {/* Tampilkan detail berdasarkan item_name */}
+                      {transaction.item_name === "lirik" &&
+                        transaction.lyrics_text}
+                      {transaction.item_name === "instrumen" &&
+                        transaction.instrument_text}
+                      {transaction.item_name === "efek-suara" &&
+                        transaction.sound_effect_text}
+                    </td>
+                    <td>
                       <Button
                         variant="danger"
                         size="sm"
-                        onClick={() => handleDelete(transaction.id)}
-                      >
+                        onClick={() => handleDelete(transaction.id)}>
                         Hapus
                       </Button>
                     </td>
@@ -131,7 +139,7 @@ const AdminProduk = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={8} style={{ textAlign: "center" }}>
+                  <td colSpan={9} style={{ textAlign: "center" }}>
                     Tidak ada data transaksi untuk produk ini.
                   </td>
                 </tr>
