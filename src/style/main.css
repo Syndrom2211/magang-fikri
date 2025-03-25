@@ -9,12 +9,12 @@
   --dark-color: linear-gradient(135deg, #24243e 0%, #302b63 50%, #0f0c29 100%);
   --bg-color: linear-gradient(135deg, #2b1055 0%, #7597de 100%);
   --light-color: #e9c46a;
-  --nav-color: #0E0B13;
-  --background: #0E1117;
-  --heading: #F2F2F2;
-  --card: #1C1F26;
-  --pink: #FF007F;
-  --text: #A1A1B0;
+  --nav-color: #0e0b13;
+  --background: #0e1117;
+  --heading: #f2f2f2;
+  --card: #1c1f26;
+  --pink: #ff007f;
+  --text: #a1a1b0;
 }
 
 /* navbar */
@@ -53,7 +53,6 @@
   gap: 5px;
 }
 
-
 .navbar.navbar-active {
   background: var(--nav-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -78,7 +77,7 @@
 
 .nav-item a.active {
   font-weight: bold;
-  color: #FF007F !important;
+  color: #ff007f !important;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 8px 16px;
@@ -87,7 +86,7 @@
 }
 
 .nav-btn {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   background-color: transparent;
   padding: 8px 16px;
   border-radius: 10px;
@@ -101,7 +100,7 @@
 
 .btn-language {
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   background-color: transparent;
   border: 2px solid var(--pink);
   padding: 6px 15px;
@@ -111,8 +110,8 @@
 
 .nav-btn:hover,
 .nav-btn.active {
-  background-color: #FF007F;
-  color: #0E0B13; 
+  background-color: #ff007f;
+  color: #0e0b13;
   font-weight: bold;
   box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
 }
@@ -120,7 +119,7 @@
 /* Dropdown Styles */
 .custom-dropdown .nav-btn {
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   background-color: transparent;
   padding: 8px 16px;
   border-radius: 10px;
@@ -133,15 +132,15 @@
 }
 
 .custom-dropdown .nav-btn:hover {
-  background-color: #FF007F;
-  color: #0E0B13;
+  background-color: #ff007f;
+  color: #0e0b13;
   font-weight: bold;
   box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
 }
 
 /* Dropdown Menu */
 .custom-dropdown .dropdown-menu {
-  background-color: #0E0B13;
+  background-color: #0e0b13;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
   margin-top: 5px;
@@ -170,10 +169,10 @@
 }
 
 .dropdown-item-btn:hover {
-  background-color: #FF007F !important;
-  color: #0E0B13 !important;
+  background-color: #ff007f !important;
+  color: #0e0b13 !important;
   font-weight: bold;
-  border: 2px solid #FF007F;
+  border: 2px solid #ff007f;
   box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
   transform: translateY(-2px);
 }
@@ -194,7 +193,6 @@
 .custom-dropdown:hover .dropdown-arrow {
   transform: rotate(90deg);
 }
-
 
 @keyframes fadeIn {
   0% {
@@ -228,16 +226,16 @@ header {
   z-index: 0;
 }
 
-.main-h1{
+.main-h1 {
   color: var(--heading);
   font-size: 4em;
   font-weight: 700;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 /* Optional: Tambahkan overlay gelap */
 header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -256,7 +254,7 @@ header::before {
   color: var(--heading) !important;
   font-size: 4rem;
   font-weight: 700;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   margin: 10px 0 40px 0;
   text-align: left;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -266,7 +264,7 @@ header::before {
   color: var(--text) !important;
   font-size: 1.5em;
   font-weight: 400;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0 0 50px 0;
   text-align: left;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -341,7 +339,7 @@ header::before {
   padding: 1rem 2rem;
   background: var(--background);
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-size: 1.5rem;
   text-decoration: none;
   border: 2px solid var(--pink);
@@ -354,11 +352,7 @@ header::before {
 
 .cta-button:hover {
   color: #000;
-  background: linear-gradient(
-    to right,
-    var(--light-color),
-    var(--pink)
-  );
+  background-color: var(--pink);
   transform: translateY(-10px);
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
@@ -394,10 +388,17 @@ header::before {
 /* Catalog */
 .HomePage .catalog {
   /* background: linear-gradient(135deg, #141414 0%, #2d2d2d 100%); */
-  background:  #0E1117;
+  background: #0e1117;
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   padding-bottom: 50px;
+}
+
+.HomePage .catalog .logo-svg {
+  width: 25px;
+  height: 25px;
+  margin: 0 5px;
+  filter: drop-shadow(1px 2px 3px #00ff80) brightness(1) invert(1);
 }
 
 .HomePage .catalog .row:nth-child(1) {
@@ -408,8 +409,7 @@ header::before {
 .HomePage .catalog .row:nth-child(1) h1,
 .homePage .catalog .row:nth-child(1) p {
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
-
+  font-family: "Rajdhani", sans-serif;
 }
 
 .HomePage .catalog h1 {
@@ -425,11 +425,7 @@ header::before {
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-  background: linear-gradient(
-    to right,
-    var(--primary-color),
-    var(--pink)
-  );
+  background: linear-gradient(to right, var(--primary-color), var(--pink));
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -444,13 +440,13 @@ header::before {
   position: relative;
   top: 0;
   background: linear-gradient(135deg, #232526 0%, #414345 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgb(0, 187, 255);
   color: #ffffff;
 }
 
 .product-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
 .product-card img {
@@ -476,9 +472,10 @@ header::before {
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(to right, #4a90e2, #8b5cf6);
+  background-color: var(--pink);
   transform: scaleX(0);
   transition: transform 0.3s ease;
+  box-shadow: 1px 6px 12px var(--pink); /* Menambahkan bayangan */
 }
 
 .product-card:hover::after {
@@ -487,7 +484,7 @@ header::before {
 
 .HomePage .catalog .product-card .p-4 h5 {
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: bold;
   line-height: 1.5;
 }
@@ -499,7 +496,7 @@ header::before {
 
 .product-card .flex .text-yellow-500 {
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .product-card .flex .text-yellow-500 svg {
@@ -509,15 +506,15 @@ header::before {
 
 .product-card span {
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 /* Learn More Button Styles */
 .product-card .learn-more-btn {
   padding: 8px 16px;
   background-color: var(--background);
-  color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  color: var(--heading);
+  font-family: "Rajdhani", sans-serif;
   border: none;
   border-radius: 5px;
   font-weight: 600;
@@ -528,7 +525,8 @@ header::before {
 }
 
 .product-card .learn-more-btn:hover {
-  background: linear-gradient(90deg, #4a90e2, #63b3ed);
+  background-color: var(--pink);
+  color: var(--background);
   transform: translateX(5px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -568,9 +566,9 @@ header::before {
   opacity: 1;
 }
 
-.product-card .image-container:hover img {
+/* .product-card .image-container:hover img {
   filter: brightness(0.7);
-}
+} */
 
 .features-list {
   font-size: 14px;
@@ -737,25 +735,31 @@ header::before {
   padding-bottom: 80px;
 }
 
-.portfolio{
+.portfolio {
   background: var(--background);
 }
 
-.portfolio .h1-portfolio{
+.portfolio .h1-portfolio {
   color: var(--heading);
   font-size: 3em;
   font-weight: 700;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
-
 
 .h1-portfolio {
   color: var(--heading);
   font-size: 3rem;
   font-weight: bold;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   text-align: center;
   margin-top: 100px;
+}
+
+.HomePage .portfolio .logo-svg {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  filter: drop-shadow(1px 2px 3px #00ff80) brightness(1) invert(1);
 }
 
 .HomePage .portfolio .swiper-slide {
@@ -828,11 +832,7 @@ header::before {
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-  background: linear-gradient(
-    to right,
-    var(--primary-color),
-    var(--pink)
-  );
+  background: linear-gradient(to right, var(--primary-color), var(--pink));
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -882,14 +882,14 @@ header::before {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 10px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .portfolio-genre {
   color: var(--text);
   font-size: 1rem;
   font-style: italic;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* Update swiper slide styling */
@@ -902,7 +902,7 @@ header::before {
 /* Hover effect */
 .portfolio-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -910,7 +910,7 @@ header::before {
 .portfolio-item iframe {
   border-radius: 8px;
   margin-top: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* faq */
@@ -920,11 +920,11 @@ header::before {
   padding-top: 100px;
   background: var(--background);
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
-.faq .h2-faq{
-  font-family: 'Rajdhani', sans-serif;
+.faq .h2-faq {
+  font-family: "Rajdhani", sans-serif;
 }
 
 .faq .text-center {
@@ -940,11 +940,7 @@ header::before {
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-  background: linear-gradient(
-    to right,
-    var(--primary-color),
-    var(--pink)
-  );
+  background: linear-gradient(to right, var(--primary-color), var(--pink));
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -987,7 +983,7 @@ header::before {
 .faq .accordion .accordion-body {
   background-color: var(--card);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   transform-origin: top;
   animation: slideDown 0.5s ease forwards;
   border-top: 1px solid var(--pink);
@@ -1015,14 +1011,14 @@ header::before {
 .footer .row:nth-child(1) .col:nth-child(1) h3 {
   color: var(--heading);
   font-size: 40px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .footer .row:nth-child(1) .col:nth-child(1) .desc {
   color: var(--text);
   font-size: 14px;
   line-height: 2;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .footer .no a,
@@ -1032,7 +1028,7 @@ header::before {
   color: var(--text);
   column-gap: 5px;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .footer .no a:hover,
@@ -1069,7 +1065,7 @@ header::before {
 
 .footer .row:nth-child(1) .col:nth-child(2) h5 {
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   border-bottom: 1px solid var(--pink);
   width: 150px;
   padding-bottom: 10px;
@@ -1080,7 +1076,7 @@ header::before {
   color: var(--text);
   text-decoration: none;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .footer .row:nth-child(1) .col:nth-child(2) a:hover {
@@ -1090,7 +1086,7 @@ header::before {
 
 .footer .row:nth-child(1) .col:nth-child(3) h5 {
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   width: 280px;
 }
 
@@ -1098,7 +1094,7 @@ header::before {
   color: var(--text);
   text-decoration: none;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .footer .row:nth-child(1) .col:nth-child(3) a:hover {
@@ -1112,20 +1108,20 @@ header::before {
 }
 
 .footer .footer-links a {
-  color: #A1A1B0;
+  color: #a1a1b0;
   text-decoration: none;
   position: relative;
   margin: 0 50px;
 }
 
 .footer .footer-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 1px;
   bottom: -2px;
   left: 0;
-  background-color: #FF007F;
+  background-color: #ff007f;
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -1135,12 +1131,12 @@ header::before {
 }
 
 .footer .footer-links a:hover {
-  color: #A1A1B0; 
+  color: #a1a1b0;
 }
 
 .pengunjung {
   color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 600;
   padding: 0 8px;
   margin-left: 4px;
@@ -1157,7 +1153,7 @@ header::before {
 /* Support */
 .contact-us {
   background: var(--background);
-  background-color: #0E1117;
+  background-color: #0e1117;
   padding: 60px 0;
 }
 
@@ -1199,9 +1195,16 @@ header::before {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 /* Responsive adjustment */
@@ -1275,7 +1278,7 @@ section {
   margin-bottom: 40px;
   text-align: left;
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   background: var(--background);
   display: flex;
   justify-content: space-between;
@@ -1286,18 +1289,18 @@ section {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 15px;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .product-desc p {
   font-size: 1.2rem;
   line-height: 1.6;
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .product-description {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .text-section {
@@ -1331,7 +1334,7 @@ section {
   margin-bottom: 20px;
   text-align: center;
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .steps-container {
@@ -1389,7 +1392,7 @@ section {
   font-weight: bold;
   margin-bottom: 20px;
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .plans {
@@ -1417,7 +1420,7 @@ section {
   font-size: 1.8rem;
   font-weight: bold;
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin-bottom: 15px;
 }
 
@@ -1425,7 +1428,7 @@ section {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--heading);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   margin-bottom: 20px;
 }
 
@@ -1453,11 +1456,11 @@ section {
   display: inline-block;
   padding: 10px 20px;
   background-color: var(--background);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
-  border: 1rem var(--pink); 
+  border: 1rem var(--pink);
   border-radius: 8px;
   cursor: pointer;
   margin-top: 10px;
@@ -1606,7 +1609,7 @@ section {
 .cta-support {
   color: white;
   background-color: transparent;
-  border: 2px solid #FF007F;
+  border: 2px solid #ff007f;
   padding: 8px 16px;
   border-radius: 10px;
   font-weight: 600;
@@ -1619,8 +1622,8 @@ section {
 }
 
 .cta-support:hover:not(:disabled) {
-  background-color: #FF007F;
-  color: #0E0B13;
+  background-color: #ff007f;
+  color: #0e0b13;
   font-weight: bold;
   box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
   transform: translateY(-2px);

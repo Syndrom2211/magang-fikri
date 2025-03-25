@@ -25,6 +25,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+import logoProduk from "../assets/logo-produk-kami.svg";
+import logoPortofolio from "../assets/logo-portofolio.svg";
+
 const HomePage = ({ language }) => {
   const catalogRef = useRef(null);
   const [setSwiperRef] = useState(null);
@@ -125,7 +128,17 @@ const HomePage = ({ language }) => {
           <Row>
             <Col data-aos="fade-up">
               <h1 className="text-center fw-bold">
-                🎵 {ProductContent[language].title} 🎵
+                <img
+                  src={logoProduk}
+                  alt="Logo Produk Kami"
+                  className="logo-svg"
+                />{" "}
+                {ProductContent[language].title}
+                <img
+                  src={logoProduk}
+                  alt="Logo Produk Kami"
+                  className="logo-svg"
+                />{" "}
               </h1>
               <p
                 className="text-center"
@@ -152,9 +165,9 @@ const HomePage = ({ language }) => {
                         className="w-100 mb-2 rounded"
                         style={{ height: "200px", objectFit: "cover" }}
                       />
-                      <div className="play-button">
+                      {/* <div className="play-button">
                         <PlayCircle size={40} />
-                      </div>
+                      </div> */}
                     </div>
                     <div className="p-4">
                       <h5 className="text-xl font-bold mb-2">{product.name}</h5>
@@ -207,7 +220,17 @@ const HomePage = ({ language }) => {
           <Row>
             <Col>
               <h1 className="h1-portfolio text-center fw-bold my-5">
-                🎼 Portofolio 🎼
+                <img
+                  src={logoPortofolio}
+                  alt="Logo Produk Kami"
+                  className="logo-svg"
+                />{" "}
+                Portofolio{" "}
+                <img
+                  src={logoPortofolio}
+                  alt="Logo Produk Kami"
+                  className="logo-svg"
+                />
               </h1>
             </Col>
           </Row>
