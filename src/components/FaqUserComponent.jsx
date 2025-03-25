@@ -56,7 +56,7 @@ const FaqUserComponent = ({ language }) => {
                         ? data.question_sd
                         : data.question_id}
                   </Accordion.Header>
-                  <Accordion.Body>
+                  <Accordion.Body className="faq-answer">
                     {language === "EN" 
                       ? data.answer_en 
                       : language === "SD"

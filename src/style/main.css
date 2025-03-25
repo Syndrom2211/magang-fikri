@@ -233,6 +233,12 @@ header {
   font-size: 4em;
   font-weight: 700;
   font-family: 'Orbitron', sans-serif;
+  text-align: justify;
+}
+
+.fs-5{
+  color: var(--heading);
+  text-align: justify !important;
 }
 
 /* Optional: Tambahkan overlay gelap */
@@ -927,6 +933,10 @@ header::before {
   font-family: 'Rajdhani', sans-serif;
 }
 
+.faq-answer{
+  text-align: justify !important;
+}
+
 .faq .text-center {
   position: relative;
   padding-bottom: 10px;
@@ -1175,6 +1185,8 @@ header::before {
 .p-alamat {
   font-size: 12px !important;
   line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+  text-align: justify !important;
 }
 
 .recaptcha-container {
@@ -1298,6 +1310,7 @@ section {
 
 .product-description {
   font-family: 'Inter', sans-serif;
+  text-align: justify !important;
 }
 
 .text-section {
