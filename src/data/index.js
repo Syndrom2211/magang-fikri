@@ -615,6 +615,33 @@ export const dataSwiper = {
   ],
 };
 
+export const portfolioDescriptions = {
+  ID: {
+    "Dapoer Catering SR": "Berdasarkan informasi yang tersedia, \"Dapoer Catering SR\" merupakan nama dari sebuah layanan katering yang menawarkan menu yang dapat disesuaikan dengan harga terjangkau.",
+    "Goyobod Laris": "\"Goyobod Laris\" adalah judul lagu yang termasuk dalam album \"Afiliasi Company - Phase 1\" oleh Yuk-Mari Project.",
+    "Dimsum by Inmons Fix": "\"Dimsum by Inmons Fix\" tampaknya terkait dengan konten promosi usaha dimsum oleh akun TikTok @dimsum.inmons.",
+    "Bubuk Cabe Pa Abdul": "Lagu ini juga merupakan bagian dari album \"Afiliasi Company - Phase 1\" oleh Yuk-Mari Project.",
+    "Aku Baru": "\"Aku Baru\" adalah lagu yang dipopulerkan oleh Bondan Prakoso. Lagu ini menceritakan tentang seseorang yang sebelumnya merasa sombong atas kemenangannya, namun kemudian menyadari pentingnya perubahan dan menjadi pribadi yang lebih baik. Liriknya menyoroti perjalanan introspeksi dan transformasi diri.",
+    "Hudang Hese": "\"Hudang Hese\" dalam bahasa Sunda berarti \"sulit bangun\". Meskipun informasi spesifik mengenai lagu ini terbatas, judulnya mungkin mengindikasikan tema tentang kesulitan untuk bangun tidur atau menghadapi tantangan dalam memulai hari."
+  },
+  EN: {
+    "Dapoer Catering SR": "Based on available information, \"Dapoer Catering SR\" is the name of a catering service that offers customizable menus at affordable prices.",
+    "Goyobod Laris": "\"Goyobod Laris\" is a song title included in the album \"Afiliasi Company - Phase 1\" by Yuk-Mari Project.",
+    "Dimsum by Inmons Fix": "\"Dimsum by Inmons Fix\" appears to be related to promotional content for a dimsum business by TikTok account @dimsum.inmons.",
+    "Bubuk Cabe Pa Abdul": "This song is also part of the album \"Afiliasi Company - Phase 1\" by Yuk-Mari Project.",
+    "Aku Baru": "\"Aku Baru\" is a song popularized by Bondan Prakoso. The song tells the story of someone who previously felt proud of their victory, but later realized the importance of change and becoming a better person. The lyrics highlight the journey of self-reflection and transformation.",
+    "Hudang Hese": "\"Hudang Hese\" in Sundanese means \"difficult to wake up\". Although specific information about this song is limited, the title might indicate themes about the difficulty of waking up or facing challenges in starting the day."
+  },
+  SD: {
+    "Dapoer Catering SR": "Dumasar kana informasi anu aya, \"Dapoer Catering SR\" mangrupa ngaran tina hiji layanan katering anu nawiskeun menu anu tiasa diropéa kalawan harga terjangkau.",
+    "Goyobod Laris": "\"Goyobod Laris\" mangrupa judul lagu anu kaasup dina album \"Afiliasi Company - Phase 1\" ku Yuk-Mari Project.",
+    "Dimsum by Inmons Fix": "\"Dimsum by Inmons Fix\" sigana aya hubunganana sareng konten promosi usaha dimsum ku akun TikTok @dimsum.inmons.",
+    "Bubuk Cabe Pa Abdul": "Ieu lagu ogé mangrupa bagian tina album \"Afiliasi Company - Phase 1\" ku Yuk-Mari Project.",
+    "Aku Baru": "\"Aku Baru\" mangrupa lagu anu dipopulerkeun ku Bondan Prakoso. Ieu lagu nyaritakeun ngeunaan hiji jalma anu sateuacanna ngarasa sombong kana kamenanganana, tapi engkéna sadar kana pentingna parobahan sareng jadi pribadi anu langkung saé. Lirikna nyorotikeun perjalanan introspeksi sareng transformasi diri.",
+    "Hudang Hese": "\"Hudang Hese\" dina basa Sunda hartina \"susah hudang\". Sanajan informasi spesifik ngeunaan ieu lagu kawates, judulna panginten ngindikasi tema ngeunaan kasusah hudang atanapi nyanghareupan tantangan dina mimitian poé."
+  }
+};
+
 export const creativeMusicHubData = {
   ID: {
     name: "CreativeMusic",
@@ -731,7 +758,7 @@ export const productDescriptions = {
       description2:
         "No need to learn music production or find musicians. Enjoy a variety of genres and arrangements tailored to your lyrics, whether for videos, podcasts, or personal projects.",
       description3:
-        "Starting from Rp. 150,000, CMH.AI offers a fast and easy solution to produce high-quality music. Choose your genre, upload your lyrics, and let our AI do the work. In no time, you’ll have the perfect music to complement your creative project.",
+        "Starting from Rp. 150,000, CMH.AI offers a fast and easy solution to produce high-quality music. Choose your genre, upload your lyrics, and let our AI do the work. In no time, you'll have the perfect music to complement your creative project.",
       imageUrl: productDesc1,
     },
     {
@@ -755,7 +782,7 @@ export const productDescriptions = {
       description2:
         "No need to arrange instruments or find composers. Enjoy various genres and musical arrangements tailored to your chosen sound effects, whether for films, videos, or other creative projects.",
       description3:
-        "Starting from Rp. 100,000, CMH.AI offers a fast and easy solution to produce high-quality music. Choose the right package, upload sound effects, and let our AI do the work. In no time, you’ll have the perfect music to complete your project.",
+        "Starting from Rp. 100,000, CMH.AI offers a fast and easy solution to produce high-quality music. Choose the right package, upload sound effects, and let our AI do the work. In no time, you'll have the perfect music to complete your project.",
       imageUrl: productDesc3,
     },
   ],

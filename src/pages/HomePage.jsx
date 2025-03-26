@@ -19,6 +19,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import CboxChat from "../components/CboxChat";
 import BackToTop from "../components/BackToTop";
+import { portfolioDescriptions } from "../data/index.js";
 
 // Import Swiper styles
 import "swiper/css";
@@ -270,7 +271,12 @@ const HomePage = ({ language }) => {
                   virtualIndex={index}
                   className="shadow-sm rounded">
                   <div className="portfolio-item">
-                    <h4 className="portfolio-title mb-3">{swiper.name}</h4>
+                    <div className="song-title-container">
+                      <h4 className="portfolio-title mb-3">{swiper.name}</h4>
+                      <div className="song-tooltip">
+                        {portfolioDescriptions[language][swiper.name]}
+                      </div>
+                    </div>
                     <p className="portfolio-genre mb-3">{swiper.genre}</p>
                     <iframe
                       width="100%"
@@ -278,7 +284,8 @@ const HomePage = ({ language }) => {
                       scrolling="no"
                       frameBorder="no"
                       allow="autoplay"
-                      src={swiper.audio}></iframe>
+                      src={swiper.audio}>
+                    </iframe>
                   </div>
                 </SwiperSlide>
               ))}

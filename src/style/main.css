@@ -205,15 +205,17 @@
   }
 }
 
-/* header */
+/* Header */
 header {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
+  padding-top: 100px; /* Prevents navbar overlap */
+  padding-bottom: 120px; /* Space for button at bottom */
 }
 
 .video-background {
@@ -226,21 +228,7 @@ header {
   z-index: 0;
 }
 
-.main-h1 {
-  color: var(--heading);
-  font-size: 4em;
-  font-weight: 700;
-  font-family: 'Orbitron', sans-serif;
-  text-align: justify;
-}
-
-.fs-5{
-  color: var(--heading);
-  text-align: justify !important;
-  font-family: "Orbitron", sans-serif;
-}
-
-/* Optional: Tambahkan overlay gelap */
+/* Dark overlay */
 header::before {
   content: "";
   position: absolute;
@@ -252,40 +240,93 @@ header::before {
   z-index: 1;
 }
 
+/* Content container */
 .header-content {
   position: relative;
   z-index: 3;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: start; 
 }
 
+/* Text styles */
+.main-h1,
 .HomePage .header-content h1 {
   color: var(--heading) !important;
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   font-family: "Orbitron", sans-serif;
-  margin: 10px 0 40px 0;
-  text-align: left;
+  margin: 0 0 25px 0;
+  /* text-align: justify; */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  text-justify: inter-word;
 }
 
+/* Paragraph text */
+.fs-5,
 .HomePage .header-content p {
   color: var(--text) !important;
-  font-size: 1.5em;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* Responsive font size */
   font-weight: 400;
   font-family: "Inter", sans-serif;
-  margin: 0 0 50px 0;
-  text-align: left;
+  margin: 0 0 40px 0;
+  text-align: justify; /* Ensure justification */
+  text-justify: inter-word;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  line-height: 1.6;
+  max-width: 800px;
+  hyphens: auto;
+  word-spacing: -0.05em;
 }
 
-.HomePage .header-content img {
-  width: 100%;
-  height: auto;
-  margin: 0 0 20px 0;
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
+/* Responsive adjustments */
 @media screen and (max-width: 768px) {
-  .HomePage .header-content {
-    padding-top: 8rem;
+  header {
+    padding-top: 90px;
+    padding-bottom: 100px;
+    text-align: center;
+  }
+
+  .header-content {
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  /* Text styles */
+  .main-h1,
+  .HomePage .header-content h1 {
+    color: var(--heading) !important;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    font-family: "Orbitron", sans-serif;
+    margin: 0 0 25px 0;
+    text-align: justify; /* Keep justified */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.3;
+  }
+
+  .fs-5,
+  .HomePage .header-content p {
+    color: var(--text) !important;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    margin: 0 0 40px 0;
+    text-align: justify;
+    text-justify: inter-word;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.6;
+    max-width: 800px;
+    hyphens: auto;
+    word-spacing: -0.05em;
   }
 
   .HomePage .img {
@@ -296,57 +337,72 @@ header::before {
   }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 768px) {
+  .main-h1,
   .HomePage .header-content h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
+    text-align: justify; /* Ensure justification */
   }
 
+  .fs-5,
   .HomePage .header-content p {
-    font-size: 1.8rem;
+    text-align: justify;
+    text-justify: inter-character;
+    word-spacing: -0.1em;
   }
 }
 
 @media screen and (max-width: 475px) {
-  .HomePage .header-content h1 {
-    font-size: 2.4rem;
+  header {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
+  .main-h1,
+  .HomePage .header-content h1 {
+    font-size: 2.2rem;
+    text-align: justify; /* Ensure justification */
+  }
+
+  .fs-5,
   .HomePage .header-content p {
-    font-size: 14px;
+    font-size: 1rem;
+    text-align: justify;
   }
 
   .HomePage .header-content img {
     width: 300px;
-    height: auto;
-    margin: 0 0 20px 0;
   }
 }
 
 @media screen and (max-width: 375px) {
+  .main-h1,
   .HomePage .header-content h1 {
     font-size: 2rem;
+    text-align: justify; /* Ensure justification */
   }
 
+  .fs-5,
   .HomePage .header-content p {
-    font-size: 12px;
+    font-size: 0.9rem;
+    text-align: justify;
   }
 
   .HomePage .header-content img {
-    width: 200px;
-    height: auto;
-    margin: 0 0 20px 0;
+    width: 250px;
   }
 }
 
 /* cta button */
 .cta-button {
-  display: block;
+  display: inline-block;
   align-items: center;
   gap: 10px;
-  padding: 1rem 2rem;
+  padding: 16px 32px;
   background: var(--background);
   color: var(--heading);
   font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
   font-size: 1.5rem;
   text-decoration: none;
   border: 2px solid var(--pink);
@@ -920,6 +976,72 @@ header::before {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.song-title-container {
+  position: relative;
+  display: block;
+}
+
+.song-tooltip {
+  visibility: hidden;
+  position: absolute;
+  top: 100%; /* Ubah ke bawah */
+  left: 0;
+  background-color: var(--card);
+  color: var(--text);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  text-align: justify !important;
+  width: 100%;
+  min-height: 60px;
+  text-align: left;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  border: 1px solid var(--pink);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 10px; /* Jarak dari judul */
+}
+
+.song-title-container:hover .song-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Arrow di atas tooltip */
+.song-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -10px; /* Ubah posisi arrow ke atas */
+  left: 20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--pink) transparent; /* Ubah arah arrow */
+}
+
+/* Pastikan teks judul tetap terlihat */
+.portfolio-title {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pastikan tooltip tidak terpotong */
+.portfolio-item {
+  padding-bottom: 80px; /* Tambah ruang untuk tooltip */
+  margin-bottom: 20px;
+}
+
+/* Animasi hover */
+.portfolio-item {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+}
+
 /* faq */
 
 .faq {
@@ -934,7 +1056,7 @@ header::before {
   font-family: "Rajdhani", sans-serif;
 }
 
-.faq-answer{
+.faq-answer {
   text-align: justify !important;
 }
 
@@ -1182,7 +1304,7 @@ header::before {
 .p-alamat {
   font-size: 12px !important;
   line-height: 1.5;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   text-align: justify !important;
 }
 
@@ -1313,7 +1435,7 @@ section {
 }
 
 .product-description {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   text-align: justify !important;
 }
 

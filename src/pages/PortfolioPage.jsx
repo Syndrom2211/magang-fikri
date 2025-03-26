@@ -3,11 +3,12 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import axios from "axios";
 import SoundCloudPlayer from "../components/SoundCloudPlayer";
+import { portfolioDescriptions } from "../data/index.js";
 
 const genres = ["All", "Accoustic", "Dubstep", "Jazz", "Pop", "Progressive", "Sundanese"];
 
 // eslint-disable-next-line no-empty-pattern
-const PortfolioPage = ({ }) => {
+const PortfolioPage = ({ language }) => {
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [portfolios, setPortfolios] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -86,9 +87,15 @@ const PortfolioPage = ({ }) => {
             {filteredPortfolios.map((item) => (
               <Col key={item.id} sm={6} md={4}>
                 <div className="video-card shadow-sm rounded p-3 bg-dark text-light">
-                  <h4 className="fw-bold my-2 text-uppercase" style={{ letterSpacing: "2px" }}>
-                    {item.name}
-                  </h4>
+                  <div className="song-title-container">
+                    <h4 className="fw-bold my-2 text-uppercase" style={{ letterSpacing: "2px" }}>
+                      {item.name}
+                    </h4>
+                    <div className="song-tooltip">
+                      <strong>Genre:</strong> {item.genre}<br/>
+                      {portfolioDescriptions[language][item.name]}
+                    </div>
+                  </div>
                   <SoundCloudPlayer embedUrl={item.link} />
                 </div>
               </Col>
