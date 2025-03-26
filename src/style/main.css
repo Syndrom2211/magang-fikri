@@ -15,6 +15,7 @@
   --card: #1c1f26;
   --pink: #ff007f;
   --text: #a1a1b0;
+  --shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
 }
 
 /* navbar */
@@ -113,7 +114,7 @@
   background-color: #ff007f;
   color: #0e0b13;
   font-weight: bold;
-  box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
+  box-shadow: var(--shadow);
 }
 
 /* Dropdown Styles */
@@ -229,6 +230,21 @@ header {
 }
 
 /* Dark overlay */
+.main-h1 {
+  color: var(--heading);
+  font-size: 4em;
+  font-weight: 700;
+  font-family: "Orbitron", sans-serif;
+  text-align: justify;
+}
+
+.fs-5 {
+  color: var(--heading);
+  text-align: justify !important;
+  font-family: "Orbitron", sans-serif;
+}
+
+/* Optional: Tambahkan overlay gelap */
 header::before {
   content: "";
   position: absolute;
@@ -591,7 +607,13 @@ header::before {
   background-color: var(--pink);
   color: var(--background);
   transform: translateX(5px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 12px rgba(255, 0, 127, 0.4);
+}
+
+.product-card:hover .learn-more-btn {
+  /* transform: translateY(-5px); */
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
 }
 
 .product-card .learn-more-btn:active {
@@ -611,7 +633,7 @@ header::before {
   overflow: hidden;
 }
 
-.product-card .play-button {
+/* .product-card .play-button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -623,7 +645,7 @@ header::before {
   padding: 15px;
   cursor: pointer;
   color: white;
-}
+} */
 
 .product-card .image-container:hover .play-button {
   opacity: 1;
@@ -651,12 +673,12 @@ header::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #28a745;
+  color: var(--pink);
   font-weight: bold;
 }
 
 .price-tag {
-  color: #28a745;
+  color: var(--pink);
   padding: 4px 0;
   font-weight: 600;
   font-size: 1.1rem;
@@ -666,13 +688,13 @@ header::before {
 }
 
 .price-icon {
-  color: #28a745;
+  color: var(--pink);
   font-size: 14px;
   margin-right: 8px;
 }
 
 .user-icon-wrapper {
-  background: #28a745;
+  background: var(--pink);
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -1106,6 +1128,8 @@ header::before {
 .faq .accordion .accordion-button:not(.collapsed)::after {
   background-image: var(--bs-accordion-btn-active-icon);
   transform: rotate(-180deg);
+  filter: brightness(0) saturate(100%) invert(28%) sepia(68%) saturate(2422%)
+    hue-rotate(328deg) brightness(95%) contrast(93%); /* Filter untuk mengubah warna menjadi pink */
 }
 
 .faq .accordion .accordion-button::after {
@@ -1457,6 +1481,41 @@ section {
   border-radius: 0.5rem;
 }
 
+.btn-lyric {
+  /* Gaya dasar tombol */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transisi untuk efek hover */
+}
+
+.btn-primary {
+  /* Gaya khusus untuk tombol utama */
+  background-color: var(--background); /* Warna biru utama */
+  color: white;
+}
+
+.btn-primary:hover {
+  /* Gaya hover untuk tombol utama */
+  background-color: var(--pink); /* Warna biru lebih gelap saat hover */
+}
+
+.create-btn {
+  /* Gaya khusus untuk tombol buat */
+  background-color: #28a745; /* Warna hijau buat */
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.create-btn:hover {
+  /* Gaya hover untuk tombol buat */
+  background-color: var(--pink);
+  color: var(--nav-color);
+  box-shadow: var(--shadow);
+}
+
 /* How It Works */
 .how-it-works {
   margin-bottom: 40px;
@@ -1588,6 +1647,14 @@ section {
   color: var(--pink);
 }
 
+/* .plan:hover .order-button {
+  box-shadow: 0 4px 12px rgba(255, 0, 127, 0.4);
+} */
+
+.plan:hover {
+  box-shadow: var(--shadow);
+}
+
 .order-button {
   display: inline-block;
   padding: 10px 20px;
@@ -1605,7 +1672,9 @@ section {
 }
 
 .order-button:hover {
-  background-color: var(--background);
+  background-color: var(--pink);
+  color: var(--background);
+  box-shadow: var(--shadow);
 }
 
 /* Modal Form Styles */

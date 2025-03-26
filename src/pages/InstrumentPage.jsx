@@ -16,13 +16,13 @@ const InstrumentPage = ({ language }) => {
     // Create Tawk.to script element
     var s1 = document.createElement("script");
     s1.async = true;
-    s1.src = 'https://embed.tawk.to/67ce66c1c7388b190b531937/1ilv42p15';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    
+    s1.src = "https://embed.tawk.to/67ce66c1c7388b190b531937/1ilv42p15";
+    s1.charset = "UTF-8";
+    s1.setAttribute("crossorigin", "*");
+
     // Append script to body
     document.body.appendChild(s1);
-    
+
     // Cleanup function to remove script when component unmounts
     return () => {
       document.body.removeChild(s1);
@@ -36,8 +36,7 @@ const InstrumentPage = ({ language }) => {
     <div className="instrument-page">
       <div
         className="product-page"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
+        style={{ backgroundImage: `url(${backgroundImage})` }}>
         <Container>
           <Row className="text-center pt-5">
             <Col>
@@ -45,7 +44,7 @@ const InstrumentPage = ({ language }) => {
                 <h1
                   className="headline"
                   dangerouslySetInnerHTML={{
-                    __html: instrumentSectionData[language].headline +  "🎸 " ,
+                    __html: instrumentSectionData[language].headline + "🎸 ",
                   }}
                 />
                 <p className="subtext">
@@ -53,8 +52,7 @@ const InstrumentPage = ({ language }) => {
                 </p>
                 <Button
                   className="btn btn-primary instrument-btn"
-                  onClick={scrollToPriceList}
-                >
+                  onClick={scrollToPriceList}>
                   {instrumentSectionData[language].buttonText}
                 </Button>
               </div>

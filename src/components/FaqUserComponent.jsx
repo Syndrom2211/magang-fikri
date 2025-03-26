@@ -36,11 +36,11 @@ const FaqUserComponent = ({ language }) => {
         <Row>
           <Col>
             <h2 className="text-center fw-bold h2-faq">
-              {language === "EN" 
+              {language === "EN"
                 ? "Frequently Asked Questions"
                 : language === "SD"
-                  ? "Patarosan anu Sering Ditaroskeun"
-                  : "Pertanyaan yang Sering Diajukan"}
+                ? "Patarosan anu Sering Ditaroskeun"
+                : "Pertanyaan yang Sering Diajukan"}
             </h2>
           </Col>
         </Row>
@@ -50,18 +50,18 @@ const FaqUserComponent = ({ language }) => {
               <Accordion className="shadow-sm">
                 <Accordion.Item eventKey={data.id.toString()}>
                   <Accordion.Header>
-                    {language === "EN" 
-                      ? data.question_en 
+                    {language === "EN"
+                      ? data.question_en
                       : language === "SD"
-                        ? data.question_sd
-                        : data.question_id}
+                      ? data.question_sd
+                      : data.question_id}
                   </Accordion.Header>
                   <Accordion.Body className="faq-answer">
-                    {language === "EN" 
-                      ? data.answer_en 
+                    {language === "EN"
+                      ? data.answer_en
                       : language === "SD"
-                        ? data.answer_sd
-                        : data.answer_id}
+                      ? data.answer_sd
+                      : data.answer_id}
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
