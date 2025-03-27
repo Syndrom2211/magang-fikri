@@ -264,7 +264,7 @@ header::before {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 0;
-  text-align: start; 
+  text-align: start;
 }
 
 /* Text styles */
@@ -1033,7 +1033,7 @@ header::before {
 
 /* Arrow di atas tooltip */
 .song-tooltip::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px; /* Ubah posisi arrow ke atas */
   left: 20px;
@@ -1310,19 +1310,89 @@ header::before {
 /* Support */
 .contact-us {
   background: var(--background);
-  background-color: #0e1117;
   padding: 60px 0;
+  color: var(--heading);
+}
+
+.contact-us form {
+  background-color: var(--card); /* Latar belakang form */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+/* Label Form */
+.contact-us label {
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Input Form */
+.contact-us input,
+.contact-us textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--text);
+  border-radius: 4px;
+  background-color: var(--card);
+  color: var(--heading);
+}
+
+.contact-us input:-webkit-autofill,
+.contact-us textarea:-webkit-autofill {
+  background-color: var(
+    --card
+  ) !important; /* Atur ulang warna latar belakang */
+  color: var(--heading) !important; /* Atur ulang warna teks */
+  border-color: var(--text) !important; /* Atur ulang warna border */
+}
+
+.contact-us input:not(:placeholder-shown),
+.contact-us textarea:not(:placeholder-shown) {
+  background-color: var(--background) !important;
+  color: var(--heading) !important; /* Sesuaikan warna teks jika perlu */
+  border-color: var(--text); /* Sesuaikan warna border jika perlu */
+}
+
+.contact-us input:focus,
+.contact-us textarea:focus {
+  outline: none;
+  border-color: var(--pink);
+  box-shadow: var(--shadow);
+}
+
+.contact-us input::placeholder,
+.contact-us textarea::placeholder {
+  color: var(--text); /* Warna placeholder */
+  font-style: italic; /* Gaya placeholder */
+}
+
+.custom-input {
+  border-color: var(--pink) !important;
+}
+
+.custom-input:focus {
+  border-color: #ff3399 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 127, 0.25) !important;
+  background: var(--background) !important;
+  color: var(--heading) !important;
 }
 
 .contact-info {
-  background: white;
+  background: var(--card);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.contact-info:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
 }
 
 .p-alamat {
@@ -1375,12 +1445,20 @@ header::before {
 
 .contact-us .text-center h1 {
   padding-top: 50px;
-  color: var(--light-color);
+  color: var(--pink);
+}
+
+.contact-us .cta-support:disabled {
+  background-color: #cccccc; /* Warna abu-abu saat disabled */
+  color: #666666;
+  cursor: not-allowed; /* Ubah kursor menjadi not-allowed */
 }
 
 .contact-info h4 {
   margin-bottom: 15px;
   font-weight: bold;
+  color: var(--heading);
+  font-family: "Rajdhani", sans-serif;
 }
 
 .contact-info p {
@@ -1388,18 +1466,21 @@ header::before {
   font-size: 1rem;
 }
 
-.cta-Support {
-  background-color: #007bff;
+/* Tombol Submit */
+.contact-us .cta-support {
+  background-color: var(--background);
+  color: var(--heading);
+  padding: 1rem 2rem;
   border: none;
-  padding: 10px 20px;
-  color: white;
-  font-size: 1rem;
-  border-radius: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
-.cta-Support:hover {
-  background-color: #0056b3;
+.contact-us .cta-support:hover {
+  background-color: var(--pink); /* Warna hover yang sedikit lebih gelap */
+  color: var(--background);
 }
 
 /* General Styling for Sections */
