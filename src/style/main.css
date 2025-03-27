@@ -1445,7 +1445,7 @@ header::before {
 
 .contact-us .text-center h1 {
   padding-top: 50px;
-  color: var(--pink);
+  color: var(--heading);
   font-family: "Rajdhani", sans-serif;
 }
 
