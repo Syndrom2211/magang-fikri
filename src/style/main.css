@@ -1360,7 +1360,7 @@ header::before {
 .contact-us textarea:focus {
   outline: none;
   border-color: var(--pink);
-  box-shadow: var(--shadow);
+  box-shadow: rgb(251, 0, 238) 2px 2px 2px 5px;
 }
 
 .contact-us input::placeholder,
@@ -1446,6 +1446,7 @@ header::before {
 .contact-us .text-center h1 {
   padding-top: 50px;
   color: var(--pink);
+  font-family: "Rajdhani", sans-serif;
 }
 
 .contact-us .cta-support:disabled {
