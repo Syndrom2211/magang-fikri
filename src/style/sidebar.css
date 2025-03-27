@@ -5,7 +5,7 @@
   --tertiary-color: #90be6d;
   --dark-color: linear-gradient(135deg, #24243e 0%, #302b63 50%, #0f0c29 100%);
   --bg-color: linear-gradient(135deg, #2b1055 0%, #7597de 100%);
-  --light-color: #e9c46a;
+  --light-color: #F2F2F2;
   --nav-color: #0E0B13;
   --background: #0E1117;
   --heading: #F2F2F2;
@@ -31,7 +31,7 @@
 /* Sidebar tertutup */
 .sidebar-wrapper.closed {
   width: 90px;
-  color: var(--pink);
+  color: var(--heading);
 }
 
 /* TOMBOL TOGGLE SIDEBAR */
@@ -54,7 +54,7 @@
 }
 
 .sidebar-wrapper.closed .icon {
-  color: var(--pink) !important;
+  color: var(--heading) !important;
 }
 
 /* LOGO */
@@ -94,6 +94,7 @@
   font-family: 'Rajdhani', sans-serif;
   transition: all 0.3s ease;
   margin-top: 5px;
+  background: transparent !important;
 }
 
 .nav-link .icon {
@@ -112,36 +113,100 @@
   font-family: 'Rajdhani', sans-serif;
 }
 
-/* Hover pada item menu */
-.nav-link:hover {
-  color: var(--pink);
+/* Hover pada item menu yang TIDAK aktif */
+.nav-link:not(.active):hover {
+  color: var(--pink) !important;
 }
 
-/* Warna hanya untuk menu yang aktif */
+/* Style untuk link yang aktif */
 .nav-link.active {
+  color: var(--heading) !important;
+  background: transparent !important;
   font-weight: normal !important;
-  color: var(--pink) !important;
+}
+
+/* Hapus style hover pada link yang aktif */
+.nav-link.active:hover,
+.nav-link.active:focus,
+.nav-link.active:active {
+  color: var(--heading) !important;
+  background: transparent !important;
 }
 
 /* DROPDOWN PRODUK */
 .product-dropdown {
   padding-left: 35px;
+  background: transparent !important;
 }
 
 .product-dropdown.open {
   display: block;
   background: transparent !important;
+  color: var(--heading) !important;
 }
 
 /* Warna submenu produk */
 .product-dropdown .nav-link {
   font-size: 13px;
   padding: 8px 15px;
+  color: var(--heading) !important;
+  background: transparent !important;
 }
 
 /* Hover submenu produk */
 .product-dropdown .nav-link:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: transparent !important;
+  color: var(--pink) !important;
+}
+
+/* dropdown produk */
+.product-dropdown {
+  display: none;
+  padding-left: 10px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.product-dropdown.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0); 
+}
+
+/* .product-dropdown.open {
+  display: block;
+  color: black;
+} */
+
+.product-dropdown .nav-link.sub-menu {
+  padding-left: 10px;
+  color: var(--heading) !important;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  background: transparent !important;
+}
+
+.product-dropdown .nav-link.sub-menu:hover {
+  background: transparent !important;
+  color: var(--pink) !important;
+  border-radius: 0;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.product-dropdown .nav-link.sub-menu:hover .menu-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  transition: 0.3s;
+}
+
+.product-dropdown .nav-link.sub-menu .menu-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 /* Sembunyikan teks saat sidebar ditutup */

@@ -23,6 +23,7 @@ th {
 /* Isi tabel */
 td {
     padding: 8px;
+    text-align: justify !important;
 }
 
 /* Styling untuk tabel produk */
@@ -48,10 +49,36 @@ button {
     vertical-align: middle;
 }
 
+.button-tambah {
+    background-color: var(--pink) !important;
+    border: 2px solid var(--pink) !important;
+}
+
+.button-batal {
+    background-color: var(--background) !important;
+    border: 2px solid var(--background) !important;
+}
+
+.button-simpan {
+    background-color: var(--pink) !important;
+    border: 2px solid var(--pink) !important;
+}
+
 /* Modal */
 .modal-header {
-    background: #3498db;
-    color: white;
+    background: var(--background);
+    color: var(--heading);
+}
+
+.modal-title.h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.form-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
 }
 
 .modal-footer {

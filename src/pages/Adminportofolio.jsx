@@ -93,10 +93,9 @@ const PortfolioTable = () => {
         <MainHeader />
         <div className="dashboard-content-isi" style={{ flex: 1, padding: "30px" }}>
           <h2>CRUD Portfolio</h2>
-          <Button
-            variant="primary"
+          <Button 
             onClick={() => handleShow()}
-            className="mt-3"
+            className="button-tambah"
           >
             Tambah Portfolio
           </Button>
@@ -188,10 +187,10 @@ const PortfolioTable = () => {
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button className="button-batal" onClick={handleClose}>
                 Batal
               </Button>
-              <Button variant="primary" onClick={handleSubmit}>
+              <Button className="button-simpan" onClick={handleSubmit}>
                 Simpan
               </Button>
             </Modal.Footer>

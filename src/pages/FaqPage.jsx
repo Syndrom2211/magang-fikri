@@ -93,9 +93,8 @@ const FAQPage = () => {
         <div className="dashboard-main" style={{ flex: 1, padding: "20px" }}>
           <h2>FAQ Management</h2>
           <Button
-            variant="primary"
             onClick={() => handleShow()}
-            className="mt-3">
+            className="button-tambah">
             Tambah FAQ
           </Button>
           <Table striped bordered hover className="mt-3">
@@ -193,10 +192,10 @@ const FAQPage = () => {
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button className="button-batal" onClick={handleClose}>
                 Batal
               </Button>
-              <Button variant="primary" onClick={handleSubmit}>
+              <Button className="button-simpan" onClick={handleSubmit}>
                 Simpan
               </Button>
             </Modal.Footer>
