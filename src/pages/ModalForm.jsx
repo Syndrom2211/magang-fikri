@@ -4,13 +4,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import HeroImage from "../assets/music-1.jpg";
 import { checkout } from "../components/Checkoutmodal";
 import { products } from "../data/index";
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const ModalForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { plan, page, language } = location.state || {};
-  const recaptchaRef = useRef(null);
+  // const recaptchaRef = useRef(null);
 
   const currentPlan = products[language]?.find(
     (product) => product.category === page && product.id === plan?.id
@@ -28,7 +28,7 @@ const ModalForm = () => {
     soundEffect: "",
   });
 
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  // const [recaptchaToken, setRecaptchaToken] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
@@ -47,12 +47,12 @@ const ModalForm = () => {
     }
   };
 
-  const handleRecaptchaChange = (token) => {
-    setRecaptchaToken(token);
-    if (formErrors.recaptcha) {
-      setFormErrors({ ...formErrors, recaptcha: "" });
-    }
-  };
+  // const handleRecaptchaChange = (token) => {
+  //   setRecaptchaToken(token);
+  //   if (formErrors.recaptcha) {
+  //     setFormErrors({ ...formErrors, recaptcha: "" });
+  //   }
+  // };
 
   const validateForm = () => {
     let errors = {};
@@ -90,10 +90,10 @@ const ModalForm = () => {
   };
 
   const handleCheckout = async () => {
-    if (!recaptchaToken) {
-      setAlertMessage("Mohon selesaikan reCAPTCHA sebelum melanjutkan.");
-      return;
-    }
+    // if (!recaptchaToken) {
+    //   setAlertMessage("Mohon selesaikan reCAPTCHA sebelum melanjutkan.");
+    //   return;
+    // }
 
     if (isSubmitting) return;
 
@@ -104,7 +104,7 @@ const ModalForm = () => {
           ...formData,
           item_id: parseInt(formData.id, 10),
           id: parseInt(formData.id, 10),
-          recaptchaToken: recaptchaToken,
+          // recaptchaToken: recaptchaToken,
         };
 
         const checkoutResult = await checkout(formDataToSend);
@@ -121,10 +121,10 @@ const ModalForm = () => {
         );
       } finally {
         setIsSubmitting(false);
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-          setRecaptchaToken(null);
-        }
+        // if (recaptchaRef.current) {
+        //   recaptchaRef.current.reset();
+        //   setRecaptchaToken(null);
+        // }
       }
     }
   };
@@ -249,7 +249,7 @@ const ModalForm = () => {
                       </strong>
                     </p>
                   </div>
-                  <div className="recaptcha-container-2">
+                  {/* <div className="recaptcha-container-2">
                     <ReCAPTCHA
                       ref={recaptchaRef}
                       sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
@@ -257,7 +257,7 @@ const ModalForm = () => {
                       theme="light"
                       size="normal"
                     />
-                  </div>
+                  </div> */}
                   <button
                     type="button"
                     className="submit-button"

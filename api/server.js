@@ -53,7 +53,7 @@ const db = mysql.createConnection({
 //   port: process.env.DB_PORT || 3306, // Use env variable
 //   user: process.env.DB_USER || "root",
 //   password: process.env.DB_PASSWORD || "",
-//   database: process.env.DB_NAME || "creativemusichub",
+//   database: process.env.DB_NAME || "cref8549_creativemusichub",
 //   multipleStatements: true, // Allow multiple queries
 //   connectTimeout: 10000, // Increase timeout
 // });
@@ -859,30 +859,32 @@ async function addAdminUser(username, password, email) {
 createDatabaseAndTable();
 
 app.post("/admin/login", async (req, res) => {
-  const { username, password, recaptchaToken } = req.body;
+  const { username, password } = req.body; // Hapus recaptchaToken dari req.body
 
-  if (!username || !password || !recaptchaToken) {
-    return res.status(400).json({ message: "Semua field wajib diisi." });
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ message: "Username dan password wajib diisi." });
   }
 
   try {
-    // Verifikasi reCAPTCHA dengan Google
-    const verifyResponse = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify`,
-      null,
-      {
-        params: {
-          secret: globalThis.process.env.RECAPTCHA_SECRET_KEY,
-          response: recaptchaToken,
-        },
-      }
-    );
+    // Hapus bagian verifikasi reCAPTCHA
+    // const verifyResponse = await axios.post(
+    //   `https://www.google.com/recaptcha/api/siteverify`,
+    //   null,
+    //   {
+    //     params: {
+    //       secret: globalThis.process.env.RECAPTCHA_SECRET_KEY,
+    //       response: recaptchaToken,
+    //     },
+    //   }
+    // );
 
-    const { success, score } = verifyResponse.data;
+    // const { success, score } = verifyResponse.data;
 
-    if (!success || (score !== undefined && score < 0.5)) {
-      return res.status(400).json({ message: "Verifikasi reCAPTCHA gagal." });
-    }
+    // if (!success || (score !== undefined && score < 0.5)) {
+    //   return res.status(400).json({ message: "Verifikasi reCAPTCHA gagal." });
+    // }
 
     // Cek username dan password di database
     const [rows] = await db
